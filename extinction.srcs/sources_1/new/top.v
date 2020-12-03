@@ -73,7 +73,7 @@ module
     wire              COINC    ; // coincidence signal from other pion counters
 
     assign    SIGNAL = (GPIO_SWITCH[3:1]==3'b111)? 64'd0 : {LA_HPC,LA_LPC};
-    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {3'b0,GPIO_SMA[0]} : HA_HPC[3:0];
+    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
 
 genvar i;
 generate
@@ -99,6 +99,8 @@ generate
 
     reg    [63:0]    regSIG    ;
     reg   [127:0]    sigEdge   ;
+    reg     [1:0]    syncEdge  ;
+    reg              regSync   ;
 
 for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
     always@ (posedge CLK_200M) begin
@@ -111,6 +113,15 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
         end
     end
 end
+    always@ (posedge CLK_200M) begin
+        if(TCP_RST)begin
+            regSync       <= 1'd0;
+            syncEdge[1:0] <= 2'd0;
+        end else begin
+            regSync       <= (syncEdge[1:0]==2'b01);
+            syncEdge[1:0] <= {syncEdge[0],MR_SYNC};
+        end
+    end
 endgenerate
     wire   [31:0]   RBCP_ADDR;
     wire    [7:0]   RBCP_WD  ;
@@ -180,7 +191,7 @@ endgenerate
     //
         .SIGNAL     (regSIG       ),
         .PSPILL     (PSPILL       ),
-        .MR_SYNC    (MR_SYNC      ),
+        .MR_SYNC    (regSync      ),
         .COINC      (COINC        ),
         .EV_MATCH   (EV_MATCH     ),
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending

@@ -49,8 +49,7 @@ module top_tdc(
 //*******************************************************************************
     reg      [1:0]    SPL_REG   ;
     reg               SPL_EDGE  ;
-    reg      [1:0]    SYNC_REG  ;
-    reg               SYNC_EDGE ;
+    reg               SPL_END   ;
     reg      [1:0]    EM_REG    ;
     reg               EM_EDGE   ;
     reg     [31:0]    COUNTER   ;
@@ -61,20 +60,16 @@ module top_tdc(
         if(RESET)begin
             SPL_REG    <= 2'b00;
             SPL_EDGE   <= 1'b0;
+            SPL_END    <= 1'b0;
             irSPILLCOUNT <= 16'd0;
-
-            SYNC_REG   <= 2'b00;
-            SYNC_EDGE  <= 1'b0;
 
             EM_REG     <= 2'b00;
             EM_EDGE    <= 1'b0;
         end else begin
             SPL_REG    <= {SPL_REG[0],PSPILL};
             SPL_EDGE   <= (SPL_REG==2'b01);
-            irSPILLCOUNT <= (SPL_EDGE)? irSPILLCOUNT+16'd1 : irSPILLCOUNT;
-
-            SYNC_REG   <= {SYNC_REG[0],MR_SYNC};
-            SYNC_EDGE  <= (SYNC_REG==2'b01);
+            SPL_END    <= (SPL_REG==2'b10);
+            irSPILLCOUNT <= (SPL_END==1'b1)? irSPILLCOUNT+16'd1 : irSPILLCOUNT;
 
             EM_REG     <= {EM_REG[0],EV_MATCH};
             EM_EDGE    <= (EM_REG==2'b01);
@@ -130,9 +125,9 @@ module top_tdc(
         .CLK     (CLK_200M    ),
         .COUNTER (COUNTER     ),
         .SPLSTART(SPL_EDGE    ),
-        .SPLEND  ((SPL_REG==2'b10)),
+        .SPLEND  (SPL_END     ),
         .SPLCOUNT(SPILLCOUNT  ),
-        .SIG     ({SYNC_EDGE,COINC,SIGNAL}),
+        .SIG     ({MR_SYNC,COINC,SIGNAL}),
         .START   (START       ),
         .EMCOUNT (regEMCNTR   ),
         .BOARD_ID(BOARD_ID    ), // in [ 3:0]
