@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Thu Dec  3 15:48:28 2020
+| Date             : Thu Dec  3 18:52:10 2020
 | Host             : moncomet01 running 64-bit unknown
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.662        |
+| Total On-Chip Power (W)  | 0.673        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.489        |
+| Dynamic (W)              | 0.499        |
 | Device Static (W)        | 0.174        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 83.8         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.101 |        9 |       --- |             --- |
+| Clocks                   |     0.107 |        9 |       --- |             --- |
 | Slice Logic              |     0.020 |    23089 |       --- |             --- |
-|   LUT as Logic           |     0.016 |     9103 |    203800 |            4.47 |
+|   LUT as Logic           |     0.016 |     9148 |    203800 |            4.49 |
 |   CARRY4                 |     0.002 |      407 |     50950 |            0.80 |
 |   Register               |     0.002 |     8485 |    407600 |            2.08 |
 |   LUT as Shift Register  |    <0.001 |      226 |     64000 |            0.35 |
 |   F7/F8 Muxes            |    <0.001 |     2740 |    203800 |            1.34 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
 |   Others                 |     0.000 |     1250 |       --- |             --- |
-| Signals                  |     0.069 |    25310 |       --- |             --- |
+| Signals                  |     0.072 |    25315 |       --- |             --- |
 | Block RAM                |     0.027 |    271.5 |       445 |           61.01 |
 | PLL                      |     0.110 |        1 |        10 |           10.00 |
 | I/O                      |     0.162 |      176 |       500 |           35.20 |
 | Static Power             |     0.174 |          |           |                 |
-| Total                    |     0.662 |          |           |                 |
+| Total                    |     0.673 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.325 |       0.248 |      0.078 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.336 |       0.258 |      0.078 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.153 |       0.124 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
@@ -152,26 +152,26 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                                                    | Power (W) |
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| top                                                                                                                                     |     0.489 |
+| top                                                                                                                                     |     0.499 |
 |   LOC_REG                                                                                                                               |     0.004 |
 |   dbg_hub                                                                                                                               |     0.006 |
 |     inst                                                                                                                                |     0.006 |
 |       BSCANID.u_xsdbm_id                                                                                                                |     0.006 |
-|   ila_0                                                                                                                                 |     0.031 |
-|     inst                                                                                                                                |     0.031 |
-|       ila_core_inst                                                                                                                     |     0.031 |
-|   nolabel_line135                                                                                                                       |     0.229 |
+|   ila_0                                                                                                                                 |     0.033 |
+|     inst                                                                                                                                |     0.033 |
+|       ila_core_inst                                                                                                                     |     0.033 |
+|   nolabel_line135                                                                                                                       |     0.233 |
 |     AT93C46_IIC                                                                                                                         |     0.008 |
 |       MIRROR_MEM                                                                                                                        |     0.003 |
 |       PCA9548_SW                                                                                                                        |     0.003 |
-|     SiTCP                                                                                                                               |     0.102 |
-|       SiTCP                                                                                                                             |     0.102 |
+|     SiTCP                                                                                                                               |     0.106 |
+|       SiTCP                                                                                                                             |     0.105 |
 |     fifo_generator_v11_0                                                                                                                |     0.003 |
 |       U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr |     0.002 |
-|   top_tdc                                                                                                                               |     0.055 |
-|     DATA_BUF                                                                                                                            |     0.053 |
-|       OUT_DATA_PACK                                                                                                                     |     0.001 |
-|       fifo                                                                                                                              |     0.020 |
+|   top_tdc                                                                                                                               |     0.060 |
+|     DATA_BUF                                                                                                                            |     0.058 |
+|       OUT_DATA_PACK                                                                                                                     |     0.002 |
+|       fifo                                                                                                                              |     0.021 |
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
 
 

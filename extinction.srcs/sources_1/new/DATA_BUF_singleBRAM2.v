@@ -92,8 +92,8 @@ module DATA_BUF_singleBRAM2(
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
-            end else if (endReg[1])begin
                 DIN    <= {EMCOUNT,4'h0,FOOTER};
+            end else if (endReg[1])begin
                 W_EN   <= 1'b1;
             end else if (endReg[2])begin
                 W_EN   <= 1'b0;

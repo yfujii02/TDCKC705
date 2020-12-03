@@ -117,8 +117,8 @@ module top_tdc(
 
     wire    [83:0]  irHeader;
     wire    [83:0]  irFooter;
-    assign irHeader = {20'd0,HEADER[31:0],HEADER[31:0]};
-    assign irFooter = {20'd0,FOOTER[31:0],FOOTER[31:0]};
+    assign irHeader = {20'hA_BB_00,HEADER[31:0],HEADER[31:0]};
+    assign irFooter = {20'hF_EE_00,FOOTER[31:0],FOOTER[31:0]};
 
     DATA_BUF_singleBRAM2 DATA_BUF(
         .RST     (RESET       ),
