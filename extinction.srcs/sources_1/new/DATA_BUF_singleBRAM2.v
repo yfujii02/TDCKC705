@@ -249,20 +249,25 @@ module OUT_DATA_PACK(
     
     wire    [7:0]   data_out_tmp;
     reg     [7:0]   data_out;
+    wire    [3:0]   data_out_count;
+    assign data_out_count = count_tmp[7:4];
     always@(posedge SYSCLK) begin
-        data_out[7:0] <= (count_tmp[7:4] == 4'd0 ) ? reg_data[103: 96] :
-                         (count_tmp[7:4] == 4'd1 ) ? reg_data[ 95: 88] :
-                         (count_tmp[7:4] == 4'd2 ) ? reg_data[ 87: 80] :
-                         (count_tmp[7:4] == 4'd3 ) ? reg_data[ 79: 72] :
-                         (count_tmp[7:4] == 4'd4 ) ? reg_data[ 71: 64] :
-                         (count_tmp[7:4] == 4'd5 ) ? reg_data[ 63: 56] :
-                         (count_tmp[7:4] == 4'd6 ) ? reg_data[ 55: 48] :
-                         (count_tmp[7:4] == 4'd7 ) ? reg_data[ 47: 40] :
-                         (count_tmp[7:4] == 4'd8 ) ? reg_data[ 39: 32] :
-                         (count_tmp[7:4] == 4'd9 ) ? reg_data[ 31: 24] :
-                         (count_tmp[7:4] == 4'd10) ? reg_data[ 23: 16] :
-                         (count_tmp[7:4] == 4'd11) ? reg_data[ 15:  8] :
-                         (count_tmp[7:4] == 4'd12) ? reg_data[  7:  0] : 8'h0;
+        case(data_out_count)
+            4'd0:    data_out[7:0] <= reg_data[103: 96];
+            4'd1:    data_out[7:0] <= reg_data[ 95: 88];
+            4'd2:    data_out[7:0] <= reg_data[ 87: 80];
+            4'd3:    data_out[7:0] <= reg_data[ 79: 72];
+            4'd4:    data_out[7:0] <= reg_data[ 71: 64];
+            4'd5:    data_out[7:0] <= reg_data[ 63: 56];
+            4'd6:    data_out[7:0] <= reg_data[ 55: 48];
+            4'd7:    data_out[7:0] <= reg_data[ 47: 40];
+            4'd8:    data_out[7:0] <= reg_data[ 39: 32];
+            4'd9:    data_out[7:0] <= reg_data[ 31: 24];
+            4'd10:   data_out[7:0] <= reg_data[ 23: 16];
+            4'd11:   data_out[7:0] <= reg_data[ 15:  8];
+            4'd12:   data_out[7:0] <= reg_data[  7:  0];
+            default: data_out[7:0] <= 8'd0;
+        endcase
     end
     assign OUT[7:0] = out_val ? data_out[7:0] : 8'h0;
     

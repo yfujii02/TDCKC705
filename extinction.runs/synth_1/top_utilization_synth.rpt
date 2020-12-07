@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Thu Dec  3 18:46:07 2020
+| Date         : Fri Dec  4 17:35:01 2020
 | Host         : moncomet01 running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -38,7 +38,7 @@ Table of Contents
 | Slice Registers            | 5411 |     3 |    407600 |  1.33 |
 |   Register as Flip Flop    | 5392 |     3 |    407600 |  1.32 |
 |   Register as Latch        |   19 |     0 |    407600 | <0.01 |
-| F7 Muxes                   |   97 |     0 |    101900 |  0.10 |
+| F7 Muxes                   |  105 |     0 |    101900 |  0.10 |
 | F8 Muxes                   |   40 |     0 |     50950 |  0.08 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -158,15 +158,15 @@ Table of Contents
 +-----------+------+---------------------+
 | FDRE      | 3761 |        Flop & Latch |
 | FDCE      | 1360 |        Flop & Latch |
-| LUT3      | 1189 |                 LUT |
-| LUT2      |  989 |                 LUT |
+| LUT3      | 1190 |                 LUT |
+| LUT2      |  990 |                 LUT |
 | LUT6      |  837 |                 LUT |
-| LUT4      |  591 |                 LUT |
+| LUT4      |  590 |                 LUT |
 | LUT1      |  473 |                 LUT |
 | LUT5      |  454 |                 LUT |
 | CARRY4    |  329 |          CarryLogic |
 | FDPE      |  194 |        Flop & Latch |
-| MUXF7     |   97 |               MuxFx |
+| MUXF7     |  105 |               MuxFx |
 | IBUFDS    |   85 |                  IO |
 | FDSE      |   77 |        Flop & Latch |
 | SRLC16E   |   71 |  Distributed Memory |
