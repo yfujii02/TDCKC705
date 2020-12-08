@@ -204,16 +204,16 @@ module OUT_DATA_PACK(
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             data_end <= 1'b0;
-        end else if(data_en && count[3:0]==4'd12)begin
+        end else if(data_en && count[3:0]==4'd13)begin
             data_end <= 1'b1;
         end else begin
             data_end <= 1'b0;
         end
     end
     
-    reg     [7:0]  count_tmp;
+    reg     [11:0]  count_tmp;
     always@(posedge SYSCLK) begin
-        count_tmp[7:0] <= {count_tmp[3:0], count[3:0]};
+        count_tmp[11:0] <= {count_tmp[7:0], count[3:0]};
     end
     
     reg rd_en;
@@ -230,15 +230,19 @@ module OUT_DATA_PACK(
    
     wire    out_val_level1;
     reg     out_val_level2;
+    reg     out_val_level3;
     reg     out_val;
-    reg     data_end_tmp;
+    reg     data_end_level1;
+    reg     data_end_level2;
 
-    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd13) & ~PAUSE;
+    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~PAUSE;
 
     always@(posedge SYSCLK) begin
-        out_val_level2 <= out_val_level1;
-        data_end_tmp   <= data_end;
-        out_val        <= out_val_level2 & ~data_end_tmp;
+        out_val_level2  <= out_val_level1;
+        out_val_level3  <= out_val_level2;
+        data_end_level1 <= data_end;
+        data_end_level2 <= data_end_level1;
+        out_val         <= out_val_level3 & ~data_end_level2;
     end
     assign OUT_VALID = out_val;
     
@@ -250,7 +254,7 @@ module OUT_DATA_PACK(
     wire    [7:0]   data_out_tmp;
     reg     [7:0]   data_out;
     wire    [3:0]   data_out_count;
-    assign data_out_count = count_tmp[7:4];
+    assign data_out_count = count_tmp[11:8];
     always@(posedge SYSCLK) begin
         case(data_out_count)
             4'd0:    data_out[7:0] <= reg_data[103: 96];
