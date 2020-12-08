@@ -179,6 +179,12 @@ set_property PACKAGE_PIN AD23 [get_ports {LA_LPC_P[0]}]
 set_property PACKAGE_PIN AE24 [get_ports {LA_LPC_N[0]}]
 
 
+set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[0]}]
+set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[1]}]
+
+set_property PACKAGE_PIN AG5  [get_ports {SW_DEBUG[0]}]
+set_property PACKAGE_PIN AB12 [get_ports {SW_DEBUG[1]}]
+
 create_clock -period 5.000 -name CLK_200M -waveform {0.000 2.500} -add [get_nets CLK_200M]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
