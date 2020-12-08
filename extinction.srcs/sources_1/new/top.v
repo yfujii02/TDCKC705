@@ -58,9 +58,10 @@ module
         input    wire   [31:0]   LA_LPC_P  , // Connector J1 : 0-19
                                              //           J20:20-27
                                              //           J16:28-31 on XM105
-        input    wire   [31:0]   LA_LPC_N    // Connector J1 : 0-19
+        input    wire   [31:0]   LA_LPC_N  , // Connector J1 : 0-19
                                              //           J20:20-27
                                              //           J16:28-31 on XM105
+        input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
     );
 
     wire    [19:0]    HA_HPC   ; // for additional information
@@ -73,7 +74,8 @@ module
     wire              COINC    ; // coincidence signal from other pion counters
 
     assign    SIGNAL = (GPIO_SWITCH[3:1]==3'b111)? 64'd0 : {LA_HPC,LA_LPC};
-    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
+    //assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
+    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,SW_DEBUG[1:0]} : HA_HPC[3:0];
 
 genvar i;
 generate
