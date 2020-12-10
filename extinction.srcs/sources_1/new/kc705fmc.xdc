@@ -6,13 +6,6 @@ set_property IOSTANDARD LVDS_25 [get_ports HA_HPC_N*]
 set_property IOSTANDARD LVDS_25 [get_ports LA_LPC_P*]
 set_property IOSTANDARD LVDS_25 [get_ports LA_LPC_N*]
 
-set_property DIFF_TERM TRUE [get_ports LA_HPC_P*]
-set_property DIFF_TERM TRUE [get_ports LA_HPC_N*]
-set_property DIFF_TERM TRUE [get_ports HA_HPC_P*]
-set_property DIFF_TERM TRUE [get_ports HA_HPC_N*]
-set_property DIFF_TERM TRUE [get_ports LA_LPC_P*]
-set_property DIFF_TERM TRUE [get_ports LA_LPC_N*]
-
 set_property PACKAGE_PIN G22 [get_ports {LA_HPC_P[31]}]
 set_property PACKAGE_PIN F22 [get_ports {LA_HPC_N[31]}]
 set_property PACKAGE_PIN D22 [get_ports {LA_HPC_P[30]}]
@@ -188,11 +181,9 @@ set_property PACKAGE_PIN AE24 [get_ports {LA_LPC_N[0]}]
 
 set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[0]}]
 set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[1]}]
-set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[2]}]
 
 set_property PACKAGE_PIN AG5  [get_ports {SW_DEBUG[0]}]
 set_property PACKAGE_PIN AB12 [get_ports {SW_DEBUG[1]}]
-set_property PACKAGE_PIN AC6  [get_ports {SW_DEBUG[2]}]
 
 create_clock -period 5.000 -name CLK_200M -waveform {0.000 2.500} -add [get_nets CLK_200M]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]

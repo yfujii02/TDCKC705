@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.tcl"
+  variable script "/home/comet/FPGA/extinction/extinction.runs/synth_1/top.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,7 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
+set_param tcl.collectionResultDisplayLimit 0
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7k325tffg900-2
 
@@ -78,44 +79,44 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /home/nakazawa/8-gev/kc705/firmware/extinction.cache/wt [current_project]
-set_property parent.project_path /home/nakazawa/8-gev/kc705/firmware/extinction.xpr [current_project]
+set_property webtalk.parent_dir /home/comet/FPGA/extinction/extinction.cache/wt [current_project]
+set_property parent.project_path /home/comet/FPGA/extinction/extinction.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part xilinx.com:kc705:part0:1.6 [current_project]
-set_property ip_output_repo /home/nakazawa/8-gev/kc705/firmware/extinction.cache/ip [current_project]
+set_property ip_output_repo /home/comet/FPGA/extinction/extinction.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v
-  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v
-  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
-  /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v
-  /home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v
-  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_tdc.v
-  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v
+  /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v
+  /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/LOC_REG.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v
+  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.v
+  /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top_tdc.v
+  /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v
 }
-read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
-set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
-set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0_ooc.xdc]
+read_ip -quiet /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
+set_property used_in_implementation false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
+set_property used_in_implementation false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0_ooc.xdc]
 
-read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0.xci
-set_property used_in_synthesis false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc]
+read_ip -quiet /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0.xci
+set_property used_in_synthesis false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
+set_property used_in_implementation false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc]
+set_property used_in_implementation false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc]
+set_property used_in_implementation false [get_files -all /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc]
 
-read_edif /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.ngc
-read_edif /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc
+read_edif /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.ngc
+read_edif /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -125,14 +126,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc
-set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]
+read_xdc /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
+set_property used_in_implementation false [get_files /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 
-read_xdc /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
-set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
+read_xdc /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc
+set_property used_in_implementation false [get_files /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
 
-read_xdc /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc
-set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
+read_xdc /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/kc705fmc.xdc
+set_property used_in_implementation false [get_files /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/kc705fmc.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

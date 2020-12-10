@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Tue Dec  8 14:38:33 2020
-// Host        : localhost.localdomain running 64-bit unknown
+// Date        : Tue Oct 27 16:17:42 2020
+// Host        : moncomet01 running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
-//               /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0_stub.v
+//               /home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0_stub.v
 // Design      : ila_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7k325tffg900-2
