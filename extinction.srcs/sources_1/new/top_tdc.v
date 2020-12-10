@@ -27,7 +27,7 @@ module top_tdc(
     input    wire    [63:0]    SIGNAL     ,
     input    wire              PSPILL     ,
     input    wire              MR_SYNC    ,
-    input    wire    [11:0]    OLDH       ,
+//    input    wire    [11:0]    OLDH       ,
     input    wire              EV_MATCH   ,
     input    wire              TCP_BUSY   ,
     input    wire              START      ,
@@ -127,7 +127,7 @@ module top_tdc(
         .SPLSTART(SPL_EDGE    ),
         .SPLEND  (SPL_END     ),
         .SPLCOUNT(SPILLCOUNT  ),
-        .SIG     ({MR_SYNC,OLDH,SIGNAL}),
+//        .SIG     ({MR_SYNC,OLDH,SIGNAL}),
         .START   (START       ),
         .EMCOUNT (regEMCNTR   ),
         .BOARD_ID(BOARD_ID    ), // in [ 3:0]

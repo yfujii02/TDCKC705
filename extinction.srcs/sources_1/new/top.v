@@ -75,8 +75,9 @@ module
 
     wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
     wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
-    assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC};
-    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & HA_HPC[14:0];
+    assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
+    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)?
+                               {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & HA_HPC[14:0]; // mask signals
 
 genvar i;
 generate
@@ -102,8 +103,8 @@ endgenerate
     reg    [63:0]    regSIG    ;
     reg   [127:0]    sigEdge   ;
 
-    reg    [11:0]    regOLDH   ;
-    reg    [23:0]    oldhEdge  ;
+    reg    [11:0]    regOLDH   ; // from old hodoscope and other PMTs
+    reg    [23:0]    oldhEdge  ; // detect the edge timing
 
     reg     [1:0]    syncEdge  ;
     reg              regSync   ;
@@ -121,18 +122,19 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
     end
 end
 endgenerate
-generate
-for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
-    always@ (posedge CLK_200M) begin
-        if(TCP_RST)begin
-            regOLDH[i]          <= 1'd0;
-            oldhEdge[2*i+1:2*i] <= 2'd0;
-        end else begin
-            oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],OLDH[i]};
-            regOLDH[i]          <= (oldhEdge[2*i+1:2*i]==2'b01);
-        end
-    end
-end
+// loop for the PMT signals
+//generate
+//for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
+//    always@ (posedge CLK_200M) begin
+//        if(TCP_RST)begin
+//            regOLDH[i]          <= 1'd0;
+//            oldhEdge[2*i+1:2*i] <= 2'd0;
+//        end else begin
+//            oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],OLDH[i]};
+//            regOLDH[i]          <= (oldhEdge[2*i+1:2*i]==2'b01);
+//        end
+//    end
+//end
 endgenerate
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
@@ -213,7 +215,7 @@ endgenerate
         .SIGNAL     (regSIG       ),
         .PSPILL     (PSPILL       ),
         .MR_SYNC    (regSync      ),
-        .OLDH       (regOLDH      ),
+//        .OLDH       (regOLDH      ),
         .EV_MATCH   (EV_MATCH     ),
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
         .START      (RUN_START    ), // Start signal to send the data
@@ -249,7 +251,7 @@ endgenerate
         .REG_HEADER (HEADER[31:0]    ),
         .REG_FOOTER (FOOTER[31:0]    ),
         .REG_CHMASK (CHMASK[63:0]    ),
-        .REG_CHMASK2(CHMASK2[14:0]   )
+//        .REG_CHMASK2(CHMASK2[14:0]   )
     );
 
     assign GPIO_LED = SPILLCOUNT[3:0];

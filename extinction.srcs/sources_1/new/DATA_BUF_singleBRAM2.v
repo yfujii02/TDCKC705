@@ -47,7 +47,7 @@ module DATA_BUF_singleBRAM2(
     input             SPLSTART;
     input             SPLEND  ;
     input   [15:0]    SPLCOUNT;
-    input   [76:0]    SIG     ; // MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
+    input   [76:0]    SIG     ; // MRSYNC[76], OLDH[75:64], Hodoscope[63:0]    aaa
     input             START   ;
     input   [15:0]    EMCOUNT ;
     input    [3:0]    BOARD_ID;
