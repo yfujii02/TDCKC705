@@ -71,12 +71,11 @@ module
     wire              PSPILL   ; // P0 for resetting counter
     wire              MR_SYNC  ; // MR sync
     wire              EV_MATCH ; // Event matching signal spill-by-spill
-    wire    [11:0]    OLDH     ; // Old hodoscope signal and BH/EXT, maximum 12
+    wire              COINC    ; // coincidence signal from other pion counters
 
-    wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
-    wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
-    assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC};
-    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & HA_HPC[14:0];
+    assign    SIGNAL = (GPIO_SWITCH[3:1]==3'b111)? 64'd0 : {LA_HPC,LA_LPC};
+    //assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
+    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,SW_DEBUG[1:0]} : HA_HPC[3:0];
 
 genvar i;
 generate
@@ -90,6 +89,7 @@ for (i = 0; i < 20; i = i+1) begin: LVDS_BUF_HA
     IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
 end
 endgenerate
+generate
 
     wire             CLK_200M  ;
     wire             FIFO_FULL ;
@@ -101,14 +101,9 @@ endgenerate
 
     reg    [63:0]    regSIG    ;
     reg   [127:0]    sigEdge   ;
-
-    reg    [11:0]    regOLDH   ;
-    reg    [23:0]    oldhEdge  ;
-
     reg     [1:0]    syncEdge  ;
     reg              regSync   ;
 
-generate
 for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
@@ -120,20 +115,6 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
         end
     end
 end
-endgenerate
-generate
-for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
-    always@ (posedge CLK_200M) begin
-        if(TCP_RST)begin
-            regOLDH[i]          <= 1'd0;
-            oldhEdge[2*i+1:2*i] <= 2'd0;
-        end else begin
-            oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],OLDH[i]};
-            regOLDH[i]          <= (oldhEdge[2*i+1:2*i]==2'b01);
-        end
-    end
-end
-endgenerate
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regSync       <= 1'd0;
@@ -143,7 +124,7 @@ endgenerate
             syncEdge[1:0] <= {syncEdge[0],MR_SYNC};
         end
     end
-
+endgenerate
     wire   [31:0]   RBCP_ADDR;
     wire    [7:0]   RBCP_WD  ;
     wire            RBCP_WE  ;
@@ -213,7 +194,7 @@ endgenerate
         .SIGNAL     (regSIG       ),
         .PSPILL     (PSPILL       ),
         .MR_SYNC    (regSync      ),
-        .OLDH       (regOLDH      ),
+        .COINC      (COINC        ),
         .EV_MATCH   (EV_MATCH     ),
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
         .START      (RUN_START    ), // Start signal to send the data
@@ -247,9 +228,7 @@ endgenerate
         .REG_START  (RUN_START       ),
         .REG_RESET  (RUN_RESET       ),
         .REG_HEADER (HEADER[31:0]    ),
-        .REG_FOOTER (FOOTER[31:0]    ),
-        .REG_CHMASK (CHMASK[63:0]    ),
-        .REG_CHMASK2(CHMASK2[14:0]   )
+        .REG_FOOTER (FOOTER[31:0]    )
     );
 
     assign GPIO_LED = SPILLCOUNT[3:0];
