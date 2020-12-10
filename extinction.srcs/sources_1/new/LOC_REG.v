@@ -39,7 +39,8 @@ module LOC_REG(
     REG_RESET           ,    // out    : RESET
     REG_HEADER          ,    // out    : Header
     REG_FOOTER          ,    // out    : Header
-    REG_CHMASK               // out    : mask input channels
+    REG_CHMASK          ,    // out    : mask input channels
+    REG_CHMASK2              // out    : mask input channels 2
 );
 
 //-------- Input/Output -------------
@@ -63,6 +64,7 @@ module LOC_REG(
     output   [31:0]  REG_FOOTER     ;
 
     output   [63:0]  REG_CHMASK     ;
+    output   [14:0]  REG_CHMASK2    ;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -112,6 +114,8 @@ module LOC_REG(
     reg     [7:0]    x15_Reg   ;
     reg     [7:0]    x16_Reg   ;
     reg     [7:0]    x17_Reg   ;
+    reg     [7:0]    x18_Reg   ;
+    reg     [7:0]    x19_Reg   ;
 
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
@@ -145,6 +149,8 @@ module LOC_REG(
             x15_Reg[7:0]    <= 8'h00;    // Channel mask [23:16]
             x16_Reg[7:0]    <= 8'h00;    // Channel mask [15: 8]
             x17_Reg[7:0]    <= 8'h00;    // Channel mask [ 7: 0]
+            x18_Reg[7:0]    <= 8'h00;    // Channel mask2 nc+[14: 8]
+            x19_Reg[7:0]    <= 8'h00;    // Channel mask2 [ 7: 0]
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -182,6 +188,8 @@ module LOC_REG(
                 x15_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x15_Reg[7:0]);
                 x16_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h6) ? irWd[7:0] : x16_Reg[7:0]);
                 x17_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x17_Reg[7:0]);
+                x18_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x18_Reg[7:0]);
+                x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
             end
         end
     end
@@ -214,7 +222,7 @@ module LOC_REG(
             4'hE:    rdDataA[7:0]    <= x0E_Reg[7:0];        // Footer
             4'hF:    rdDataA[7:0]    <= x0F_Reg[7:0];        // Footer
         endcase
-        case(irAddr[3:0]) /// Reserved
+        case(irAddr[3:0]) /// channel mask
             4'h0:    rdDataB[7:0]    <= x10_Reg[7:0];    // Channel mask [63:56]
             4'h1:    rdDataB[7:0]    <= x11_Reg[7:0];    // Channel mask [55:48]
             4'h2:    rdDataB[7:0]    <= x12_Reg[7:0];    // Channel mask [47:40]
@@ -223,8 +231,8 @@ module LOC_REG(
             4'h5:    rdDataB[7:0]    <= x15_Reg[7:0];    // Channel mask [23:16]
             4'h6:    rdDataB[7:0]    <= x16_Reg[7:0];    // Channel mask [15: 8]
             4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];    // Channel mask [ 7: 0]
-            4'h8:    rdDataB[7:0]    <= 8'h18;    // NC
-            4'h9:    rdDataB[7:0]    <= 8'h19;    // NC
+            4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];    // Channel mask 2 [14:8] ([7]:nc)
+            4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];    // Channel mask 2 [ 7:0]
             4'hA:    rdDataB[7:0]    <= 8'h1A;    // NC
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
@@ -256,7 +264,8 @@ module LOC_REG(
     assign  REG_HEADER[31:0] = {x08_Reg[7:0],x09_Reg[7:0],x0A_Reg[7:0],x0B_Reg[7:0]}; // Header
     assign  REG_FOOTER[31:0] = {x0C_Reg[7:0],x0D_Reg[7:0],x0E_Reg[7:0],x0F_Reg[7:0]}; // Footer
 
-    assign  REG_CHMASK[63:0] = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
-                                x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
+    assign  REG_CHMASK[63:0]  = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
+                                 x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
+    assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
 
 endmodule

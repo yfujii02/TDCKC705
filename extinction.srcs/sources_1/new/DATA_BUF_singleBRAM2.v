@@ -27,7 +27,7 @@ module DATA_BUF_singleBRAM2(
     SPLSTART, // in  Start Spill (Enable When Spill Signal Comes)
     SPLEND,   // in  End Spill
     SPLCOUNT, // in  Header (Header[7:0] SPILL Count [7:0])
-    SIG,      // in  MRSYNC[65], COINC[64], Hodoscope[63:0]
+    SIG,      // in  MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
     START,    // in  DAQ start signal
     EMCOUNT,  // in  Event matching count [15:0]
     BOARD_ID, // in  Board ID [3:0]
@@ -47,7 +47,7 @@ module DATA_BUF_singleBRAM2(
     input             SPLSTART;
     input             SPLEND  ;
     input   [15:0]    SPLCOUNT;
-    input   [65:0]    SIG     ; // SIG[65]=MRSYNC,SIG[64]=COINC
+    input   [76:0]    SIG     ; // MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
     input             START   ;
     input   [15:0]    EMCOUNT ;
     input    [3:0]    BOARD_ID;
@@ -102,7 +102,7 @@ module DATA_BUF_singleBRAM2(
             if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
                 if (|SIG && ~fifo_full) begin
-                    DIN    <= {4'b0000,SIG[65:0],2'b00,COUNTER[31:0]};
+                    DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                     W_EN   <= 1'b1;
                 end else begin
                     W_EN   <= 1'b0;
