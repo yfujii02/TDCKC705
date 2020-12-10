@@ -137,7 +137,7 @@ module LOC_REG(
             x0E_Reg[7:0]    <= 8'hAA;   // Footer
             x0F_Reg[7:0]    <= 8'hAA;   // Footer
 
-            x10_Reg[2:0]    <= 8'h00;    // Channel mask [63:56]
+            x10_Reg[7:0]    <= 8'h00;    // Channel mask [63:56]
             x11_Reg[7:0]    <= 8'h00;    // Channel mask [55:48]
             x12_Reg[7:0]    <= 8'h00;    // Channel mask [47:40]
             x13_Reg[7:0]    <= 8'h00;    // Channel mask [39:32]
