@@ -27,7 +27,7 @@ module DATA_BUF_singleBRAM2(
     SPLSTART, // in  Start Spill (Enable When Spill Signal Comes)
     SPLEND,   // in  End Spill
     SPLCOUNT, // in  Header (Header[7:0] SPILL Count [7:0])
-    SIG,      // in  MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
+    SIG,      // in  MRSYNC[65], COINC[64], Hodoscope[63:0]
     START,    // in  DAQ start signal
     EMCOUNT,  // in  Event matching count [15:0]
     BOARD_ID, // in  Board ID [3:0]
@@ -47,7 +47,7 @@ module DATA_BUF_singleBRAM2(
     input             SPLSTART;
     input             SPLEND  ;
     input   [15:0]    SPLCOUNT;
-    input   [76:0]    SIG     ; // MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
+    input   [65:0]    SIG     ; // SIG[65]=MRSYNC,SIG[64]=COINC
     input             START   ;
     input   [15:0]    EMCOUNT ;
     input    [3:0]    BOARD_ID;
@@ -88,13 +88,11 @@ module DATA_BUF_singleBRAM2(
             endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
-                // (default) HEADER = {20'hA_BB_00, 32'h01_23_45_67, 32'h01_23_45_67}
-                DIN    <= {HEADER[83:0],BOARD_ID[3:0],SPLCOUNT[15:0]};
+                DIN    <= {HEADER,BOARD_ID,SPLCOUNT};
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
-                // (default) FOOTER = {20'hF_EE_00, 32'hAA_AA_AA_AA, 32'hAA_AA_AA_AA}
-                DIN    <= {EMCOUNT[15:0],4'h0,FOOTER[83:0]};
+                DIN    <= {EMCOUNT,4'h0,FOOTER};
             end else if (endReg[1])begin
                 W_EN   <= 1'b1;
             end else if (endReg[2])begin
@@ -104,8 +102,7 @@ module DATA_BUF_singleBRAM2(
             if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
                 if (|SIG && ~fifo_full) begin
-                    // SIG = {MR_SYNC, OLDH[11:0], SIGNAL[63:0]} (OLDH:old hodoscope and BH/EXT)
-                    DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
+                    DIN    <= {4'b0000,SIG[65:0],2'b00,COUNTER[31:0]};
                     W_EN   <= 1'b1;
                 end else begin
                     W_EN   <= 1'b0;
