@@ -30,7 +30,7 @@ def readTestBits():
 readTestBits()
 sendReset()
 startDAQ()
-sleep(10)
+sleep(300)
 stopDAQ()
 sendReset()
 readTestBits()

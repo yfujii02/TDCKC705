@@ -73,7 +73,8 @@ module
     wire              EV_MATCH ; // Event matching signal spill-by-spill
     wire              COINC    ; // coincidence signal from other pion counters
 
-    assign    SIGNAL = (GPIO_SWITCH[3:1]==3'b111)? 64'd0 : {LA_HPC,LA_LPC};
+    wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
+    assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC};
     //assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
     assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,SW_DEBUG[1:0]} : HA_HPC[3:0];
 
@@ -228,7 +229,8 @@ endgenerate
         .REG_START  (RUN_START       ),
         .REG_RESET  (RUN_RESET       ),
         .REG_HEADER (HEADER[31:0]    ),
-        .REG_FOOTER (FOOTER[31:0]    )
+        .REG_FOOTER (FOOTER[31:0]    ),
+        .REG_CHMASK (CHMASK[63:0]    )
     );
 
     assign GPIO_LED = SPILLCOUNT[3:0];

@@ -122,8 +122,6 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  set_param tcl.collectionResultDisplayLimit 0
-  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7k325tffg900-2
   set_property board_part xilinx.com:kc705:part0:1.6 [current_project]
