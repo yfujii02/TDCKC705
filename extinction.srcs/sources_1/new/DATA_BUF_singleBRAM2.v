@@ -112,21 +112,21 @@ module DATA_BUF_singleBRAM2(
     end
 
 ///// fifo
-    wire              SYSCLKR      ;
+    //wire              SYSCLKR      ;
     wire              reg_sysrstA  ;
     wire              reg_sysrstB  ;
     wire              reg_sysrstTmp;
-    BUFR BUFR_RAD(.I(CLK), .O(SYSCLKR));
-    FD FD_RESET_TMP (.C(SYSCLKR), .Q(reg_sysrstTmp), .D(RST));
-    FD FD_RESET_A (.C(SYSCLKR), .Q(reg_sysrstA), .D(reg_sysrstTmp));
-    FD FD_RESET_B (.C(SYSCLKR), .Q(reg_sysrstB), .D(reg_sysrstTmp));
+    //BUFR BUFR_RAD(.I(CLK), .O(SYSCLKR));
+    FD FD_RESET_TMP (.C(CLK), .Q(reg_sysrstTmp), .D(RST));
+    FD FD_RESET_A (.C(CLK), .Q(reg_sysrstA), .D(reg_sysrstTmp));
+    FD FD_RESET_B (.C(CLK), .Q(reg_sysrstB), .D(reg_sysrstTmp));
 
     assign fifo_wr_en = W_EN;
 
     assign TRIGGER_INT = (START==1'b1)? ~fifo_empty : 1'b0;
 
     fifo_generator_0 fifo(
-        .clk            (SYSCLKR         ), // in : System Clock
+        .clk            (CLK             ), // in : System Clock
         .srst           (reg_sysrstA     ), // in : System Reset
         .din            (DIN[103:0]      ), // in : Input data [63:0]
         .wr_en          (fifo_wr_en      ), // in : Write Enable
@@ -140,7 +140,7 @@ module DATA_BUF_singleBRAM2(
     );
 
     OUT_DATA_PACK OUT_DATA_PACK(
-        .SYSCLK         (SYSCLKR              ),
+        .SYSCLK         (CLK                  ),
         .SYSRST         (reg_sysrstB          ),
         .TRIGGER        (TRIGGER_INT          ),
         .PAUSE          (TCP_FULL             ),

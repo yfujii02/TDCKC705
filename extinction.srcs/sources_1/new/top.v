@@ -61,7 +61,7 @@ module
         input    wire   [31:0]   LA_LPC_N  , // Connector J1 : 0-19
                                              //           J20:20-27
                                              //           J16:28-31 on XM105
-        input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
+        input    wire    [2:0]   SW_DEBUG    // Debug signals from SW13
     );
 
     wire    [19:0]    HA_HPC   ; // for additional information
@@ -73,20 +73,21 @@ module
     wire              EV_MATCH ; // Event matching signal spill-by-spill
     wire              COINC    ; // coincidence signal from other pion counters
 
-    assign    SIGNAL = (GPIO_SWITCH[3:1]==3'b111)? 64'd0 : {LA_HPC,LA_LPC};
+    //assign    SIGNAL = (GPIO_SWITCH[2:1]==2'b11)? 64'd0 : {LA_HPC,LA_LPC};
+    assign    SIGNAL = (GPIO_SWITCH[2:1]==2'b11)? 64'd0 : {31'd0,LA_HPC[0],32'd0};
     //assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,GPIO_SMA[1:0]} : HA_HPC[3:0];
-    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)? {2'b00,SW_DEBUG[1:0]} : HA_HPC[3:0];
+    assign    {EV_MATCH,COINC,MR_SYNC,PSPILL} = (GPIO_SWITCH[3]==1'b1)? {2'b00,SW_DEBUG[1:0]} : HA_HPC[3:0];
 
 genvar i;
 generate
 for (i = 0; i < 32; i = i+1) begin: LVDS_BUF_LA
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF0(.O(LA_HPC[i]),.I(LA_HPC_P[i]),.IB(LA_HPC_N[i]));
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF1(.O(LA_LPC[i]),.I(LA_LPC_P[i]),.IB(LA_LPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"), .DIFF_TERM("TRUE")) LVDS_BUF0(.O(LA_HPC[i]),.I(LA_HPC_P[i]),.IB(LA_HPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"), .DIFF_TERM("TRUE")) LVDS_BUF1(.O(LA_LPC[i]),.I(LA_LPC_P[i]),.IB(LA_LPC_N[i]));
 end
 endgenerate
 generate
 for (i = 0; i < 20; i = i+1) begin: LVDS_BUF_HA
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"), .DIFF_TERM("TRUE")) LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
 end
 endgenerate
 generate
@@ -111,7 +112,7 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
             sigEdge[2*i+1:2*i] <= 2'd0;
         end else begin
             sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
-            regSIG[i]          <= (sigEdge[2*i+1:2*i]==2'b01);
+            regSIG[i]          <= (sigEdge[2*i+1:2*i]==2'b01) ? 1'b1 : 1'b0;
         end
     end
 end
@@ -231,7 +232,20 @@ endgenerate
         .REG_FOOTER (FOOTER[31:0]    )
     );
 
-    assign GPIO_LED = SPILLCOUNT[3:0];
+    reg [7:0] regCnt;
+    always@ (posedge CLK_200M) begin
+        if(RUN_RESET | SW_DEBUG[2])begin
+            regCnt[7:0] <= 8'd0;
+        end else begin
+            if( |regSIG ) begin
+              regCnt[7:0] <= regCnt[7:0] + 8'd1;
+            end else begin
+              regCnt[7:0] <= regCnt[7:0];
+            end
+        end
+    end
+    assign GPIO_LED = regCnt[7:4];
+    //assign GPIO_LED = SPILLCOUNT[3:0];
 
     ila_0 ila_0(
         .trig_in(PSPILL   ),

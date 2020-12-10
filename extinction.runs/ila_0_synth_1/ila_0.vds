@@ -2,14 +2,15 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Tue Oct 27 16:15:01 2020
-# Process ID: 18281
-# Current directory: /home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1
+# Start of session at: Tue Dec  8 14:35:51 2020
+# Process ID: 21097
+# Current directory: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1
 # Command line: vivado -log ila_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ila_0.tcl
-# Log file: /home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/ila_0.vds
-# Journal file: /home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/vivado.jou
+# Log file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/ila_0.vds
+# Journal file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/vivado.jou
 #-----------------------------------------------------------
 source ila_0.tcl -notrace
+WARNING: [IP_Flow 19-5242] IP Cache entry (cache-ID 1ad4bc3464b89cb8) does not have the required number of cached files and is not valid. Please delete this entry using the TCL command: 'config_ip_cache -remove [get_ips ila_0]'
 Command: synth_design -top ila_0 -part xc7k325tffg900-2 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
@@ -17,79 +18,79 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 19195
+INFO: [Synth 8-7075] Helper process launched with PID 21185
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:47 . Memory (MB): peak = 2281.520 ; gain = 38.902 ; free physical = 12863 ; free virtual = 40028
+Starting RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:45 . Memory (MB): peak = 2219.105 ; gain = 54.809 ; free physical = 21885 ; free virtual = 41941
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'ila_0' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
-INFO: [Synth 8-6157] synthesizing module 'CFGLUT5' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1524]
-INFO: [Synth 8-6155] done synthesizing module 'CFGLUT5' (8#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1524]
-INFO: [Synth 8-6157] synthesizing module 'CARRY4' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1487]
-INFO: [Synth 8-6155] done synthesizing module 'CARRY4' (9#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1487]
-INFO: [Synth 8-6157] synthesizing module 'SRLC32E' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78209]
-INFO: [Synth 8-6155] done synthesizing module 'SRLC32E' (19#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78209]
-INFO: [Synth 8-6157] synthesizing module 'SRL16E' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78059]
-INFO: [Synth 8-6155] done synthesizing module 'SRL16E' (21#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78059]
-INFO: [Synth 8-6157] synthesizing module 'SRLC16E' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78148]
-INFO: [Synth 8-6155] done synthesizing module 'SRLC16E' (23#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78148]
-INFO: [Synth 8-6157] synthesizing module 'FDRE' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
-INFO: [Synth 8-6155] done synthesizing module 'FDRE' (28#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
-WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
-WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
-WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
-WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
-WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1029 given [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
-INFO: [Synth 8-6155] done synthesizing module 'ila_0' (46#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
+INFO: [Synth 8-6157] synthesizing module 'CFGLUT5' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1524]
+INFO: [Synth 8-6155] done synthesizing module 'CFGLUT5' (8#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1524]
+INFO: [Synth 8-6157] synthesizing module 'CARRY4' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1487]
+INFO: [Synth 8-6155] done synthesizing module 'CARRY4' (9#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1487]
+INFO: [Synth 8-6157] synthesizing module 'SRLC32E' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78209]
+INFO: [Synth 8-6155] done synthesizing module 'SRLC32E' (19#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78209]
+INFO: [Synth 8-6157] synthesizing module 'SRL16E' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78059]
+INFO: [Synth 8-6155] done synthesizing module 'SRL16E' (21#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78059]
+INFO: [Synth 8-6157] synthesizing module 'SRLC16E' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78148]
+INFO: [Synth 8-6155] done synthesizing module 'SRLC16E' (23#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:78148]
+INFO: [Synth 8-6157] synthesizing module 'FDRE' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
+INFO: [Synth 8-6155] done synthesizing module 'FDRE' (28#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
+WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
+WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
+WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
+WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
+WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1029 given [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (46#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:30 ; elapsed = 00:01:39 . Memory (MB): peak = 2614.648 ; gain = 372.031 ; free physical = 12862 ; free virtual = 40029
+Finished RTL Elaboration : Time (s): cpu = 00:00:36 ; elapsed = 00:01:40 . Memory (MB): peak = 2552.930 ; gain = 388.633 ; free physical = 21576 ; free virtual = 41633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:01:40 . Memory (MB): peak = 2614.648 ; gain = 372.031 ; free physical = 12878 ; free virtual = 40045
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2552.930 ; gain = 388.633 ; free physical = 21583 ; free virtual = 41641
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:31 ; elapsed = 00:01:40 . Memory (MB): peak = 2614.648 ; gain = 372.031 ; free physical = 12878 ; free virtual = 40045
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:37 ; elapsed = 00:01:41 . Memory (MB): peak = 2552.930 ; gain = 388.633 ; free physical = 21583 ; free virtual = 41641
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2614.648 ; gain = 0.000 ; free physical = 12851 ; free virtual = 40018
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2552.930 ; gain = 0.000 ; free physical = 21539 ; free virtual = 41596
 INFO: [Netlist 29-17] Analyzing 163 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc] for cell 'inst'
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'inst'
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'inst'
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'inst'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2696.488 ; gain = 0.000 ; free physical = 12758 ; free virtual = 39924
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2593.848 ; gain = 0.000 ; free physical = 21445 ; free virtual = 41503
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 116 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 96 instances
   CFGLUT5 => SRLC32E: 20 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2696.488 ; gain = 0.000 ; free physical = 12756 ; free virtual = 39922
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2593.848 ; gain = 0.000 ; free physical = 21445 ; free virtual = 41503
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:01:49 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12850 ; free virtual = 40017
+Finished Constraint Validation : Time (s): cpu = 00:00:45 ; elapsed = 00:01:51 . Memory (MB): peak = 2593.848 ; gain = 429.551 ; free physical = 21769 ; free virtual = 41831
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:01:49 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12850 ; free virtual = 40017
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:45 ; elapsed = 00:01:51 . Memory (MB): peak = 2593.848 ; gain = 429.551 ; free physical = 21769 ; free virtual = 41831
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:37 ; elapsed = 00:01:50 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12850 ; free virtual = 40017
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:01:51 . Memory (MB): peak = 2593.848 ; gain = 429.551 ; free physical = 21769 ; free virtual = 41831
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized16'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s'
@@ -290,7 +291,7 @@ INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in m
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized15'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:39 ; elapsed = 00:01:52 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12838 ; free virtual = 40006
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:47 ; elapsed = 00:01:54 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21731 ; free virtual = 41795
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -311,25 +312,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:01:59 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12811 ; free virtual = 39993
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:02:02 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21782 ; free virtual = 41859
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:02:06 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12696 ; free virtual = 39878
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:01 ; elapsed = 00:02:11 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21636 ; free virtual = 41717
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:02:07 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12692 ; free virtual = 39874
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:02:11 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21632 ; free virtual = 41713
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:52 ; elapsed = 00:02:08 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Technology Mapping : Time (s): cpu = 00:01:03 ; elapsed = 00:02:12 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21627 ; free virtual = 41709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -386,37 +387,37 @@ INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_out_ack to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:54 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21627 ; free virtual = 41709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:54 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21628 ; free virtual = 41709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21622 ; free virtual = 41704
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:05 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21615 ; free virtual = 41697
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:06 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21612 ; free virtual = 41694
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:06 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21619 ; free virtual = 41701
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -450,31 +451,30 @@ Report Cell Usage:
 |16    |FDSE     |    10|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12687 ; free virtual = 39869
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:06 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21618 ; free virtual = 41700
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:51 ; elapsed = 00:02:06 . Memory (MB): peak = 2696.488 ; gain = 372.031 ; free physical = 12737 ; free virtual = 39919
-Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:02:10 . Memory (MB): peak = 2696.488 ; gain = 453.871 ; free physical = 12737 ; free virtual = 39919
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:02 ; elapsed = 00:02:11 . Memory (MB): peak = 2593.852 ; gain = 388.637 ; free physical = 21670 ; free virtual = 41752
+Synthesis Optimization Complete : Time (s): cpu = 00:01:06 ; elapsed = 00:02:15 . Memory (MB): peak = 2593.852 ; gain = 429.555 ; free physical = 21664 ; free virtual = 41746
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2696.488 ; gain = 0.000 ; free physical = 12811 ; free virtual = 39993
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2593.852 ; gain = 0.000 ; free physical = 21743 ; free virtual = 41824
 INFO: [Netlist 29-17] Analyzing 166 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2696.488 ; gain = 0.000 ; free physical = 12753 ; free virtual = 39935
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2593.852 ; gain = 0.000 ; free physical = 21650 ; free virtual = 41741
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 116 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 96 instances
   CFGLUT5 => SRLC32E: 20 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-105 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+105 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:04 ; elapsed = 00:02:29 . Memory (MB): peak = 2696.488 ; gain = 466.008 ; free physical = 12897 ; free virtual = 40079
-INFO: [Common 17-1381] The checkpoint '/home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:16 ; elapsed = 00:02:27 . Memory (MB): peak = 2593.852 ; gain = 441.691 ; free physical = 21783 ; free virtual = 41882
+INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ila_0, cache-ID = 1ad4bc3464b89cb8
 INFO: [Coretcl 2-1174] Renamed 183 cell refs.
-INFO: [Common 17-1381] The checkpoint '/home/comet/FPGA/extinction/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ila_0_utilization_synth.rpt -pb ila_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Oct 27 16:17:43 2020...
+INFO: [Common 17-206] Exiting Vivado at Tue Dec  8 14:38:34 2020...
