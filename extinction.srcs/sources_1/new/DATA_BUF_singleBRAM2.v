@@ -77,6 +77,9 @@ module DATA_BUF_singleBRAM2(
     wire            sbiterr   ;
     wire            dbiterr   ;
 
+    /// Current data size = 13-bytes, to make the data rate as small as possible.
+    /// possible option is to make counter 27-bits to 32-bits and make it 14-bytes
+    /// for analysis convenience and redundancy. To be decided later...
     always@ (posedge CLK) begin
         if(RST)begin
             DIN     <= 104'd0;
@@ -88,11 +91,13 @@ module DATA_BUF_singleBRAM2(
             endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
-                DIN    <= {HEADER,BOARD_ID,SPLCOUNT};
+                DIN    <= {HEADER,BOARD_ID[3:0],SPLCOUNT[15:0]}; // HEADER = 20'hA_BB_00 + 
+                                                                 //  REG_HEADER[31:0]x2 = 84-bits
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
-                DIN    <= {EMCOUNT,4'h0,FOOTER};
+                DIN    <= {EMCOUNT[15:0],4'h0,FOOTER}; // FOOTER = 20'hF_EE_00 +
+                                                       //   REG_FOOTER[31:0]x2 = 84-bits
             end else if (endReg[1])begin
                 W_EN   <= 1'b1;
             end else if (endReg[2])begin
@@ -103,6 +108,9 @@ module DATA_BUF_singleBRAM2(
                 regFFull <= {regFFull[0],fifo_full};
                 if (|SIG && ~fifo_full) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
+                                                         // {MR_Sync,PMT[11:0],MainHodo[63:0],COUNTER[26:0]}
+                                                         // COUNTER start from SPILL signal
+                                                         //  and increment with 200MHz SYSCLK
                     W_EN   <= 1'b1;
                 end else begin
                     W_EN   <= 1'b0;
