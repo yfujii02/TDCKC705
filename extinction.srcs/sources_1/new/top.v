@@ -61,7 +61,9 @@ module
         input    wire   [31:0]   LA_LPC_N  , // Connector J1 : 0-19
                                              //           J20:20-27
                                              //           J16:28-31 on XM105
-        input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
+        input    wire    [1:0]   SW_DEBUG  , // Debug signals from SW13
+        output   wire    [1:0]   FMC_DEBUGOUT_P,// Debug signals from HPC_LA_P[33:32]
+        output   wire    [1:0]   FMC_DEBUGOUT_N // Debug signals from HPC_LA_N[33:32]
     );
 
     wire    [19:0]    HA_HPC   ; // for additional information
@@ -69,6 +71,7 @@ module
     wire    [31:0]    LA_LPC   ; // for main counters
     wire    [63:0]    SIGNAL   ;
     wire              PSPILL   ; // P0 for resetting counter
+    wire              PSPILL_FMC; // P0 for resetting counter from FMC
     wire              MR_SYNC  ; // MR sync
     wire              EV_MATCH ; // Event matching signal spill-by-spill
     wire              COINC    ; // coincidence signal from other pion counters
@@ -76,8 +79,10 @@ module
     wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
     wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
     assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
-    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL} = (GPIO_SWITCH[3:1]==3'b111)?
+    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL_FMC} = (GPIO_SWITCH[3:1]==3'b111)?
                                {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & HA_HPC[14:0]; // mask signals
+
+    assign PSPILL = (GPIO_SWITCH[3:1]==3'b101)? GPIO_SMA[0] : PSPILL_FMC; /// Use SMA for SPILL signal
 
 genvar i;
 generate
@@ -251,8 +256,24 @@ endgenerate
         .REG_HEADER (HEADER[31:0]    ),
         .REG_FOOTER (FOOTER[31:0]    ),
         .REG_CHMASK (CHMASK[63:0]    ),
-        .REG_CHMASK2(CHMASK2[14:0]   )
+        .REG_CHMASK2(CHMASK2[14:0]   ),
+        .REG_FMC_DBG(FMC_DBG)
     );
+
+    /// Debug
+    wire [1:0] FMC_DEBUG_OUT;
+    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT0(.I(FMC_DEBUG_OUT[0]),.O(FMC_DEBUGOUT_P[0]),.OB(FMC_DEBUGOUT_N[0]));
+    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT1(.I(FMC_DEBUG_OUT[1]),.O(FMC_DEBUGOUT_P[1]),.OB(FMC_DEBUGOUT_N[1]));
+    reg  [27:0] regCounter;
+    always@ (posedge CLK_200M) begin
+        if(TCP_RST)begin
+            regCounter = 28'd0;
+        end else if (FMC_DBG)begin
+            regCounter = regCounter + 28'd1;
+        end
+    end
+    assign FMC_DEBUG[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Become high in every 2**27 * 5ns = 0.67sec , 50% duty
+                                                                             /// [0] Become high in every 2**9 * 5ns = 2.56nsec , 3CLK high
 
     assign GPIO_LED = SPILLCOUNT[3:0];
 

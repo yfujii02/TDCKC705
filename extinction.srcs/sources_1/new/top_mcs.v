@@ -21,6 +21,16 @@
 
 
 module top_mcs(
-
+    RST,
+    CLK,
+    TX_CLK,
+    SPLGATE,
+    SPLCOUNT,
+    SIG,
+    DOUT,
+    SEND_EN,
+    TCP_FULL,
+    LENGTH,
+    TXCOUNT
     );
 endmodule
