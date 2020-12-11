@@ -63,6 +63,9 @@ module LOC_REG(
 
     output   [31:0]  REG_HEADER     ;
     output   [31:0]  REG_FOOTER     ;
+    
+    output   [63:0]  REG_CHMASK     ;
+    output   [14:0]  REG_CHMASK2    ;
 
     output           REG_FMC_DBG    ;
 
@@ -106,7 +109,7 @@ module LOC_REG(
     reg     [7:0]    x0E_Reg   ;
     reg     [7:0]    x0F_Reg   ;
 
-    reg     [2:0]    x10_Reg   ;
+    reg     [7:0]    x10_Reg   ;
     reg     [7:0]    x11_Reg   ;
     reg     [7:0]    x12_Reg   ;
     reg     [7:0]    x13_Reg   ;

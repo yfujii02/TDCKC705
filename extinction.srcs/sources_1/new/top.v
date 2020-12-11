@@ -75,7 +75,8 @@ module
     wire              MR_SYNC_FMC; // MR sync
     wire              MR_SYNC  ; // MR sync
     wire              EV_MATCH ; // Event matching signal spill-by-spill
-    wire              COINC    ; // coincidence signal from other pion counters
+//    wire              COINC    ; // coincidence signal from other pion counters
+    wire    [11:0]     OLDH    ; // PMT and old hodoscope
 
     wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
     wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
@@ -143,6 +144,7 @@ for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
     end
 end
 endgenerate
+generate
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regSync       <= 1'd0;
@@ -274,7 +276,7 @@ endgenerate
             regCounter = regCounter + 28'd1;
         end
     end
-    assign FMC_DEBUG[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Become high in every 2**27 * 5ns = 0.67sec , 50% duty
+    assign FMC_DEBUG_OUT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Become high in every 2**27 * 5ns = 0.67sec , 50% duty
                                                                              /// [0] Become high in every 2**9 * 5ns = 2.56nsec , 3CLK high
 
     assign GPIO_LED = SPILLCOUNT[3:0];

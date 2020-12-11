@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Tue Dec  8 12:11:10 2020
+| Date             : Fri Dec 11 15:18:19 2020
 | Host             : moncomet01 running 64-bit unknown
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.669        |
+| Total On-Chip Power (W)  | 0.773        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.494        |
-| Device Static (W)        | 0.175        |
+| Dynamic (W)              | 0.597        |
+| Device Static (W)        | 0.176        |
 | Effective TJA (C/W)      | 1.8          |
-| Max Ambient (C)          | 83.8         |
-| Junction Temperature (C) | 26.2         |
+| Max Ambient (C)          | 83.6         |
+| Junction Temperature (C) | 26.4         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.103 |        9 |       --- |             --- |
-| Slice Logic              |     0.020 |    23098 |       --- |             --- |
-|   LUT as Logic           |     0.016 |     9137 |    203800 |            4.48 |
-|   CARRY4                 |     0.002 |      407 |     50950 |            0.80 |
-|   Register               |     0.002 |     8485 |    407600 |            2.08 |
-|   LUT as Shift Register  |    <0.001 |      226 |     64000 |            0.35 |
+| Clocks                   |     0.105 |        9 |       --- |             --- |
+| Slice Logic              |     0.021 |    23326 |       --- |             --- |
+|   LUT as Logic           |     0.016 |     9215 |    203800 |            4.52 |
+|   CARRY4                 |     0.002 |      413 |     50950 |            0.81 |
+|   Register               |     0.002 |     8627 |    407600 |            2.12 |
+|   LUT as Shift Register  |    <0.001 |      230 |     64000 |            0.36 |
 |   F7/F8 Muxes            |    <0.001 |     2748 |    203800 |            1.35 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
 |   Others                 |     0.000 |     1250 |       --- |             --- |
-| Signals                  |     0.071 |    25309 |       --- |             --- |
+| Signals                  |     0.079 |    25526 |       --- |             --- |
 | Block RAM                |     0.027 |    271.5 |       445 |           61.01 |
 | PLL                      |     0.110 |        1 |        10 |           10.00 |
-| I/O                      |     0.162 |      176 |       500 |           35.20 |
-| Static Power             |     0.175 |          |           |                 |
-| Total                    |     0.669 |          |           |                 |
+| I/O                      |     0.255 |      204 |       500 |           40.80 |
+| Static Power             |     0.176 |          |           |                 |
+| Total                    |     0.773 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,10 +76,10 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.331 |       0.253 |      0.078 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.153 |       0.124 |      0.028 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.344 |       0.266 |      0.078 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.164 |       0.135 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco25    |       2.500 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.035 |       0.034 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -133,11 +133,11 @@ Table of Contents
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
-| CLK_125M_1                                                                                 | nolabel_line137/CLK_125M                                             |             8.0 |
-| CLK_200M                                                                                   | nolabel_line137/CLK_200M                                             |             5.0 |
+| CLK_125M_1                                                                                 | nolabel_line167/CLK_125M                                             |             8.0 |
+| CLK_200M                                                                                   | nolabel_line167/CLK_200M                                             |             5.0 |
 | GMII_RX_CLK                                                                                | GMII_RX_CLK                                                          |             8.0 |
 | GMII_TX_CLK                                                                                | GMII_TX_CLK                                                          |            40.0 |
-| PLL_CLKFB_1                                                                                | nolabel_line137/PLL_CLKFB                                            |             5.0 |
+| PLL_CLKFB_1                                                                                | nolabel_line167/PLL_CLKFB                                            |             5.0 |
 | SYSCLK_200MP_IN                                                                            | SYSCLK_200MP_IN                                                      |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
@@ -152,15 +152,15 @@ Table of Contents
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                                                                    | Power (W) |
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| top                                                                                                                                     |     0.494 |
-|   LOC_REG                                                                                                                               |     0.004 |
+| top                                                                                                                                     |     0.597 |
+|   LOC_REG                                                                                                                               |     0.005 |
 |   dbg_hub                                                                                                                               |     0.006 |
 |     inst                                                                                                                                |     0.006 |
 |       BSCANID.u_xsdbm_id                                                                                                                |     0.006 |
 |   ila_0                                                                                                                                 |     0.032 |
 |     inst                                                                                                                                |     0.032 |
 |       ila_core_inst                                                                                                                     |     0.032 |
-|   nolabel_line137                                                                                                                       |     0.231 |
+|   nolabel_line167                                                                                                                       |     0.231 |
 |     AT93C46_IIC                                                                                                                         |     0.008 |
 |       MIRROR_MEM                                                                                                                        |     0.003 |
 |       PCA9548_SW                                                                                                                        |     0.003 |
@@ -168,10 +168,10 @@ Table of Contents
 |       SiTCP                                                                                                                             |     0.103 |
 |     fifo_generator_v11_0                                                                                                                |     0.003 |
 |       U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr |     0.002 |
-|   top_tdc                                                                                                                               |     0.058 |
-|     DATA_BUF                                                                                                                            |     0.056 |
+|   top_tdc                                                                                                                               |     0.064 |
+|     DATA_BUF                                                                                                                            |     0.063 |
 |       OUT_DATA_PACK                                                                                                                     |     0.001 |
-|       fifo                                                                                                                              |     0.020 |
+|       fifo                                                                                                                              |     0.019 |
 +-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
 
 
