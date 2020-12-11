@@ -72,6 +72,7 @@ module
     wire    [63:0]    SIGNAL   ;
     wire              PSPILL   ; // P0 for resetting counter
     wire              PSPILL_FMC; // P0 for resetting counter from FMC
+    wire              MR_SYNC_FMC; // MR sync
     wire              MR_SYNC  ; // MR sync
     wire              EV_MATCH ; // Event matching signal spill-by-spill
     wire              COINC    ; // coincidence signal from other pion counters
@@ -79,10 +80,11 @@ module
     wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
     wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
     assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
-    assign    {OLDH,EV_MATCH,MR_SYNC,PSPILL_FMC} = (GPIO_SWITCH[3:1]==3'b111)?
+    assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = (GPIO_SWITCH[3:1]==3'b111)?
                                {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & HA_HPC[14:0]; // mask signals
 
-    assign PSPILL = (GPIO_SWITCH[3:1]==3'b101)? GPIO_SMA[0] : PSPILL_FMC; /// Use SMA for SPILL signal
+    assign PSPILL  = (GPIO_SWITCH[3:2]==2'b10)?  GPIO_SMA[0] : PSPILL_FMC;  /// Use SMA0 for SPILL signal
+    assign MR_SYNC = (GPIO_SWITCH[3:1]==3'b101)? GPIO_SMA[1] : MR_SYNC_FMC; /// Use SMA1 for MR sync dummy
 
 genvar i;
 generate
