@@ -23,6 +23,7 @@
 module DATA_BUF_singleBRAM2(
     RST,      // in  System Reset
     CLK,      // in  System CLK
+    DATA_TRG, // in  Trigger for signals
     COUNTER,  // in  Counter value [31:0]
     SPLSTART, // in  Start Spill (Enable When Spill Signal Comes)
     SPLEND,   // in  End Spill
@@ -43,6 +44,7 @@ module DATA_BUF_singleBRAM2(
 );
     input             RST     ;
     input             CLK     ;
+    input             DATA_TRG;
     input   [31:0]    COUNTER ;
     input             SPLSTART;
     input             SPLEND  ;
@@ -106,9 +108,9 @@ module DATA_BUF_singleBRAM2(
 
             if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
-                if (|SIG && ~fifo_full) begin
+                if (DATA_TRG && ~fifo_full) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
-                                                         // {MR_Sync,PMT[11:0],MainHodo[63:0],COUNTER[26:0]}
+                                                         // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
                                                          // COUNTER start from SPILL signal
                                                          //  and increment with 200MHz SYSCLK
 
@@ -143,10 +145,11 @@ module DATA_BUF_singleBRAM2(
         .dout           (data_out[103:0] ), // out: Output Data [63:0]
         .full           (fifo_full       ), // out: FIFO Full
         .empty          (fifo_empty      ), // out: FIFO Empty
-        .data_count     (data_count[15:0]), // out: # of data in FIFO
-        .sbiterr        (sbiterr         ), // out: Single Bit Error
-        .dbiterr        (dbiterr         )  // out: Double Bit Error
+        .data_count     (data_count[15:0])  // out: # of data in FIFO
     );
+//        .sbiterr        (sbiterr         ), // out: Single Bit Error
+//        .dbiterr        (dbiterr         )  // out: Double Bit Error
+//    );
 
     OUT_DATA_PACK OUT_DATA_PACK(
         .SYSCLK         (SYSCLKR              ),

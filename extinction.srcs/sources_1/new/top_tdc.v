@@ -115,6 +115,29 @@ module top_tdc(
         end
     end
 
+    wire    [76:0]  SIG;
+    assign SIG[76:0] = {SIGNAL[63:0],OLDH[11:0],MR_SYNC};
+
+    reg     [76:0]  irSIG;
+    reg     [31:0]  irCOUNTER;
+    reg             irDATATRG;
+    always@ (posedge CLK_200M) begin
+        if(RESET)begin
+            irSIG[76:0]     <= 77'd0;
+            irCOUNTER[31:0] <= 32'd0;
+            irDATATRG       <= 1'b0;
+        end else begin
+            if(|SIG)begin
+                irCOUNTER[31:0] <= COUNTER[31:0];
+                irDATATRG       <= 1'b1;
+            end else begin
+                irCOUNTER[31:0] <= irCOUNTER[31:0];
+                irDATATRG       <= 1'b0;
+            end
+            irSIG[76:0] <= SIG[76:0];
+        end
+    end
+
     wire    [83:0]  irHeader;
     wire    [83:0]  irFooter;
     assign irHeader = {20'hA_BB_00,HEADER[31:0],HEADER[31:0]};
@@ -123,11 +146,12 @@ module top_tdc(
     DATA_BUF_singleBRAM2 DATA_BUF(
         .RST     (RESET       ),
         .CLK     (CLK_200M    ),
-        .COUNTER (COUNTER     ),
+        .DATA_TRG(irDATATRG   ),
+        .COUNTER (irCOUNTER   ),
         .SPLSTART(SPL_EDGE    ),
         .SPLEND  (SPL_END     ),
         .SPLCOUNT(SPILLCOUNT  ),
-        .SIG     ({MR_SYNC,OLDH,SIGNAL}),
+        .SIG     (irSIG[76:0] ),
         .START   (START       ),
         .EMCOUNT (regEMCNTR   ),
         .BOARD_ID(BOARD_ID    ), // in [ 3:0]
