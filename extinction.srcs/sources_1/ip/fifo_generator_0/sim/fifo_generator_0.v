@@ -63,9 +63,7 @@ module fifo_generator_0 (
   full,
   almost_full,
   empty,
-  data_count,
-  sbiterr,
-  dbiterr
+  data_count
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME core_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0" *)
@@ -87,8 +85,6 @@ output wire almost_full;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ EMPTY" *)
 output wire empty;
 output wire [15 : 0] data_count;
-output wire sbiterr;
-output wire dbiterr;
 
   fifo_generator_v13_2_5 #(
     .C_COMMON_CLOCK(1),
@@ -126,7 +122,7 @@ output wire dbiterr;
     .C_OVERFLOW_LOW(0),
     .C_PRELOAD_LATENCY(1),
     .C_PRELOAD_REGS(0),
-    .C_PRIM_FIFO_TYPE("512x72"),
+    .C_PRIM_FIFO_TYPE("2kx18"),
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
@@ -138,8 +134,8 @@ output wire dbiterr;
     .C_RD_FREQ(1),
     .C_RD_PNTR_WIDTH(16),
     .C_UNDERFLOW_LOW(0),
-    .C_USE_DOUT_RST(0),
-    .C_USE_ECC(1),
+    .C_USE_DOUT_RST(1),
+    .C_USE_ECC(0),
     .C_USE_EMBEDDED_REG(0),
     .C_USE_PIPELINE_REG(0),
     .C_POWER_SAVING_MODE(0),
@@ -330,8 +326,8 @@ output wire dbiterr;
     .wr_data_count(),
     .prog_full(),
     .prog_empty(),
-    .sbiterr(sbiterr),
-    .dbiterr(dbiterr),
+    .sbiterr(),
+    .dbiterr(),
     .wr_rst_busy(),
     .rd_rst_busy(),
     .m_aclk(1'D0),
