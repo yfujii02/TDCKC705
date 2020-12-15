@@ -90,13 +90,16 @@ module
 genvar i;
 generate
 for (i = 0; i < 32; i = i+1) begin: LVDS_BUF_LA
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF0(.O(LA_HPC[i]),.I(LA_HPC_P[i]),.IB(LA_HPC_N[i]));
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF1(.O(LA_LPC[i]),.I(LA_LPC_P[i]),.IB(LA_LPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
+        LVDS_BUF0(.O(LA_HPC[i]),.I(LA_HPC_P[i]),.IB(LA_HPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
+        LVDS_BUF1(.O(LA_LPC[i]),.I(LA_LPC_P[i]),.IB(LA_LPC_N[i]));
 end
 endgenerate
 generate
 for (i = 0; i < 20; i = i+1) begin: LVDS_BUF_HA
-    IBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
+    IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
+        LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
 end
 endgenerate
 generate
