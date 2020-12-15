@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Mon Dec 14 11:31:22 2020
+| Date         : Tue Dec 15 14:06:38 2020
 | Host         : moncomet01 running 64-bit unknown
 | Command      : report_clock_utilization -file top_clock_utilization_routed.rpt
 | Design       : top
@@ -54,10 +54,10 @@ Table of Contents
 +-----------+-----------+-----------------+------------+---------------+--------------+-------------------+-------------+-----------------+--------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+----------------------------------------+
 | Global Id | Source Id | Driver Type/Pin | Constraint | Site          | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock                                                                                      | Driver Pin                                                           | Net                                    |
 +-----------+-----------+-----------------+------------+---------------+--------------+-------------------+-------------+-----------------+--------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+----------------------------------------+
-| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y0 | n/a          |                 8 |        8275 |               0 |        5.000 | CLK_200M                                                                                   | nolabel_line167/BUFG0/O                                              | nolabel_line167/CLK_200M               |
+| g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y0 | n/a          |                 8 |        8275 |               0 |        5.000 | CLK_200M                                                                                   | nolabel_line170/BUFG0/O                                              | nolabel_line170/CLK_200M               |
 | g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y2 | n/a          |                 2 |         461 |               0 |       33.000 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.u_bufg_icon_tck/O | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i |
 | g2        | src2      | BUFG/O          | None       | BUFGCTRL_X0Y3 | n/a          |                 3 |         342 |               0 |        8.000 | GMII_RX_CLK                                                                                | GMII_RX_CLK_IBUF_BUFG_inst/O                                         | GMII_RX_CLK_IBUF_BUFG                  |
-| g3        | src3      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1 | n/a          |                 1 |         282 |               0 |       40.000 | Multiple                                                                                   | nolabel_line167/GMIIMUX/O                                            | nolabel_line167/BUF_TX_CLK             |
+| g3        | src3      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1 | n/a          |                 1 |         282 |               0 |       40.000 | Multiple                                                                                   | nolabel_line170/GMIIMUX/O                                            | nolabel_line170/BUF_TX_CLK             |
 +-----------+-----------+-----------------+------------+---------------+--------------+-------------------+-------------+-----------------+--------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+----------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -69,7 +69,7 @@ Table of Contents
 +-----------+-----------+-----------------+------------+------------+--------------+-------------+-----------------+---------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+
 | Source Id | Global Id | Driver Type/Pin | Constraint | Site       | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock                                                                               | Driver Pin                                                                                 | Net                                                                  |
 +-----------+-----------+-----------------+------------+------------+--------------+-------------+-----------------+---------------------+--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+
-| src0      | g0        | IBUFDS/O        | IOB_X1Y76  | IOB_X1Y76  | X1Y1         |           1 |               0 |               5.000 | SYSCLK_200MP_IN                                                                            | nolabel_line167/LVDS_BUF/O                                                                 | nolabel_line167/CLK_200M_buf                                         |
+| src0      | g0        | IBUFDS/O        | IOB_X1Y76  | IOB_X1Y76  | X1Y1         |           1 |               0 |               5.000 | SYSCLK_200MP_IN                                                                            | nolabel_line170/LVDS_BUF/O                                                                 | nolabel_line170/CLK_200M_buf                                         |
 | src1      | g1        | BSCANE2/TCK     | None       | BSCAN_X0Y0 | X0Y2         |           1 |               0 |              33.000 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |
 | src2      | g2        | IBUF/O          | IOB_X0Y124 | IOB_X0Y124 | X0Y2         |           1 |               0 |               8.000 | GMII_RX_CLK                                                                                | GMII_RX_CLK_IBUF_inst/O                                                                    | GMII_RX_CLK_IBUF                                                     |
 | src3      | g3        | IBUF/O          | IOB_X0Y172 | IOB_X0Y172 | X0Y3         |           1 |               0 |              40.000 | GMII_TX_CLK                                                                                | GMII_TX_CLK_IBUF_inst/O                                                                    | GMII_TX_CLK_IBUF                                                     |
@@ -127,7 +127,7 @@ All Modules
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock    | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                      |
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
-| g0        | BUFG/O          | n/a               | CLK_200M |       5.000 | {0.000 2.500} |        7966 |        0 |              1 |        0 | nolabel_line167/CLK_200M |
+| g0        | BUFG/O          | n/a               | CLK_200M |       5.000 | {0.000 2.500} |        7966 |        0 |              1 |        0 | nolabel_line170/CLK_200M |
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+--------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -208,7 +208,7 @@ All Modules
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+----------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock    | Period (ns) | Waveform (ns)  | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                        |
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+----------------------------+
-| g3        | BUFGCTRL/O      | n/a               | Multiple |      40.000 | {0.000 20.000} |         281 |        0 |              0 |        0 | nolabel_line167/BUF_TX_CLK |
+| g3        | BUFGCTRL/O      | n/a               | Multiple |      40.000 | {0.000 20.000} |         281 |        0 |              0 |        0 | nolabel_line170/BUF_TX_CLK |
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+----------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -235,7 +235,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
-| g0        | n/a   | BUFG/O          | None       |          45 |               0 | 18 |      0 |   27 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M |
+| g0        | n/a   | BUFG/O          | None       |          45 |               0 | 18 |      0 |   27 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -248,7 +248,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
-| g0        | n/a   | BUFG/O          | None       |          51 |               0 | 20 |      0 |   31 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M |
+| g0        | n/a   | BUFG/O          | None       |          51 |               0 | 20 |      0 |   31 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+--------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -261,7 +261,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
-| g0        | n/a   | BUFG/O          | None       |         462 |               0 | 428 |      4 |   30 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M |
+| g0        | n/a   | BUFG/O          | None       |         462 |               0 | 428 |      4 |   30 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -274,7 +274,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
-| g0        | n/a   | BUFG/O          | None       |         269 |               0 | 229 |      0 |   40 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M |
+| g0        | n/a   | BUFG/O          | None       |         269 |               0 | 229 |      0 |   40 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+--------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -287,7 +287,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+--------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                      |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+--------------------------+
-| g0        | n/a   | BUFG/O          | None       |        2999 |               0 | 2851 |    118 |   29 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M |
+| g0        | n/a   | BUFG/O          | None       |        2999 |               0 | 2851 |    118 |   29 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M |
 | g2        | n/a   | BUFG/O          | None       |           3 |               0 |    3 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | GMII_RX_CLK_IBUF_BUFG    |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+--------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
@@ -301,7 +301,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                    |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |         616 |               0 | 588 |      0 |   28 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M               |
+| g0        | n/a   | BUFG/O          | None       |         616 |               0 | 588 |      0 |   28 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M               |
 | g1        | n/a   | BUFG/O          | None       |         336 |               0 | 336 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
@@ -315,9 +315,9 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                        |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------+
-| g0        | n/a   | BUFG/O          | None       |        3510 |               0 | 3422 |     69 |   14 |   0 |  0 |    0 |   1 |       0 | nolabel_line167/CLK_200M   |
+| g0        | n/a   | BUFG/O          | None       |        3510 |               0 | 3422 |     69 |   14 |   0 |  0 |    0 |   1 |       0 | nolabel_line170/CLK_200M   |
 | g2        | n/a   | BUFG/O          | None       |         299 |               0 |  298 |      0 |    1 |   0 |  0 |    0 |   0 |       0 | GMII_RX_CLK_IBUF_BUFG      |
-| g3        | n/a   | BUFGCTRL/O      | None       |         281 |               0 |  276 |      1 |    1 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/BUF_TX_CLK |
+| g3        | n/a   | BUFGCTRL/O      | None       |         281 |               0 |  276 |      1 |    1 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/BUF_TX_CLK |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -330,7 +330,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                    |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
-| g0        | n/a   | BUFG/O          | None       |          15 |               0 |  15 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | nolabel_line167/CLK_200M               |
+| g0        | n/a   | BUFG/O          | None       |          15 |               0 |  15 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | nolabel_line170/CLK_200M               |
 | g1        | n/a   | BUFG/O          | None       |         122 |               0 | 122 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i |
 | g2        | n/a   | BUFG/O          | None       |          40 |               0 |  40 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | GMII_RX_CLK_IBUF_BUFG                  |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+----------------------------------------+
@@ -341,8 +341,8 @@ All Modules
 
 
 # Location of BUFG Primitives 
-set_property LOC BUFGCTRL_X0Y0 [get_cells nolabel_line167/BUFG0]
-set_property LOC BUFGCTRL_X0Y1 [get_cells nolabel_line167/GMIIMUX]
+set_property LOC BUFGCTRL_X0Y0 [get_cells nolabel_line170/BUFG0]
+set_property LOC BUFGCTRL_X0Y1 [get_cells nolabel_line170/GMIIMUX]
 set_property LOC BUFGCTRL_X0Y2 [get_cells dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.u_bufg_icon_tck]
 set_property LOC BUFGCTRL_X0Y3 [get_cells GMII_RX_CLK_IBUF_BUFG_inst]
 
@@ -354,18 +354,18 @@ set_property LOC IOB_X0Y172 [get_ports GMII_TX_CLK]
 set_property LOC IOB_X1Y75 [get_ports SYSCLK_200MN_IN]
 set_property LOC IOB_X1Y76 [get_ports SYSCLK_200MP_IN]
 
-# Clock net "nolabel_line167/CLK_200M" driven by instance "nolabel_line167/BUFG0" located at site "BUFGCTRL_X0Y0"
+# Clock net "nolabel_line170/CLK_200M" driven by instance "nolabel_line170/BUFG0" located at site "BUFGCTRL_X0Y0"
 #startgroup
-create_pblock {CLKAG_nolabel_line167/CLK_200M}
-add_cells_to_pblock [get_pblocks  {CLKAG_nolabel_line167/CLK_200M}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=nolabel_line167/PLLE2_BASE} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="nolabel_line167/CLK_200M"}]]]
-resize_pblock [get_pblocks {CLKAG_nolabel_line167/CLK_200M}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X1Y0:CLOCKREGION_X1Y0 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2 CLOCKREGION_X1Y3:CLOCKREGION_X1Y3}
+create_pblock {CLKAG_nolabel_line170/CLK_200M}
+add_cells_to_pblock [get_pblocks  {CLKAG_nolabel_line170/CLK_200M}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=nolabel_line170/PLLE2_BASE} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="nolabel_line170/CLK_200M"}]]]
+resize_pblock [get_pblocks {CLKAG_nolabel_line170/CLK_200M}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X1Y0:CLOCKREGION_X1Y0 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2 CLOCKREGION_X1Y3:CLOCKREGION_X1Y3}
 #endgroup
 
-# Clock net "nolabel_line167/BUF_TX_CLK" driven by instance "nolabel_line167/GMIIMUX" located at site "BUFGCTRL_X0Y1"
+# Clock net "nolabel_line170/BUF_TX_CLK" driven by instance "nolabel_line170/GMIIMUX" located at site "BUFGCTRL_X0Y1"
 #startgroup
-create_pblock {CLKAG_nolabel_line167/BUF_TX_CLK}
-add_cells_to_pblock [get_pblocks  {CLKAG_nolabel_line167/BUF_TX_CLK}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="nolabel_line167/BUF_TX_CLK"}]]]
-resize_pblock [get_pblocks {CLKAG_nolabel_line167/BUF_TX_CLK}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
+create_pblock {CLKAG_nolabel_line170/BUF_TX_CLK}
+add_cells_to_pblock [get_pblocks  {CLKAG_nolabel_line170/BUF_TX_CLK}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="nolabel_line170/BUF_TX_CLK"}]]]
+resize_pblock [get_pblocks {CLKAG_nolabel_line170/BUF_TX_CLK}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
 #endgroup
 
 # Clock net "dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i" driven by instance "dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.u_bufg_icon_tck" located at site "BUFGCTRL_X0Y2"
