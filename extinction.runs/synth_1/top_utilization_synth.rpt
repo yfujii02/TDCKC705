@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Tue Dec 15 13:55:38 2020
+| Date         : Wed Dec 16 10:29:33 2020
 | Host         : moncomet01 running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,8 +30,8 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 4534 |     0 |    203800 |  2.22 |
-|   LUT as Logic             | 4449 |     0 |    203800 |  2.18 |
+| Slice LUTs*                | 4532 |     0 |    203800 |  2.22 |
+|   LUT as Logic             | 4447 |     0 |    203800 |  2.18 |
 |   LUT as Memory            |   85 |     0 |     64000 |  0.13 |
 |     LUT as Distributed RAM |    8 |     0 |           |       |
 |     LUT as Shift Register  |   77 |     0 |           |       |
@@ -94,7 +94,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |  216 |     0 |       500 | 43.20 |
+| Bonded IOB                  |  214 |     0 |       500 | 42.80 |
 | Bonded IPADs                |    0 |     0 |        50 |  0.00 |
 | Bonded OPADs                |    0 |     0 |        32 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |        10 |  0.00 |
@@ -159,10 +159,10 @@ Table of Contents
 | FDRE      | 3927 |        Flop & Latch |
 | FDCE      | 1441 |        Flop & Latch |
 | LUT3      | 1186 |                 LUT |
-| LUT2      | 1057 |                 LUT |
-| LUT6      |  913 |                 LUT |
+| LUT2      | 1068 |                 LUT |
+| LUT6      |  912 |                 LUT |
 | LUT4      |  489 |                 LUT |
-| LUT5      |  487 |                 LUT |
+| LUT5      |  475 |                 LUT |
 | LUT1      |  474 |                 LUT |
 | CARRY4    |  335 |          CarryLogic |
 | FDPE      |  194 |        Flop & Latch |
@@ -171,7 +171,7 @@ Table of Contents
 | FDSE      |   77 |        Flop & Latch |
 | SRLC16E   |   71 |  Distributed Memory |
 | MUXF8     |   40 |               MuxFx |
-| IBUF      |   24 |                  IO |
+| IBUF      |   22 |                  IO |
 | LDCE      |   19 |        Flop & Latch |
 | OBUF      |   18 |                  IO |
 | RAMB36E1  |   10 |        Block Memory |

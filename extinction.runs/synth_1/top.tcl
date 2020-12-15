@@ -100,7 +100,7 @@ read_verilog -library xil_defaultlib {
   /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
   /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
   /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v
-  /home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.v
+  /home/comet/FPGA/extinction/from_other_repo/kc705sitcp.v
   /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top_tdc.v
   /home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v
 }

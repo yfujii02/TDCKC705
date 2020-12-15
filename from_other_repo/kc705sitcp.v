@@ -91,7 +91,7 @@ module
     reg      [6:0]  RX_CNT;
 
     wire CLK_200M_buf;
-    IBUFDS #(.IOSTANDARD ("LVDS"))        LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
+    IBUFDS #(.IOSTANDARD ("LVDS")) LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
     BUFG BUFG0 ( .O(CLK_200M), .I(CLK_200M_buf));
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1608000871">
+<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1608074905">
   <File Type="VDS-TIMING-PB" Name="top_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="top_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="top.dcp"/>
@@ -100,7 +100,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.v">
+    <File Path="$PPRDIR/from_other_repo/kc705sitcp.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -116,6 +116,14 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/top.v">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.v">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
