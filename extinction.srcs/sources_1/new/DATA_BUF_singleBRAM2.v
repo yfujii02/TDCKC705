@@ -93,7 +93,7 @@ module DATA_BUF_singleBRAM2(
             endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
-                DIN    <= {HEADER,BOARD_ID[3:0],SPLCOUNT[15:0]}; // HEADER = 20'hA_BB_00 + 
+                DIN    <= {BOARD_ID[3:0],SPLCOUNT[15:0],HEADER}; // HEADER = 20'hA_BB_00 + 
                                                                  //  REG_HEADER[31:0]x2 = 84-bits
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
