@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Wed Dec 16 10:29:33 2020
+| Date         : Thu Dec 17 15:52:34 2020
 | Host         : moncomet01 running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -158,8 +158,8 @@ Table of Contents
 +-----------+------+---------------------+
 | FDRE      | 3927 |        Flop & Latch |
 | FDCE      | 1441 |        Flop & Latch |
-| LUT3      | 1186 |                 LUT |
-| LUT2      | 1068 |                 LUT |
+| LUT3      | 1187 |                 LUT |
+| LUT2      | 1067 |                 LUT |
 | LUT6      |  912 |                 LUT |
 | LUT4      |  489 |                 LUT |
 | LUT5      |  475 |                 LUT |
