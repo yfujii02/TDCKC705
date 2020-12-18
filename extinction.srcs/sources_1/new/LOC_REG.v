@@ -56,7 +56,7 @@ module LOC_REG(
     output    [7:0]  LOC_RD         ;
 
     input     [3:0]  BOARD_ID       ;
-    input    [15:0]  SPILLCOUNT     ;
+    input    [31:0]  SPILLCOUNT     ;
     output    [2:0]  REG_MODE       ;
     output           REG_START      ;
     output           REG_RESET      ;
@@ -137,10 +137,10 @@ module LOC_REG(
             x01_Reg[7:0]    <= 8'h00;   // Start
             x02_Reg[7:0]    <= 8'h00;   // Reset
             x03_Reg[7:0]    <= {4'd0,BOARD_ID[3:0]}; // Board ID
-            x04_Reg[7:0]    <= 8'h00;   // NC
-            x05_Reg[7:0]    <= 8'h00;   // NC
-            x06_Reg[7:0]    <= SPILLCOUNT[15:8];   // Spill count
-            x07_Reg[7:0]    <= SPILLCOUNT[ 7:0];   // Spill count
+            x04_Reg[7:0]    <= SPILLCOUNT[31:24];   // Spill count
+            x05_Reg[7:0]    <= SPILLCOUNT[23:16];   // Spill count
+            x06_Reg[7:0]    <= SPILLCOUNT[15: 8];   // Spill count
+            x07_Reg[7:0]    <= SPILLCOUNT[ 7: 0];   // Spill count
             x08_Reg[7:0]    <= 8'h01;   // Header
             x09_Reg[7:0]    <= 8'h23;   // Header
             x0A_Reg[7:0]    <= 8'h45;   // Header
@@ -173,16 +173,15 @@ module LOC_REG(
         end else begin
             //// Following register values shoudl not be overwritten by UDP
             x03_Reg[7:0]    <= {4'd0,BOARD_ID[3:0]};
-            x06_Reg[7:0]    <= SPILLCOUNT[15:8];
-            x07_Reg[7:0]    <= SPILLCOUNT[ 7:0];
+            x04_Reg[7:0]    <= SPILLCOUNT[31:24];
+            x05_Reg[7:0]    <= SPILLCOUNT[23:16];
+            x06_Reg[7:0]    <= SPILLCOUNT[15: 8];
+            x07_Reg[7:0]    <= SPILLCOUNT[ 7: 0];
 
             if(irWe)begin
                 x00_Reg[2:0]    <= (regCs[0] & (irAddr[3:0]==4'h0) ? irWd[2:0] : x00_Reg[2:0]);
                 x01_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x01_Reg[7:0]);
                 x02_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x02_Reg[7:0]);
-
-                x04_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h4) ? irWd[7:0] : x04_Reg[7:0]);
-                x05_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x05_Reg[7:0]);
 
                 //// Header
                 x08_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x08_Reg[7:0]);
@@ -225,10 +224,10 @@ module LOC_REG(
             4'h1:    rdDataA[7:0]    <= x01_Reg[7:0];        // Start DAQ
             4'h2:    rdDataA[7:0]    <= x02_Reg[7:0];        // Reset
             4'h3:    rdDataA[7:0]    <= x03_Reg[7:0];        // Board ID
-            4'h4:    rdDataA[7:0]    <= x04_Reg[7:0];        // NC
-            4'h5:    rdDataA[7:0]    <= x05_Reg[7:0];        // NC
-            4'h6:    rdDataA[7:0]    <= x06_Reg[7:0];        // Spill count [15:8]
-            4'h7:    rdDataA[7:0]    <= x07_Reg[7:0];        // Spill count [ 7:0]
+            4'h4:    rdDataA[7:0]    <= x04_Reg[7:0];        // Spill count [31:24]
+            4'h5:    rdDataA[7:0]    <= x05_Reg[7:0];        // Spill count [23:16]
+            4'h6:    rdDataA[7:0]    <= x06_Reg[7:0];        // Spill count [15: 8]
+            4'h7:    rdDataA[7:0]    <= x07_Reg[7:0];        // Spill count [ 7: 0]
             4'h8:    rdDataA[7:0]    <= x08_Reg[7:0];        // Header
             4'h9:    rdDataA[7:0]    <= x09_Reg[7:0];        // Header
             4'hA:    rdDataA[7:0]    <= x0A_Reg[7:0];        // Header

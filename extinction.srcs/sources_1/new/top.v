@@ -214,7 +214,7 @@ endgenerate
     wire   [31:0]  FOOTER     ;
     wire           TRIGGER_INT;
     wire    [3:0]  BOARD_ID   ;
-    wire   [15:0]  SPILLCOUNT ;
+    wire   [31:0]  SPILLCOUNT ;
     wire           debug_data_en ;
     wire           debug_data_end;
     wire  [15:0]   debug_fifo_cnt;
@@ -236,7 +236,7 @@ endgenerate
         .HEADER     (HEADER[31:0] ),
         .FOOTER     (FOOTER[31:0] ),
         .TRIGGER_INT(TRIGGER_INT  ),
-        .SPILLCOUNT (SPILLCOUNT   ),
+        .SPILLCOUNT (SPILLCOUNT[31:0]),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
         .SEND_EN    (TCP_TX_EN    ), // Output data enable SiTCP
         .DEBUG_DATA_EN (debug_data_en ),
@@ -257,7 +257,7 @@ endgenerate
         .LOC_RD     (RBCP_RD[7:0]    ),
         // Registers
         .BOARD_ID   (BOARD_ID[3:0]   ),
-        .SPILLCOUNT (SPILLCOUNT[15:0]),
+        .SPILLCOUNT (SPILLCOUNT[31:0]),
         .REG_MODE   (RUN_MODE[2:0]   ),
         .REG_START  (RUN_START       ),
         .REG_RESET  (RUN_RESET       ),
@@ -283,7 +283,8 @@ endgenerate
     assign FMC_DEBUG_OUT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Become high in every 2**27 * 5ns = 0.67sec , 50% duty
                                                                              /// [0] Become high in every 2**9 * 5ns = 2.56nsec , 3CLK high
 
-    assign GPIO_LED = SPILLCOUNT[3:0];
+    //assign GPIO_LED = SPILLCOUNT[3:0];
+    assign GPIO_LED = SPILLCOUNT[31:28];
 
     ila_0 ila_0(
         .trig_in(PSPILL   ),

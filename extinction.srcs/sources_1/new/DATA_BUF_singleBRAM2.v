@@ -75,7 +75,7 @@ module DATA_BUF_singleBRAM2(
     wire            fifo_full ;
     wire            fifo_empty;
     wire   [103:0]  data_out  ;
-    wire   [ 15:0]  data_count;
+    wire   [ 16:0]  data_count;
     wire            sbiterr   ;
     wire            dbiterr   ;
 
@@ -145,7 +145,7 @@ module DATA_BUF_singleBRAM2(
         .dout           (data_out[103:0] ), // out: Output Data [63:0]
         .full           (fifo_full       ), // out: FIFO Full
         .empty          (fifo_empty      ), // out: FIFO Empty
-        .data_count     (data_count[15:0])  // out: # of data in FIFO
+        .data_count     (data_count[16:0])  // out: # of data in FIFO
     );
 //        .sbiterr        (sbiterr         ), // out: Single Bit Error
 //        .dbiterr        (dbiterr         )  // out: Double Bit Error
@@ -202,7 +202,7 @@ module OUT_DATA_PACK(
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
-        end else if(~data_en) begin
+        end else if((~data_en)|data_end) begin // Reset count when it reaches the maximum
             count[3:0] <= 4'd0;
         end else if (data_en) begin
             if(PAUSE) begin
