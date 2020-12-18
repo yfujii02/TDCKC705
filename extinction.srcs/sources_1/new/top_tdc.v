@@ -35,7 +35,7 @@ module top_tdc(
     input    wire   [31:0]     HEADER     ,
     input    wire   [31:0]     FOOTER     ,
     output   wire              TRIGGER_INT,
-    output   wire   [15:0]     SPILLCOUNT ,
+    output   wire   [31:0]     SPILLCOUNT ,
     output   wire    [7:0]     OUTDATA    ,
     output   wire              SEND_EN    ,
     output   wire              DEBUG_DATA_EN,
@@ -53,7 +53,7 @@ module top_tdc(
     reg      [1:0]    EM_REG    ;
     reg               EM_EDGE   ;
     reg     [31:0]    COUNTER   ;
-    reg     [15:0]  irSPILLCOUNT; // Spill counter
+    reg     [31:0]  irSPILLCOUNT; // Spill counter
     assign SPILLCOUNT = irSPILLCOUNT;
 
     always@ (posedge CLK_200M) begin
@@ -61,7 +61,7 @@ module top_tdc(
             SPL_REG    <= 2'b00;
             SPL_EDGE   <= 1'b0;
             SPL_END    <= 1'b0;
-            irSPILLCOUNT <= 16'd0;
+            irSPILLCOUNT <= 32'd0;
 
             EM_REG     <= 2'b00;
             EM_EDGE    <= 1'b0;
@@ -69,7 +69,7 @@ module top_tdc(
             SPL_REG    <= {SPL_REG[0],PSPILL};
             SPL_EDGE   <= (SPL_REG==2'b01);
             SPL_END    <= (SPL_REG==2'b10);
-            irSPILLCOUNT <= (SPL_END==1'b1)? irSPILLCOUNT+16'd1 : irSPILLCOUNT;
+            irSPILLCOUNT <= (SPL_END==1'b1)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
 
             EM_REG     <= {EM_REG[0],EV_MATCH};
             EM_EDGE    <= (EM_REG==2'b01);
@@ -150,7 +150,7 @@ module top_tdc(
         .COUNTER (irCOUNTER   ),
         .SPLSTART(SPL_EDGE    ),
         .SPLEND  (SPL_END     ),
-        .SPLCOUNT(SPILLCOUNT  ),
+        .SPLCOUNT(SPILLCOUNT[15:0]),
         .SIG     (irSIG[76:0] ),
         .START   (START       ),
         .EMCOUNT (regEMCNTR   ),
