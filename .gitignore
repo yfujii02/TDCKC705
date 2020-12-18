@@ -110,3 +110,4 @@ extinction.runs/.jobs/*
 !*.root
 !*.pdf
 !README.md
+!*.sh
