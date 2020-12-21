@@ -21,16 +21,14 @@
 
 
 module top_mcs(
-    RST,
-    CLK,
-    TX_CLK,
-    SPLGATE,
-    SPLCOUNT,
-    SIG,
-    DOUT,
-    SEND_EN,
-    TCP_FULL,
-    LENGTH,
-    TXCOUNT
+    input   wire            RESET     ,
+    input   wire            CLK_200M  ,
+    input   wire   [63:0]   SIGNAL    ,
+    input   wire            TCP_BUSY  ,
+    input   wire            START     ,
+    output  wire   [ 7:0]   OUTDATA   ,
+    output  wire            SEND_EN
     );
+
+
 endmodule
