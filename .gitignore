@@ -30,9 +30,9 @@
 !*.xcix
 !*.ngc
 #*.dcp(checkpoint files)
-!*.dcp
-!*.vds
-!*.pb
+#!*.dcp
+#!*.vds
+#!*.pb
 #All bd comments and layout coordinates are stored within .ui
 !*.ui
 !*.ooc
@@ -45,8 +45,8 @@
 #########
 #Simulation logic analyzer
 #########
-!*.wcfg
-!*.coe
+#!*.wcfg
+#!*.coe
 #########
 #MIG
 #########
@@ -76,9 +76,9 @@
 #########
 #Reports
 #########
-!*.rpt
-!*.txt
-!*.vdi
+#!*.rpt
+#!*.txt
+#!*.vdi
 #########
 #C-files
 #########
