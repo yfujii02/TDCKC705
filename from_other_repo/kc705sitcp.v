@@ -269,12 +269,26 @@ module
 //FIFO
     wire     fifo_reset;
     assign fifo_reset = (~TCP_OPEN_ACK) | SOFT_RESET;
-    fifo_generator_v11_0 fifo_generator_v11_0(
+//    fifo_generator_v11_0 fifo_generator_v11_0(
+//        .clk        (CLK_200M             ),//in  :
+//        .rst        (~TCP_OPEN_ACK        ),//in  :
+//        .din        (TCP_TX_DATA_IN[7:0]  ),//in  :
+//        .wr_en      (TCP_TX_EN_IN         ),//in  :
+//        .full       (FIFO_FULL            ),//out :
+//        .dout       (TCP_TX_DATA[7:0]     ),//out :
+//        .valid      (FIFO_RD_VALID        ),//out :active hi
+//        .rd_en      (~TCP_TX_FULL         ),//in  :
+//        .empty      (                     ),//out :
+//        .data_count (FIFO_DATA_COUNT[11:0]) //out :[11:0]
+//    );
+    wire    FIFO_COMPLETELY_FULL;
+    fifo_generator_1 fifo_generator_v11_0(
         .clk        (CLK_200M             ),//in  :
-        .rst        (~TCP_OPEN_ACK        ),//in  :
+        .srst       (fifo_reset           ),//in  :
         .din        (TCP_TX_DATA_IN[7:0]  ),//in  :
         .wr_en      (TCP_TX_EN_IN         ),//in  :
-        .full       (FIFO_FULL            ),//out :
+        .full       (FIFO_COMPLETELY_FULL),//out :
+        .almost_full(FIFO_FULL            ),//out :
         .dout       (TCP_TX_DATA[7:0]     ),//out :
         .valid      (FIFO_RD_VALID        ),//out :active hi
         .rd_en      (~TCP_TX_FULL         ),//in  :

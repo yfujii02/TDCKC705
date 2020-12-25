@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Fri Dec 18 15:20:15 2020
-| Host             : moncomet01 running 64-bit unknown
+| Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date             : Fri Dec 25 23:43:54 2020
+| Host             : dyna-comet running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
 | Device           : xc7k325tffg900-2
@@ -52,17 +52,17 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.117 |        9 |       --- |             --- |
-| Slice Logic              |     0.024 |    19870 |       --- |             --- |
-|   LUT as Logic           |     0.019 |     6905 |    203800 |            3.39 |
-|   CARRY4                 |     0.002 |      425 |     50950 |            0.83 |
-|   Register               |     0.002 |     9058 |    407600 |            2.22 |
+| Clocks                   |     0.119 |        9 |       --- |             --- |
+| Slice Logic              |     0.023 |    19882 |       --- |             --- |
+|   LUT as Logic           |     0.018 |     6930 |    203800 |            3.40 |
+|   CARRY4                 |     0.002 |      427 |     50950 |            0.84 |
+|   Register               |     0.002 |     9055 |    407600 |            2.22 |
 |   LUT as Shift Register  |    <0.001 |      230 |     64000 |            0.36 |
 |   F7/F8 Muxes            |    <0.001 |      544 |    203800 |            0.27 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
-|   Others                 |     0.000 |     1823 |       --- |             --- |
-| Signals                  |     0.082 |    15709 |       --- |             --- |
-| Block RAM                |     0.090 |    387.5 |       445 |           87.08 |
+|   Others                 |     0.000 |     1831 |       --- |             --- |
+| Signals                  |     0.081 |    15698 |       --- |             --- |
+| Block RAM                |     0.088 |    387.5 |       445 |           87.08 |
 | PLL                      |     0.110 |        1 |        10 |           10.00 |
 | I/O                      |     0.497 |      202 |       500 |           40.40 |
 | Static Power             |     0.188 |          |           |                 |
@@ -85,7 +85,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.022 |       0.008 |      0.015 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.022 |       0.007 |      0.015 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -133,11 +133,11 @@ Table of Contents
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
-| CLK_125M_1                                                                                 | nolabel_line171/CLK_125M                                             |             8.0 |
+| CLK_125M                                                                                   | nolabel_line171/CLK_125M                                             |             8.0 |
 | CLK_200M                                                                                   | nolabel_line171/CLK_200M                                             |             5.0 |
 | GMII_RX_CLK                                                                                | GMII_RX_CLK                                                          |             8.0 |
 | GMII_TX_CLK                                                                                | GMII_TX_CLK                                                          |            40.0 |
-| PLL_CLKFB_1                                                                                | nolabel_line171/PLL_CLKFB                                            |             5.0 |
+| PLL_CLKFB                                                                                  | nolabel_line171/PLL_CLKFB                                            |             5.0 |
 | SYSCLK_200MP_IN                                                                            | SYSCLK_200MP_IN                                                      |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
@@ -149,29 +149,29 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| Name                                                                                                                                    | Power (W) |
-+-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| top                                                                                                                                     |     0.919 |
-|   LOC_REG                                                                                                                               |     0.006 |
-|   dbg_hub                                                                                                                               |     0.006 |
-|     inst                                                                                                                                |     0.006 |
-|       BSCANID.u_xsdbm_id                                                                                                                |     0.006 |
-|   ila_0                                                                                                                                 |     0.034 |
-|     inst                                                                                                                                |     0.034 |
-|       ila_core_inst                                                                                                                     |     0.034 |
-|   nolabel_line171                                                                                                                       |     0.232 |
-|     AT93C46_IIC                                                                                                                         |     0.008 |
-|       MIRROR_MEM                                                                                                                        |     0.003 |
-|       PCA9548_SW                                                                                                                        |     0.003 |
-|     SiTCP                                                                                                                               |     0.105 |
-|       SiTCP                                                                                                                             |     0.104 |
-|     fifo_generator_v11_0                                                                                                                |     0.003 |
-|       U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr |     0.002 |
-|   top_tdc                                                                                                                               |     0.139 |
-|     DATA_BUF                                                                                                                            |     0.135 |
-|       OUT_DATA_PACK                                                                                                                     |     0.002 |
-|       fifo                                                                                                                              |     0.117 |
-+-----------------------------------------------------------------------------------------------------------------------------------------+-----------+
++--------------------------+-----------+
+| Name                     | Power (W) |
++--------------------------+-----------+
+| top                      |     0.919 |
+|   LOC_REG                |     0.006 |
+|   dbg_hub                |     0.007 |
+|     inst                 |     0.007 |
+|       BSCANID.u_xsdbm_id |     0.007 |
+|   ila_0                  |     0.035 |
+|     inst                 |     0.035 |
+|       ila_core_inst      |     0.035 |
+|   nolabel_line171        |     0.230 |
+|     AT93C46_IIC          |     0.008 |
+|       MIRROR_MEM         |     0.003 |
+|       PCA9548_SW         |     0.003 |
+|     SiTCP                |     0.105 |
+|       SiTCP              |     0.104 |
+|     fifo_generator_v11_0 |     0.001 |
+|       U0                 |     0.001 |
+|   top_tdc                |     0.140 |
+|     DATA_BUF             |     0.137 |
+|       OUT_DATA_PACK      |     0.002 |
+|       fifo               |     0.118 |
++--------------------------+-----------+
 
 
