@@ -18,8 +18,8 @@
 #Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
 !*.vhd
 !*.v
-!*.bd
-!*.edif
+#!*.bd
+#!*.edif
 #########
 #IP files
 #########
@@ -30,36 +30,36 @@
 !*.xcix
 !*.ngc
 #*.dcp(checkpoint files)
-!*.dcp
-!*.vds
-!*.pb
+#!*.dcp
+#!*.vds
+#!*.pb
 #All bd comments and layout coordinates are stored within .ui
-!*.ui
-!*.ooc
+#!*.ui
+#!*.ooc
 #########
 #System Generator
 #########
-!*.mdl
-!*.slx
-!*.bxml
+#!*.mdl
+#!*.slx
+#!*.bxml
 #########
 #Simulation logic analyzer
 #########
-!*.wcfg
-!*.coe
+#!*.wcfg
+#!*.coe
 #########
 #MIG
 #########
-!*.prj
-!*.mem
+#!*.prj
+#!*.mem
 #########
 #Project files
 #########
 #XPR  +  *.XML ? XPR (Files are merged into a single XPR file for 2014.1 version)
 #Do NOT ignore *.xpr files
-!*.xpr
+#!*.xpr
 #Include *.xml files for 2013.4 or earlier version
-!*.xml
+#!*.xml
 #########
 #Constraint files
 #########
@@ -68,7 +68,7 @@
 #########
 #TCL - files
 #########
-!*.tcl
+#!*.tcl
 #########
 #Journal - files
 #########
@@ -76,17 +76,17 @@
 #########
 #Reports
 #########
-!*.rpt
-!*.txt
-!*.vdi
+#!*.rpt
+#!*.txt
+#!*.vdi
 #########
 #C-files
 #########
-!*.c
-!*.h
-!*.elf
-!*.bmm
-!*.xmp
+#!*.c
+#!*.h
+#!*.elf
+#!*.bmm
+#!*.xmp
 #########
 #Firmware
 #########
@@ -101,13 +101,16 @@
 # jobs 
 #########
 extinction/.jobs/*
-extinction.runs/.jobs/*
+extinction.cache/*
+extinction.hw/*
+extinction.ip_user_files/*
+extinction.runs/*
+extinction.sim/*
+extinction.srcs/sources_1/ip/*
 
 ###########################################################################
 ##	Python DAQ code
 ###########################################################################
-!*.py
-!*.root
-!*.pdf
-!README.md
-!*.sh
+#!*.py
+#!*.root
+#!*.pdf
