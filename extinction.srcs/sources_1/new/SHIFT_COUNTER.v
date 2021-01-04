@@ -15,13 +15,13 @@ module SHIFT_COUNTER(
     input               EOD     ;
     input       [10:0]  RELCNTR ;
     input       [10:0]  RLENGTH ;
-    output      [23:0]  COUNTER ;
+    output      [15:0]  COUNTER ;
 
-    reg         [23:0]  regCNTR ;
+    reg         [15:0]  regCNTR ;
     reg          [1:0]  regEN   ;
     reg                 ROMODE  ; // readout mode...
-    wire        [23:0]  wCNTR   ;
-    wire        [23:0]  COUNTER ;
+    wire        [15:0]  wCNTR   ;
+    wire        [15:0]  COUNTER ;
     wire        [10:0]  raddr   ;
     reg                 doRESET ;
     reg         [11:0]  RSTCNTR ;
@@ -35,7 +35,7 @@ module SHIFT_COUNTER(
 
     always@ (posedge CLK) begin
         if(RST) begin
-            regCNTR <= 24'd0;
+            regCNTR <= 16'd0;
             ROMODE  <=  1'b0;
             regEN   <=  2'd0;
             doRESET <=  1'b1;
@@ -50,11 +50,11 @@ module SHIFT_COUNTER(
             end
 
             if(EN) begin
-                regCNTR <= (SIG==1'b1)? COUNTER + 24'd1 : COUNTER;
+                regCNTR <= (SIG==1'b1)? COUNTER + 16'd1 : COUNTER;
             end else if(EOD) begin
                 doRESET <=  1'b1;
             end else if (doRESET) begin
-                regCNTR <= 24'd0;
+                regCNTR <= 16'd0;
             end
 
             RSTCNTR <= (doRESET)? RSTCNTR + 12'd1 : 12'd0;

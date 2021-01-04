@@ -44,9 +44,39 @@ module top_mcs(
     input   wire   [63:0]   SIGNAL    ,
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
+    input   wire            MR_SYNC   ,
     output  wire   [ 7:0]   OUTDATA   ,
     output  wire            SEND_EN
     );
 
+    reg  [10:0]   relCNTR; // counter relative to MR_SYNC
+
+    always @ (posedge CLK_200M) begin
+        if(RESET) begin
+            relCNTR <= 11'd0;
+        end else begin
+            if (MR_SYNC) begin
+                relCNTR <= 11'd0;
+            end else begin
+                relCNTR <= relCNTR + 11'd1;
+            end
+        end
+    end
+
+genvar i
+generate
+    for (i = 0; i < 64; i = i+1) begin: SUM_UP
+        SHIFT_COUNTER shift_cntr(
+            .RST    (RESET    ),
+            .CLK    (CLK_200M ),
+            .EN     (START    ),
+            .SIG    (SIGNAL[i]),
+            .EOD    (   ), // end of data sending
+            .RELCNTR(relCNTR  ),
+            .RLENGTH(   ),
+            .COUNTER(   )
+        );
+    end
+endgenerate
 
 endmodule
