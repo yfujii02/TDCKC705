@@ -33,7 +33,8 @@ module LOC_REG(
     REG_MODE            ,    // out    : Mode select [2:0]
                              //         000: TDC
                              //         001: MCS
-                             //         010-110: Reserved
+                             //         10X: Use SMA input for SPILL
+                             //         101: Use SMA input for MR_SYNC
                              //         111: Test mode (internal pattern)
     REG_START           ,    // out    : Start data transferring (0: stop, 1:start)
     REG_RESET           ,    // out    : RESET

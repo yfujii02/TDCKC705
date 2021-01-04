@@ -167,7 +167,6 @@
       <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.ngc">
         <FileInfo>
           <Attr Name="UserDisabled" Val="1"/>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
@@ -175,7 +174,6 @@
       <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v">
         <FileInfo>
           <Attr Name="UserDisabled" Val="1"/>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

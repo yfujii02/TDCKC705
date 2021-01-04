@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri Dec 25 23:29:33 2020
-# Process ID: 9744
+# Start of session at: Mon Jan  4 18:01:00 2021
+# Process ID: 7536
 # Current directory: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.vds
@@ -17,9 +17,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9232
+INFO: [Synth 8-7075] Helper process launched with PID 9392
+WARNING: [Synth 8-6901] identifier 'RUN_MODE' is used before its declaration [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:85]
+WARNING: [Synth 8-6901] identifier 'RUN_MODE' is used before its declaration [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:86]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1030.969 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1032.742 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
@@ -246,8 +248,8 @@ INFO: [Synth 8-6155] done synthesizing module 'TIMER' (16#1) [C:/Users/comet/Des
 INFO: [Synth 8-6157] synthesizing module 'SiTCP_XC7K_32K_BBT_V110' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
 INFO: [Synth 8-6155] done synthesizing module 'SiTCP_XC7K_32K_BBT_V110' (17#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
 INFO: [Synth 8-6155] done synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' (18#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_1' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/fifo_generator_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_1' (19#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/fifo_generator_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_1' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/fifo_generator_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_1' (19#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/fifo_generator_1_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'kc705sitcp' (20#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.v:20]
 INFO: [Synth 8-6157] synthesizing module 'top_tdc' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_tdc.v:23]
 INFO: [Synth 8-6157] synthesizing module 'DATA_BUF_singleBRAM2' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:23]
@@ -261,8 +263,8 @@ WARNING: [Synth 8-7023] instance 'BUFR_RAD' of module 'BUFR' has 4 connections d
 INFO: [Synth 8-6157] synthesizing module 'FD__parameterized0' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
 	Parameter INIT bound to: 1'b0 
 INFO: [Synth 8-6155] done synthesizing module 'FD__parameterized0' (21#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/fifo_generator_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (22#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/fifo_generator_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/fifo_generator_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (22#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/fifo_generator_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'almost_full' of module 'fifo_generator_0' is unconnected for instance 'fifo' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:139]
 WARNING: [Synth 8-7023] instance 'fifo' of module 'fifo_generator_0' has 10 connections declared, but only 9 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:139]
 INFO: [Synth 8-6157] synthesizing module 'OUT_DATA_PACK' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:169]
@@ -276,31 +278,31 @@ INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2020.1/scrip
 	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (27#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46328]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6157] synthesizing module 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/ila_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ila_0' (28#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-9744-dyna-comet/realtime/ila_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_0' is unconnected for instance 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:289]
-WARNING: [Synth 8-7023] instance 'ila_0' of module 'ila_0' has 19 connections declared, but only 18 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_tdc'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:223]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line171'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:171]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'LOC_REG'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:247]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:286]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (28#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7536-dyna-comet/realtime/ila_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_0' is unconnected for instance 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:286]
+WARNING: [Synth 8-7023] instance 'ila_0' of module 'ila_0' has 19 connections declared, but only 18 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:286]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_tdc'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:220]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:286]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line168'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:168]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'LOC_REG'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:244]
 INFO: [Synth 8-6155] done synthesizing module 'top' (29#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1112.199 ; gain = 81.230
+Finished RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1110.730 ; gain = 77.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1112.199 ; gain = 81.230
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1110.730 ; gain = 77.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1112.199 ; gain = 81.230
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1110.730 ; gain = 77.988
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.066 . Memory (MB): peak = 1112.199 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.065 . Memory (MB): peak = 1110.730 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 99 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -309,8 +311,8 @@ Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDC
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'top_tdc/DATA_BUF/fifo'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line171/fifo_generator_v11_0'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line171/fifo_generator_v11_0'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line168/fifo_generator_v11_0'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line168/fifo_generator_v11_0'
 Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */GMII/*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:2]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:27]
@@ -339,7 +341,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1217.281 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1212.957 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 9 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -347,31 +349,31 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1217.281 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1212.957 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'ila_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'nolabel_line171/fifo_generator_v11_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'nolabel_line168/fifo_generator_v11_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'top_tdc/DATA_BUF/fifo' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for top_tdc/DATA_BUF/fifo. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for ila_0. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for nolabel_line171/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for nolabel_line168/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -397,7 +399,7 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 7     
 	                3 Bit    Registers := 3     
-	                2 Bit    Registers := 89    
+	                2 Bit    Registers := 90    
 	                1 Bit    Registers := 168   
 +---Muxes : 
 	   2 Input  104 Bit        Muxes := 3     
@@ -427,25 +429,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -463,37 +465,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -539,9 +541,9 @@ Report Cell Usage:
 |9     |LUT1                    |     9|
 |10    |LUT2                    |   315|
 |11    |LUT3                    |   108|
-|12    |LUT4                    |    88|
-|13    |LUT5                    |   210|
-|14    |LUT6                    |   184|
+|12    |LUT4                    |    89|
+|13    |LUT5                    |   211|
+|14    |LUT6                    |   182|
 |15    |MUXF7                   |    24|
 |16    |MUXF8                   |     8|
 |17    |ODDR                    |     1|
@@ -552,7 +554,7 @@ Report Cell Usage:
 |22    |FD                      |     6|
 |23    |FDCE                    |   490|
 |24    |FDPE                    |    93|
-|25    |FDRE                    |   773|
+|25    |FDRE                    |   775|
 |26    |LDC                     |    35|
 |27    |IBUF                    |    20|
 |28    |IBUFDS                  |    85|
@@ -561,11 +563,11 @@ Report Cell Usage:
 |31    |OBUFDS                  |     2|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1212.957 ; gain = 180.215
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:40 . Memory (MB): peak = 1217.281 ; gain = 81.230
-Synthesis Optimization Complete : Time (s): cpu = 00:00:44 ; elapsed = 00:00:45 . Memory (MB): peak = 1217.281 ; gain = 186.313
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:45 . Memory (MB): peak = 1212.957 ; gain = 77.988
+Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1212.957 ; gain = 180.215
 INFO: [Project 1-571] Translating synthesized netlist
 Release 14.7 - ngc2edif P_INT.20191124 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
@@ -641,18 +643,18 @@ WARNING:NetListWriters:306 - Signal bus SiTCP_INT/SiTCP_INT_REG/muxData[31 : 0]
    missing bus signals.
   finished :Prep
 Writing EDIF netlist file SiTCP_XC7K_32K_BBT_V110.edif ...
-ngc2edif: Total memory usage is 4341868 kilobytes
+ngc2edif: Total memory usage is 4342612 kilobytes
 
 Reading core file 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
 Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
 Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.222 . Memory (MB): peak = 1219.133 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.222 . Memory (MB): peak = 1219.598 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 5727 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Xilinx ngc2edif P_INT.20191124
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1246.703 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1246.563 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3734 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 288 instances
@@ -670,11 +672,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1S => RAM32X1S (RAMS32): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-87 Infos, 30 Warnings, 0 Critical Warnings and 0 Errors encountered.
+87 Infos, 32 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:01:10 . Memory (MB): peak = 1246.703 ; gain = 215.734
+synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:01:26 . Memory (MB): peak = 1246.563 ; gain = 213.820
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Dec 25 23:30:53 2020...
+INFO: [Common 17-206] Exiting Vivado at Mon Jan  4 18:02:38 2021...

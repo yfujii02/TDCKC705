@@ -247,7 +247,15 @@ module OUT_DATA_PACK(
     reg     data_end_level1;
     reg     data_end_level2;
 
-    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~PAUSE;
+    reg [1:0] dlyPAUSE;
+    always@(posedge SYSCLK) begin
+        if (SYSRST) begin
+            dlyPAUSE <= 2'd0;
+        end else begin
+            dlyPAUSE <= {dlyPAUSE[0],PAUSE};
+        end
+    end
+    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~dlyPAUSE[1];
 
     always@(posedge SYSCLK) begin
         out_val_level2  <= out_val_level1;
