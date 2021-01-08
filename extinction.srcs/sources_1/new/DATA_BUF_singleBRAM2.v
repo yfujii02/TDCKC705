@@ -246,8 +246,15 @@ module OUT_DATA_PACK(
     reg     out_val;
     reg     data_end_level1;
     reg     data_end_level2;
+    reg     pause_level1;
+    reg     pause_level2;
 
-    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~PAUSE;
+    always@(posedge SYSCLK) begin
+        pause_level1 <= PAUSE;
+        pause_level2 <= pause_level1;
+    end
+
+    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~pause_level2;
 
     always@(posedge SYSCLK) begin
         out_val_level2  <= out_val_level1;
@@ -285,6 +292,7 @@ module OUT_DATA_PACK(
             default: data_out[7:0] <= 8'd0;
         endcase
     end
-    assign OUT[7:0] = out_val ? data_out[7:0] : 8'h0;
+    assign OUT[7:0] = data_out[7:0];
+    //assign OUT[7:0] = out_val ? data_out[7:0] : 8'h0;
     
 endmodule

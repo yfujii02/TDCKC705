@@ -64,7 +64,8 @@ module fifo_generator_1 (
   almost_full,
   empty,
   valid,
-  data_count
+  data_count,
+  prog_full
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME core_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0" *)
@@ -87,6 +88,7 @@ output wire almost_full;
 output wire empty;
 output wire valid;
 output wire [11 : 0] data_count;
+output wire prog_full;
 
   fifo_generator_v13_2_5 #(
     .C_COMMON_CLOCK(1),
@@ -128,9 +130,9 @@ output wire [11 : 0] data_count;
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
-    .C_PROG_FULL_THRESH_ASSERT_VAL(4094),
-    .C_PROG_FULL_THRESH_NEGATE_VAL(4093),
-    .C_PROG_FULL_TYPE(0),
+    .C_PROG_FULL_THRESH_ASSERT_VAL(4081),
+    .C_PROG_FULL_THRESH_NEGATE_VAL(4080),
+    .C_PROG_FULL_TYPE(2),
     .C_RD_DATA_COUNT_WIDTH(12),
     .C_RD_DEPTH(4096),
     .C_RD_FREQ(1),
@@ -326,7 +328,7 @@ output wire [11 : 0] data_count;
     .data_count(data_count),
     .rd_data_count(),
     .wr_data_count(),
-    .prog_full(),
+    .prog_full(prog_full),
     .prog_empty(),
     .sbiterr(),
     .dbiterr(),
