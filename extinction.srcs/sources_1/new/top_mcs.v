@@ -45,6 +45,7 @@ module top_mcs(
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
     input   wire            MR_SYNC   ,
+    input   wire   [10:0]   LENGTH    , // CLK ticks to be read
     output  wire   [ 7:0]   OUTDATA   ,
     output  wire            SEND_EN
     );
@@ -63,24 +64,35 @@ module top_mcs(
         end
     end
 
-    wire    [64*16-1:0] DCOUNTER;
+    parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
+    parameter DLENGTH  = 16; /// Length of each data/bin
+
+    wire                      EOD        ;
+    wire    [15:0] DCOUNTER[0:NCHANNEL-1];
 genvar i
 generate
-    for (i = 0; i < 64; i = i+1) begin: SUM_UP
+    for (i = 0; i < NCHANNEL; i = i+1) begin: SUM_UP
         SHIFT_COUNTER shift_cntr(
             .RST    (RESET    ),
             .CLK    (CLK_200M ),
             .EN     (START    ),
             .SIG    (SIGNAL[i]),
-            .EOD    (   ), // end of data sending
+            .EOD    (EOD      ), // end of data sending
             .RELCNTR(relCNTR  ),
-            .RLENGTH(   ),
-            .COUNTER(DCOUNTER[(i+1)*64-1:i*64])
+            .RLENGTH(LENGTH   ),
+            .COUNTER(DCOUNTER[i])
         );
     end
 endgenerate
 
     DATA_SEND_MCS data_send_mcs(
+        .RST     (RESET   ),
+        .CLK     (CLK_200M),
+        .TCP_FULL(TCP_FULL),
+        .EOD     (EOD     ),
+        .DCOUNTER(DCOUNTER),
+        .DOUT    (OUTDATA ),
+        .SEND_EN (SEND_EN )
     );
 
 endmodule
