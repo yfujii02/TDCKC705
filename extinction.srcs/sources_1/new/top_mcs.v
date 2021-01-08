@@ -63,6 +63,7 @@ module top_mcs(
         end
     end
 
+    wire    [64*16-1:0] DCOUNTER;
 genvar i
 generate
     for (i = 0; i < 64; i = i+1) begin: SUM_UP
@@ -74,9 +75,12 @@ generate
             .EOD    (   ), // end of data sending
             .RELCNTR(relCNTR  ),
             .RLENGTH(   ),
-            .COUNTER(   )
+            .COUNTER(DCOUNTER[(i+1)*64-1:i*64])
         );
     end
 endgenerate
+
+    DATA_SEND_MCS data_send_mcs(
+    );
 
 endmodule

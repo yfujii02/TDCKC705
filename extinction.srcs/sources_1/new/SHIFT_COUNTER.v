@@ -88,7 +88,7 @@ module SHIFT_COUNTER(
         end
     end
 
-    bram_3byte_2K bram(
+    bram_2byte_2K bram(
         // write memory
         .addra(dlyCNTR3CLK  ),
         .clka (CLK          ),

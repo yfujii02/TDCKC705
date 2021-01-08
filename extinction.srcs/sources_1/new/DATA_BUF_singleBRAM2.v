@@ -199,13 +199,21 @@ module OUT_DATA_PACK(
     end
     
     reg [3:0]  count;
+    reg [1:0] dlyPAUSE;
+    always@(posedge SYSCLK) begin
+        if (SYSRST) begin
+            dlyPAUSE <= 2'd0;
+        end else begin
+            dlyPAUSE <= {dlyPAUSE[0],PAUSE};
+        end
+    end
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
         end else if((~data_en)|data_end) begin // Reset count when it reaches the maximum
             count[3:0] <= 4'd0;
         end else if (data_en) begin
-            if(PAUSE) begin
+            if(dlyPAUSE[1]) begin
                 count[3:0] <= count[3:0];
             end else begin
                 count[3:0] <= count[3:0] + 4'd1;
@@ -247,14 +255,6 @@ module OUT_DATA_PACK(
     reg     data_end_level1;
     reg     data_end_level2;
 
-    reg [1:0] dlyPAUSE;
-    always@(posedge SYSCLK) begin
-        if (SYSRST) begin
-            dlyPAUSE <= 2'd0;
-        end else begin
-            dlyPAUSE <= {dlyPAUSE[0],PAUSE};
-        end
-    end
     assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~dlyPAUSE[1];
 
     always@(posedge SYSCLK) begin
@@ -290,7 +290,7 @@ module OUT_DATA_PACK(
             4'd10:   data_out[7:0] <= reg_data[ 23: 16];
             4'd11:   data_out[7:0] <= reg_data[ 15:  8];
             4'd12:   data_out[7:0] <= reg_data[  7:  0];
-            default: data_out[7:0] <= 8'd0;
+            default: data_out[7:0] <= 8'hFF;
         endcase
     end
     assign OUT[7:0] = out_val ? data_out[7:0] : 8'h0;
