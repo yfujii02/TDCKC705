@@ -240,6 +240,24 @@ endgenerate
         .DEBUG_DATA_END(debug_data_end),
         .DEBUG_FIFO_CNT(debug_fifo_cnt)
     );
+/*
+    top_mcs top_mcs(
+    // system
+        .RESET      ((TCP_RST|RUN_RESET)),
+        .CLK_200M   (CLK_200M     ),
+    //
+        .SIGNAL     (regSIG       ),
+        .PSPILL     (PSPILL       ),
+        .MR_SYNC    (regSync      ),
+        .OLDH       (regOLDH      ),
+        .EV_MATCH   (EV_MATCH     ),
+        .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
+        .START      (RUN_START    ), // Start signal to send the data
+        .BOARD_ID   (BOARD_ID[3:0]),
+        .LENGTH     (11'd1088     ),
+        .OUTDATA    (OUTDATA      ), // Output data into SiTCP
+        .SEND_EN    (TCP_TX_EN    )  // Output data enable SiTCP
+    );*/
 
     LOC_REG LOC_REG(
         // System

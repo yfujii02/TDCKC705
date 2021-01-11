@@ -42,12 +42,13 @@ module top_mcs(
     input   wire            RESET     ,
     input   wire            CLK_200M  ,
     input   wire   [63:0]   SIGNAL    ,
-    input   wire            PSPILL     ,
-    input   wire            MR_SYNC    ,
-    input   wire            EV_MATCH   ,
+    input   wire            PSPILL    ,
+    input   wire            MR_SYNC   ,
+    input   wire   [11:0]   OLDH      , // PMT inputs including COINCIDENCE
+    input   wire            EV_MATCH  ,
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
-    input   wire    [3:0]   BOARD_ID   ,
+    input   wire    [3:0]   BOARD_ID  ,
     input   wire            MR_SYNC   ,
     input   wire   [10:0]   LENGTH    , // CLK ticks to be read
     output  wire   [ 7:0]   OUTDATA   ,

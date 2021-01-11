@@ -64,6 +64,7 @@ module top_tdc(
 //     TDC count-up
 //
 //*******************************************************************************
+    reg    [31:0]    COUNTER;
     always@ (posedge CLK_200M) begin
         if(RESET)begin
             COUNTER   <= 32'd0;
