@@ -4,6 +4,7 @@ module DATA_SEND_MCS(
     input   wire              RST,
     input   wire              CLK,
     input   wire              TCP_FULL,
+    input   wire    [15:0]    EM_COUNT,
     output  reg               EOD,
     input   wire    [15:0]    DCOUNTER[0:73],
     output  reg      [7:0]    DOUT,
@@ -175,8 +176,8 @@ module DATA_SEND_MCS(
                     case(dlyTXCOUNT[2:0])
                         3'h7: DOUT <= 8'hFF;
                         3'h6: DOUT <= 8'hFF;
-                        3'h5: DOUT <= 8'hFF;
-                        3'h4: DOUT <= 8'hFF;
+                        3'h5: DOUT <= EM_COUNT[15:8];
+                        3'h4: DOUT <= EM_COUNT[ 7:0];
                         3'h3: DOUT <= rNMRSYNC[31:24];
                         3'h2: DOUT <= rNMRSYNC[23:16];
                         3'h1: DOUT <= rNMRSYNC[15: 8];

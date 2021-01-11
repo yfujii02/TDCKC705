@@ -42,12 +42,33 @@ module top_mcs(
     input   wire            RESET     ,
     input   wire            CLK_200M  ,
     input   wire   [63:0]   SIGNAL    ,
+    input   wire            PSPILL     ,
+    input   wire            MR_SYNC    ,
+    input   wire            EV_MATCH   ,
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
+    input   wire    [3:0]   BOARD_ID   ,
     input   wire            MR_SYNC   ,
     input   wire   [10:0]   LENGTH    , // CLK ticks to be read
     output  wire   [ 7:0]   OUTDATA   ,
     output  wire            SEND_EN
+    );
+//*******************************************************************************
+//
+//     Get spill information
+//
+//*******************************************************************************
+    wire            SPILL_EDGE ;
+    wire    [15:0]  EM_COUNT   ;
+    GET_SPILLINFO get_spillInfo(
+        .RESET     (RESET     ),
+        .CLK_200M  (CLK_200M  ),
+        .PSPILL    (PSPILL    ),
+        .MR_SYNC   (MR_SYNC   ),
+        .SPILLCOUNT(SPILLCOUNT),
+        .SPILL_EDGE(SPILL_EDGE),
+        .EV_MATCH  (EV_MATCH  ),
+        .EM_COUNT  (EM_COUNT  )
     );
 
     reg  [10:0]   relCNTR; // counter relative to MR_SYNC

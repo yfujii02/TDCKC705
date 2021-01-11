@@ -44,73 +44,34 @@ module top_tdc(
     );
 //*******************************************************************************
 //
+//     Get spill information
+//
+//*******************************************************************************
+    wire            SPILL_EDGE ;
+    wire    [15:0]  EM_COUNT   ;
+    GET_SPILLINFO get_spillInfo(
+        .RESET     (RESET     ),
+        .CLK_200M  (CLK_200M  ),
+        .PSPILL    (PSPILL    ),
+        .MR_SYNC   (MR_SYNC   ),
+        .SPILLCOUNT(SPILLCOUNT),
+        .SPILL_EDGE(SPILL_EDGE),
+        .EV_MATCH  (EV_MATCH  ),
+        .EM_COUNT  (EM_COUNT  )
+    );
+//*******************************************************************************
+//
 //     TDC count-up
 //
 //*******************************************************************************
-    reg      [1:0]    SPL_REG   ;
-    reg               SPL_EDGE  ;
-    reg               SPL_END   ;
-    reg      [1:0]    EM_REG    ;
-    reg               EM_EDGE   ;
-    reg     [31:0]    COUNTER   ;
-    reg     [31:0]  irSPILLCOUNT; // Spill counter
-    assign SPILLCOUNT = irSPILLCOUNT;
-
-    always@ (posedge CLK_200M) begin
-        if(RESET)begin
-            SPL_REG    <= 2'b00;
-            SPL_EDGE   <= 1'b0;
-            SPL_END    <= 1'b0;
-            irSPILLCOUNT <= 32'd0;
-
-            EM_REG     <= 2'b00;
-            EM_EDGE    <= 1'b0;
-        end else begin
-            SPL_REG    <= {SPL_REG[0],PSPILL};
-            SPL_EDGE   <= (SPL_REG==2'b01);
-            SPL_END    <= (SPL_REG==2'b10);
-            irSPILLCOUNT <= (SPL_END==1'b1)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
-
-            EM_REG     <= {EM_REG[0],EV_MATCH};
-            EM_EDGE    <= (EM_REG==2'b01);
-        end
-    end
-
-    reg    [15:0]    EMCOUNTER ; // Counter for Event matching signal
-    reg              EMDONE    ;
-    reg    [15:0]    regEMCNTR ;
-    reg              EN_EMCOUNT;
-
     always@ (posedge CLK_200M) begin
         if(RESET)begin
             COUNTER   <= 32'd0;
-            EMCOUNTER <= 16'd0;
-            regEMCNTR <= 16'd0;
-            EN_EMCOUNT<=  1'b0;
-            EMDONE    <=  1'b0;
         end else begin
-            if(SPL_EDGE)begin
+            if(SPILL_EDGE)begin
                 COUNTER   <= 32'd0;
-                EMCOUNTER <= 16'd0;
-                regEMCNTR <= 16'd0;
-                EN_EMCOUNT<=  1'b0;
-                EMDONE    <=  1'b0;
             end else begin
                 COUNTER   <= COUNTER + 32'd1;
-            end
-
-            if(MR_SYNC & ~EMDONE)begin
-                if(EM_EDGE & (EMCOUNTER==16'd0))begin
-                    EN_EMCOUNT <=  1'b1;
-                end
-            end
-            if(EN_EMCOUNT & ~EMDONE)begin
-                EMCOUNTER  <= EMCOUNTER + 16'd1;
-            end
-            if(EMCOUNTER>16'd0 & EM_EDGE & (regEMCNTR==16'd0))begin
-                EN_EMCOUNT <= 1'b0;
-                regEMCNTR  <= EMCOUNTER;
-                EMDONE     <= 1'b1;
             end
         end
     end
@@ -148,12 +109,12 @@ module top_tdc(
         .CLK     (CLK_200M    ),
         .DATA_TRG(irDATATRG   ),
         .COUNTER (irCOUNTER   ),
-        .SPLSTART(SPL_EDGE    ),
+        .SPLSTART(SPILL_EDGE  ),
         .SPLEND  (SPL_END     ),
         .SPLCOUNT(SPILLCOUNT[15:0]),
         .SIG     (irSIG[76:0] ),
         .START   (START       ),
-        .EMCOUNT (regEMCNTR   ),
+        .EMCOUNT (EM_COUNT    ),
         .BOARD_ID(BOARD_ID    ), // in [ 3:0]
         .HEADER  (irHeader    ), // in [83:0]
         .FOOTER  (irFooter    ), // in [83:0]
