@@ -42,7 +42,8 @@ module LOC_REG(
     REG_FOOTER          ,    // out    : Header
     REG_CHMASK          ,    // out    : mask input channels
     REG_CHMASK2         ,    // out    : mask input channels 2
-    REG_FMC_DBG              // out    : enable FMC debug pin (HPC_LA33,32)
+    REG_FMC_DBG         ,    // out    : enable FMC debug pin (HPC_LA33,32)
+    REG_DLY_TEST             // out    : delay for fast_test signal [7:0]
 );
 
 //-------- Input/Output -------------
@@ -69,6 +70,7 @@ module LOC_REG(
     output   [14:0]  REG_CHMASK2    ;
 
     output           REG_FMC_DBG    ;
+    output           REG_DLY_TEST   ;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -121,7 +123,7 @@ module LOC_REG(
     reg     [7:0]    x18_Reg   ;
     reg     [7:0]    x19_Reg   ;
     reg              x1A_Reg   ;
-    reg     [7:0]    x1B_Reg   ; // NC
+    reg     [7:0]    x1B_Reg   ; // Delay for the test signal
     reg     [7:0]    x1C_Reg   ; // NC
     reg     [7:0]    x1D_Reg   ; // NC
     reg     [7:0]    x1E_Reg   ; // NC
@@ -162,7 +164,7 @@ module LOC_REG(
             x18_Reg[7:0]    <= 8'h00;   //
             x19_Reg[7:0]    <= 8'h00;   //
             x1A_Reg         <= 1'd0 ;   //
-            x1B_Reg[7:0]    <= 8'h1B;   //
+            x1B_Reg[7:0]    <= 8'h10;   // Delay for the test signal
             x1C_Reg[7:0]    <= 8'h1C;   //
             x1D_Reg[7:0]    <= 8'h1D;   //
             x1E_Reg[7:0]    <= 8'h1E;   //
@@ -206,6 +208,7 @@ module LOC_REG(
                 x18_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x18_Reg[7:0]);
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
                 x1A_Reg         <= (regCs[1] & (irAddr[3:0]==4'hA) ? irWd[0:0] : x1A_Reg);
+                x1B_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x1B_Reg[7:0]);
             end
         end
     end
@@ -285,4 +288,5 @@ module LOC_REG(
     assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
 
     assign  REG_FMC_DBG = x1A_Reg;
+    assign  REG_DLY_TEST = x1B_Reg[7:0]; // Delay for the test signal w.r.t TEST[0]
 endmodule

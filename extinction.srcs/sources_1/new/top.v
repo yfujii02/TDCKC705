@@ -40,7 +40,8 @@ module
         input    wire            SW_N           ,
     // test inputs
         input    wire    [3:0]   GPIO_SWITCH    ,
-        input    wire    [1:0]   GPIO_SMA       ,
+        input    wire            GPIO_SMA_IN    ,
+        output   wire            GPIO_SMA_OUT   ,
     // test outputs
         output   wire    [3:0]   GPIO_LED       , /// GPIO_LED_[4,5,6,7]
     //connect EEPROM
@@ -75,15 +76,20 @@ module
     wire              MR_SYNC_FMC; // MR sync
     wire              MR_SYNC  ; // MR sync
     wire              EV_MATCH ; // Event matching signal spill-by-spill
-    wire    [11:0]     OLDH    ; // PMT and old hodoscope
+    wire    [11:0]    OLDH     ; // PMT and old hodoscope
 
     wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
     wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
+    wire    [2:0]     RUN_MODE ; // Run mode determined by the controllable registers
+
+    wire    [1:0]     TEST_INT ; // Internal Test, [0]: fast signal, [1]: slow signal
+    wire              DLY_TEST_FAST;
+
     assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
     assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]}; // mask signals
     
-    assign PSPILL  = (RUN_MODE[2:1]==2'b10)?  GPIO_SMA[0] : PSPILL_FMC;  /// Use SMA0 for SPILL signal
-    assign MR_SYNC = (RUN_MODE[2:0]==3'b101)? GPIO_SMA[1] : MR_SYNC_FMC; /// Use SMA1 for MR sync dummy
+    assign PSPILL  = (RUN_MODE[2]==1'b1)? TEST_INT[1] : PSPILL_FMC;  /// Use Internal slow signal for SPILL signal
+    assign MR_SYNC = (RUN_MODE[2]==1'b1)? TEST_INT[0] : MR_SYNC_FMC; /// Use Internal fast signal for MR sync dummy
 
 genvar i;
 generate
@@ -105,8 +111,6 @@ generate
     wire             CLK_200M  ;
     wire             FIFO_FULL ;
     wire             TCP_RST   ;
-
-    wire    [2:0]    RUN_MODE  ;
     wire             RUN_START ;
     wire             RUN_RESET ;
 
@@ -119,13 +123,31 @@ generate
     reg     [1:0]    syncEdge  ;
     reg              regSync   ;
 
+    reg              EXT_RESET ;
+    always@ (posedge CLK_200M) begin
+        if(TCP_RST)begin
+            EXT_RESET <= 1'd0;
+        end else begin
+            EXT_RESET <= GPIO_SMA_IN;
+        end
+    end
+    assign GPIO_SMA_OUT = RUN_RESET; /// Output the reset signal to SMA
+
 for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regSIG[i]          <= 1'd0;
             sigEdge[2*i+1:2*i] <= 2'd0;
         end else begin
-            sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
+            if (RUN_MODE==3'b111) begin
+                if (i==0) begin
+                    sigEdge[2*i+1:2*i] <= {sigEdge[2*i],DLY_TEST_FAST};
+                end else begin
+                    sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
+                end
+            end else begin
+                sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
+            end
             regSIG[i]          <= (sigEdge[2*i+1:2*i]==2'b01);
         end
     end
@@ -216,7 +238,7 @@ endgenerate
     wire           debug_data_end;
     wire  [15:0]   debug_fifo_cnt;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
-
+/*
     top_tdc top_tdc(
     // system
         .RESET      ((TCP_RST|RUN_RESET)),
@@ -239,8 +261,8 @@ endgenerate
         .DEBUG_DATA_EN (debug_data_en ),
         .DEBUG_DATA_END(debug_data_end),
         .DEBUG_FIFO_CNT(debug_fifo_cnt)
-    );
-/*
+    );*/
+
     top_mcs top_mcs(
     // system
         .RESET      ((TCP_RST|RUN_RESET)),
@@ -254,11 +276,11 @@ endgenerate
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
         .START      (RUN_START    ), // Start signal to send the data
         .BOARD_ID   (BOARD_ID[3:0]),
-        .LENGTH     (11'd1088     ),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
         .SEND_EN    (TCP_TX_EN    )  // Output data enable SiTCP
-    );*/
+    );
 
+    wire    [7:0]   DELAY_TEST;
     LOC_REG LOC_REG(
         // System
         .CLK        (CLK_200M        ),
@@ -280,7 +302,8 @@ endgenerate
         .REG_FOOTER (FOOTER[31:0]    ),
         .REG_CHMASK (CHMASK[63:0]    ),
         .REG_CHMASK2(CHMASK2[14:0]   ),
-        .REG_FMC_DBG(FMC_DBG)
+        .REG_FMC_DBG(FMC_DBG),
+        .REG_DLY_TEST(DELAY_TEST)
     );
 
     /// Debug
@@ -291,15 +314,19 @@ endgenerate
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regCounter = 28'd0;
-        end else if (FMC_DBG)begin
+        end else if (FMC_DBG|RUN_MODE[2])begin
             regCounter = regCounter + 28'd1;
         end
     end
-    assign FMC_DEBUG_OUT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Become high in every 2**27 * 5ns = 0.67sec , 50% duty
-                                                                             /// [0] Become high in every 2**9 * 5ns = 2.56nsec , 3CLK high
+    assign FMC_DEBUG_OUT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
+                                                                             /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
+    assign TEST_INT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
+                                                                             /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
 
-    //assign GPIO_LED = SPILLCOUNT[3:0];
-    assign GPIO_LED = SPILLCOUNT[31:28];
+    assign DLY_TEST_FAST = (regCounter[9:2]==(8'b10000000+DELAY_TEST[7:0]));
+
+    assign GPIO_LED = SPILLCOUNT[3:0];
+    //assign GPIO_LED = SPILLCOUNT[31:28];
 
     ila_0 ila_0(
         .trig_in(PSPILL   ),

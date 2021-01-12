@@ -49,8 +49,6 @@ module top_mcs(
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
     input   wire    [3:0]   BOARD_ID  ,
-    input   wire            MR_SYNC   ,
-    input   wire   [10:0]   LENGTH    , // CLK ticks to be read
     output  wire   [ 7:0]   OUTDATA   ,
     output  wire            SEND_EN
     );
@@ -60,6 +58,7 @@ module top_mcs(
 //
 //*******************************************************************************
     wire            SPILL_EDGE ;
+    wire    [31:0]  SPILLCOUNT ;
     wire    [15:0]  EM_COUNT   ;
     GET_SPILLINFO get_spillInfo(
         .RESET     (RESET     ),
@@ -72,7 +71,7 @@ module top_mcs(
         .EM_COUNT  (EM_COUNT  )
     );
 
-    reg  [10:0]   relCNTR; // counter relative to MR_SYNC
+    reg  [10:0]    relCNTR; // counter relative to MR_SYNC
 
     always @ (posedge CLK_200M) begin
         if(RESET) begin
@@ -86,35 +85,66 @@ module top_mcs(
         end
     end
 
+    reg             ENABLE  ; // Enable on until the spill end
+    reg     [31:0]  NMRSYNC ; // Number of MRSync
+
+    always @ (posedge CLK_200M) begin
+        if(RESET) begin
+            ENABLE    <=  1'b0;
+            NMRSYNC   <= 32'd0;
+        end else begin
+            if (PSPILL)begin
+                if (MR_SYNC) begin
+                    NMRSYNC <= NMRSYNC+32'd1;
+                end
+                if (NMRSYNC>32'd0) begin
+                    ENABLE    <= 1'b1;
+                end
+            end else begin
+                ENABLE    <= 1'b0;
+                NMRSYNC   <= 32'd0;
+            end
+        end
+    end
+
     parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
     parameter DLENGTH  = 16; /// Length of each data/bin
 
-    wire                      EOD        ;
-    wire    [15:0] DCOUNTER[0:NCHANNEL-1];
-genvar i
+    wire                      EOD     ;
+    wire    [NCHANNEL*16-1:0] DCOUNTER;
+    wire               [10:0] LENGTH  ;
+    wire    [NCHANNEL-1:0]    INPUT   ;
+    assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// read out 10 PMT channels 
+                                             ///  including two ext. PMTs in the new hodoscope.
+genvar i;
 generate
     for (i = 0; i < NCHANNEL; i = i+1) begin: SUM_UP
         SHIFT_COUNTER shift_cntr(
             .RST    (RESET    ),
             .CLK    (CLK_200M ),
-            .EN     (START    ),
-            .SIG    (SIGNAL[i]),
+            .EN     (ENABLE&START),
+            .SIG    (INPUT[i] ),
             .EOD    (EOD      ), // end of data sending
             .RELCNTR(relCNTR  ),
             .RLENGTH(LENGTH   ),
-            .COUNTER(DCOUNTER[i])
+            .COUNTER(DCOUNTER[i*16+15:i*16])
         );
     end
 endgenerate
 
     DATA_SEND_MCS data_send_mcs(
-        .RST     (RESET   ),
-        .CLK     (CLK_200M),
-        .TCP_FULL(TCP_FULL),
-        .EOD     (EOD     ),
-        .DCOUNTER(DCOUNTER),
-        .DOUT    (OUTDATA ),
-        .SEND_EN (SEND_EN )
+        .RST     (RESET     ),
+        .CLK     (CLK_200M  ),
+        .ENABLE  (ENABLE&START),
+        .TCP_FULL(TCP_FULL  ),
+        .LENGTH  (LENGTH    ),
+        .SPLCOUNT(SPILLCOUNT[15:0]),
+        .EM_COUNT(EM_COUNT  ),
+        .NMRSYNC (NMRSYNC   ),
+        .EOD     (EOD       ),
+        .DCOUNTER(DCOUNTER  ),
+        .DOUT    (OUTDATA   ),
+        .SEND_EN (SEND_EN   )
     );
 
 endmodule

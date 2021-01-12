@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Mon Jan 11 15:52:14 2021
+| Date         : Tue Jan 12 16:04:07 2021
 | Host         : dyna-comet running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -24,14 +24,15 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 73
+             Violations found: 49
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
 | CFGBVS-1  | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-| CHECK-3   | Warning  | Report rule limit reached                           | 1          |
-| PDRC-153  | Warning  | Gated clock check                                   | 35         |
-| REQP-1839 | Warning  | RAMB36 async control check                          | 14         |
+| CHECK-3   | Warning  | Report rule limit reached                           | 2          |
+| PDRC-63   | Warning  | SLICEM_5lutO5_A5                                    | 1          |
+| PDRC-153  | Warning  | Gated clock check                                   | 3          |
+| REQP-1839 | Warning  | RAMB36 async control check                          | 20         |
 | REQP-1840 | Warning  | RAMB18 async control check                          | 20         |
 | RTSTAT-10 | Warning  | No routable loads                                   | 1          |
 | REQP-165  | Advisory | writefirst                                          | 1          |
@@ -54,7 +55,17 @@ Related violations: <none>
 
 CHECK-3#1 Warning
 Report rule limit reached  
+REQP-1839 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+CHECK-3#2 Warning
+Report rule limit reached  
 REQP-1840 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+PDRC-63#1 Warning
+SLICEM_5lutO5_A5  
+Dangling output pin O5 on site SLICE_X14Y137:A5LUT. For this programming the O5 output pin should have a signal.
 Related violations: <none>
 
 PDRC-153#1 Warning
@@ -72,358 +83,228 @@ Gated clock check
 Net LOC_REG/x03_Reg_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x03_Reg_reg[2]_LDC_i_1/O, cell LOC_REG/x03_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
-PDRC-153#4 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[0]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[0]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#5 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[1]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#6 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[2]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#7 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[3]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[3]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#8 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[4]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[4]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#9 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[5]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[5]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#10 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[6]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[6]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#11 Warning
-Gated clock check  
-Net LOC_REG/x04_Reg_reg[7]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x04_Reg_reg[7]_LDC_i_1/O, cell LOC_REG/x04_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#12 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[0]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[0]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#13 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[1]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#14 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[2]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#15 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[3]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[3]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#16 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[4]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[4]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#17 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[5]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[5]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#18 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[6]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[6]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#19 Warning
-Gated clock check  
-Net LOC_REG/x05_Reg_reg[7]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x05_Reg_reg[7]_LDC_i_1/O, cell LOC_REG/x05_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#20 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[0]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[0]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#21 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[1]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#22 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[2]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#23 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[3]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[3]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#24 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[4]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[4]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#25 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[5]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[5]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#26 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[6]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[6]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#27 Warning
-Gated clock check  
-Net LOC_REG/x06_Reg_reg[7]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x06_Reg_reg[7]_LDC_i_1/O, cell LOC_REG/x06_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#28 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[0]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[0]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#29 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[1]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#30 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[2]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#31 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[3]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[3]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#32 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[4]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[4]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#33 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[5]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[5]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#34 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[6]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[6]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#35 Warning
-Gated clock check  
-Net LOC_REG/x07_Reg_reg[7]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin LOC_REG/x07_Reg_reg[7]_LDC_i_1/O, cell LOC_REG/x07_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
 REQP-1839#1 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[10] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[7]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_7) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[10] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[7]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_7) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#2 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[11] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[8]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_8) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[11] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[8]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_8) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#3 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[12] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[9]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_9) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[12] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[9]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_9) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#4 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[13] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[10]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_10) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[13] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[10]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_10) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#5 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[14] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[11]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_11) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[14] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[11]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_11) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#6 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[3] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[0]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_0) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[3] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[0]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_0) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#7 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[4] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[1]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[4] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[1]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#8 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[5] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[2]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_2) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[5] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[2]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_2) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#9 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[6] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[3]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_3) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[6] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[3]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_3) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#10 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[7] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[4]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_4) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[7] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[4]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_4) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#11 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[8] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[5]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_5) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[8] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[5]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_5) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#12 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[9] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[6]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_6) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/RX_BUF/Mram_RAM/ADDRBWRADDR[9] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr[6]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/rdAddr_6) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#13 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENBWREN (net: nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_377) which is driven by a register (LOC_REG/x02_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENBWREN (net: nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_228) which is driven by a register (LOC_REG/x02_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1839#14 Warning
 RAMB36 async control check  
-The RAMB36E1 nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/RSTRAMB (net: nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/srst) which is driven by a register (LOC_REG/x02_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB36E1 nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/RSTRAMB (net: nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/srst) which is driven by a register (LOC_REG/x02_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#15 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENARDEN (net: top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/ena) which is driven by a register (LOC_REG/x01_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#16 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENBWREN (net: top_mcs/SUM_UP[0].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_80) which is driven by a register (nolabel_line190/SiTCP/SiTCP/BBT_SiTCP_RST/resetReq_0) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#17 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENARDEN (net: top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/ena) which is driven by a register (LOC_REG/x01_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#18 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENBWREN (net: top_mcs/SUM_UP[10].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_81) which is driven by a register (nolabel_line190/SiTCP/SiTCP/BBT_SiTCP_RST/resetReq_0) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#19 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENARDEN (net: top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/ena) which is driven by a register (LOC_REG/x01_Reg_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#20 Warning
+RAMB36 async control check  
+The RAMB36E1 top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram has an input control pin top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram/ENBWREN (net: top_mcs/SUM_UP[11].shift_cntr/bram/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_ENBWREN_cooolgate_en_sig_82) which is driven by a register (nolabel_line190/SiTCP/SiTCP/BBT_SiTCP_RST/resetReq_0) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#1 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[3] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[0]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[3] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[0]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#2 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[4] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[1]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[4] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[1]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#3 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[5] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[2]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[5] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[2]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#4 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[6] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[3]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[6] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[3]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#5 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[7] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[4]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[7] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[4]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#6 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[8] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[5]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[8] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[5]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#7 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[9] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/Q[6]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_RAD_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRARDADDR[9] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/Q[6]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_RAD_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#8 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[3] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[0]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[3] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[0]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#9 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[4] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[1]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[4] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[1]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#10 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[5] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[2]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[5] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[2]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#11 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[6] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[3]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[6] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[3]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#12 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[7] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[4]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[7] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[4]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#13 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[8] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[5]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[8] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[5]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#14 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[9] (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[6]) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WAD_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ADDRBWRADDR[9] (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i_1[6]) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WAD_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#15 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ENBWREN (net: nolabel_line168/AT93C46_IIC/MIRROR_MEM/MEM_WEN) which is driven by a register (nolabel_line168/AT93C46_IIC/MEM_WEN_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i has an input control pin nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i/ENBWREN (net: nolabel_line190/AT93C46_IIC/MIRROR_MEM/MEM_WEN) which is driven by a register (nolabel_line190/AT93C46_IIC/MEM_WEN_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#16 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM/ADDRARDADDR[10] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa[7]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa_7) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM/ADDRBWRADDR[10] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr[7]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr_7) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#17 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM/ADDRARDADDR[11] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa[8]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa_8) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM/ADDRBWRADDR[11] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr[8]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr_8) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#18 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM/ADDRARDADDR[12] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa[9]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa_9) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM/ADDRBWRADDR[12] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr[9]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr_9) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#19 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM/ADDRARDADDR[13] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa[10]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa_10) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM/ADDRBWRADDR[13] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr[10]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr_10) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 REQP-1840#20 Warning
 RAMB18 async control check  
-The RAMB18E1 nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM has an input control pin nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/TX_FIFO/Mram_RAM/ADDRARDADDR[9] (net: nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa[6]) which is driven by a register (nolabel_line168/SiTCP/SiTCP/GMII/GMII_TXCNT/memWa_6) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+The RAMB18E1 nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM has an input control pin nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/BANK0/Mram_RAM/ADDRBWRADDR[9] (net: nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr[6]) which is driven by a register (nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdAddr_6) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-28 net(s) have no routable loads. The problem bus(es) and/or net(s) are ila_0/inst/ila_core_inst/TRIG_IN_ACK_O,
+27 net(s) have no routable loads. The problem bus(es) and/or net(s) are ila_0/inst/ila_core_inst/TRIG_IN_ACK_O,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg[2:0],
-dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg_en_2[1],
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD1/ctl_reg_en_2[1],
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg_en_2[1],
 dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_capture[0],
 dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_drck[0],
 dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_runtest[0],
-dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow,
-nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
-top_tdc/DATA_BUF/fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow,
+nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i,
+nolabel_line190/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
-nolabel_line168/fifo_generator_v11_0/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i (the first 15 of 26 listed).
+dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg[0] (the first 15 of 25 listed).
 Related violations: <none>
 
 REQP-165#1 Advisory
 writefirst  
-Synchronous clocking is detected for BRAM (nolabel_line168/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i) in SDP mode with WRITE_FIRST write-mode. This is the preferred mode for best power characteristics, however it may exhibit address collisions if the same address appears on both read and write ports resulting in unknown or corrupted read data. It is suggested to confirm via simulation that an address collision never occurs and if so it is suggested to try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+Synchronous clocking is detected for BRAM (nolabel_line190/AT93C46_IIC/MIRROR_MEM/RAMB18E1_i) in SDP mode with WRITE_FIRST write-mode. This is the preferred mode for best power characteristics, however it may exhibit address collisions if the same address appears on both read and write ports resulting in unknown or corrupted read data. It is suggested to confirm via simulation that an address collision never occurs and if so it is suggested to try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
 Related violations: <none>
 
 

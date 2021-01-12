@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="bram_2byte_2K_synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1610344956">
+  <File Type="PA-TCL" Name="bram_2byte_2K.tcl"/>
+  <File Type="REPORTS-TCL" Name="bram_2byte_2K_reports.tcl"/>
+  <File Type="RDS-RDS" Name="bram_2byte_2K.vds"/>
+  <File Type="RDS-UTIL" Name="bram_2byte_2K_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="bram_2byte_2K_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="bram_2byte_2K.dcp"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bram_2byte_2K">
+    <File Path="$PSRCDIR/sources_1/ip/bram_2byte_2K/bram_2byte_2K.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="bram_2byte_2K"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/bram_2byte_2K">
+    <File Path="$PSRCDIR/sources_1/ip/bram_2byte_2K/bram_2byte_2K.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="bram_2byte_2K"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>
