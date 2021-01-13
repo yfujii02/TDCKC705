@@ -3,38 +3,36 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="/home/comet/FPGA/extinction/extinction.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
+      <db_ref path="C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
          <top_modules>
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1025fs"></ZoomEndTime>
+      <ZoomEndTime time="3787fs"></ZoomEndTime>
       <Cursor1Time time="515fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+      <ValueColumnWidth column_width="110"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
-   <wave_markers>
-   </wave_markers>
-   <wvobject type="logic" fp_name="debug_data_en">
+   <wvobject fp_name="debug_data_en" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">debug_data_en</obj_property>
       <obj_property name="ObjectShortName">debug_data_en</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="debug_data_end">
+   <wvobject fp_name="debug_data_end" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">debug_data_end</obj_property>
       <obj_property name="ObjectShortName">debug_data_end</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="debug_fifo_cnt">
+   <wvobject fp_name="debug_fifo_cnt" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">debug_fifo_cnt[7:0]</obj_property>
       <obj_property name="ObjectShortName">debug_fifo_cnt[7:0]</obj_property>
@@ -42,7 +40,7 @@
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="debug_fifo_cnt_1">
+   <wvobject fp_name="debug_fifo_cnt_1" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">debug_fifo_cnt_1[15:8]</obj_property>
       <obj_property name="ObjectShortName">debug_fifo_cnt_1[15:8]</obj_property>
@@ -50,21 +48,21 @@
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="FIFO_FULL">
+   <wvobject fp_name="FIFO_FULL" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">FIFO_FULL</obj_property>
       <obj_property name="ObjectShortName">FIFO_FULL</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="MR_SYNC">
+   <wvobject fp_name="MR_SYNC" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">MR_SYNC</obj_property>
       <obj_property name="ObjectShortName">MR_SYNC</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="OUTDATA">
+   <wvobject fp_name="OUTDATA" type="array">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">OUTDATA[7:0]</obj_property>
       <obj_property name="ObjectShortName">OUTDATA[7:0]</obj_property>
@@ -72,28 +70,28 @@
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="PSPILL">
+   <wvobject fp_name="PSPILL" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">PSPILL</obj_property>
       <obj_property name="ObjectShortName">PSPILL</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="RUN_START">
+   <wvobject fp_name="RUN_START" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">RUN_START</obj_property>
       <obj_property name="ObjectShortName">RUN_START</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="TCP_TX_EN">
+   <wvobject fp_name="TCP_TX_EN" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">TCP_TX_EN</obj_property>
       <obj_property name="ObjectShortName">TCP_TX_EN</obj_property>
       <obj_property name="LABELRADIX">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="TRIGGER_INT">
+   <wvobject fp_name="TRIGGER_INT" type="logic">
       <obj_property name="DisplayName">FullPathName</obj_property>
       <obj_property name="ElementShortName">TRIGGER_INT</obj_property>
       <obj_property name="ObjectShortName">TRIGGER_INT</obj_property>

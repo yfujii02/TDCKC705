@@ -122,7 +122,9 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param tcl.collectionResultDisplayLimit 0
   set_param chipscope.maxJobs 1
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7k325tffg900-2
   set_property board_part xilinx.com:kc705:part0:1.6 [current_project]
@@ -146,7 +148,6 @@ OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
   read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc
   read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc
-  read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

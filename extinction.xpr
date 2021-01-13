@@ -356,13 +356,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_SFP/kc705sitcp.xdc">
-        <FileInfo>
-          <Attr Name="UserDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -376,12 +369,6 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/from_other_repo/SiTCP.xdc">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/from_other_repo/kc705sitcp.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

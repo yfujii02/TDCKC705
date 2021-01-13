@@ -15,6 +15,7 @@ module DATA_SEND_MCS(
     output  wire              SEND_EN
 );
     parameter  MAXCOUNT = 18'd161040; // 2*(64+10)*1088 (MPPC Data+PMT Data) + 8*2 (header&footer) byte
+    parameter  MAXCWOHD = 18'd161032; // Max count without header
     parameter  MAXLEN   =   11'd1088; // Maximum data length w/o header&footer
     parameter  MAXBYTE  =    8'd148 ; // =2*(64+10), Maximum byte per each CLK tick...
     reg       [17:0]  txcount      ; // tx counter including header and footer
@@ -58,9 +59,11 @@ module DATA_SEND_MCS(
         end
     end
 
+    wire    [17:0] count_sub;
+    assign count_sub = txcount-MAXCWOHD;
     always@ (posedge CLK) begin
         if(RST) begin
-            dlyTXCOUNT  <= 18'h3FFFF;
+            dlyTXCOUNT  <= MAXCOUNT;
             dlyRdBusy   <=  1'b0   ;
             dlyHdCOUNT  <=  4'b1000;
             eachCNTR    <=  8'd0   ;
@@ -72,8 +75,8 @@ module DATA_SEND_MCS(
                 LENGTH  <= 11'd0;
                 eachCNTR<=  8'd0;
             end else begin
-                if(txcount+18'd8>=MAXCOUNT) begin
-                    dlyHdCOUNT  <= txcount+18'd8-MAXCOUNT;
+                if(txcount>=MAXCWOHD) begin
+                    dlyHdCOUNT  <= count_sub[3:0];
                 end else begin
                     dlyHdCOUNT  <= 4'b1000;
                     if(shift) begin
@@ -205,7 +208,7 @@ module DATA_SEND_MCS(
                         3'h0: DOUT <= NMRSYNC[ 7: 0];
                     endcase
                     if(dlyTXCOUNT[2:0]==3'h0) begin
-                       EOD <= 1'b1;
+                        EOD <= 1'b1;
                     end
                 end
             end else begin
@@ -215,11 +218,7 @@ module DATA_SEND_MCS(
     end
 
     always@ (posedge CLK) begin
-        if(RST) begin
-            dlyRdBusy2 <= 1'b0;
-        end else begin
-            dlyRdBusy2 <= dlyRdBusy;
-        end
+        dlyRdBusy2 <= dlyRdBusy;
     end
 
     assign SEND_EN = dlyRdBusy2;

@@ -87,16 +87,19 @@ module top_mcs(
 
     reg             ENABLE  ; // Enable on until the spill end
     reg     [31:0]  NMRSYNC ; // Number of MRSync
+    reg     [31:0]  regNSYNC; // Register to keep the number of MRSYNC
 
     always @ (posedge CLK_200M) begin
         if(RESET) begin
             ENABLE    <=  1'b0;
             NMRSYNC   <= 32'd0;
+            regNSYNC  <= 32'd0;
         end else begin
             if (PSPILL)begin
                 if (MR_SYNC) begin
                     NMRSYNC <= NMRSYNC+32'd1;
                 end
+                regNSYNC  <= NMRSYNC;
                 if (NMRSYNC>32'd0) begin
                     ENABLE    <= 1'b1;
                 end
@@ -110,7 +113,19 @@ module top_mcs(
     parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
     parameter DLENGTH  = 16; /// Length of each data/bin
 
-    wire                      EOD     ;
+    wire          EOD    ;
+    reg    [1:0]  regEOD ; // Reg to check Edge of EOD
+    reg           edgeEOD; // Edge of EOD
+    always@ (posedge CLK_200M) begin
+        if(RESET)begin
+            regEOD  <=  2'd0;
+            edgeEOD <=  1'b0;
+        end else begin
+            regEOD  <= {regEOD[0],EOD};
+            edgeEOD <= (regEOD==2'b01);
+        end
+    end
+
     wire    [NCHANNEL*16-1:0] DCOUNTER;
     wire               [10:0] LENGTH  ;
     wire    [NCHANNEL-1:0]    INPUT   ;
@@ -124,7 +139,7 @@ generate
             .CLK    (CLK_200M ),
             .EN     (ENABLE&START),
             .SIG    (INPUT[i] ),
-            .EOD    (EOD      ), // end of data sending
+            .EOD    (edgeEOD  ), // end of data sending
             .RELCNTR(relCNTR  ),
             .RLENGTH(LENGTH   ),
             .COUNTER(DCOUNTER[i*16+15:i*16])
@@ -140,7 +155,7 @@ endgenerate
         .LENGTH  (LENGTH    ),
         .SPLCOUNT(SPILLCOUNT[15:0]),
         .EM_COUNT(EM_COUNT  ),
-        .NMRSYNC (NMRSYNC   ),
+        .NMRSYNC (regNSYNC  ),
         .EOD     (EOD       ),
         .DCOUNTER(DCOUNTER  ),
         .DOUT    (OUTDATA   ),

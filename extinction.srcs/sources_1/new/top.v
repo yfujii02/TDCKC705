@@ -318,15 +318,21 @@ endgenerate
             regCounter = regCounter + 28'd1;
         end
     end
-    assign FMC_DEBUG_OUT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
-                                                                             /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
-    assign TEST_INT[1:0] = {regCounter[27],(regCounter[9:2]==8'b10000000)}; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
-                                                                             /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
+    reg     test_pulse_slow;
+    reg     test_pulse_fast;
+    reg     test_pulse_delayed;
+    always@ (posedge CLK_200M) begin
+        test_pulse_slow    <= (regCounter[27:26]==2'b10)?     1'b1 : 1'b0; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
+        test_pulse_fast    <= (regCounter[9:2]==8'b10000000)? 1'b1 : 1'b0; /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
+        test_pulse_delayed <= (regCounter[9:2]==(8'b10000000+DELAY_TEST[7:0]))? 1'b1 : 1'b0; /// delayed fast test pulse
+    end
 
-    assign DLY_TEST_FAST = (regCounter[9:2]==(8'b10000000+DELAY_TEST[7:0]));
+    assign TEST_INT[1:0] = {test_pulse_slow,test_pulse_fast};
+    assign FMC_DEBUG_OUT[1:0] = TEST_INT[1:0];
+    assign DLY_TEST_FAST = test_pulse_delayed;
 
-    assign GPIO_LED = SPILLCOUNT[3:0];
-    //assign GPIO_LED = SPILLCOUNT[31:28];
+    assign GPIO_LED = BOARD_ID[3:0];
+    //assign GPIO_LED = SPILLCOUNT[3:0];
 
     ila_0 ila_0(
         .trig_in(PSPILL   ),
