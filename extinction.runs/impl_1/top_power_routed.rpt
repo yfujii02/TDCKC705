@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Wed Jan 13 16:38:34 2021
+| Date             : Fri Jan 15 09:44:04 2021
 | Host             : dyna-comet running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.577        |
+| Total On-Chip Power (W)  | 1.555        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.404        |
+| Dynamic (W)              | 1.383        |
 | Device Static (W)        | 0.173        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 82.2         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.109 |        9 |       --- |             --- |
-| Slice Logic              |     0.039 |    22980 |       --- |             --- |
-|   LUT as Logic           |     0.034 |     8255 |    203800 |            4.05 |
-|   CARRY4                 |     0.003 |      917 |     50950 |            1.80 |
-|   Register               |     0.002 |    10424 |    407600 |            2.56 |
-|   F7/F8 Muxes            |    <0.001 |      340 |    203800 |            0.17 |
+| Clocks                   |     0.114 |        9 |       --- |             --- |
+| Slice Logic              |     0.038 |    23204 |       --- |             --- |
+|   LUT as Logic           |     0.032 |     8241 |    203800 |            4.04 |
+|   CARRY4                 |     0.003 |      909 |     50950 |            1.78 |
+|   Register               |     0.002 |    10662 |    407600 |            2.62 |
+|   F7/F8 Muxes            |    <0.001 |      344 |    203800 |            0.17 |
 |   LUT as Shift Register  |    <0.001 |      226 |     64000 |            0.35 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
-|   Others                 |     0.000 |     1086 |       --- |             --- |
-| Signals                  |     0.079 |    16783 |       --- |             --- |
-| Block RAM                |     0.579 |     89.5 |       445 |           20.11 |
+|   Others                 |     0.000 |     1077 |       --- |             --- |
+| Signals                  |     0.079 |    17019 |       --- |             --- |
+| Block RAM                |     0.565 |     87.5 |       445 |           19.66 |
 | PLL                      |     0.110 |        1 |        10 |           10.00 |
-| I/O                      |     0.488 |      197 |       500 |           39.40 |
+| I/O                      |     0.476 |      193 |       500 |           38.60 |
 | Static Power             |     0.173 |          |           |                 |
-| Total                    |     1.577 |          |           |                 |
+| Total                    |     1.555 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,16 +76,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.875 |       0.797 |      0.078 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.162 |       0.133 |      0.029 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.866 |       0.788 |      0.078 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.160 |       0.131 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco25    |       2.500 |     0.130 |       0.129 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.127 |       0.126 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.049 |       0.044 |      0.005 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.048 |       0.043 |      0.005 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -152,26 +152,26 @@ Table of Contents
 +---------------------------+-----------+
 | Name                      | Power (W) |
 +---------------------------+-----------+
-| top                       |     1.404 |
-|   LOC_REG                 |     0.004 |
-|   dbg_hub                 |     0.006 |
-|     inst                  |     0.006 |
-|       BSCANID.u_xsdbm_id  |     0.006 |
-|   ila_0                   |     0.029 |
-|     inst                  |     0.029 |
-|       ila_core_inst       |     0.029 |
-|   nolabel_line190         |     0.222 |
+| top                       |     1.383 |
+|   LOC_REG                 |     0.007 |
+|   dbg_hub                 |     0.005 |
+|     inst                  |     0.005 |
+|       BSCANID.u_xsdbm_id  |     0.005 |
+|   ila_0                   |     0.030 |
+|     inst                  |     0.030 |
+|       ila_core_inst       |     0.030 |
+|   nolabel_line190         |     0.220 |
 |     AT93C46_IIC           |     0.008 |
-|       MIRROR_MEM          |     0.004 |
+|       MIRROR_MEM          |     0.003 |
 |       PCA9548_SW          |     0.003 |
-|     SiTCP                 |     0.096 |
+|     SiTCP                 |     0.095 |
 |       SiTCP               |     0.095 |
-|     fifo_generator_v11_0  |     0.002 |
-|       U0                  |     0.002 |
-|   top_mcs                 |     0.651 |
-|     SUM_UP[0].shift_cntr  |     0.009 |
+|     fifo_generator_v11_0  |     0.001 |
+|       U0                  |     0.001 |
+|   top_mcs                 |     0.640 |
+|     SUM_UP[0].shift_cntr  |     0.008 |
 |       bram                |     0.008 |
-|     SUM_UP[10].shift_cntr |     0.008 |
+|     SUM_UP[10].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[11].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -179,7 +179,7 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[13].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[14].shift_cntr |     0.009 |
+|     SUM_UP[14].shift_cntr |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[15].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -191,21 +191,21 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[19].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[1].shift_cntr  |     0.009 |
+|     SUM_UP[1].shift_cntr  |     0.010 |
 |       bram                |     0.008 |
 |     SUM_UP[20].shift_cntr |     0.008 |
 |       bram                |     0.008 |
-|     SUM_UP[21].shift_cntr |     0.008 |
+|     SUM_UP[21].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[22].shift_cntr |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[23].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[24].shift_cntr |     0.008 |
+|     SUM_UP[24].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[25].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[26].shift_cntr |     0.008 |
+|     SUM_UP[26].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[27].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -213,21 +213,21 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[29].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[2].shift_cntr  |     0.009 |
+|     SUM_UP[2].shift_cntr  |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[30].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[31].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[32].shift_cntr |     0.009 |
+|     SUM_UP[32].shift_cntr |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[33].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[34].shift_cntr |     0.008 |
+|     SUM_UP[34].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[35].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[36].shift_cntr |     0.008 |
+|     SUM_UP[36].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[37].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -237,9 +237,9 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[3].shift_cntr  |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[40].shift_cntr |     0.009 |
+|     SUM_UP[40].shift_cntr |     0.008 |
 |       bram                |     0.008 |
-|     SUM_UP[41].shift_cntr |     0.008 |
+|     SUM_UP[41].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[42].shift_cntr |     0.008 |
 |       bram                |     0.008 |
@@ -249,7 +249,7 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[45].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[46].shift_cntr |     0.008 |
+|     SUM_UP[46].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[47].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -257,19 +257,19 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[49].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[4].shift_cntr  |     0.009 |
+|     SUM_UP[4].shift_cntr  |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[50].shift_cntr |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[51].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[52].shift_cntr |     0.008 |
+|     SUM_UP[52].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[53].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[54].shift_cntr |     0.008 |
+|     SUM_UP[54].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[55].shift_cntr |     0.008 |
+|     SUM_UP[55].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[56].shift_cntr |     0.008 |
 |       bram                |     0.008 |
@@ -281,7 +281,7 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[5].shift_cntr  |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[60].shift_cntr |     0.008 |
+|     SUM_UP[60].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[61].shift_cntr |     0.009 |
 |       bram                |     0.008 |
@@ -289,27 +289,23 @@ Table of Contents
 |       bram                |     0.008 |
 |     SUM_UP[63].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[64].shift_cntr |     0.009 |
+|     SUM_UP[64].shift_cntr |     0.010 |
 |       bram                |     0.008 |
-|     SUM_UP[65].shift_cntr |     0.008 |
+|     SUM_UP[65].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[66].shift_cntr |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[67].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[68].shift_cntr |     0.008 |
+|     SUM_UP[68].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[69].shift_cntr |     0.009 |
 |       bram                |     0.008 |
-|     SUM_UP[6].shift_cntr  |     0.009 |
+|     SUM_UP[6].shift_cntr  |     0.008 |
 |       bram                |     0.008 |
 |     SUM_UP[70].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[71].shift_cntr |     0.009 |
-|       bram                |     0.008 |
-|     SUM_UP[72].shift_cntr |     0.008 |
-|       bram                |     0.008 |
-|     SUM_UP[73].shift_cntr |     0.009 |
 |       bram                |     0.008 |
 |     SUM_UP[7].shift_cntr  |     0.009 |
 |       bram                |     0.008 |
@@ -318,6 +314,7 @@ Table of Contents
 |     SUM_UP[9].shift_cntr  |     0.009 |
 |       bram                |     0.008 |
 |     data_send_mcs         |     0.010 |
+|     get_spillInfo         |     0.001 |
 +---------------------------+-----------+
 
 

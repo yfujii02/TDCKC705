@@ -11,7 +11,6 @@ module GET_SPILLINFO(
 );
 
     reg      [1:0]    SPL_REG   ;
-    reg               SPL_END   ;
     reg      [1:0]    EM_REG    ;
     reg               EM_EDGE   ;
     reg     [31:0]  irSPILLCOUNT; // Spill counter
@@ -21,7 +20,6 @@ module GET_SPILLINFO(
         if(RESET)begin
             SPL_REG    <= 2'b00;
             SPILL_EDGE <= 1'b0;
-            SPL_END    <= 1'b0;
             irSPILLCOUNT <= 32'd0;
 
             EM_REG     <= 2'b00;
@@ -29,8 +27,7 @@ module GET_SPILLINFO(
         end else begin
             SPL_REG    <= {SPL_REG[0],PSPILL};
             SPILL_EDGE   <= (SPL_REG==2'b01);
-            SPL_END    <= (SPL_REG==2'b10);
-            irSPILLCOUNT <= (SPL_END==1'b1)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
+            irSPILLCOUNT <= (SPL_REG==2'b10)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
 
             EM_REG     <= {EM_REG[0],EV_MATCH};
             EM_EDGE    <= (EM_REG==2'b01);

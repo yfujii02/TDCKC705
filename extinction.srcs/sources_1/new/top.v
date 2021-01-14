@@ -276,6 +276,7 @@ endgenerate
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
         .START      (RUN_START    ), // Start signal to send the data
         .BOARD_ID   (BOARD_ID[3:0]),
+        .SPILLCOUNT (SPILLCOUNT[31:0]),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
         .SEND_EN    (TCP_TX_EN    )  // Output data enable SiTCP
     );
@@ -310,29 +311,29 @@ endgenerate
     wire [1:0] FMC_DEBUG_OUT;
     OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT0(.I(FMC_DEBUG_OUT[0]),.O(FMC_DEBUGOUT_P[0]),.OB(FMC_DEBUGOUT_N[0]));
     OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT1(.I(FMC_DEBUG_OUT[1]),.O(FMC_DEBUGOUT_P[1]),.OB(FMC_DEBUGOUT_N[1]));
-    reg  [27:0] regCounter;
+    reg  [28:0] regCounter;
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
-            regCounter = 28'd0;
+            regCounter = 29'd0;
         end else if (FMC_DBG|RUN_MODE[2])begin
-            regCounter = regCounter + 28'd1;
+            regCounter = regCounter + 29'd1;
         end
     end
     reg     test_pulse_slow;
     reg     test_pulse_fast;
     reg     test_pulse_delayed;
     always@ (posedge CLK_200M) begin
-        test_pulse_slow    <= (regCounter[27:26]==2'b10)?     1'b1 : 1'b0; /// [1] Cycle 2**27 * 5ns *2 = 1.34sec , 50% duty
-        test_pulse_fast    <= (regCounter[9:2]==8'b10000000)? 1'b1 : 1'b0; /// [0] Cycle 2**9 * 5ns * = 5.12us , 3CLK high
-        test_pulse_delayed <= (regCounter[9:2]==(8'b10000000+DELAY_TEST[7:0]))? 1'b1 : 1'b0; /// delayed fast test pulse
+        test_pulse_slow    <= (regCounter[28:27]==2'b10)?       1'b1 : 1'b0; /// [1] Cycle 2**28 * 5ns *2 = 2.68sec, 33% duty
+        test_pulse_fast    <= (regCounter[10:2]==9'b100000000)? 1'b1 : 1'b0; /// [0] Cycle 2**9  * 5ns *2 = 10.24us, 3CLK high
+        test_pulse_delayed <= (regCounter[10:2]==(9'b100000000+{1'b0,DELAY_TEST[7:0]}))? 1'b1 : 1'b0; /// delayed fast test pulse
     end
 
     assign TEST_INT[1:0] = {test_pulse_slow,test_pulse_fast};
     assign FMC_DEBUG_OUT[1:0] = TEST_INT[1:0];
     assign DLY_TEST_FAST = test_pulse_delayed;
 
-    assign GPIO_LED = BOARD_ID[3:0];
-    //assign GPIO_LED = SPILLCOUNT[3:0];
+    //assign GPIO_LED = BOARD_ID[3:0];
+    assign GPIO_LED = SPILLCOUNT[3:0];
 
     ila_0 ila_0(
         .trig_in(PSPILL   ),

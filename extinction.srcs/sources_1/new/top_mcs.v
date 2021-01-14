@@ -49,6 +49,7 @@ module top_mcs(
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
     input   wire    [3:0]   BOARD_ID  ,
+    output  wire   [31:0]   SPILLCOUNT,
     output  wire   [ 7:0]   OUTDATA   ,
     output  wire            SEND_EN
     );
@@ -58,10 +59,9 @@ module top_mcs(
 //
 //*******************************************************************************
     wire            SPILL_EDGE ;
-    wire    [31:0]  SPILLCOUNT ;
     wire    [15:0]  EM_COUNT   ;
     GET_SPILLINFO get_spillInfo(
-        .RESET     (RESET     ),
+        .RESET     (~START    ),
         .CLK_200M  (CLK_200M  ),
         .PSPILL    (PSPILL    ),
         .MR_SYNC   (MR_SYNC   ),
@@ -95,7 +95,7 @@ module top_mcs(
             NMRSYNC   <= 32'd0;
             regNSYNC  <= 32'd0;
         end else begin
-            if (PSPILL)begin
+            if (PSPILL&START)begin
                 if (MR_SYNC) begin
                     NMRSYNC <= NMRSYNC+32'd1;
                 end
@@ -142,7 +142,7 @@ generate
             .EOD    (edgeEOD  ), // end of data sending
             .RELCNTR(relCNTR  ),
             .RLENGTH(LENGTH   ),
-            .COUNTER(DCOUNTER[i*16+15:i*16])
+            .COUNTER(DCOUNTER[(i+1)*DLENGTH-1:i*DLENGTH])
         );
     end
 endgenerate

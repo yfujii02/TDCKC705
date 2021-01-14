@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Wed Jan 13 16:38:24 2021
+| Date         : Fri Jan 15 09:43:54 2021
 | Host         : dyna-comet running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,7 +23,7 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 299
+             Violations found: 395
 +-----------+------------------+----------------------------------------------------+------------+
 | Rule      | Severity         | Description                                        | Violations |
 +-----------+------------------+----------------------------------------------------+------------+
@@ -31,12 +31,13 @@ Table of Contents
 | TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree | 1          |
 | TIMING-6  | Critical Warning | No common primary clock between related clocks     | 8          |
 | TIMING-7  | Critical Warning | No common node between related clocks              | 8          |
-| LUTAR-1   | Warning          | LUT drives async reset alert                       | 10         |
+| LUTAR-1   | Warning          | LUT drives async reset alert                       | 74         |
 | PDRC-190  | Warning          | Suboptimally placed synchronized register chain    | 10         |
 | TIMING-9  | Warning          | Unknown CDC Logic                                  | 1          |
-| TIMING-16 | Warning          | Large setup violation                              | 65         |
-| TIMING-18 | Warning          | Missing input or output delay                      | 190        |
-| TIMING-20 | Warning          | Non-clocked latch                                  | 3          |
+| TIMING-10 | Warning          | Missing property on synchronizer                   | 1          |
+| TIMING-16 | Warning          | Large setup violation                              | 60         |
+| TIMING-18 | Warning          | Missing input or output delay                      | 194        |
+| TIMING-20 | Warning          | Non-clocked latch                                  | 35         |
 | XDCB-5    | Warning          | Runtime inefficient way to find pin objects        | 2          |
 +-----------+------------------+----------------------------------------------------+------------+
 
@@ -164,26 +165,346 @@ Related violations: <none>
 
 LUTAR-1#7 Warning
 LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#8 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[0]_C/CLR, LOC_REG/x04_Reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#9 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#10 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[1]_C/CLR, LOC_REG/x04_Reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#11 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#12 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[2]_C/CLR, LOC_REG/x04_Reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#13 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#14 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[3]_C/CLR, LOC_REG/x04_Reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#15 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#16 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[4]_C/CLR, LOC_REG/x04_Reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#17 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#18 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[5]_C/CLR, LOC_REG/x04_Reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#19 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#20 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[6]_C/CLR, LOC_REG/x04_Reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#21 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#22 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x04_Reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x04_Reg_reg[7]_C/CLR, LOC_REG/x04_Reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#23 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#24 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[0]_C/CLR, LOC_REG/x05_Reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#25 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#26 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[1]_C/CLR, LOC_REG/x05_Reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#27 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#28 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[2]_C/CLR, LOC_REG/x05_Reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#29 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#30 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[3]_C/CLR, LOC_REG/x05_Reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#31 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#32 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[4]_C/CLR, LOC_REG/x05_Reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#33 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#34 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[5]_C/CLR, LOC_REG/x05_Reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#35 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#36 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[6]_C/CLR, LOC_REG/x05_Reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#37 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#38 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x05_Reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x05_Reg_reg[7]_C/CLR, LOC_REG/x05_Reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#39 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#40 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[0]_C/CLR, LOC_REG/x06_Reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#41 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#42 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[1]_C/CLR, LOC_REG/x06_Reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#43 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#44 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[2]_C/CLR, LOC_REG/x06_Reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#45 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#46 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[3]_C/CLR, LOC_REG/x06_Reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#47 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#48 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[4]_C/CLR, LOC_REG/x06_Reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#49 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#50 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[5]_C/CLR, LOC_REG/x06_Reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#51 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#52 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[6]_C/CLR, LOC_REG/x06_Reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#53 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#54 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x06_Reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x06_Reg_reg[7]_C/CLR, LOC_REG/x06_Reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#55 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[0]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[0]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#56 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[0]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[0]_C/CLR, LOC_REG/x07_Reg_reg[0]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#57 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[1]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[1]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#58 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[1]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[1]_C/CLR, LOC_REG/x07_Reg_reg[1]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#59 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[2]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[2]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#60 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[2]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[2]_C/CLR, LOC_REG/x07_Reg_reg[2]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#61 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[3]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[3]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#62 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[3]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[3]_C/CLR, LOC_REG/x07_Reg_reg[3]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#63 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[4]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[4]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#64 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[4]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[4]_C/CLR, LOC_REG/x07_Reg_reg[4]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#65 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[5]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[5]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#66 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[5]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[5]_C/CLR, LOC_REG/x07_Reg_reg[5]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#67 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[6]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[6]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#68 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[6]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[6]_C/CLR, LOC_REG/x07_Reg_reg[6]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#69 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[7]_LDC_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[7]_P/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#70 Warning
+LUT drives async reset alert  
+LUT cell LOC_REG/x07_Reg_reg[7]_LDC_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) LOC_REG/x07_Reg_reg[7]_C/CLR, LOC_REG/x07_Reg_reg[7]_LDC/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#71 Warning
+LUT drives async reset alert  
 LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].rrst_inst/ngwrdrst.grst.g7serrst.rd_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[0]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[1]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
-LUTAR-1#8 Warning
+LUTAR-1#72 Warning
 LUT drives async reset alert  
 LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].wrst_inst/ngwrdrst.grst.g7serrst.wr_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[0]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[1]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
-LUTAR-1#9 Warning
+LUTAR-1#73 Warning
 LUT drives async reset alert  
 LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].rrst_inst/ngwrdrst.grst.g7serrst.rd_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[0]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[1]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.rd_rst_reg_reg[2]/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
-LUTAR-1#10 Warning
+LUTAR-1#74 Warning
 LUT drives async reset alert  
 LUT cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gwrrd_rst_sync_stage[2].wrst_inst/ngwrdrst.grst.g7serrst.wr_rst_reg[2]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[0]/PRE,
 dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.wr_rst_reg_reg[1]/PRE,
@@ -192,52 +513,52 @@ Related violations: <none>
 
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[0] in site SLICE_X80Y185 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[0] in site SLICE_X80Y184 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[1] in site SLICE_X81Y184 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[1] in site SLICE_X81Y185 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[2] in site SLICE_X81Y186 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[2] in site SLICE_X82Y185 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#4 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[3] in site SLICE_X82Y186 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[3] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_reg[3] in site SLICE_X84Y185 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD2/stat_reg_1_reg[3] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#5 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[0] in site SLICE_X79Y185 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[0] in site SLICE_X78Y186 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#6 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[1] in site SLICE_X79Y187 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[1] in site SLICE_X79Y184 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#7 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[2] in site SLICE_X80Y187 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_reg[2] in site SLICE_X79Y186 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD3/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#8 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[0] in site SLICE_X73Y184 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[0] in site SLICE_X83Y186 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[0] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#9 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[1] in site SLICE_X75Y184 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[1] in site SLICE_X83Y188 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[1] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#10 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[2] in site SLICE_X76Y183 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
+The FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_reg[2] in site SLICE_X81Y188 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_STAT/stat_reg_1_reg[2] is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-9#1 Warning
@@ -245,329 +566,309 @@ Unknown CDC Logic
 One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
 Related violations: <none>
 
+TIMING-10#1 Warning
+Missing property on synchronizer  
+One or more logic synchronizer has been detected between 2 clock domains but the synchronizer does not have the property ASYNC_REG defined on one or both registers. It is recommended to run report_cdc for a complete and detailed CDC coverage
+Related violations: <none>
+
 TIMING-16#1 Warning
 Large setup violation  
-There is a large setup violation of -1.011 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/rxPrlVal/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.042 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[4]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#2 Warning
 Large setup violation  
-There is a large setup violation of -1.052 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_0/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.043 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_10/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_10/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#3 Warning
 Large setup violation  
-There is a large setup violation of -1.101 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/ipgCnt_2/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.097 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[6]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#4 Warning
 Large setup violation  
-There is a large setup violation of -1.132 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/miiRxSfd/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.099 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[5]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#5 Warning
 Large setup violation  
-There is a large setup violation of -1.146 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_1/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.128 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[7]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#6 Warning
 Large setup violation  
-There is a large setup violation of -1.167 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_8/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_8/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.137 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_10/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_10/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#7 Warning
 Large setup violation  
-There is a large setup violation of -1.169 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_6/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.149 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_9/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_9/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#8 Warning
 Large setup violation  
-There is a large setup violation of -1.177 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.189 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[8]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#9 Warning
 Large setup violation  
-There is a large setup violation of -1.194 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_2/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.246 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[9]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#10 Warning
 Large setup violation  
-There is a large setup violation of -1.195 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_2/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.288 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[10]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#11 Warning
 Large setup violation  
-There is a large setup violation of -1.224 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_3/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.319 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[11]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#12 Warning
 Large setup violation  
-There is a large setup violation of -1.236 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/miiRxData_7/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.335 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_9/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_9/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#13 Warning
 Large setup violation  
-There is a large setup violation of -1.246 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_8/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_8/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.344 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_7/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#14 Warning
 Large setup violation  
-There is a large setup violation of -1.277 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_10/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_10/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.352 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1BData_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_6/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#15 Warning
 Large setup violation  
-There is a large setup violation of -1.286 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_1/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.380 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[12]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#16 Warning
 Large setup violation  
-There is a large setup violation of -1.296 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1AData_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_2/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.384 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[14]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#17 Warning
 Large setup violation  
-There is a large setup violation of -1.298 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_4/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.411 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdReq_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irMemRdReq_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#18 Warning
 Large setup violation  
-There is a large setup violation of -1.298 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_6/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.423 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[15]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#19 Warning
 Large setup violation  
-There is a large setup violation of -1.304 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX19Data_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_0/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.437 ns between LOC_REG/x01_Reg_reg[0]_replica_1/C (clocked by CLK_200M) and top_mcs/SUM_UP[71].shift_cntr/regCNTR_reg[13]/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#20 Warning
 Large setup violation  
-There is a large setup violation of -1.315 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXCNT/irGmii1000M/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.480 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX18Data_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_5/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#21 Warning
 Large setup violation  
-There is a large setup violation of -1.336 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_7/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.484 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_1/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#22 Warning
 Large setup violation  
-There is a large setup violation of -1.350 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_10/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.527 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_8/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_8/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#23 Warning
 Large setup violation  
-There is a large setup violation of -1.350 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_8/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.552 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_4/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#24 Warning
 Large setup violation  
-There is a large setup violation of -1.353 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_5/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.568 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_3/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#25 Warning
 Large setup violation  
-There is a large setup violation of -1.363 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1BData_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_6/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.597 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX10Data_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/irMacFlowEnb/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#26 Warning
 Large setup violation  
-There is a large setup violation of -1.388 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_11/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.615 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX18Data_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_0/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#27 Warning
 Large setup violation  
-There is a large setup violation of -1.388 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_4/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.625 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_6/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#28 Warning
 Large setup violation  
-There is a large setup violation of -1.394 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_9/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_9/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.626 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#29 Warning
 Large setup violation  
-There is a large setup violation of -1.403 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_12/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.641 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_5/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#30 Warning
 Large setup violation  
-There is a large setup violation of -1.405 ns between nolabel_line190/GMII_1000M_reg/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/payNblCunt_9/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.653 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_3/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#31 Warning
 Large setup violation  
-There is a large setup violation of -1.414 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_9/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_9/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.689 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX19Data_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_4/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#32 Warning
 Large setup violation  
-There is a large setup violation of -1.426 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_7/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.697 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_5/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#33 Warning
 Large setup violation  
-There is a large setup violation of -1.470 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_5/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.760 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_8/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_8/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#34 Warning
 Large setup violation  
-There is a large setup violation of -1.484 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_10/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_10/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.761 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#35 Warning
 Large setup violation  
-There is a large setup violation of -1.502 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX19Data_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_7/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.836 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_2/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#36 Warning
 Large setup violation  
-There is a large setup violation of -1.525 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/memRdReq_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irMemRdReq_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.843 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_6/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#37 Warning
 Large setup violation  
-There is a large setup violation of -1.540 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_7/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.889 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_7/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#38 Warning
 Large setup violation  
-There is a large setup violation of -1.554 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_2/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.942 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX18Data_7/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_7/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#39 Warning
 Large setup violation  
-There is a large setup violation of -1.580 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX18Data_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_5/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.976 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_1/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#40 Warning
 Large setup violation  
-There is a large setup violation of -1.637 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1AData_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_3/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -1.984 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1AData_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_1/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#41 Warning
 Large setup violation  
-There is a large setup violation of -1.719 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_6/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_6/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.040 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_4/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#42 Warning
 Large setup violation  
-There is a large setup violation of -1.728 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX18Data_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_4/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.047 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX1AData_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_3/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#43 Warning
 Large setup violation  
-There is a large setup violation of -1.752 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_5/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_5/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.115 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX19Data_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_2/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#44 Warning
 Large setup violation  
-There is a large setup violation of -1.781 ns between nolabel_line190/SiTCP/SiTCP/SiTCP_INT/SiTCP_INT_REG/regX19Data_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXCNT/muxMyIp_1/D (clocked by GMII_RX_CLK). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.128 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_2/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_2/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#45 Warning
 Large setup violation  
-There is a large setup violation of -1.829 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_3/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.745 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/orRdAct_1/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irRdAct_1/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#46 Warning
 Large setup violation  
-There is a large setup violation of -1.837 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_0/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_0/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.782 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/muxEndTgl/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpMuxTrnsEnd_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#47 Warning
 Large setup violation  
-There is a large setup violation of -1.859 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_4/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_4/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.821 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_2/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_2/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#48 Warning
 Large setup violation  
-There is a large setup violation of -1.942 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank0LastWrAddr_1/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank0LastWrAddr_1/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.821 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/orRdAct_0/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irRdAct_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#49 Warning
 Large setup violation  
-There is a large setup violation of -1.954 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/dlyBank1LastWrAddr_3/C (clocked by CLK_200M) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpBank1LastWrAddr_3/D (clocked by CLK_125M_1). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.824 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_11/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_11/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#50 Warning
 Large setup violation  
-There is a large setup violation of -2.801 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/orRdAct_0/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irRdAct_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.872 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_9/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_9/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#51 Warning
 Large setup violation  
-There is a large setup violation of -2.815 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/orRdAct_1/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/irRdAct_1/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.892 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_3/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_3/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#52 Warning
 Large setup violation  
-There is a large setup violation of -2.821 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/muxEndTgl/C (clocked by CLK_125M_1) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_TXBUF/rsmpMuxTrnsEnd_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.893 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_4/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_4/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#53 Warning
 Large setup violation  
-There is a large setup violation of -2.865 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_5/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_5/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.893 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_8/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_8/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#54 Warning
 Large setup violation  
-There is a large setup violation of -2.880 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_9/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_9/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.905 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_7/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_7/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#55 Warning
 Large setup violation  
-There is a large setup violation of -2.886 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_6/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_6/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.906 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_0/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#56 Warning
 Large setup violation  
-There is a large setup violation of -2.891 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_0/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_0/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.912 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_10/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_10/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#57 Warning
 Large setup violation  
-There is a large setup violation of -2.899 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_11/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_11/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.915 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_1/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_1/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#58 Warning
 Large setup violation  
-There is a large setup violation of -2.901 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_3/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_3/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.924 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_5/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_5/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#59 Warning
 Large setup violation  
-There is a large setup violation of -2.908 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_1/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_1/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.937 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_6/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_6/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-16#60 Warning
 Large setup violation  
-There is a large setup violation of -2.914 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_8/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_8/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#61 Warning
-Large setup violation  
-There is a large setup violation of -2.920 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_10/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_10/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#62 Warning
-Large setup violation  
-There is a large setup violation of -2.942 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_2/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_2/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#63 Warning
-Large setup violation  
-There is a large setup violation of -2.949 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_4/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_4/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#64 Warning
-Large setup violation  
-There is a large setup violation of -3.001 ns between nolabel_line190/RX_CNT_reg[6]_inv/C (clocked by GMII_RX_CLK) and nolabel_line190/GMII_1000M_reg/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#65 Warning
-Large setup violation  
-There is a large setup violation of -3.011 ns between nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/cmpWrAddr_7/C (clocked by GMII_RX_CLK) and nolabel_line190/SiTCP/SiTCP/GMII/GMII_RXBUF/smpWrStatusAddr_7/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+There is a large setup violation of -2.968 ns between nolabel_line190/RX_CNT_reg[6]_inv/C (clocked by GMII_RX_CLK) and nolabel_line190/GMII_1000M_reg/D (clocked by CLK_200M). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-18#1 Warning
@@ -1517,6 +1818,26 @@ Related violations: <none>
 
 TIMING-18#190 Warning
 Missing input or output delay  
+An output delay is missing on GPIO_LED[0] relative to clock(s) CLK_200M
+Related violations: <none>
+
+TIMING-18#191 Warning
+Missing input or output delay  
+An output delay is missing on GPIO_LED[1] relative to clock(s) CLK_200M
+Related violations: <none>
+
+TIMING-18#192 Warning
+Missing input or output delay  
+An output delay is missing on GPIO_LED[2] relative to clock(s) CLK_200M
+Related violations: <none>
+
+TIMING-18#193 Warning
+Missing input or output delay  
+An output delay is missing on GPIO_LED[3] relative to clock(s) CLK_200M
+Related violations: <none>
+
+TIMING-18#194 Warning
+Missing input or output delay  
 An output delay is missing on GPIO_SMA_OUT relative to clock(s) CLK_200M
 Related violations: <none>
 
@@ -1533,6 +1854,166 @@ Related violations: <none>
 TIMING-20#3 Warning
 Non-clocked latch  
 The latch LOC_REG/x03_Reg_reg[2]_LDC cannot be properly analyzed as its control pin LOC_REG/x03_Reg_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#4 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[0]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[0]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#5 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[1]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[1]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#6 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[2]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#7 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[3]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[3]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[4]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[4]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#9 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[5]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[5]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#10 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[6]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[6]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#11 Warning
+Non-clocked latch  
+The latch LOC_REG/x04_Reg_reg[7]_LDC cannot be properly analyzed as its control pin LOC_REG/x04_Reg_reg[7]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#12 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[0]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[0]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#13 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[1]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[1]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#14 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[2]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#15 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[3]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[3]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#16 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[4]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[4]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#17 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[5]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[5]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#18 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[6]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[6]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#19 Warning
+Non-clocked latch  
+The latch LOC_REG/x05_Reg_reg[7]_LDC cannot be properly analyzed as its control pin LOC_REG/x05_Reg_reg[7]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#20 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[0]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[0]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#21 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[1]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[1]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#22 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[2]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#23 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[3]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[3]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#24 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[4]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[4]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#25 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[5]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[5]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#26 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[6]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[6]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#27 Warning
+Non-clocked latch  
+The latch LOC_REG/x06_Reg_reg[7]_LDC cannot be properly analyzed as its control pin LOC_REG/x06_Reg_reg[7]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#28 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[0]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[0]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#29 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[1]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[1]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#30 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[2]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#31 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[3]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[3]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#32 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[4]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[4]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#33 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[5]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[5]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#34 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[6]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[6]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#35 Warning
+Non-clocked latch  
+The latch LOC_REG/x07_Reg_reg[7]_LDC cannot be properly analyzed as its control pin LOC_REG/x07_Reg_reg[7]_LDC/G is not reached by a timing clock
 Related violations: <none>
 
 XDCB-5#1 Warning
