@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Dec 30 22:19:10 2020
+// Date        : Mon Jan 18 21:18:07 2021
 // Host        : localhost.localdomain running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
 //               /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_stub.v

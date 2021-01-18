@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -130,8 +130,8 @@ output wire prog_full;
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
-    .C_PROG_FULL_THRESH_ASSERT_VAL(4081),
-    .C_PROG_FULL_THRESH_NEGATE_VAL(4080),
+    .C_PROG_FULL_THRESH_ASSERT_VAL(4071),
+    .C_PROG_FULL_THRESH_NEGATE_VAL(4070),
     .C_PROG_FULL_TYPE(2),
     .C_RD_DATA_COUNT_WIDTH(12),
     .C_RD_DEPTH(4096),

@@ -223,7 +223,8 @@ module
         .USR_REG_X3F        (),                 // out    : Stored at 0xFFFF_FF3F
     // MII interface
         .GMII_RSTn          (GMII_RSTn),        // out    : PHY reset
-        .GMII_1000M         (GMII_1000M),       // in    : GMII mode (0:MII, 1:GMII)
+        .GMII_1000M         (1'b1      ),       // in    : GMII mode (0:MII, 1:GMII)
+        //.GMII_1000M         (GMII_1000M),       // in    : GMII mode (0:MII, 1:GMII)
         // TX
         .GMII_TX_CLK        (BUF_TX_CLK),       // in    : Tx clock
         .GMII_TX_EN         (GMII_TX_EN),       // out    : Tx enable
@@ -250,9 +251,9 @@ module
         .TCP_CLOSE_REQ    (TCP_CLOSE_REQ),      // out    : Connection close request
         .TCP_CLOSE_ACK    (TCP_CLOSE_REQ),      // in    : Acknowledge for closing
         // FIFO I/F
-        .TCP_RX_WC        ({4'b1111,FIFO_DATA_COUNT[11:0]}),// in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
-        .TCP_RX_WR        (TCP_RX_WR       ),   // out    : Write enable
-        .TCP_RX_DATA      (TCP_RX_DATA[7:0]),   // out    : Write data[7:0]
+        .TCP_RX_WC        (16'd0),              // in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
+        .TCP_RX_WR        (TCP_RX_WR       ),   // out    : Write enable     (unused)
+        .TCP_RX_DATA      (TCP_RX_DATA[7:0]),   // out    : Write data[7:0]  (unused)
         .TCP_TX_FULL      (TCP_TX_FULL     ),   // out    : Almost full flag
         .TCP_TX_WR        (FIFO_RD_VALID   ),   // in     : Write enable
         .TCP_TX_DATA      (TCP_TX_DATA[7:0]),   // in     : Write data[7:0]
@@ -287,8 +288,8 @@ module
         .srst       (fifo_reset           ),//in  :
         .din        (TCP_TX_DATA_IN[7:0]  ),//in  :
         .wr_en      (TCP_TX_EN_IN         ),//in  :
-        .full       (FIFO_COMPLETELY_FULL),//out :
-        .almost_full(FIFO_FULL            ),//out :
+        .full       (FIFO_COMPLETELY_FULL ),//out :
+        .prog_full  (FIFO_FULL            ),//out :
         .dout       (TCP_TX_DATA[7:0]     ),//out :
         .valid      (FIFO_RD_VALID        ),//out :active hi
         .rd_en      (~TCP_TX_FULL         ),//in  :

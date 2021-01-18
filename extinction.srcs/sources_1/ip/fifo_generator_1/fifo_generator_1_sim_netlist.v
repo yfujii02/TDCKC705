@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Dec 30 22:19:10 2020
+// Date        : Mon Jan 18 21:18:07 2021
 // Host        : localhost.localdomain running 64-bit unknown
 // Command     : write_verilog -force -mode funcsim
 //               /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_sim_netlist.v
@@ -307,14 +307,14 @@ module fifo_generator_1
   (* C_PROG_EMPTY_TYPE_WACH = "0" *) 
   (* C_PROG_EMPTY_TYPE_WDCH = "0" *) 
   (* C_PROG_EMPTY_TYPE_WRCH = "0" *) 
-  (* C_PROG_FULL_THRESH_ASSERT_VAL = "4081" *) 
+  (* C_PROG_FULL_THRESH_ASSERT_VAL = "4071" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_AXIS = "1023" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_RACH = "1023" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_RDCH = "1023" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_WACH = "1023" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_WDCH = "1023" *) 
   (* C_PROG_FULL_THRESH_ASSERT_VAL_WRCH = "1023" *) 
-  (* C_PROG_FULL_THRESH_NEGATE_VAL = "4080" *) 
+  (* C_PROG_FULL_THRESH_NEGATE_VAL = "4070" *) 
   (* C_PROG_FULL_TYPE = "2" *) 
   (* C_PROG_FULL_TYPE_AXIS = "0" *) 
   (* C_PROG_FULL_TYPE_RACH = "0" *) 
@@ -1616,9 +1616,9 @@ endmodule
 (* C_PROG_EMPTY_THRESH_ASSERT_VAL_WRCH = "1022" *) (* C_PROG_EMPTY_THRESH_NEGATE_VAL = "3" *) (* C_PROG_EMPTY_TYPE = "0" *) 
 (* C_PROG_EMPTY_TYPE_AXIS = "0" *) (* C_PROG_EMPTY_TYPE_RACH = "0" *) (* C_PROG_EMPTY_TYPE_RDCH = "0" *) 
 (* C_PROG_EMPTY_TYPE_WACH = "0" *) (* C_PROG_EMPTY_TYPE_WDCH = "0" *) (* C_PROG_EMPTY_TYPE_WRCH = "0" *) 
-(* C_PROG_FULL_THRESH_ASSERT_VAL = "4081" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_AXIS = "1023" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_RACH = "1023" *) 
+(* C_PROG_FULL_THRESH_ASSERT_VAL = "4071" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_AXIS = "1023" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_RACH = "1023" *) 
 (* C_PROG_FULL_THRESH_ASSERT_VAL_RDCH = "1023" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_WACH = "1023" *) (* C_PROG_FULL_THRESH_ASSERT_VAL_WDCH = "1023" *) 
-(* C_PROG_FULL_THRESH_ASSERT_VAL_WRCH = "1023" *) (* C_PROG_FULL_THRESH_NEGATE_VAL = "4080" *) (* C_PROG_FULL_TYPE = "2" *) 
+(* C_PROG_FULL_THRESH_ASSERT_VAL_WRCH = "1023" *) (* C_PROG_FULL_THRESH_NEGATE_VAL = "4070" *) (* C_PROG_FULL_TYPE = "2" *) 
 (* C_PROG_FULL_TYPE_AXIS = "0" *) (* C_PROG_FULL_TYPE_RACH = "0" *) (* C_PROG_FULL_TYPE_RDCH = "0" *) 
 (* C_PROG_FULL_TYPE_WACH = "0" *) (* C_PROG_FULL_TYPE_WDCH = "0" *) (* C_PROG_FULL_TYPE_WRCH = "0" *) 
 (* C_RACH_TYPE = "0" *) (* C_RDCH_TYPE = "0" *) (* C_RD_DATA_COUNT_WIDTH = "12" *) 
@@ -4572,7 +4572,7 @@ module fifo_generator_1_wr_pf_ss
         .Q(diff_pntr[8]),
         .R(srst));
   LUT5 #(
-    .INIT(32'hFFFB0008)) 
+    .INIT(32'hFFF70004)) 
     \gpf2.prog_full_i_i_1 
        (.I0(\gpf2.prog_full_i_i_2_n_0 ),
         .I1(\gpf2.prog_full_i_i_3_n_0 ),
@@ -4582,39 +4582,39 @@ module fifo_generator_1_wr_pf_ss
         .O(\gpf2.prog_full_i_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h4000)) 
+    .INIT(16'hF7FF)) 
     \gpf2.prog_full_i_i_2 
-       (.I0(ram_rd_en_i),
-        .I1(diff_pntr[0]),
-        .I2(ram_wr_en_i),
-        .I3(diff_pntr[7]),
+       (.I0(ram_wr_en_i),
+        .I1(diff_pntr[1]),
+        .I2(ram_rd_en_i),
+        .I3(diff_pntr[0]),
         .O(\gpf2.prog_full_i_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h8000000000000000)) 
+    \gpf2.prog_full_i_i_3 
+       (.I0(diff_pntr[10]),
+        .I1(diff_pntr[2]),
+        .I2(diff_pntr[6]),
+        .I3(diff_pntr[11]),
+        .I4(diff_pntr[7]),
+        .I5(diff_pntr[8]),
+        .O(\gpf2.prog_full_i_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h0840)) 
-    \gpf2.prog_full_i_i_3 
-       (.I0(diff_pntr[0]),
-        .I1(diff_pntr[7]),
-        .I2(ram_rd_en_i),
-        .I3(ram_wr_en_i),
-        .O(\gpf2.prog_full_i_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFF7FFFFFFFFFF)) 
+    .INIT(16'hFB7F)) 
     \gpf2.prog_full_i_i_4 
-       (.I0(diff_pntr[8]),
-        .I1(diff_pntr[5]),
-        .I2(diff_pntr[2]),
-        .I3(diff_pntr[11]),
-        .I4(diff_pntr[3]),
-        .I5(diff_pntr[6]),
+       (.I0(diff_pntr[0]),
+        .I1(diff_pntr[1]),
+        .I2(ram_wr_en_i),
+        .I3(ram_rd_en_i),
         .O(\gpf2.prog_full_i_i_4_n_0 ));
   LUT4 #(
-    .INIT(16'hDFFF)) 
+    .INIT(16'hFFF7)) 
     \gpf2.prog_full_i_i_5 
-       (.I0(diff_pntr[10]),
-        .I1(diff_pntr[1]),
-        .I2(diff_pntr[9]),
-        .I3(diff_pntr[4]),
+       (.I0(diff_pntr[5]),
+        .I1(diff_pntr[9]),
+        .I2(diff_pntr[4]),
+        .I3(diff_pntr[3]),
         .O(\gpf2.prog_full_i_i_5_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
