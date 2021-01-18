@@ -217,6 +217,9 @@ endgenerate
     wire   [31:0]  SPILLCOUNT ;
     wire           debug_data_en ;
     wire           debug_data_end;
+    wire    [7:0]  debug_dly_en;
+    wire           debug_rd_en; 
+    wire    [7:0]  debug_cnt;   
     wire  [15:0]   debug_fifo_cnt;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
@@ -241,6 +244,9 @@ endgenerate
         .SEND_EN    (TCP_TX_EN    ), // Output data enable SiTCP
         .DEBUG_DATA_EN (debug_data_en ),
         .DEBUG_DATA_END(debug_data_end),
+        .DEBUG_DLY_EN  (debug_dly_en  ),
+        .DEBUG_RD_EN   (debug_rd_en   ),
+        .DEBUG_CNT     (debug_cnt     ),
         .DEBUG_FIFO_CNT(debug_fifo_cnt)
     );
 
@@ -286,16 +292,25 @@ endgenerate
     //assign GPIO_LED = SPILLCOUNT[3:0];
     assign GPIO_LED = SPILLCOUNT[31:28];
 
+    reg [4:0] debug_pause;
+    always@(posedge CLK_200M) begin
+        if(TCP_RST)begin 
+          debug_pause[4:0] <= 5'd0;
+        end else begin
+          debug_pause[4:0] <= {debug_pause[3:0],FIFO_FULL};
+        end
+    end
+
     ila_0 ila_0(
-        .trig_in(PSPILL   ),
+        //.trig_in(PSPILL   ),
         .clk    (CLK_200M ),
 // 8 bits per each
         .probe0 (OUTDATA  ),
         .probe1 (debug_fifo_cnt[15:8]),
         .probe2 (debug_fifo_cnt[ 7:0]),
-        .probe3 (8'd0),
-        .probe4 (8'd0),
-        .probe5 (8'd0),
+        .probe3 (debug_dly_en[7:0]),
+        .probe4 (debug_cnt[7:0]),
+        .probe5 ({3'd0,debug_pause[4:0]}),
         .probe6 (8'd0),
         .probe7 (8'd0),
 // single bit per each
@@ -306,7 +321,8 @@ endgenerate
         .probe12(MR_SYNC  ),
         .probe13(TRIGGER_INT),
         .probe14(debug_data_en),
-        .probe15(debug_data_end)
+        .probe15(debug_data_end),
+        .probe16(debug_rd_en)
     );
 
 endmodule

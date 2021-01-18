@@ -40,6 +40,9 @@ module DATA_BUF_singleBRAM2(
     TCP_FULL,    // in  TCP Full flag
     DEBUG_DATA_EN,
     DEBUG_DATA_END,
+    DEBUG_DLY_EN,
+    DEBUG_RD_EN,
+    DEBUG_CNT,
     DEBUG_FIFO_CNT
 );
     input             RST     ;
@@ -61,6 +64,9 @@ module DATA_BUF_singleBRAM2(
     input             TCP_FULL;
     output            DEBUG_DATA_EN;
     output            DEBUG_DATA_END;
+    output  [  7:0]   DEBUG_DLY_EN;
+    output            DEBUG_RD_EN;
+    output   [7:0]    DEBUG_CNT;
     output  [15:0]    DEBUG_FIFO_CNT;
 
     reg               ENABLE  ; // Enable on until the spill end
@@ -93,12 +99,14 @@ module DATA_BUF_singleBRAM2(
             endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
-                DIN    <= {BOARD_ID[3:0],SPLCOUNT[15:0],HEADER}; // HEADER = 20'hA_BB_00 + 
+                DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
+                //DIN    <= {BOARD_ID[3:0],SPLCOUNT[15:0],HEADER}; // HEADER = 20'hA_BB_00 + 
                                                                  //  REG_HEADER[31:0]x2 = 84-bits
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
-                DIN    <= {EMCOUNT[15:0],4'h0,FOOTER}; // FOOTER = 20'hF_EE_00 +
+                DIN    <= 104'h1357_9BDF_FDB9_7531_159D_37BF_FB;
+                //DIN    <= {EMCOUNT[15:0],4'h0,FOOTER}; // FOOTER = 20'hF_EE_00 +
                                                        //   REG_FOOTER[31:0]x2 = 84-bits
             end else if (endReg[1])begin
                 W_EN   <= 1'b1;
@@ -156,13 +164,15 @@ module DATA_BUF_singleBRAM2(
         .SYSRST         (reg_sysrstB          ),
         .TRIGGER        (TRIGGER_INT          ),
         .PAUSE          (TCP_FULL             ),
-        .FOOTER         (FOOTER[83:0]         ),
         .DATA           (data_out[103:0]      ),
         .FIFO_RD_EN     (fifo_rd_en           ),
         .OUT_VALID      (SEND_EN              ),
         .OUT            (DOUT[7:0]            ),
         .DEBUG_DATA_EN  (DEBUG_DATA_EN        ),
-        .DEBUG_DATA_END (DEBUG_DATA_END       )
+        .DEBUG_DATA_END (DEBUG_DATA_END       ),
+        .DEBUG_DLY_EN   (DEBUG_DLY_EN         ),
+        .DEBUG_RD_EN    (DEBUG_RD_EN          ),
+        .DEBUG_CNT      (DEBUG_CNT            )
     );
 endmodule
 
@@ -171,21 +181,19 @@ module OUT_DATA_PACK(
     input           SYSRST,
     input           TRIGGER,
     input           PAUSE,
-    input   [ 83:0] FOOTER,
     input   [103:0] DATA,
     output          FIFO_RD_EN,
     output          OUT_VALID,
     output  [  7:0] OUT,
     output          DEBUG_DATA_EN,
-    output          DEBUG_DATA_END
+    output          DEBUG_DATA_END,
+    output  [  7:0] DEBUG_DLY_EN,
+    output          DEBUG_RD_EN,
+    output  [  7:0] DEBUG_CNT
     );
     
     reg         data_en;
     reg         data_end;
-    wire        footer_flag;
-    assign DEBUG_DATA_EN  = data_en;
-    assign DEBUG_DATA_END = data_end;
-    assign footer_flag    = (FOOTER==DATA[83:0])? 1'b1 : 1'b0;
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             data_en <= 1'b0;
@@ -199,6 +207,18 @@ module OUT_DATA_PACK(
     end
     
     reg [3:0]  count;
+    reg [4:0] dlyPAUSE;
+    /// 2 CLKs delay to account for the data reading from FIFO
+    ///  and 1 CLK to wait for the data_out <= reg_data
+    /// Another 2CLKs delay needed to wait until
+    ///  the count keep effect is reflected into count_temp[11:8]?? FIXME
+    always@(posedge SYSCLK) begin
+        if (SYSRST) begin
+            dlyPAUSE <= 5'd0;
+        end else begin
+            dlyPAUSE <= {dlyPAUSE[4:0],PAUSE};
+        end
+    end
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
@@ -216,16 +236,20 @@ module OUT_DATA_PACK(
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             data_end <= 1'b0;
-        end else if(data_en && count[3:0]==4'd13)begin
+        end else if(data_en && count[3:0]==4'd13)begin // FIXME is it OK to have "data_en" here??
             data_end <= 1'b1;
         end else begin
             data_end <= 1'b0;
         end
     end
     
-    reg     [11:0]  count_tmp;
+    reg   [11:0]   count_tmp ;
+    reg    [2:0]   data_outEN;
+    /// 2 CLKs delay to account for the data reading from FIFO
+    ///  and 1 CLK to wait for the data_out <= reg_data
     always@(posedge SYSCLK) begin
         count_tmp[11:0] <= {count_tmp[7:0], count[3:0]};
+        data_outEN[2:0] <= {data_outEN[1:0],(data_en & ~data_end)};
     end
     
     reg rd_en;
@@ -233,36 +257,16 @@ module OUT_DATA_PACK(
         if(SYSRST) begin
             rd_en <= 1'b0;
         end else if (data_en && (count[3:0]==4'h0)) begin
-            rd_en <= 1'b1;
+            rd_en <= 1'b1; /// Read enable only when FIFO is not empty and counter is ready to receive the new data
         end else begin
             rd_en <= 1'b0;
         end
     end
-    assign FIFO_RD_EN = rd_en & ~data_end;
+    assign FIFO_RD_EN = rd_en & ~data_end; // 1CLK wait to read the data if it has just finished sending the data..
    
-    wire    out_val_level1;
-    reg     out_val_level2;
-    reg     out_val_level3;
-    reg     out_val;
-    reg     data_end_level1;
-    reg     data_end_level2;
-    reg     pause_level1;
-    reg     pause_level2;
-
-    always@(posedge SYSCLK) begin
-        pause_level1 <= PAUSE;
-        pause_level2 <= pause_level1;
-    end
-
-    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~pause_level2;
-
-    always@(posedge SYSCLK) begin
-        out_val_level2  <= out_val_level1;
-        out_val_level3  <= out_val_level2;
-        data_end_level1 <= data_end;
-        data_end_level2 <= data_end_level1;
-        out_val         <= out_val_level3 & ~data_end_level2;
-    end
+    wire         out_val;
+    /// valid=H only when shifted counter value is non-zero
+    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0) & ~dlyPAUSE[4];
     assign OUT_VALID = out_val;
     
     reg     [103:0]     reg_data;
@@ -289,10 +293,15 @@ module OUT_DATA_PACK(
             4'd10:   data_out[7:0] <= reg_data[ 23: 16];
             4'd11:   data_out[7:0] <= reg_data[ 15:  8];
             4'd12:   data_out[7:0] <= reg_data[  7:  0];
-            default: data_out[7:0] <= 8'd0;
+            default: data_out[7:0] <= 8'hFF;
         endcase
     end
-    assign OUT[7:0] = data_out[7:0];
-    //assign OUT[7:0] = out_val ? data_out[7:0] : 8'h0;
+    assign OUT[7:0] = out_val ? data_out[7:0] : 8'hCC;
+
+    assign DEBUG_CNT[7:0] = count_tmp[11:4];
+    assign DEBUG_DLY_EN[7:0] = {5'd0,data_outEN[2:0]};
+    assign DEBUG_DATA_EN  = data_en;
+    assign DEBUG_DATA_END = data_end;
+    assign DEBUG_RD_EN    = rd_en;
     
 endmodule

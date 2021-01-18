@@ -40,6 +40,9 @@ module top_tdc(
     output   wire              SEND_EN    ,
     output   wire              DEBUG_DATA_EN,
     output   wire              DEBUG_DATA_END,
+    output   wire    [  7:0]   DEBUG_DLY_EN,
+    output   wire              DEBUG_RD_EN,
+    output   wire     [7:0]    DEBUG_CNT,
     output   wire   [15:0]     DEBUG_FIFO_CNT
     );
 //*******************************************************************************
@@ -163,6 +166,9 @@ module top_tdc(
         .TCP_FULL(TCP_BUSY    ),
         .DEBUG_DATA_EN (DEBUG_DATA_EN),
         .DEBUG_DATA_END(DEBUG_DATA_END),
+        .DEBUG_DLY_EN   (DEBUG_DLY_EN),
+        .DEBUG_RD_EN    (DEBUG_RD_EN ),
+        .DEBUG_CNT      (DEBUG_CNT   ),
         .DEBUG_FIFO_CNT(DEBUG_FIFO_CNT)
     );
 endmodule
