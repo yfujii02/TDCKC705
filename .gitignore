@@ -102,7 +102,7 @@ extinction.srcs/sources_1/ip/*
 #########
 #Firmware
 #########
-!*.bit
+!extinction.runs/impl_1/top.bit
 !*.mcs
 #########
 # README
