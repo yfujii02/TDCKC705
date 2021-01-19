@@ -217,7 +217,6 @@ module OUT_DATA_PACK(
         if(SYSRST) begin
             count[3:0] <= 4'd0;
         end else if(~data_en) begin // Reset count when it reaches the maximum
-        //end else if((~data_en)|data_end) begin // Reset count when it reaches the maximum
             count[3:0] <= 4'd0;
         end else if (data_en) begin
             if(PAUSE) begin
