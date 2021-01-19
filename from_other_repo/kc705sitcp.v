@@ -84,11 +84,11 @@ module
     wire            FIFO_RD_VALID    ;
     reg             SYS_RSTn        ;
     reg     [29:0]  INICNT            ;
-    reg             GMII_1000M;
-    reg      [8:0]  CNT_CLK;
-    reg             CNT_RST;
-    reg             CNT_LD;
-    reg      [6:0]  RX_CNT;
+    //reg             GMII_1000M;
+    //reg      [8:0]  CNT_CLK;
+    //reg             CNT_RST;
+    //reg             CNT_LD;
+    //reg      [6:0]  RX_CNT;
 
     wire CLK_200M_buf;
     IBUFDS #(.IOSTANDARD ("LVDS")) LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
@@ -174,27 +174,28 @@ module
     ODDR    IOB_GTX(.C(BUF_TX_CLK), .CE(1'b1), .D1(1'b1), .D2(1'b0), .R(1'b0),
                     .S(1'b0), .Q(GMII_GTXCLK));
 
-    always@(posedge CLK_200M or negedge SYS_RSTn)begin
-        if (~SYS_RSTn) begin
-            CNT_CLK[8:0]    <=    9'b0;
-            CNT_LD          <=    1'b0;
-            CNT_RST         <=    1'b1;
-            GMII_1000M      <=    1'b0;
-        end else begin 
-            CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
-            CNT_LD          <=    CNT_CLK[8];
-            CNT_RST         <=    CNT_LD;
-            GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
-        end
-    end
-    
-    always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
-        if (CNT_RST) begin
-            RX_CNT[6:0]     <=    7'd0;
-        end else begin
-            RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
-        end
-    end
+    // Fix GMII mode to 1000Base
+    //always@(posedge CLK_200M or negedge SYS_RSTn)begin
+    //    if (~SYS_RSTn) begin
+    //        CNT_CLK[8:0]    <=    9'b0;
+    //        CNT_LD          <=    1'b0;
+    //        CNT_RST         <=    1'b1;
+    //        GMII_1000M      <=    1'b0;
+    //    end else begin 
+    //        CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
+    //        CNT_LD          <=    CNT_CLK[8];
+    //        CNT_RST         <=    CNT_LD;
+    //        GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
+    //    end
+    //end
+    //
+    //always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
+    //    if (CNT_RST) begin
+    //        RX_CNT[6:0]     <=    7'd0;
+    //    end else begin
+    //        RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
+    //    end
+    //end
 
     assign    GMII_MDIO    = (GMII_MDIO_OE    ?    GMII_MDIO_OUT : 1'bz)    ;
 

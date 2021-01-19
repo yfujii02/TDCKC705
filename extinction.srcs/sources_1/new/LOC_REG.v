@@ -17,61 +17,36 @@
 
 
 module LOC_REG(
-    CLK                 ,    // in    : Clock
-    RST                 ,    // in    : System reset
+    input   wire    CLK                 ,    // Clock
+    input   wire    RST                 ,    // System reset
 
     // Register I/F
-    LOC_ADDR            ,    // in    : Address[31:0]
-    LOC_WD              ,    // in    : Data[7:0]
-    LOC_WE              ,    // in    : Write enable
-    LOC_RE              ,    // in    : Read enable
-    LOC_ACK             ,    // out    : Access acknowledge
-    LOC_RD              ,    // out    : Read data[7:0]
+    input   wire    [31:0]  LOC_ADDR    ,    // Address[31:0]
+    input   wire     [7:0]  LOC_WD      ,    // Data[7:0]
+    input   wire            LOC_WE      ,    // Write enable
+    input                   LOC_RE      ,    // Read enable
+    output  wire            LOC_ACK     ,    // Access acknowledge
+    output  wire     [7:0]  LOC_RD      ,    // Read data[7:0]
     // Registers
-    BOARD_ID            ,    // in     : Board ID [3:0]
-    SPILLCOUNT          ,    // in     : Spill count [15:0]
-    REG_MODE            ,    // out    : Mode select [2:0]
-                             //         000: TDC
-                             //         001: MCS
-                             //         10X: Use SMA input for SPILL
-                             //         101: Use SMA input for MR_SYNC
-                             //         111: Test mode (internal pattern)
-    REG_START           ,    // out    : Start data transferring (0: stop, 1:start)
-    REG_RESET           ,    // out    : RESET
-    REG_HEADER          ,    // out    : Header
-    REG_FOOTER          ,    // out    : Header
-    REG_CHMASK          ,    // out    : mask input channels
-    REG_CHMASK2         ,    // out    : mask input channels 2
-    REG_FMC_DBG         ,    // out    : enable FMC debug pin (HPC_LA33,32)
-    REG_DLY_TEST             // out    : delay for fast_test signal [7:0]
+    input   wire     [3:0]  BOARD_ID    ,    // Board ID [3:0]
+    input   wire    [31:0]  SPILLCOUNT  ,    // Spill count [15:0]
+    output  wire     [2:0]  REG_MODE    ,    // Mode select [2:0]
+                                             // [2]==1: Use internal test pins
+                                             //  ==111: Use internal test pins for sig ch[0]&[2] as well
+    // DAQ related
+    output  wire            REG_START   ,    // Start data transferring (0: stop, 1:start)
+    output  wire            REG_RESET   ,    // RESET
+    output  wire    [31:0]  REG_HEADER  ,    // Header for TDC
+    output  wire    [31:0]  REG_FOOTER  ,    // Footer for TDC
+    // Specific for MCS
+    output  wire    [ 3:0]  REG_SPLDIV,      // Divide a spill in MCS readout mode
+                                             //  if #of MRSync reaches N=[2^(REG_SPLDIV)]*1024
+    // Debug
+    output  wire    [63:0]  REG_CHMASK  ,    // mask input channels
+    output  wire    [14:0]  REG_CHMASK2 ,    // mask input channels (OLDH)
+    output  wire            REG_FMC_DBG ,    // enable FMC debug pin (HPC_LA33,32)
+    output  wire     [7:0]  REG_DLY_TEST     // delay for fast_test signal [7:0]
 );
-
-//-------- Input/Output -------------
-    input            CLK            ;
-    input            RST            ;
-
-    input    [31:0]  LOC_ADDR       ;
-    input     [7:0]  LOC_WD         ;
-    input            LOC_WE         ;
-    input            LOC_RE         ;
-    output           LOC_ACK        ;
-    output    [7:0]  LOC_RD         ;
-
-    input     [3:0]  BOARD_ID       ;
-    input    [31:0]  SPILLCOUNT     ;
-    output    [2:0]  REG_MODE       ;
-    output           REG_START      ;
-    output           REG_RESET      ;
-
-    output   [31:0]  REG_HEADER     ;
-    output   [31:0]  REG_FOOTER     ;
-    
-    output   [63:0]  REG_CHMASK     ;
-    output   [14:0]  REG_CHMASK2    ;
-
-    output           REG_FMC_DBG    ;
-    output           REG_DLY_TEST   ;
-
 //------------------------------------------------------------------------------
 //    Input buffer
 //------------------------------------------------------------------------------
@@ -125,7 +100,7 @@ module LOC_REG(
     reg              x1A_Reg   ;
     reg     [7:0]    x1B_Reg   ; // Delay for the test signal
     reg     [7:0]    x1C_Reg   ; // NC
-    reg     [7:0]    x1D_Reg   ; // NC
+    reg     [3:0]    x1D_Reg   ; // Spill Div for MCS
     reg     [7:0]    x1E_Reg   ; // NC
     reg     [7:0]    x1F_Reg   ; // NC
 
@@ -166,9 +141,9 @@ module LOC_REG(
             x1A_Reg         <= 1'd0 ;   //
             x1B_Reg[7:0]    <= 8'h10;   // Delay for the test signal
             x1C_Reg[7:0]    <= 8'h1C;   //
-            x1D_Reg[7:0]    <= 8'h1D;   //
-            x1E_Reg[7:0]    <= 8'h1E;   //
-            x1F_Reg[7:0]    <= 8'h1F;   //
+            x1D_Reg[3:0]    <= 4'hF;    //
+            x1E_Reg[7:0]    <= 8'hFF;   //
+            x1F_Reg[7:0]    <= 8'hFF;   //
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -209,6 +184,7 @@ module LOC_REG(
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
                 x1A_Reg         <= (regCs[1] & (irAddr[3:0]==4'hA) ? irWd[0:0] : x1A_Reg);
                 x1B_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x1B_Reg[7:0]);
+                x1D_Reg[3:0]    <= (regCs[1] & (irAddr[3:0]==4'hD) ? irWd[3:0] : x1D_Reg[3:0]);
             end
         end
     end
@@ -252,12 +228,12 @@ module LOC_REG(
             4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];    // Channel mask [ 7: 0]
             4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];    // Channel mask 2 [14:8] ([7]:nc)
             4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];    // Channel mask 2 [ 7:0]
-            4'hA:    rdDataB[7:0]    <= {7'd0,x1A_Reg};    // NC
+            4'hA:    rdDataB[7:0]    <= {7'd0,x1A_Reg};  // Using FMC debug
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
-            4'hD:    rdDataB[7:0]    <= 8'h1D;    // NC
-            4'hE:    rdDataB[7:0]    <= 8'h1E;    // NC
-            4'hF:    rdDataB[7:0]    <= 8'h1F;    // NC
+            4'hD:    rdDataB[7:0]    <= {4'h0,x1D_Reg[3:0]};// Spill Div for MCS
+            4'hE:    rdDataB[7:0]    <= 8'h00;    // NC
+            4'hF:    rdDataB[7:0]    <= 8'h00;    // NC
         endcase
 
         regRv[1:0]    <= (irRe    ? regCs[1:0] : 8'd0);
@@ -287,6 +263,8 @@ module LOC_REG(
                                  x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
     assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
 
-    assign  REG_FMC_DBG = x1A_Reg;
-    assign  REG_DLY_TEST = x1B_Reg[7:0]; // Delay for the test signal w.r.t TEST[0]
+    assign  REG_SPLDIV[3:0] = x1D_Reg[3:0];
+
+    assign  REG_FMC_DBG     = x1A_Reg;
+    assign  REG_DLY_TEST    = x1B_Reg[7:0]; // Delay for the test signal w.r.t TEST[0]
 endmodule

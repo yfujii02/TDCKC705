@@ -4,6 +4,7 @@ module DATA_SEND_MCS(
     input   wire              RST,
     input   wire              CLK,
     input   wire              ENABLE,
+    input   wire     [3:0]    BUFLABEL,
     input   wire              TCP_FULL,
     output  reg     [10:0]    LENGTH,
     input   wire    [15:0]    SPLCOUNT,
@@ -143,7 +144,7 @@ module DATA_SEND_MCS(
                         3'h5: DOUT <= 8'hAA;
                         3'h4: DOUT <= 8'hAA;
                         3'h3: DOUT <= 8'h00;
-                        3'h2: DOUT <= 8'h00;
+                        3'h2: DOUT <= {4'h0,BUFLABEL[3:0]};
                         3'h1: DOUT <= SPLCOUNT[15: 8];
                         3'h0: DOUT <= SPLCOUNT[ 7: 0];
                     endcase
@@ -231,12 +232,12 @@ module DATA_SEND_MCS(
                     case(dlyTXCOUNT[2:0])
                         3'h7: DOUT <= 8'hFF;
                         3'h6: DOUT <= 8'hFF;
-                        3'h5: DOUT <= EM_COUNT[15:8];
-                        3'h4: DOUT <= EM_COUNT[ 7:0];
-                        3'h3: DOUT <= NMRSYNC[31:24];
-                        3'h2: DOUT <= NMRSYNC[23:16];
-                        3'h1: DOUT <= NMRSYNC[15: 8];
-                        3'h0: DOUT <= NMRSYNC[ 7: 0];
+                        3'h5: DOUT <= 8'hFF;
+                        3'h4: DOUT <= EM_COUNT[15:8];
+                        3'h3: DOUT <= EM_COUNT[ 7:0];
+                        3'h2: DOUT <= NMRSYNC[31:24];
+                        3'h1: DOUT <= NMRSYNC[23:16];
+                        3'h0: DOUT <= NMRSYNC[15: 8];
                     endcase
                     if(dlyTXCOUNT==18'd0) begin
                         EOD <= 1'b1;

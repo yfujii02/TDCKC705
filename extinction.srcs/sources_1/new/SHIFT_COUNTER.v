@@ -1,27 +1,18 @@
 module SHIFT_COUNTER(
-    RST,
-    CLK,
-    EN,
-    SIG,
-    EOD,
-    RELCNTR,
-    RLENGTH,
-    COUNTER
+    input  wire           RST,
+    input  wire           CLK,
+    input  wire           EN,
+    input  wire           SIG,
+    input  wire           EOD,
+    input  wire  [10:0]   RELCNTR,
+    input  wire  [10:0]   RLENGTH,
+    output wire  [15:0]   COUNTER
 );
-    input               RST     ;
-    input               CLK     ;
-    input               EN      ;
-    input               SIG     ;
-    input               EOD     ;
-    input       [10:0]  RELCNTR ;
-    input       [10:0]  RLENGTH ;
-    output      [15:0]  COUNTER ;
 
     reg         [15:0]  regCNTR ;
     reg          [1:0]  regEN   ;
     reg                 ROMODE  ; // readout mode...
     wire        [15:0]  wCNTR   ;
-    wire        [15:0]  COUNTER ;
     wire        [10:0]  raddr   ;
     reg                 doRESET ;
     reg         [11:0]  RSTCNTR ;
@@ -39,7 +30,7 @@ module SHIFT_COUNTER(
             ROMODE  <=  1'b0;
             regEN   <=  2'd0;
             doRESET <=  1'b1;
-            RSTCNTR <= 12'd0;
+            RSTCNTR <= 11'd0;
         end else begin
             regEN   <= {regEN[0],EN};
             if(regEN==2'b10) begin // End of spill
@@ -57,9 +48,9 @@ module SHIFT_COUNTER(
                 regCNTR <= 16'd0;
             end
 
-            RSTCNTR <= (doRESET)? RSTCNTR + 12'd1 : 12'd0;
+            RSTCNTR <= (doRESET)? RSTCNTR + 11'd1 : 11'd0;
 
-            if (RSTCNTR==12'hFFF) begin
+            if (RSTCNTR==11'd1153) begin
                 doRESET  <=  1'b0;
                 RSTCNTR  <= 12'd0;
             end
@@ -68,37 +59,40 @@ module SHIFT_COUNTER(
 
     always@ (posedge CLK) begin
         if(RST) begin
-            dlyCNTR1CLK <= 11'd0;
+            dlyCNTR1CLK <= 12'd0;
         end else begin
             dlyCNTR1CLK <= RELCNTR;
         end
     end
     always@ (posedge CLK) begin
         if(RST) begin
-            dlyCNTR2CLK <= 11'd0;
+            dlyCNTR2CLK <= 12'd0;
         end else begin
             dlyCNTR2CLK <= dlyCNTR1CLK;
         end
     end
     always@ (posedge CLK) begin
         if(RST) begin
-            dlyCNTR3CLK <= 11'd0;
+            dlyCNTR3CLK <= 12'd0;
         end else begin
             dlyCNTR3CLK <= dlyCNTR2CLK;
         end
     end
 
-    bram_2byte_2K bram(
+    //// The depth is again modified from 12 bits to "1152"
+    ////  and one has to switch "read mode" RAM and "write mode" RAM
+    ////  in the timing direction.. (name of the ip core is slightly confusing)
+    bram_2byte_2K bram1152_0(
         // write memory
         .addra(dlyCNTR3CLK  ),
         .clka (CLK          ),
-        .dina (wCNTR        ),
+        .dina (wCNTR[15:0]  ),
         .ena  ((EN|doRESET) ),
         .wea  (1'b1         ),
         // read memory
-        .addrb(raddr        ),
+        .addrb(raddr[10: 0] ),
         .clkb (CLK          ),
-        .doutb(COUNTER      ),
+        .doutb(COUNTER[15:0]),
         .enb  (1'b1         ) 
     );
 

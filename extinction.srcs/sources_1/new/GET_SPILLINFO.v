@@ -27,7 +27,7 @@ module GET_SPILLINFO(
         end else begin
             SPL_REG    <= {SPL_REG[0],PSPILL};
             SPILL_EDGE   <= (SPL_REG==2'b01);
-            irSPILLCOUNT <= (SPL_REG==2'b10)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
+            irSPILLCOUNT <= (SPILL_EDGE==1'b1)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
 
             EM_REG     <= {EM_REG[0],EV_MATCH};
             EM_EDGE    <= (EM_REG==2'b01);

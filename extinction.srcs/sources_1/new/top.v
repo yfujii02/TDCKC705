@@ -142,6 +142,8 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
             if (RUN_MODE==3'b111) begin
                 if (i==0) begin
                     sigEdge[2*i+1:2*i] <= {sigEdge[2*i],DLY_TEST_FAST};
+                end else if (i==2) begin
+                    sigEdge[2*i+1:2*i] <= {sigEdge[4],sigEdge[1]};
                 end else begin
                     sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
                 end
@@ -263,6 +265,8 @@ endgenerate
         .DEBUG_FIFO_CNT(debug_fifo_cnt)
     );*/
 
+    wire    [3:0]  SPILLDIV;
+
     top_mcs top_mcs(
     // system
         .RESET      ((TCP_RST|RUN_RESET)),
@@ -277,6 +281,7 @@ endgenerate
         .START      (RUN_START    ), // Start signal to send the data
         .BOARD_ID   (BOARD_ID[3:0]),
         .SPILLCOUNT (SPILLCOUNT[31:0]),
+        .SPILLDIV   (SPILLDIV[3:0]),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
         .SEND_EN    (TCP_TX_EN    )  // Output data enable SiTCP
     );
@@ -301,6 +306,7 @@ endgenerate
         .REG_RESET  (RUN_RESET       ),
         .REG_HEADER (HEADER[31:0]    ),
         .REG_FOOTER (FOOTER[31:0]    ),
+        .REG_SPLDIV (SPILLDIV[3:0]   ),
         .REG_CHMASK (CHMASK[63:0]    ),
         .REG_CHMASK2(CHMASK2[14:0]   ),
         .REG_FMC_DBG(FMC_DBG),

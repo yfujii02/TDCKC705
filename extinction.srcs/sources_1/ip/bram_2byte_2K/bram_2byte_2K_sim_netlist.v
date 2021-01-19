@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Mon Jan 11 17:04:03 2021
+// Date        : Mon Jan 18 17:06:08 2021
 // Host        : dyna-comet running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K_sim_netlist.v
@@ -112,8 +112,8 @@ module bram_2byte_2K
   (* C_MEM_TYPE = "1" *) 
   (* C_MUX_PIPELINE_STAGES = "0" *) 
   (* C_PRIM_TYPE = "1" *) 
-  (* C_READ_DEPTH_A = "2048" *) 
-  (* C_READ_DEPTH_B = "2048" *) 
+  (* C_READ_DEPTH_A = "1152" *) 
+  (* C_READ_DEPTH_B = "1152" *) 
   (* C_READ_LATENCY_A = "1" *) 
   (* C_READ_LATENCY_B = "1" *) 
   (* C_READ_WIDTH_A = "16" *) 
@@ -132,8 +132,8 @@ module bram_2byte_2K
   (* C_USE_URAM = "0" *) 
   (* C_WEA_WIDTH = "1" *) 
   (* C_WEB_WIDTH = "1" *) 
-  (* C_WRITE_DEPTH_A = "2048" *) 
-  (* C_WRITE_DEPTH_B = "2048" *) 
+  (* C_WRITE_DEPTH_A = "1152" *) 
+  (* C_WRITE_DEPTH_B = "1152" *) 
   (* C_WRITE_MODE_A = "NO_CHANGE" *) 
   (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
   (* C_WRITE_WIDTH_A = "16" *) 
@@ -607,14 +607,14 @@ endmodule
 (* C_INITA_VAL = "0" *) (* C_INITB_VAL = "0" *) (* C_INIT_FILE = "bram_2byte_2K.mem" *) 
 (* C_INIT_FILE_NAME = "no_coe_file_loaded" *) (* C_INTERFACE_TYPE = "0" *) (* C_LOAD_INIT_FILE = "0" *) 
 (* C_MEM_TYPE = "1" *) (* C_MUX_PIPELINE_STAGES = "0" *) (* C_PRIM_TYPE = "1" *) 
-(* C_READ_DEPTH_A = "2048" *) (* C_READ_DEPTH_B = "2048" *) (* C_READ_LATENCY_A = "1" *) 
+(* C_READ_DEPTH_A = "1152" *) (* C_READ_DEPTH_B = "1152" *) (* C_READ_LATENCY_A = "1" *) 
 (* C_READ_LATENCY_B = "1" *) (* C_READ_WIDTH_A = "16" *) (* C_READ_WIDTH_B = "16" *) 
 (* C_RSTRAM_A = "0" *) (* C_RSTRAM_B = "0" *) (* C_RST_PRIORITY_A = "CE" *) 
 (* C_RST_PRIORITY_B = "CE" *) (* C_SIM_COLLISION_CHECK = "ALL" *) (* C_USE_BRAM_BLOCK = "0" *) 
 (* C_USE_BYTE_WEA = "0" *) (* C_USE_BYTE_WEB = "0" *) (* C_USE_DEFAULT_DATA = "0" *) 
 (* C_USE_ECC = "0" *) (* C_USE_SOFTECC = "0" *) (* C_USE_URAM = "0" *) 
-(* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "2048" *) 
-(* C_WRITE_DEPTH_B = "2048" *) (* C_WRITE_MODE_A = "NO_CHANGE" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
+(* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "1152" *) 
+(* C_WRITE_DEPTH_B = "1152" *) (* C_WRITE_MODE_A = "NO_CHANGE" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "16" *) (* C_WRITE_WIDTH_B = "16" *) (* C_XDEVICEFAMILY = "kintex7" *) 
 (* ORIG_REF_NAME = "blk_mem_gen_v8_4_4" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module bram_2byte_2K_blk_mem_gen_v8_4_4
