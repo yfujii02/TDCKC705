@@ -213,6 +213,18 @@ module OUT_DATA_PACK(
     end
     
     reg [3:0]  count;
+    reg [4:0]  dlyPAUSE;
+    /// 2 CLKs delay to account for the data reading from FIFO
+    ///  and 1 CLK to wait for the data_out <= reg_data
+    /// Another 2CLKs delay needed to wait until
+    ///  the count keep effect is reflected into count_temp[11:8]?? FIXME
+    always@(posedge SYSCLK) begin
+        if (SYSRST) begin
+            dlyPAUSE <= 5'd0;
+        end else begin
+            dlyPAUSE <= {dlyPAUSE[4:0],PAUSE};
+        end
+    end
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
@@ -237,9 +249,13 @@ module OUT_DATA_PACK(
         end
     end
     
-    reg     [11:0]  count_tmp;
+    reg     [11:0]  count_tmp ;
+    reg      [2:0]  data_outEN;
+    /// 2 CLKs delay to account for the data reading from FIFO
+    ///  and 1 CLK to wait for the data_out <= reg_data
     always@(posedge SYSCLK) begin
         count_tmp[11:0] <= {count_tmp[7:0], count[3:0]};
+        data_outEN[2:0] <= {data_outEN[1:0],(data_en & ~data_end)};
     end
     
     reg rd_en;
@@ -247,31 +263,18 @@ module OUT_DATA_PACK(
         if(SYSRST) begin
             rd_en <= 1'b0;
         end else if (data_en && (count[3:0]==4'h0)) begin
-            rd_en <= 1'b1;
+            rd_en <= 1'b1; /// Read enable only when FIFO is not empty and counter is ready to receive the new data
         end else begin
             rd_en <= 1'b0;
         end
     end
-    assign FIFO_RD_EN = rd_en & ~data_end;
+    assign FIFO_RD_EN = rd_en & ~data_end; // 1CLK wait to read the data if it has just finished sending the data..
    
-    wire    out_val_level1;
-    reg     out_val_level2;
-    reg     out_val_level3;
-    reg     out_val;
-    reg     data_end_level1;
-    reg     data_end_level2;
-
-    assign out_val_level1 = data_en & (count[3:0]!=4'd0) & (count[3:0]<4'd14) & ~PAUSE;
-
-    always@(posedge SYSCLK) begin
-        out_val_level2  <= out_val_level1;
-        out_val_level3  <= out_val_level2;
-        data_end_level1 <= data_end;
-        data_end_level2 <= data_end_level1;
-        out_val         <= out_val_level3 & ~data_end_level2;
-    end
+    wire         out_val;
+    /// valid=H only when shifted counter value is non-zero
+    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0) & ~dlyPAUSE[4];
     assign OUT_VALID = out_val;
-    
+
     reg     [103:0]     reg_data;
     always@(posedge SYSCLK) begin
         reg_data[103:0] <= DATA[103:0];
