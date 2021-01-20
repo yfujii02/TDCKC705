@@ -75,6 +75,7 @@ module DATA_BUF_singleBRAM2(
     reg               W_EN    ;
     reg      [2:0]    endReg  ;
     reg      [1:0]    regFFull; // fifo full
+    reg     [31:0]    wrCnt   ; // fifo write count 
 
     wire            fifo_rd_en;
     wire            fifo_wr_en;
@@ -82,8 +83,6 @@ module DATA_BUF_singleBRAM2(
     wire            fifo_empty;
     wire   [103:0]  data_out  ;
     wire   [ 16:0]  data_count;
-    wire            sbiterr   ;
-    wire            dbiterr   ;
 
     /// Current data size = 13-bytes, to make the data rate as small as possible.
     /// possible option is to make counter 27-bits to 32-bits and make it 14-bytes
@@ -95,19 +94,22 @@ module DATA_BUF_singleBRAM2(
             ENABLE  <=  1'b0;
             endReg  <=  3'd0;
             regFFull<=  2'd0;
+            wrCnt   <=  32'd0;
         end else begin
             endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
-                DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
+                //DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
                 //DIN    <= {BOARD_ID[3:0],SPLCOUNT[15:0],HEADER}; // HEADER = 20'hA_BB_00 + 
-                //DIN    <= {SPLCOUT[15:0],BOARD_ID[3:0],,HEADER}; // HEADER = 20'hA_BB_00 + 
+                DIN    <= {HEADER[31:0],SPLCOUNT[15:0],4'd0,BOARD_ID[3:0],52'h0123_4567_89AB_C}; // HEADER = 20'hA_BB_00 + 
                                                                  //  REG_HEADER[31:0]x2 = 84-bits
+                wrCnt  <= 32'd0;
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
-                DIN    <= 104'h1357_9BDF_FDB9_7531_159D_37BF_FB;
+                //DIN    <= 104'h1357_9BDF_FDB9_7531_159D_37BF_FB;
                 //DIN    <= {EMCOUNT[15:0],4'h0,FOOTER}; // FOOTER = 20'hF_EE_00 +
+                DIN    <= {FOOTER[31:0],SPLCOUNT[15:0],EMCOUNT[15:0],wrCnt[31:0],12'h012}; // FOOTER = 20'hF_EE_00 +
                                                        //   REG_FOOTER[31:0]x2 = 84-bits
             end else if (endReg[1])begin
                 W_EN   <= 1'b1;
@@ -117,6 +119,7 @@ module DATA_BUF_singleBRAM2(
 
             if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
+                wrCnt    <= wrCnt+32'd1;
                 if (DATA_TRG && ~fifo_full) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                                                          // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
@@ -152,7 +155,7 @@ module DATA_BUF_singleBRAM2(
         .wr_en          (fifo_wr_en      ), // in : Write Enable
         .rd_en          (fifo_rd_en      ), // in : Read Enable
         .dout           (data_out[103:0] ), // out: Output Data [63:0]
-        .full           (fifo_full       ), // out: FIFO Full
+        .prog_full      (fifo_full       ), // out: FIFO Almost Full
         .empty          (fifo_empty      ), // out: FIFO Empty
         .data_count     (data_count[16:0])  // out: # of data in FIFO
     );
