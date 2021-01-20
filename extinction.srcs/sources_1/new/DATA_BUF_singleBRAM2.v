@@ -142,7 +142,7 @@ module DATA_BUF_singleBRAM2(
 
     assign fifo_wr_en = W_EN;
 
-    assign TRIGGER_INT = (START==1'b1)? ~fifo_empty : 1'b0;
+    assign TRIGGER_INT = (START==1'b1)? ~fifo_empty && ~TCP_FULL : 1'b0;
 
     fifo_generator_0 fifo(
         .clk            (SYSCLKR         ), // in : System Clock
@@ -163,7 +163,6 @@ module DATA_BUF_singleBRAM2(
         .SYSCLK         (SYSCLKR              ), // in
         .SYSRST         (reg_sysrstB          ), // in
         .TRIGGER        (TRIGGER_INT          ), // in
-        .PAUSE          (TCP_FULL             ), // in
         .DATA           (data_out[103:0]      ), // in
         .FIFO_RD_EN     (fifo_rd_en           ), // out
         .OUT_VALID      (SEND_EN              ), // out
@@ -180,7 +179,6 @@ module OUT_DATA_PACK(
     input           SYSCLK,
     input           SYSRST,
     input           TRIGGER,
-    input           PAUSE,
     input   [103:0] DATA,
     output          FIFO_RD_EN,
     output          OUT_VALID,
@@ -210,29 +208,13 @@ module OUT_DATA_PACK(
     end
     
     reg [3:0]  count;
-    reg [4:0]  dlyPAUSE;
-    /// 2 CLKs delay to account for the data reading from FIFO
-    ///  and 1 CLK to wait for the data_out <= reg_data
-    /// Another 2CLKs delay needed to wait until
-    ///  the count keep effect is reflected into count_temp[11:8]?? FIXME
-    always@(posedge SYSCLK) begin
-        if (SYSRST) begin
-            dlyPAUSE <= 5'd0;
-        end else begin
-            dlyPAUSE <= {dlyPAUSE[4:0],PAUSE};
-        end
-    end
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
         end else if(~data_en) begin // Reset count when it reaches the maximum
             count[3:0] <= 4'd0;
         end else if (data_en) begin
-            if(PAUSE) begin
-                count[3:0] <= count[3:0];
-            end else begin
-                count[3:0] <= count[3:0] + 4'd1;
-            end
+            count[3:0] <= count[3:0] + 4'd1;
         end
     end
     
@@ -269,7 +251,7 @@ module OUT_DATA_PACK(
    
     wire         out_val;
     /// valid=H only when shifted counter value is non-zero
-    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0) & ~dlyPAUSE[4];
+    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0);
     assign OUT_VALID = out_val;
 
     reg     [103:0]     reg_data;
