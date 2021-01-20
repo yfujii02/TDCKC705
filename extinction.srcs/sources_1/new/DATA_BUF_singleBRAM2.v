@@ -116,7 +116,7 @@ module DATA_BUF_singleBRAM2(
             if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
                 wrCnt    <= wrCnt+32'd1;
-                if (DATA_TRG && ~fifo_full) begin
+                if (DATA_TRG && ~fifo_full && ~SPLSTART) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                                                          // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
                                                          // COUNTER start from SPILL signal
