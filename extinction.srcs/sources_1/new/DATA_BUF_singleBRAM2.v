@@ -101,6 +101,7 @@ module DATA_BUF_singleBRAM2(
                 ENABLE <= 1'b1;
                 DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
                 //DIN    <= {BOARD_ID[3:0],SPLCOUNT[15:0],HEADER}; // HEADER = 20'hA_BB_00 + 
+                //DIN    <= {SPLCOUT[15:0],BOARD_ID[3:0],,HEADER}; // HEADER = 20'hA_BB_00 + 
                                                                  //  REG_HEADER[31:0]x2 = 84-bits
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
@@ -155,9 +156,6 @@ module DATA_BUF_singleBRAM2(
         .empty          (fifo_empty      ), // out: FIFO Empty
         .data_count     (data_count[16:0])  // out: # of data in FIFO
     );
-//        .sbiterr        (sbiterr         ), // out: Single Bit Error
-//        .dbiterr        (dbiterr         )  // out: Double Bit Error
-//    );
 
     OUT_DATA_PACK OUT_DATA_PACK(
         .SYSCLK         (SYSCLKR              ), // in
@@ -228,15 +226,6 @@ module OUT_DATA_PACK(
         end
     end
     
-    reg     [11:0]  count_tmp ;
-    reg      [2:0]  data_outEN;
-    /// 2 CLKs delay to account for the data reading from FIFO
-    ///  and 1 CLK to wait for the data_out <= reg_data
-    always@(posedge SYSCLK) begin
-        count_tmp[11:0] <= {count_tmp[7:0], count[3:0]};
-        data_outEN[2:0] <= {data_outEN[1:0],(data_en & ~data_end)};
-    end
-    
     reg rd_en;
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
@@ -251,7 +240,7 @@ module OUT_DATA_PACK(
    
     wire         out_val;
     /// valid=H only when shifted counter value is non-zero
-    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0) & (count_tmp[11:8]<4'd14);
+    assign out_val = data_en & ~data_end & (count[3:0]!=4'd0) & (count[3:0]<4'd14);
     assign OUT_VALID = out_val;
 
     reg     [103:0]     reg_data;
@@ -262,7 +251,7 @@ module OUT_DATA_PACK(
     wire    [7:0]   data_out_tmp;
     reg     [7:0]   data_out;
     wire    [3:0]   data_out_count;
-    assign data_out_count = count_tmp[11:8];
+    assign data_out_count = count[3:0];
     always@(posedge SYSCLK) begin
         case(data_out_count)
             4'd0:    data_out[7:0] <= reg_data[103: 96];
@@ -283,7 +272,7 @@ module OUT_DATA_PACK(
     end
     assign OUT[7:0] = out_val ? data_out[7:0] : 8'hCC;
 
-    assign DEBUG_CNT[7:0] = count_tmp[11:4];
+    assign DEBUG_CNT[7:0] = {4'd0, count[3:0]};
     assign DEBUG_DLY_EN[7:0] = {5'd0,data_en,data_end,rd_en};
     assign DEBUG_DATA_EN  = data_en;
     assign DEBUG_DATA_END = data_end;
