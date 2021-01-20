@@ -160,20 +160,19 @@ module DATA_BUF_singleBRAM2(
 //    );
 
     OUT_DATA_PACK OUT_DATA_PACK(
-        .SYSCLK         (SYSCLKR              ),
-        .SYSRST         (reg_sysrstB          ),
-        .TRIGGER        (TRIGGER_INT          ),
-        .PAUSE          (TCP_FULL             ),
-        .FOOTER         (FOOTER[83:0]         ),
-        .DATA           (data_out[103:0]      ),
-        .FIFO_RD_EN     (fifo_rd_en           ),
-        .OUT_VALID      (SEND_EN              ),
-        .OUT            (DOUT[7:0]            ),
-        .DEBUG_DATA_EN  (DEBUG_DATA_EN        ),
-        .DEBUG_DATA_END (DEBUG_DATA_END       ),
-        .DEBUG_DLY_EN   (DEBUG_DLY_EN         ),
-        .DEBUG_RD_EN    (DEBUG_RD_EN          ),
-        .DEBUG_CNT      (DEBUG_CNT            )
+        .SYSCLK         (SYSCLKR              ), // in
+        .SYSRST         (reg_sysrstB          ), // in
+        .TRIGGER        (TRIGGER_INT          ), // in
+        .PAUSE          (TCP_FULL             ), // in
+        .DATA           (data_out[103:0]      ), // in
+        .FIFO_RD_EN     (fifo_rd_en           ), // out
+        .OUT_VALID      (SEND_EN              ), // out
+        .OUT            (DOUT[7:0]            ), // out
+        .DEBUG_DATA_EN  (DEBUG_DATA_EN        ), // out
+        .DEBUG_DATA_END (DEBUG_DATA_END       ), // out
+        .DEBUG_DLY_EN   (DEBUG_DLY_EN         ), // out
+        .DEBUG_RD_EN    (DEBUG_RD_EN          ), // out
+        .DEBUG_CNT      (DEBUG_CNT            )  // out
     );
 endmodule
 
@@ -182,7 +181,6 @@ module OUT_DATA_PACK(
     input           SYSRST,
     input           TRIGGER,
     input           PAUSE,
-    input   [ 83:0] FOOTER,
     input   [103:0] DATA,
     output          FIFO_RD_EN,
     output          OUT_VALID,
@@ -199,7 +197,6 @@ module OUT_DATA_PACK(
     wire        footer_flag;
     assign DEBUG_DATA_EN  = data_en;
     assign DEBUG_DATA_END = data_end;
-    assign footer_flag    = (FOOTER==DATA[83:0])? 1'b1 : 1'b0;
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             data_en <= 1'b0;
