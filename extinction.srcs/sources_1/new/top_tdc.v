@@ -141,34 +141,29 @@ module top_tdc(
         end
     end
 
-    wire    [83:0]  irHeader;
-    wire    [83:0]  irFooter;
-    assign irHeader = {20'hA_BB_00,HEADER[31:0],HEADER[31:0]};
-    assign irFooter = {20'hF_EE_00,FOOTER[31:0],FOOTER[31:0]};
-
     DATA_BUF_singleBRAM2 DATA_BUF(
-        .RST     (RESET       ),
-        .CLK     (CLK_200M    ),
-        .DATA_TRG(irDATATRG   ),
-        .COUNTER (irCOUNTER   ),
-        .SPLSTART(SPL_EDGE    ),
-        .SPLEND  (SPL_END     ),
-        .SPLCOUNT(SPILLCOUNT[15:0]),
-        .SIG     (irSIG[76:0] ),
-        .START   (START       ),
-        .EMCOUNT (regEMCNTR   ),
-        .BOARD_ID(BOARD_ID    ), // in [ 3:0]
-        .HEADER  (irHeader    ), // in [83:0]
-        .FOOTER  (irFooter    ), // in [83:0]
-        .TRIGGER_INT(TRIGGER_INT),
-        .DOUT    (OUTDATA[7:0]),
-        .SEND_EN (SEND_EN     ),
-        .TCP_FULL(TCP_BUSY    ),
-        .DEBUG_DATA_EN (DEBUG_DATA_EN),
+        .RST        (RESET           ),
+        .CLK        (CLK_200M        ),
+        .DATA_TRG   (irDATATRG       ),
+        .COUNTER    (irCOUNTER       ),
+        .SPLSTART   (SPL_EDGE        ),
+        .SPLEND     (SPL_END         ),
+        .SPLCOUNT   (SPILLCOUNT[15:0]),
+        .SIG        (irSIG[76:0]     ),
+        .START      (START           ),
+        .EMCOUNT    (regEMCNTR       ),
+        .BOARD_ID   (BOARD_ID        ), // in [ 3:0]
+        .HEADER     (HEADER[31:0]    ), // in [31:0]
+        .FOOTER     (FOOTER[31:0]    ), // in [31:0]
+        .TRIGGER_INT(TRIGGER_INT     ),
+        .DOUT       (OUTDATA[7:0]    ),
+        .SEND_EN    (SEND_EN         ),
+        .TCP_FULL   (TCP_BUSY        ),
+        .DEBUG_DATA_EN (DEBUG_DATA_EN ),
         .DEBUG_DATA_END(DEBUG_DATA_END),
-        .DEBUG_DLY_EN   (DEBUG_DLY_EN),
-        .DEBUG_RD_EN    (DEBUG_RD_EN ),
-        .DEBUG_CNT      (DEBUG_CNT   ),
+        .DEBUG_DLY_EN  (DEBUG_DLY_EN  ),
+        .DEBUG_RD_EN   (DEBUG_RD_EN   ),
+        .DEBUG_CNT     (DEBUG_CNT     ),
         .DEBUG_FIFO_CNT(DEBUG_FIFO_CNT)
     );
 endmodule
