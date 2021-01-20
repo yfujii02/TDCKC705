@@ -100,13 +100,13 @@ module DATA_BUF_singleBRAM2(
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
                 //DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
-                DIN    <= {HEADER[31:0],SPLCOUNT[15:0],4'd0,BOARD_ID[3:0],52'h0123_4567_89AB_C}; // HEADER =  REG_HEADER[31:0]
+                DIN    <= {HEADER[31:0],SPLCOUNT[15:0],4'd0,BOARD_ID[3:0],48'h0123_4567_89AB}; // HEADER =  REG_HEADER[31:0]
                 wrCnt  <= 32'd0;
                 W_EN   <= 1'b1;
             end else if (SPLEND)begin
                 ENABLE <= 1'b0;
                 //DIN    <= 104'h1357_9BDF_FDB9_7531_159D_37BF_FB;
-                DIN    <= {FOOTER[31:0],SPLCOUNT[15:0],EMCOUNT[15:0],wrCnt[31:0],12'h012}; // FOOTER = REG_FOOTER[31:0]
+                DIN    <= {FOOTER[31:0],SPLCOUNT[15:0],EMCOUNT[15:0],wrCnt[31:0],8'hAB}; // FOOTER = REG_FOOTER[31:0]
             end else if (endReg[1])begin
                 W_EN   <= 1'b1;
             end else if (endReg[2])begin
