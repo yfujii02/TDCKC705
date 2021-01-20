@@ -41,6 +41,7 @@ module
         inout    wire            GMII_MDIO       ,
         output   wire            GMII_MDC        ,
     // status
+        output   wire            TCP_OPEN_ACK    ,
         output   wire            FIFO_FULL       ,
     // input data to be sent
         input    wire    [7:0]   TCP_TX_DATA_IN  ,
@@ -72,7 +73,6 @@ module
     wire            LOCKED            ;
     wire            PLL_CLKFB        ;
     wire            BUF_TX_CLK        ;
-    wire            TCP_OPEN_ACK    ;
     wire            TCP_CLOSE_REQ    ;
     wire            TCP_RX_WR        ;
     wire     [7:0]  TCP_RX_DATA        ;

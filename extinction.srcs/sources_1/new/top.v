@@ -105,22 +105,23 @@ end
 endgenerate
 generate
 
-    wire             CLK_200M  ;
-    wire             FIFO_FULL ;
-    wire             TCP_RST   ;
+    wire             CLK_200M     ;
+    wire             TCP_OPEN_ACK ;
+    wire             FIFO_FULL    ;
+    wire             TCP_RST      ;
 
-    wire    [2:0]    RUN_MODE  ;
-    wire             RUN_START ;
-    wire             RUN_RESET ;
+    wire    [2:0]    RUN_MODE     ;
+    wire             RUN_START    ;
+    wire             RUN_RESET    ;
 
-    reg    [63:0]    regSIG    ;
-    reg   [127:0]    sigEdge   ;
+    reg    [63:0]    regSIG       ;
+    reg   [127:0]    sigEdge      ;
 
-    reg    [11:0]    regOLDH   ; // from old hodoscope and other PMTs
-    reg    [23:0]    oldhEdge  ; // detect the edge timing
+    reg    [11:0]    regOLDH      ; // from old hodoscope and other PMTs
+    reg    [23:0]    oldhEdge     ; // detect the edge timing
 
-    reg     [1:0]    syncEdge  ;
-    reg              regSync   ;
+    reg     [1:0]    syncEdge     ;
+    reg              regSync      ;
 
 for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
     always@ (posedge CLK_200M) begin
@@ -189,6 +190,7 @@ endgenerate
         .GMII_MDIO      (GMII_MDIO      ),
         .GMII_MDC       (GMII_MDC       ),
     // sitcp status
+        .TCP_OPEN_ACK   (TCP_OPEN_ACK   ),
         .FIFO_FULL      (FIFO_FULL      ),
     // input data to be sent
         .TCP_TX_DATA_IN (OUTDATA[7:0]   ),
@@ -225,7 +227,7 @@ endgenerate
 
     top_tdc top_tdc(
     // system
-        .RESET      ((TCP_RST|RUN_RESET)),
+        .RESET      ((~TCP_OPEN_ACK|TCP_RST|RUN_RESET)),
         .CLK_200M   (CLK_200M     ),
     //
         .SIGNAL     (regSIG       ),
