@@ -251,7 +251,7 @@ module OUT_DATA_PACK(
    
     wire         out_val;
     /// valid=H only when shifted counter value is non-zero
-    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0);
+    assign out_val = data_outEN[2] & (count_tmp[11:8]!=4'd0) & (count_tmp[11:8]<4'd14);
     assign OUT_VALID = out_val;
 
     reg     [103:0]     reg_data;
