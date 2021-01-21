@@ -266,6 +266,7 @@ endgenerate
     );*/
 
     wire    [3:0]  SPILLDIV;
+    wire    [7:0]  dbg_buf_switch;
 
     top_mcs top_mcs(
     // system
@@ -283,7 +284,8 @@ endgenerate
         .SPILLCOUNT (SPILLCOUNT[31:0]),
         .SPILLDIV   (SPILLDIV[3:0]),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
-        .SEND_EN    (TCP_TX_EN    )  // Output data enable SiTCP
+        .SEND_EN    (TCP_TX_EN    ), // Output data enable SiTCP
+        .BUF_SWITCH (dbg_buf_switch)
     );
 
     wire    [7:0]   DELAY_TEST;
@@ -335,21 +337,21 @@ endgenerate
     end
 
     assign TEST_INT[1:0] = {test_pulse_slow,test_pulse_fast};
-    assign FMC_DEBUG_OUT[1:0] = TEST_INT[1:0];
+    assign FMC_DEBUG_OUT[1:0] = (FMC_DBG)? TEST_INT[1:0] : 2'd0;
     assign DLY_TEST_FAST = test_pulse_delayed;
 
     //assign GPIO_LED = BOARD_ID[3:0];
     assign GPIO_LED = SPILLCOUNT[3:0];
 
     ila_0 ila_0(
-        .trig_in(PSPILL   ),
+        .trig_in(|dbg_buf_switch[7:4]),
         .clk    (CLK_200M ),
 // 8 bits per each
         .probe0 (OUTDATA  ),
         .probe1 (debug_fifo_cnt[15:8]),
         .probe2 (debug_fifo_cnt[ 7:0]),
-        .probe3 (8'd0),
-        .probe4 (8'd0),
+        .probe3 ({6'd0,TEST_INT[1:0]}),
+        .probe4 (dbg_buf_switch[7:0]),
         .probe5 (8'd0),
         .probe6 (8'd0),
         .probe7 (8'd0),
@@ -358,7 +360,7 @@ endgenerate
         .probe9 (TCP_TX_EN),
         .probe10(FIFO_FULL),
         .probe11(PSPILL   ),
-        .probe12(MR_SYNC  ),
+        .probe12(regSync  ),
         .probe13(TRIGGER_INT),
         .probe14(debug_data_en),
         .probe15(debug_data_end)

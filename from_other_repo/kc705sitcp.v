@@ -170,32 +170,33 @@ module
         .IIC_SDA_IO    (I2C_SDA)       // IIC Data
     );
 
-    BUFGMUX GMIIMUX(.O(BUF_TX_CLK), .I0(GMII_TX_CLK), .I1(CLK_125M), .S(GMII_1000M));
+    //BUFGMUX GMIIMUX(.O(BUF_TX_CLK), .I0(GMII_TX_CLK), .I1(CLK_125M), .S(GMII_1000M));
+    BUFG GMIIBUFG(.O(BUF_TX_CLK), .I(CLK_125M));
     ODDR    IOB_GTX(.C(BUF_TX_CLK), .CE(1'b1), .D1(1'b1), .D2(1'b0), .R(1'b0),
                     .S(1'b0), .Q(GMII_GTXCLK));
 
-    // Fix GMII mode to 1000Base
-    //always@(posedge CLK_200M or negedge SYS_RSTn)begin
-    //    if (~SYS_RSTn) begin
-    //        CNT_CLK[8:0]    <=    9'b0;
-    //        CNT_LD          <=    1'b0;
-    //        CNT_RST         <=    1'b1;
-    //        GMII_1000M      <=    1'b0;
-    //    end else begin 
-    //        CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
-    //        CNT_LD          <=    CNT_CLK[8];
-    //        CNT_RST         <=    CNT_LD;
-    //        GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
-    //    end
-    //end
-    //
-    //always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
-    //    if (CNT_RST) begin
-    //        RX_CNT[6:0]     <=    7'd0;
-    //    end else begin
-    //        RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
-    //    end
-    //end
+    // Fix GMII mode to 1000Base by commenting-out below
+//    always@(posedge CLK_200M or negedge SYS_RSTn)begin
+//        if (~SYS_RSTn) begin
+//            CNT_CLK[8:0]    <=    9'b0;
+//            CNT_LD          <=    1'b0;
+//            CNT_RST         <=    1'b1;
+//            GMII_1000M      <=    1'b0;
+//        end else begin 
+//            CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
+//            CNT_LD          <=    CNT_CLK[8];
+//            CNT_RST         <=    CNT_LD;
+//            GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
+//        end
+//    end
+//    
+//    always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
+//        if (CNT_RST) begin
+//            RX_CNT[6:0]     <=    7'd0;
+//        end else begin
+//            RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
+//        end
+//    end
 
     assign    GMII_MDIO    = (GMII_MDIO_OE    ?    GMII_MDIO_OUT : 1'bz)    ;
 
@@ -252,7 +253,8 @@ module
         .TCP_CLOSE_REQ    (TCP_CLOSE_REQ),      // out    : Connection close request
         .TCP_CLOSE_ACK    (TCP_CLOSE_REQ),      // in    : Acknowledge for closing
         // FIFO I/F
-        .TCP_RX_WC        ({4'b1111,FIFO_DATA_COUNT[11:0]}),// in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
+        //.TCP_RX_WC        ({4'b1111,FIFO_DATA_COUNT[11:0]}),// in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
+        .TCP_RX_WC        (16'd0           ),   // in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
         .TCP_RX_WR        (TCP_RX_WR       ),   // out    : Write enable
         .TCP_RX_DATA      (TCP_RX_DATA[7:0]),   // out    : Write data[7:0]
         .TCP_TX_FULL      (TCP_TX_FULL     ),   // out    : Almost full flag
@@ -290,7 +292,7 @@ module
         .din        (TCP_TX_DATA_IN[7:0]  ),//in  :
         .wr_en      (TCP_TX_EN_IN         ),//in  :
         .full       (FIFO_COMPLETELY_FULL),//out :
-        .almost_full(FIFO_FULL            ),//out :
+        .prog_full  (FIFO_FULL            ),//out :
         .dout       (TCP_TX_DATA[7:0]     ),//out :
         .valid      (FIFO_RD_VALID        ),//out :active hi
         .rd_en      (~TCP_TX_FULL         ),//in  :

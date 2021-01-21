@@ -52,7 +52,8 @@ module top_mcs(
     output  wire   [31:0]   SPILLCOUNT,
     input   wire   [ 3:0]   SPILLDIV  ,
     output  reg    [ 7:0]   OUTDATA   ,
-    output  reg             SEND_EN
+    output  reg             SEND_EN   ,
+    output  wire   [ 7:0]   BUF_SWITCH
     );
 //*******************************************************************************
 //
@@ -88,9 +89,11 @@ module top_mcs(
 
     reg             ENABLE  ; // Enable on until the spill end
     reg      [3:0]  enWrite ; // Enable switch for writing the data
+    reg             enWriteMSB; // 1 clk delayed MSB of en write
     reg     [31:0]  NMRSYNC ; // Number of MRSync
     reg     [31:0]  regNSYNC; // Register to keep the number of MRSYNC
     reg             sw_mem  ;
+    reg      [1:0]  irSw_mem; // To check the rising edge of sw_mem
     always @ (posedge CLK_200M) begin
         if(RESET) begin
             ENABLE    <=  1'b0;
@@ -105,17 +108,28 @@ module top_mcs(
                 regNSYNC  <= NMRSYNC;
                 if (NMRSYNC>32'd0) begin
                     ENABLE    <= 1'b1;
-                end
-                if (NMRSYNC==32'd1) begin
-                    enWrite   <= 4'd1;
-                end else begin
-                    enWrite   <= (sw_mem==1'b1)? {enWrite[2:0],enWrite[3]} : enWrite;
+                    if (NMRSYNC==32'd1) begin
+                        enWrite   <= 4'd1;
+                    end else begin
+                        enWrite   <= (irSw_mem==2'b01)? {enWrite[2:0],enWriteMSB} : enWrite;
+                    end
                 end
             end else begin
                 enWrite   <= 4'd0;
                 ENABLE    <= 1'b0;
                 NMRSYNC   <= 32'd0;
             end
+        end
+    end
+    always @ (posedge CLK_200M) begin
+        enWriteMSB <= enWrite[3];
+    end
+
+    always @ (posedge CLK_200M) begin
+        if(RESET) begin
+            irSw_mem <= 2'd0;
+        end else begin
+            irSw_mem <= {irSw_mem[0],sw_mem};
         end
     end
 
@@ -147,33 +161,31 @@ module top_mcs(
 
     parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
     parameter DLENGTH  = 16; /// Length of each data/bin
-
-    wire   [3:0]    EOD    ;
-    reg    [7:0]  regEOD ; // Reg to check Edge of EOD
-    reg    [3:0]    edgeEOD; // Edge of EOD
-    always@ (posedge CLK_200M) begin
-        if(RESET)begin
-            regEOD[7:0]  <=  8'd0;
-            edgeEOD[3:0] <=  4'd0;
-        end else begin
-            regEOD[7:0]  <= {regEOD[6],EOD[3],regEOD[4],EOD[2],regEOD[2],EOD[1],regEOD[0],EOD[0]};
-            edgeEOD[3:0] <= {(regEOD[7:6]==2'b01),(regEOD[5:4]==2'b01),
-                             (regEOD[3:2]==2'b01),(regEOD[1:0]==2'b01)};
-        end
-    end
-
-    wire    [NCHANNEL*16-1:0] DCOUNTER0;
-    wire    [NCHANNEL*16-1:0] DCOUNTER1;
-    wire    [NCHANNEL*16-1:0] DCOUNTER2;
-    wire    [NCHANNEL*16-1:0] DCOUNTER3;
-    wire               [10:0] LENGTH0 ;
-    wire               [10:0] LENGTH1 ;
-    wire               [10:0] LENGTH2 ;
-    wire               [10:0] LENGTH3 ;
+    parameter NBUF     =  4; /// Number of cyclic buffers
     wire    [NCHANNEL-1:0]    INPUT   ;
     assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// read out 10 PMT channels 
                                              ///  including two ext. PMTs in the new hodoscope.
+
+    wire   [NBUF-1:0]    EOD    ;
+    reg    [2*NBUF-1:0]  regEOD ; // Reg to check Edge of EOD
+    reg    [NBUF-1:0]    edgeEOD; // Edge of EOD
 genvar i;
+generate
+    for (i = 0; i < NBUF; i = i+1) begin: CHECK_EOD
+        always@ (posedge CLK_200M) begin
+            if(RESET)begin
+                regEOD[2*i+1:2*i]  <= 2'd0;
+                edgeEOD[i]         <= 1'b0;
+            end else begin
+                regEOD[2*i+1:2*i]  <= {regEOD[2*i],EOD[i]};
+                edgeEOD[i]         <= (regEOD[2*i+1:2*i]==2'b01)? 1'b1 : 1'b0;
+            end
+        end
+    end
+endgenerate
+
+    wire    [NCHANNEL*NBUF*16-1:0] DCOUNTER_INT;
+    wire             [11*NBUF-1:0] LENGTH_INT  ;
 generate
     for (i = 0; i < NCHANNEL; i = i+1) begin: SUM_UP
         SHIFT_COUNTER shift_cntr0(
@@ -219,48 +231,48 @@ generate
     end
 endgenerate
 
-    wire  [3:0]  sending;
-    wire  [7:0]  OUTDATA0;
-    wire  [7:0]  OUTDATA1;
-    wire  [7:0]  OUTDATA2;
-    wire  [7:0]  OUTDATA3;
-    wire         SEND_EN0;
-    wire         SEND_EN1;
-    wire         SEND_EN2;
-    wire         SEND_EN3;
-generate
-    for (i = 0; i < 4; i = i+1) begin: CHECK_DATA_SEND_STATUS
-        sendStatus(.CLK  (CLK_200M),
-                   .RST  (RESET   ),
-                   .WRITE(enWrite[i]),
-                   .EOD  (edgeEOD[i]),
-                   .SEND (sending[i])
-        );
-    end
-endgenerate
+    wire  [3:0]  sendEn  ;
+    wire  [7:0]  outdata0;
+    wire  [7:0]  outdata1;
+    wire  [7:0]  outdata2;
+    wire  [7:0]  outdata3;
+    wire  [3:0]  iSendEn ;
+    wire  [3:0]  readRdy ;
+    sendStatus(.CLK  (CLK_200M),
+               .RST  (RESET   ),
+               .WRITE(enWrite ),
+               .EOD  (edgeEOD ),
+               .READY(readRdy ),
+               .SEND (sendEn  )
+    );
 
     always @(posedge CLK_200M)begin
-        if (sending[0])begin
-            OUTDATA <= OUTDATA0;
-            SEND_EN <= SEND_EN0;
-        end else if (sending[1])begin
-            OUTDATA <= OUTDATA1;
-            SEND_EN <= SEND_EN1;
-        end else if (sending[2])begin
-            OUTDATA <= OUTDATA2;
-            SEND_EN <= SEND_EN2;
-        end else if (sending[3])begin
-            OUTDATA <= OUTDATA3;
-            SEND_EN <= SEND_EN3;
-        end else begin
-            OUTDATA <= 8'hBB;
+        if (RESET) begin
+            OUTDATA <= 8'h0;
             SEND_EN <= 1'b0;
+        end else begin
+            if (sendEn[0])begin
+                OUTDATA <= outdata0;
+                SEND_EN <= iSendEn[0];
+            end else if (sendEn[1])begin
+                OUTDATA <= outdata1;
+                SEND_EN <= iSendEn[1];
+            end else if (sendEn[2])begin
+                OUTDATA <= outdata2;
+                SEND_EN <= iSendEn[2];
+            end else if (sendEn[3])begin
+                OUTDATA <= outdata3;
+                SEND_EN <= iSendEn[3];
+            end else begin
+                OUTDATA <= 8'hBB;
+                SEND_EN <= 1'b0;
+            end
         end
     end
 
     wire    [3:0]   send_others;
-    assign  send_others[3:0] = {|{sending[3:1]},|{sending[3:2],sending[0]},
-                                |{sending[3],sending[1:0]},|{sending[2:0]}};
+    assign  send_others[3:0] = {|{sendEn[2:0]},|{sendEn[3],sendEn[1:0]},
+                                |{sendEn[3:2],sendEn[0]},|{sendEn[3:1]}};
     DATA_SEND_MCS data_send_mcs0(
         .RST     (RESET     ),
         .CLK     (CLK_200M  ),
@@ -273,8 +285,9 @@ endgenerate
         .NMRSYNC (regNSYNC  ),
         .EOD     (EOD[0]    ),
         .DCOUNTER(DCOUNTER0 ),
-        .DOUT    (OUTDATA0  ),
-        .SEND_EN (SEND_EN0  )
+        .DOUT    (outdata0  ),
+        .SEND_EN (iSendEn[0]),
+        .RD_RDY  (readRdy[0])
     );
     DATA_SEND_MCS data_send_mcs1(
         .RST     (RESET     ),
@@ -288,8 +301,9 @@ endgenerate
         .NMRSYNC (regNSYNC  ),
         .EOD     (EOD[1]    ),
         .DCOUNTER(DCOUNTER1 ),
-        .DOUT    (OUTDATA1  ),
-        .SEND_EN (SEND_EN1  )
+        .DOUT    (outdata1  ),
+        .SEND_EN (iSendEn[1]),
+        .RD_RDY  (readRdy[1])
     );
     DATA_SEND_MCS data_send_mcs2(
         .RST     (RESET     ),
@@ -303,8 +317,9 @@ endgenerate
         .NMRSYNC (regNSYNC  ),
         .EOD     (EOD[2]    ),
         .DCOUNTER(DCOUNTER2 ),
-        .DOUT    (OUTDATA2  ),
-        .SEND_EN (SEND_EN2  )
+        .DOUT    (outdata2  ),
+        .SEND_EN (iSendEn[2]),
+        .RD_RDY  (readRdy[2])
     );
     DATA_SEND_MCS data_send_mcs3(
         .RST     (RESET     ),
@@ -318,32 +333,62 @@ endgenerate
         .NMRSYNC (regNSYNC  ),
         .EOD     (EOD[3]    ),
         .DCOUNTER(DCOUNTER3 ),
-        .DOUT    (OUTDATA3  ),
-        .SEND_EN (SEND_EN3  )
+        .DOUT    (outdata3  ),
+        .SEND_EN (iSendEn[3]),
+        .RD_RDY  (readRdy[3])
     );
 
+    assign BUF_SWITCH = {iSendEn,enWrite};
 endmodule
 
 module sendStatus(
-    input   wire    CLK,
-    input   wire    RST,
-    input   wire    WRITE,
-    input   wire    EOD,
-    output  reg     SEND
+    input   wire         CLK,
+    input   wire         RST,
+    input   wire  [3:0]  WRITE,
+    input   wire  [3:0]  EOD,
+    input   wire  [3:0]  READY, /// data is ready to be read
+    output  wire  [3:0]  SEND
 );
-    reg [1:0]   irWrite;
+    reg [7:0]   irWrite;
 
     always @(posedge CLK)begin
         if (RST) begin
-            SEND    <= 1'b0;
-            irWrite <= 2'd0;
+            irWrite <= 8'd0;
         end else begin
-            irWrite <= {irWrite[1],WRITE};
-            if (irWrite==2'b10) begin
-                SEND <= 1'b1;
+            irWrite <= {irWrite[6],WRITE[3],irWrite[4],WRITE[2],
+                        irWrite[2],WRITE[1],irWrite[0],WRITE[0]};
+        end
+    end
+
+    reg [3:0]   irSend;
+    always @(posedge CLK)begin
+        if (RST) begin
+            irSend <= 4'd0;
+        end else begin
+            if (|SEND == 1'b0) begin
+                if (irWrite[1:0]==2'b10) begin
+                    irSend <= 4'b0001;
+                end else if (irWrite[3:2]==2'b10) begin
+                    irSend <= 4'b0010;
+                end else if (irWrite[5:4]==2'b10) begin
+                    irSend <= 4'b0100;
+                end else if (irWrite[7:6]==2'b10) begin
+                    irSend <= 4'b1000;
+                end
             end else begin
-                SEND <= (EOD==1'b1)? 1'b0 : SEND;
+                if (|(EOD&SEND)) begin /// Data sending at some channel is finished
+                    if (|READY) begin  /// If there are any channel ready to be read, let's shift the read flag
+                        irSend <= {irSend[2:0],SEND[3]};
+                    end else begin     /// Otherwise, let's wait for some channel becomes ready
+                        irSend <= 4'd0;
+                    end
+                end
             end
         end
     end
+    reg [3:0]   dlySend;
+    always @(posedge CLK)begin
+        dlySend <= irSend;
+    end
+    assign SEND = dlySend;
 endmodule

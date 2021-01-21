@@ -13,7 +13,8 @@ module DATA_SEND_MCS(
     output  reg               EOD,
     input   wire [74*16-1:0]  DCOUNTER,
     output  reg      [7:0]    DOUT,
-    output  wire              SEND_EN
+    output  wire              SEND_EN,
+    output  reg               RD_RDY // read ready
 );
     parameter  MAXCOUNT = 18'd161040; // 2*(64+10)*1088 (MPPC Data+PMT Data) + 8*2 (header&footer) byte
     parameter  MAXCWOHD = 18'd161032; // Max count without header
@@ -28,19 +29,21 @@ module DATA_SEND_MCS(
     reg        [7:0]  eachCNTR     ; // 0--148 to read data/(CLK tick), 2-byte * (64+10) = 148. if 148, interrupt..
     wire              shift        ;
 
-    reg               RD_ENABLE    ; // Enable data reading 4 CLKs after Spill disabled
-    reg        [3:0]  regDlyENABLE ;
+    reg        [2:0]  regDlyENABLE ;
+    reg               RD_ENABLE    ;
     always@ (posedge CLK) begin
         if(RST) begin
-            regDlyENABLE <= 4'd0;
+            regDlyENABLE <= 3'd0;
+            RD_RDY       <= 1'b0;
             RD_ENABLE    <= 1'b0;
         end else begin
-            regDlyENABLE <= {regDlyENABLE[2:0],ENABLE};
-            if(regDlyENABLE[3:0]==4'b1000) begin
-                RD_ENABLE <= 1'b1;
+            regDlyENABLE <= {regDlyENABLE[1:0],ENABLE};
+            if(regDlyENABLE[2:0]==3'b100) begin
+                RD_RDY <= 1'b1;
             end else if(EOD) begin
-                RD_ENABLE <= 1'b0;
+                RD_RDY <= 1'b0;
             end
+            RD_ENABLE <= RD_RDY;
         end
     end
 
@@ -232,12 +235,12 @@ module DATA_SEND_MCS(
                     case(dlyTXCOUNT[2:0])
                         3'h7: DOUT <= 8'hFF;
                         3'h6: DOUT <= 8'hFF;
-                        3'h5: DOUT <= 8'hFF;
-                        3'h4: DOUT <= EM_COUNT[15:8];
-                        3'h3: DOUT <= EM_COUNT[ 7:0];
-                        3'h2: DOUT <= NMRSYNC[31:24];
-                        3'h1: DOUT <= NMRSYNC[23:16];
-                        3'h0: DOUT <= NMRSYNC[15: 8];
+                        3'h5: DOUT <= EM_COUNT[15:8];
+                        3'h4: DOUT <= EM_COUNT[ 7:0];
+                        3'h3: DOUT <= NMRSYNC[31:24];
+                        3'h2: DOUT <= NMRSYNC[23:16];
+                        3'h1: DOUT <= NMRSYNC[15: 8];
+                        3'h0: DOUT <= NMRSYNC[ 7: 0];
                     endcase
                     if(dlyTXCOUNT==18'd0) begin
                         EOD <= 1'b1;

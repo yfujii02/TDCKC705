@@ -2,15 +2,14 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri Dec 25 22:49:44 2020
-# Process ID: 6968
+# Start of session at: Wed Jan 20 14:39:10 2021
+# Process ID: 7128
 # Current directory: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1
 # Command line: vivado.exe -log ila_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ila_0.tcl
 # Log file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1/ila_0.vds
 # Journal file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1\vivado.jou
 #-----------------------------------------------------------
 source ila_0.tcl -notrace
-WARNING: [IP_Flow 19-5242] IP Cache entry (cache-ID 1ad4bc3464b89cb8) does not have the required number of cached files and is not valid. Please delete this entry using the TCL command: 'config_ip_cache -remove [get_ips ila_0]'
 Command: synth_design -top ila_0 -part xc7k325tffg900-2 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
@@ -18,9 +17,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 6480
+INFO: [Synth 8-7075] Helper process launched with PID 8744
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1030.336 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1028.086 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ila_0' [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
 INFO: [Synth 8-6157] synthesizing module 'CFGLUT5' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1524]
@@ -42,20 +41,20 @@ WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is uncon
 WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1029 given [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:3241]
 INFO: [Synth 8-6155] done synthesizing module 'ila_0' (46#1) [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/synth/ila_0.v:84]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:03 ; elapsed = 00:01:07 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished RTL Elaboration : Time (s): cpu = 00:01:02 ; elapsed = 00:01:06 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:04 ; elapsed = 00:01:08 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:07 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:04 ; elapsed = 00:01:08 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:03 ; elapsed = 00:01:07 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.224 . Memory (MB): peak = 1423.500 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 163 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.225 . Memory (MB): peak = 1425.152 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 169 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -68,29 +67,29 @@ Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDC
 Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1423.500 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1425.152 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 116 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 96 instances
   CFGLUT5 => SRLC32E: 20 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.280 . Memory (MB): peak = 1423.500 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.272 . Memory (MB): peak = 1425.152 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Constraint Validation : Time (s): cpu = 00:01:19 ; elapsed = 00:01:23 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:19 ; elapsed = 00:01:23 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for inst. (constraint file  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:18 ; elapsed = 00:01:23 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:19 ; elapsed = 00:01:23 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized16'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s'
@@ -291,7 +290,7 @@ INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in m
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized15'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:22 ; elapsed = 00:01:27 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:23 ; elapsed = 00:01:28 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -312,25 +311,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:36 ; elapsed = 00:01:41 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:48 ; elapsed = 00:01:53 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:48 ; elapsed = 00:01:53 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:49 ; elapsed = 00:01:54 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Timing Optimization : Time (s): cpu = 00:01:48 ; elapsed = 00:01:53 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:01:56 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:01:55 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -387,37 +386,37 @@ INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_out_ack to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished IO Insertion : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:56 ; elapsed = 00:02:01 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -433,48 +432,52 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |CARRY4   |    44|
+|1     |CARRY4   |    53|
 |2     |CFGLUT5  |   116|
-|3     |LUT1     |    44|
-|4     |LUT2     |    60|
-|5     |LUT3     |   120|
-|6     |LUT4     |   216|
-|7     |LUT5     |    73|
-|8     |LUT6     |   710|
-|9     |MUXF7    |     3|
-|10    |RAMB18E1 |     1|
-|11    |RAMB36E1 |     2|
-|12    |SRL16E   |    76|
-|13    |SRLC16E  |     2|
-|14    |SRLC32E  |    17|
-|15    |FDRE     |  2044|
-|16    |FDSE     |    10|
+|3     |LUT1     |    45|
+|4     |LUT2     |    59|
+|5     |LUT3     |   113|
+|6     |LUT4     |   203|
+|7     |LUT5     |   124|
+|8     |LUT6     |   649|
+|9     |MUXF7    |    55|
+|10    |MUXF8    |    17|
+|11    |RAMB18E1 |     1|
+|12    |RAMB36E1 |     8|
+|13    |SRL16E   |    76|
+|14    |SRLC16E  |     2|
+|15    |SRLC32E  |    17|
+|16    |FDRE     |  2062|
+|17    |FDSE     |    10|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1425.152 ; gain = 397.066
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:44 ; elapsed = 00:01:54 . Memory (MB): peak = 1423.500 ; gain = 393.164
-Synthesis Optimization Complete : Time (s): cpu = 00:01:56 ; elapsed = 00:02:02 . Memory (MB): peak = 1423.500 ; gain = 393.164
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:46 ; elapsed = 00:01:54 . Memory (MB): peak = 1425.152 ; gain = 397.066
+Synthesis Optimization Complete : Time (s): cpu = 00:01:57 ; elapsed = 00:02:02 . Memory (MB): peak = 1425.152 ; gain = 397.066
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.195 . Memory (MB): peak = 1423.500 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 166 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.116 . Memory (MB): peak = 1425.152 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 250 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1423.500 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1425.152 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 116 instances were transformed.
   CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 96 instances
   CFGLUT5 => SRLC32E: 20 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-105 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+105 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:07 ; elapsed = 00:02:24 . Memory (MB): peak = 1423.500 ; gain = 393.164
+synth_design: Time (s): cpu = 00:02:05 ; elapsed = 00:02:21 . Memory (MB): peak = 1425.152 ; gain = 397.066
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.collectionResultDisplayLimit
 INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
-INFO: [Coretcl 2-1174] Renamed 183 cell refs.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ila_0, cache-ID = e67941111626fe58
+INFO: [Coretcl 2-1174] Renamed 195 cell refs.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/ila_0_synth_1/ila_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ila_0_utilization_synth.rpt -pb ila_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Dec 25 22:52:34 2020...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 20 14:41:49 2021...
