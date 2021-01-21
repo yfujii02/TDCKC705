@@ -80,7 +80,7 @@ module
     reg             TCP_CLOSE_ACK    ;
     wire     [7:0]  TCP_TX_DATA        ;
     reg     [31:0]  OFFSET_TEST        ;
-    wire    [11:0]  FIFO_DATA_COUNT    ;
+//    wire    [11:0]  FIFO_DATA_COUNT    ;
     wire            FIFO_RD_VALID    ;
     reg             SYS_RSTn        ;
     reg     [29:0]  INICNT            ;
@@ -296,8 +296,9 @@ module
         .dout       (TCP_TX_DATA[7:0]     ),//out :
         .valid      (FIFO_RD_VALID        ),//out :active hi
         .rd_en      (~TCP_TX_FULL         ),//in  :
-        .empty      (                     ),//out :
-        .data_count (FIFO_DATA_COUNT[11:0]) //out :[11:0]
+        .empty      (                     ) //out :
+//        .empty      (                     ),//out :
+//        .data_count (FIFO_DATA_COUNT[11:0]) //out :[11:0]
     );
 
 endmodule

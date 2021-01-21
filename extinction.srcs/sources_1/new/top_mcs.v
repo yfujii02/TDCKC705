@@ -160,8 +160,11 @@ module top_mcs(
     end
 
     parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
-    parameter DLENGTH  = 16; /// Length of each data/bin
+    parameter DWIDTH   = 16; /// Width of each data/bin
+    parameter DWIDTH_BUF = NCHANNEL*DWIDTH;
     parameter NBUF     =  4; /// Number of cyclic buffers
+    wire    [4*NBUF-1:0]   label;
+    assign label={4'd3,4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
     wire    [NCHANNEL-1:0]    INPUT   ;
     assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// read out 10 PMT channels 
                                              ///  including two ext. PMTs in the new hodoscope.
@@ -184,60 +187,50 @@ generate
     end
 endgenerate
 
-    wire    [NCHANNEL*NBUF*16-1:0] DCOUNTER_INT;
-    wire             [11*NBUF-1:0] LENGTH_INT  ;
+    wire    [NBUF*DWIDTH_BUF-1:0] DCOUNTER_INT;
+    wire            [11*NBUF-1:0] LENGTH_INT  ;
 generate
-    for (i = 0; i < NCHANNEL; i = i+1) begin: SUM_UP
-        SHIFT_COUNTER shift_cntr0(
+    for (i = 0; i < NBUF; i = i+1) begin: BUF_LOOP
+        SHIFT_COUNTER_ALL shift_cntr_eachbuf(
             .RST    (RESET    ),
             .CLK    (CLK_200M ),
-            .EN     (enWrite[0]&START),
+            .EN     (enWrite[i]&START),
             .SIG    (INPUT[i] ),
-            .EOD    (edgeEOD[0]), // end of data sending
+            .EOD    (edgeEOD[i]), // end of data sending
             .RELCNTR(relCNTR  ),
-            .RLENGTH(LENGTH0  ),
-            .COUNTER(DCOUNTER0[(i+1)*DLENGTH-1:i*DLENGTH])
-        );
-        SHIFT_COUNTER shift_cntr1(
-            .RST    (RESET    ),
-            .CLK    (CLK_200M ),
-            .EN     (enWrite[1]&START),
-            .SIG    (INPUT[i] ),
-            .EOD    (edgeEOD[1]), // end of data sending
-            .RELCNTR(relCNTR  ),
-            .RLENGTH(LENGTH1  ),
-            .COUNTER(DCOUNTER1[(i+1)*DLENGTH-1:i*DLENGTH])
-        );
-        SHIFT_COUNTER shift_cntr2(
-            .RST    (RESET    ),
-            .CLK    (CLK_200M ),
-            .EN     (enWrite[2]&START),
-            .SIG    (INPUT[i] ),
-            .EOD    (edgeEOD[2]), // end of data sending
-            .RELCNTR(relCNTR  ),
-            .RLENGTH(LENGTH2  ),
-            .COUNTER(DCOUNTER2[(i+1)*DLENGTH-1:i*DLENGTH])
-        );
-        SHIFT_COUNTER shift_cntr3(
-            .RST    (RESET    ),
-            .CLK    (CLK_200M ),
-            .EN     (enWrite[3]&START),
-            .SIG    (INPUT[i] ),
-            .EOD    (edgeEOD[3]), // end of data sending
-            .RELCNTR(relCNTR  ),
-            .RLENGTH(LENGTH3  ),
-            .COUNTER(DCOUNTER3[(i+1)*DLENGTH-1:i*DLENGTH])
+            .RLENGTH(LENGTH_INT[i*11+10:i*11]),
+            .COUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF])
         );
     end
 endgenerate
 
-    wire  [3:0]  sendEn  ;
-    wire  [7:0]  outdata0;
-    wire  [7:0]  outdata1;
-    wire  [7:0]  outdata2;
-    wire  [7:0]  outdata3;
-    wire  [3:0]  iSendEn ;
-    wire  [3:0]  readRdy ;
+    wire  [NBUF-1:0]    sendEn  ;
+    wire  [NBUF-1:0]    readRdy ;
+    wire  [NBUF-1:0]    SEND_EN_INT ;
+    wire  [8*NBUF-1:0]  OUTDATA_INT;
+    wire  [NBUF-1:0]    send_others;
+generate
+    for (i = 0; i < NBUF; i = i+1) begin: SEND_LOOP
+        DATA_SEND_MCS data_send_mcs0(
+            .RST     (RESET     ),
+            .CLK     (CLK_200M  ),
+            .ENABLE  (enWrite[i]&START),
+            .BUFLABEL(label[4*(i+1)-1:4*i]),
+            .TCP_FULL(TCP_BUSY|send_others[i]),
+            .LENGTH  (LENGTH_INT[i*11+10:i*11]),
+            .SPLCOUNT(SPILLCOUNT[15:0]),
+            .EM_COUNT(EM_COUNT  ),
+            .NMRSYNC (regNSYNC  ),
+            .EOD     (EOD[i]    ),
+            .DCOUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]),
+            .DOUT    (OUTDATA_INT[8*(i+1)-1:8*i]),
+            .SEND_EN (SEND_EN_INT[i]),
+            .RD_RDY  (readRdy[i])
+        );
+    end
+endgenerate
+
+/// TODO below part should be modified to the flexible number of buffers later..
     sendStatus(.CLK  (CLK_200M),
                .RST  (RESET   ),
                .WRITE(enWrite ),
@@ -245,100 +238,33 @@ endgenerate
                .READY(readRdy ),
                .SEND (sendEn  )
     );
-
     always @(posedge CLK_200M)begin
         if (RESET) begin
             OUTDATA <= 8'h0;
             SEND_EN <= 1'b0;
         end else begin
             if (sendEn[0])begin
-                OUTDATA <= outdata0;
-                SEND_EN <= iSendEn[0];
+                OUTDATA <= OUTDATA_INT[8*1-1:8*0];
+                SEND_EN <= SEND_EN_INT[0];
             end else if (sendEn[1])begin
-                OUTDATA <= outdata1;
-                SEND_EN <= iSendEn[1];
+                OUTDATA <= OUTDATA_INT[8*2-1:8*1];
+                SEND_EN <= SEND_EN_INT[1];
             end else if (sendEn[2])begin
-                OUTDATA <= outdata2;
-                SEND_EN <= iSendEn[2];
+                OUTDATA <= OUTDATA_INT[8*3-1:8*2];
+                SEND_EN <= SEND_EN_INT[2];
             end else if (sendEn[3])begin
-                OUTDATA <= outdata3;
-                SEND_EN <= iSendEn[3];
+                OUTDATA <= OUTDATA_INT[8*4-1:8*3];
+                SEND_EN <= SEND_EN_INT[3];
             end else begin
                 OUTDATA <= 8'hBB;
                 SEND_EN <= 1'b0;
             end
         end
     end
-
-    wire    [3:0]   send_others;
     assign  send_others[3:0] = {|{sendEn[2:0]},|{sendEn[3],sendEn[1:0]},
                                 |{sendEn[3:2],sendEn[0]},|{sendEn[3:1]}};
-    DATA_SEND_MCS data_send_mcs0(
-        .RST     (RESET     ),
-        .CLK     (CLK_200M  ),
-        .ENABLE  (enWrite[0]&START),
-        .BUFLABEL(4'd0      ),
-        .TCP_FULL(TCP_FULL|send_others[0]),
-        .LENGTH  (LENGTH0   ),
-        .SPLCOUNT(SPILLCOUNT[15:0]),
-        .EM_COUNT(EM_COUNT  ),
-        .NMRSYNC (regNSYNC  ),
-        .EOD     (EOD[0]    ),
-        .DCOUNTER(DCOUNTER0 ),
-        .DOUT    (outdata0  ),
-        .SEND_EN (iSendEn[0]),
-        .RD_RDY  (readRdy[0])
-    );
-    DATA_SEND_MCS data_send_mcs1(
-        .RST     (RESET     ),
-        .CLK     (CLK_200M  ),
-        .ENABLE  (enWrite[1]&START),
-        .BUFLABEL(4'd1      ),
-        .TCP_FULL(TCP_FULL|send_others[1]),
-        .LENGTH  (LENGTH1   ),
-        .SPLCOUNT(SPILLCOUNT[15:0]),
-        .EM_COUNT(EM_COUNT  ),
-        .NMRSYNC (regNSYNC  ),
-        .EOD     (EOD[1]    ),
-        .DCOUNTER(DCOUNTER1 ),
-        .DOUT    (outdata1  ),
-        .SEND_EN (iSendEn[1]),
-        .RD_RDY  (readRdy[1])
-    );
-    DATA_SEND_MCS data_send_mcs2(
-        .RST     (RESET     ),
-        .CLK     (CLK_200M  ),
-        .ENABLE  (enWrite[2]&START),
-        .BUFLABEL(4'd2      ),
-        .TCP_FULL(TCP_FULL|send_others[2]),
-        .LENGTH  (LENGTH2   ),
-        .SPLCOUNT(SPILLCOUNT[15:0]),
-        .EM_COUNT(EM_COUNT  ),
-        .NMRSYNC (regNSYNC  ),
-        .EOD     (EOD[2]    ),
-        .DCOUNTER(DCOUNTER2 ),
-        .DOUT    (outdata2  ),
-        .SEND_EN (iSendEn[2]),
-        .RD_RDY  (readRdy[2])
-    );
-    DATA_SEND_MCS data_send_mcs3(
-        .RST     (RESET     ),
-        .CLK     (CLK_200M  ),
-        .ENABLE  (enWrite[3]&START),
-        .BUFLABEL(4'd3      ),
-        .TCP_FULL(TCP_FULL|send_others[3]),
-        .LENGTH  (LENGTH3   ),
-        .SPLCOUNT(SPILLCOUNT[15:0]),
-        .EM_COUNT(EM_COUNT  ),
-        .NMRSYNC (regNSYNC  ),
-        .EOD     (EOD[3]    ),
-        .DCOUNTER(DCOUNTER3 ),
-        .DOUT    (outdata3  ),
-        .SEND_EN (iSendEn[3]),
-        .RD_RDY  (readRdy[3])
-    );
 
-    assign BUF_SWITCH = {iSendEn,enWrite};
+    assign BUF_SWITCH = {SEND_EN_INT,enWrite};
 endmodule
 
 module sendStatus(

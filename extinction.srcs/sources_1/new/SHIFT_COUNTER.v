@@ -1,4 +1,34 @@
-module SHIFT_COUNTER(
+module SHIFT_COUNTER_ALL
+    #(parameter NCHANNEL=74,
+      parameter DWIDTH=16) (
+        input   wire                    RST,
+        input   wire                    CLK,
+        input   wire                    EN,
+        input   wire    [NCHANNEL-1:0]  SIG,
+        input   wire                    EOD,
+        input   wire    [10:0]          RELCNTR,
+        input   wire    [10:0]          RLENGTH,
+        output  wire    [NCHANNEL*DWIDTH-1:0]   COUNTER
+    );
+genvar i;
+generate
+    for (i = 0; i < NCHANNEL; i = i+1) begin: CHANNEL_BLK
+        SHIFT_COUNTER_EACH shift_cntr(
+            .RST    (RST    ),
+            .CLK    (CLK    ),
+            .EN     (EN     ),
+            .SIG    (SIG[i] ),
+            .EOD    (EOD    ), // end of data sending
+            .RELCNTR(RELCNTR),
+            .RLENGTH(RLENGTH),
+            .COUNTER(COUNTER[(i+1)*DWIDTH-1:i*DWIDTH])
+        );
+    end
+endgenerate
+endmodule
+
+
+module SHIFT_COUNTER_EACH(
     input  wire           RST,
     input  wire           CLK,
     input  wire           EN,
