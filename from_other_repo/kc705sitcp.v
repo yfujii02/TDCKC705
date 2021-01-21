@@ -128,6 +128,7 @@ module
         end
     end
 
+    wire            RST_EEPROM;
     wire            EEPROM_CS;
     wire            EEPROM_SK;
     wire            EEPROM_DI;

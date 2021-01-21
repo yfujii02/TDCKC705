@@ -40,7 +40,7 @@ module
         input    wire            SW_N           ,
         // Test inputs
         input    wire    [3:0]   GPIO_SWITCH    ,
-        input    wire    [1:0]   GPIO_SMA       ,
+        input    wire    [2:0]   GPIO_SMA       ,
         // Test outputs
         output   wire    [3:0]   GPIO_LED       , /// GPIO_LED_[4,5,6,7]
         // Connect EEPROM
@@ -66,23 +66,30 @@ module
         output   wire    [1:0]   FMC_DEBUGOUT_N // Debug signals from HPC_LA_N[33:32]
     );
 
+    wire    TEST_PSPILL;
+    wire    TEST_MRSYNC;
+    wire    EXIN_SPLCNT_RST;
+    wire    EXOUT_SPLCNT_RST;
+    assign  {EXIN_SPLCNT_RST, TEST_MRSYNC, TEST_PSPILL} = {1'b0, GPIO_SMA[1], GPIO_SMA[0]};
+    //assign  {EXIN_SPLCNT_RST, TEST_MRSYNC, TEST_PSPILL} = {!GPIO_SMA[2], GPIO_SMA[1], GPIO_SMA[0]};
+    //assign  GPIO_SMA[3] =  EXOUT_SPLCNT_RST;
+
 //-----------------------------------------------------------
 //  Pre-processing for counter signals, SPILL, and MR sync
 //-----------------------------------------------------------
-    wire    [19:0]    HA_HPC   ; // for additional information
-    wire    [31:0]    LA_HPC   ; // for main counters
-    wire    [31:0]    LA_LPC   ; // for main counters
-    wire    [63:0]    SIGNAL   ;
-    wire              PSPILL   ; // P0 for resetting counter
-    wire              PSPILL_FMC; // P0 for resetting counter from FMC
-    wire              MR_SYNC_FMC; // MR sync
-    wire              MR_SYNC  ; // MR sync
-    wire              EV_MATCH ; // Event matching signal spill-by-spill
-//    wire              COINC    ; // coincidence signal from other pion counters
-    wire    [11:0]     OLDH    ; // PMT and old hodoscope
+    wire    [19:0]    HA_HPC      ; // for additional information
+    wire    [31:0]    LA_HPC      ; // for main counters
+    wire    [31:0]    LA_LPC      ; // for main counters
+    wire    [63:0]    SIGNAL      ;
+    wire              PSPILL      ; // P0 for resetting counter
+    wire              PSPILL_FMC  ; // P0 for resetting counter from FMC
+    wire              MR_SYNC_FMC ; // MR sync
+    wire              MR_SYNC     ; // MR sync
+    wire              EV_MATCH    ; // Event matching signal spill-by-spill
+    wire    [11:0]    OLDH        ; // PMT and old hodoscope
 
-    wire    [63:0]    CHMASK   ; // mask channel if corresponding bit is high
-    wire    [14:0]    CHMASK2  ; // mask for non-main counter channels
+    wire    [63:0]    CHMASK      ; // mask channel if corresponding bit is high
+    wire    [14:0]    CHMASK2     ; // mask for non-main counter channels
      
     /// Differential to signle
     genvar i;
@@ -108,8 +115,8 @@ module
 //                     {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]};
     assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]};
     
-    assign PSPILL  = (GPIO_SWITCH[3:2]==2'b10)?  GPIO_SMA[0] : PSPILL_FMC;  // Use SMA0 for SPILL signal
-    assign MR_SYNC = (GPIO_SWITCH[3:1]==3'b101)? GPIO_SMA[1] : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
+    assign PSPILL  = (GPIO_SWITCH[3:2]==2'b10)?  TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
+    assign MR_SYNC = (GPIO_SWITCH[3:1]==3'b101)? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
 
     wire             CLK_200M     ;
     wire             TCP_OPEN_ACK ;
@@ -228,74 +235,88 @@ module
 //-----------------------------------------------------------
 //  TDC module
 //-----------------------------------------------------------
-    wire   [31:0]  HEADER     ;
-    wire   [31:0]  FOOTER     ;
-    wire           TRIGGER_INT;
-    wire    [3:0]  BOARD_ID   ;
-    wire   [31:0]  SPILLCOUNT ;
+    wire           INT_SPLCNT_RST ;
+    wire           SPLCNT_RST     ;
+    wire    [7:0]  INT_SPLCNT_RSTT;
+    wire   [31:0]  HEADER         ; 
+    wire   [31:0]  FOOTER         ;
+    wire           TRIGGER_INT    ;
+    wire    [3:0]  BOARD_ID       ;
+    wire   [31:0]  SPILLCOUNT     ;
     wire           debug_data_en ;
     wire           debug_data_end;
     wire    [7:0]  debug_dly_en;
     wire           debug_rd_en; 
     wire    [7:0]  debug_cnt;   
     wire   [15:0]  debug_fifo_cnt;
+    wire    [7:0]  debug_sploffcnt;
+    wire    [2:0]  debug_dlysplcnt;
+    assign SPLCNT_RST = INT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     top_tdc top_tdc(
         // System
-        .RESET      ((~TCP_OPEN_ACK|RUN_RESET)), // in : System Reset
-        .CLK_200M   (CLK_200M                 ), // in : Clock
+        .RESET          ((~TCP_OPEN_ACK|RUN_RESET)), // in : System Reset
+        .CLK_200M       (CLK_200M                 ), // in : Clock
+        .INT_SPLCNT_RST (SPLCNT_RST               ), // in : (In) Spl cnt reset
+        .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]     ), // in : (In) Spl cnt reset timing from spill end
+        .SPLCNT_RST     (EXOUT_SPLCNT_RST         ), // out: (Ex) Spl cnt reset
         // Counter data
-        .SIGNAL     (regSIG[63:0]             ), // in : New hodoscope signals
-        .PSPILL     (PSPILL                   ), // in : SPILL signal
-        .MR_SYNC    (regSync                  ), // in : MR sync signal
-        .OLDH       (regOLDH[11:0]            ), // in : Old hodoscope signals
-        .EV_MATCH   (EV_MATCH                 ), // in : Event-mathcing signal
-        .TCP_BUSY   (FIFO_FULL                ), // in : Busy flag for DAQ to pend the data sending
-        .START      (RUN_START                ), // in : Start signal to send the data
-        .BOARD_ID   (BOARD_ID[3:0]            ), // in : Board ID
-        .HEADER     (HEADER[31:0]             ), // in : Header data
-        .FOOTER     (FOOTER[31:0]             ), // in : Footer data
-        .TRIGGER_INT(TRIGGER_INT              ), // in :
-        .SPILLCOUNT (SPILLCOUNT[31:0]         ), // in : Spill count
+        .SIGNAL         (regSIG[63:0]             ), // in : New hodoscope signals
+        .PSPILL         (PSPILL                   ), // in : SPILL signal
+        .MR_SYNC        (regSync                  ), // in : MR sync signal
+        .OLDH           (regOLDH[11:0]            ), // in : Old hodoscope signals
+        .EV_MATCH       (EV_MATCH                 ), // in : Event-mathcing signal
+        .TCP_BUSY       (FIFO_FULL                ), // in : Busy flag for DAQ to pend the data sending
+        .START          (RUN_START                ), // in : Start signal to send the data
+        .BOARD_ID       (BOARD_ID[3:0]            ), // in : Board ID
+        .HEADER         (HEADER[31:0]             ), // in : Header data
+        .FOOTER         (FOOTER[31:0]             ), // in : Footer data
+        .TRIGGER_INT    (TRIGGER_INT              ), // in :
+        .SPILLCOUNT     (SPILLCOUNT[31:0]         ), // in : Spill count
         // TCP/IP output data
-        .OUTDATA    (OUTDATA[7:0]             ), // out: Output data into SiTCP
-        .SEND_EN    (TCP_TX_EN                ), // out: Output data enable SiTCP
+        .OUTDATA        (OUTDATA[7:0]             ), // out: Output data into SiTCP
+        .SEND_EN        (TCP_TX_EN                ), // out: Output data enable SiTCP
         // Debug pins
-        .DEBUG_DATA_EN (debug_data_en ), // out:
-        .DEBUG_DATA_END(debug_data_end), // out:
-        .DEBUG_DLY_EN  (debug_dly_en  ), // out:
-        .DEBUG_RD_EN   (debug_rd_en   ), // out:
-        .DEBUG_CNT     (debug_cnt     ), // out:
-        .DEBUG_FIFO_CNT(debug_fifo_cnt)
+        .DEBUG_DATA_EN  (debug_data_en  ), // out:
+        .DEBUG_DATA_END (debug_data_end ), // out:
+        .DEBUG_DLY_EN   (debug_dly_en   ), // out:
+        .DEBUG_RD_EN    (debug_rd_en    ), // out:
+        .DEBUG_CNT      (debug_cnt      ), // out:
+        .DEBUG_FIFO_CNT (debug_fifo_cnt ), // out:
+        .DEBUG_SPLOFFCNT(debug_sploffcnt), // out:
+        .DEBUG_DLYSPLCNT(debug_dlysplcnt)  // out:
     );
 
 
 //-----------------------------------------------------------
 //  UDP Slow Controler
 //-----------------------------------------------------------
+    wire      FMC_DBG;
     LOC_REG LOC_REG(
         // System
-        .CLK        (CLK_200M        ), // in : Clock
-        .RST        (TCP_RST         ), // in : System reset
+        .CLK            (CLK_200M            ), // in : Clock
+        .RST            (TCP_RST             ), // in : System reset
         // Control
-        .LOC_ADDR   (RBCP_ADDR[31:0] ), // in : Address
-        .LOC_WD     (RBCP_WD[7:0]    ), // in : Data
-        .LOC_WE     (RBCP_WE         ), // in : Write enable
-        .LOC_RE     (RBCP_RE         ), // in : Read enable
-        .LOC_ACK    (RBCP_ACK        ), // out: Access acknowledge
-        .LOC_RD     (RBCP_RD[7:0]    ), // out: Read data
-        // Registers
-        .BOARD_ID   (BOARD_ID[3:0]   ), // in : Board ID
-        .SPILLCOUNT (SPILLCOUNT[31:0]), // in : Spill count
-        .REG_MODE   (RUN_MODE[2:0]   ), // out: Mode select (000: TDC, 001: MCS, 111: Test)
-        .REG_START  (RUN_START       ), // out: Start data transferring (0: stop, 1: start)
-        .REG_RESET  (RUN_RESET       ), // out: Reset
-        .REG_HEADER (HEADER[31:0]    ), // out: Header
-        .REG_FOOTER (FOOTER[31:0]    ), // out: Footer
-        .REG_CHMASK (CHMASK[63:0]    ), // out: Mask channel selector
-        .REG_CHMASK2(CHMASK2[14:0]   ), // out: Mask channel selector
-        .REG_FMC_DBG(FMC_DBG         )  // out: Enable FMC debug pin (HPC_LA33,32)
+        .LOC_ADDR       (RBCP_ADDR[31:0]     ), // in : Address
+        .LOC_WD         (RBCP_WD[7:0]        ), // in : Data
+        .LOC_WE         (RBCP_WE             ), // in : Write enable
+        .LOC_RE         (RBCP_RE             ), // in : Read enable
+        .LOC_ACK        (RBCP_ACK            ), // out: Access acknowledge
+        .LOC_RD         (RBCP_RD[7:0]        ), // out: Read data
+        // Registers    
+        .BOARD_ID       (BOARD_ID[3:0]       ), // in : Board ID
+        .SPILLCOUNT     (SPILLCOUNT[31:0]    ), // in : Spill count
+        .REG_MODE       (RUN_MODE[2:0]       ), // out: Mode select (000: TDC, 001: MCS, 111: Test)
+        .REG_START      (RUN_START           ), // out: Start data transferring (0: stop, 1: start)
+        .REG_RESET      (RUN_RESET           ), // out: Reset
+        .REG_HEADER     (HEADER[31:0]        ), // out: Header
+        .REG_FOOTER     (FOOTER[31:0]        ), // out: Footer
+        .REG_CHMASK     (CHMASK[63:0]        ), // out: Mask channel selector
+        .REG_CHMASK2    (CHMASK2[14:0]       ), // out: Mask channel selector
+        .REG_FMC_DBG    (FMC_DBG             ), // out: Enable FMC debug pin (HPC_LA33,32)
+        .REG_SPLCNT_RST (INT_SPLCNT_RST      ), // out: Spill count reset
+        .REG_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0])  // out: Spill count reset timing from spill end (def: 1us)
     );
 
 
@@ -339,8 +360,8 @@ module
         .probe3 (debug_dly_en[7:0]      ),
         .probe4 (debug_cnt[7:0]         ),
         .probe5 ({3'd0,debug_pause[4:0]}),
-        .probe6 (8'd0                   ),
-        .probe7 (8'd0                   ),
+        .probe6 (debug_sploffcnt        ),
+        .probe7 ({3'd0,EXIN_SPLCNT_RST,EXOUT_SPLCNT_RST,debug_dlysplcnt} ),
         // Single bit per each
         .probe8 (RUN_START              ),
         .probe9 (TCP_TX_EN              ),

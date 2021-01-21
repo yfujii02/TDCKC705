@@ -41,7 +41,9 @@ module LOC_REG(
     REG_FOOTER          ,    // out    : Header
     REG_CHMASK          ,    // out    : mask input channels
     REG_CHMASK2         ,    // out    : mask input channels 2
-    REG_FMC_DBG              // out    : enable FMC debug pin (HPC_LA33,32)
+    REG_FMC_DBG         ,    // out    : enable FMC debug pin (HPC_LA33,32)
+    REG_SPLCNT_RST      ,    // out    : spill count reset
+    REG_SPLCNT_RSTT          // out    : spill count reset timing from spill end
 );
 
 //-------- Input/Output -------------
@@ -68,6 +70,9 @@ module LOC_REG(
     output   [14:0]  REG_CHMASK2    ;
 
     output           REG_FMC_DBG    ;
+
+    output           REG_SPLCNT_RST ;
+    output   [7:0]   REG_SPLCNT_RSTT;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -123,8 +128,9 @@ module LOC_REG(
     reg     [7:0]    x1B_Reg   ; // NC
     reg     [7:0]    x1C_Reg   ; // NC
     reg     [7:0]    x1D_Reg   ; // NC
-    reg     [7:0]    x1E_Reg   ; // NC
-    reg     [7:0]    x1F_Reg   ; // NC
+    reg              x1E_Reg   ; //
+    reg     [2:0]    irX1E_Reg ; // 
+    reg     [7:0]    x1F_Reg   ; //
 
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
@@ -150,7 +156,7 @@ module LOC_REG(
             x0E_Reg[7:0]    <= 8'hAA;   // Footer
             x0F_Reg[7:0]    <= 8'hAA;   // Footer
 
-            x10_Reg[7:0]    <= 8'h00;
+            x10_Reg[7:0]    <= 8'h00;   //
             x11_Reg[7:0]    <= 8'h00;   //
             x12_Reg[7:0]    <= 8'h00;   //
             x13_Reg[7:0]    <= 8'h00;   //
@@ -164,8 +170,9 @@ module LOC_REG(
             x1B_Reg[7:0]    <= 8'h1B;   //
             x1C_Reg[7:0]    <= 8'h1C;   //
             x1D_Reg[7:0]    <= 8'h1D;   //
-            x1E_Reg[7:0]    <= 8'h1E;   //
-            x1F_Reg[7:0]    <= 8'h1F;   //
+            x1E_Reg         <= 1'h0;    // Spill count reset
+            irX1E_Reg[2:0]  <= 3'h0;    // 
+            x1F_Reg[7:0]    <= 8'hC8;   // SPLSNT reset timing from spill end (def. 200*5ns=1us)
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -205,7 +212,13 @@ module LOC_REG(
                 x18_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x18_Reg[7:0]);
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
                 x1A_Reg         <= (regCs[1] & (irAddr[3:0]==4'hA) ? irWd[0:0] : x1A_Reg);
+
+                x1E_Reg         <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[0:0] : x1E_Reg);
+                x1F_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x1F_Reg[7:0]);
+            end else begin
+                x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
             end
+            irX1E_Reg[2:0] <= {irX1E_Reg[1:0], x1E_Reg};
         end
     end
 
@@ -252,8 +265,8 @@ module LOC_REG(
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
             4'hD:    rdDataB[7:0]    <= 8'h1D;    // NC
-            4'hE:    rdDataB[7:0]    <= 8'h1E;    // NC
-            4'hF:    rdDataB[7:0]    <= 8'h1F;    // NC
+            4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // NC
+            4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // SPLCNT reset timing from spill end
         endcase
 
         regRv[1:0]    <= (irRe    ? regCs[1:0] : 8'd0);
@@ -284,4 +297,7 @@ module LOC_REG(
     assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
 
     assign  REG_FMC_DBG = x1A_Reg;
+
+    assign  REG_SPLCNT_RST       = x1E_Reg;
+    assign  REG_SPLCNT_RSTT[7:0] = x1F_Reg[7:0];
 endmodule
