@@ -73,7 +73,6 @@ module DATA_BUF_singleBRAM2(
 
     reg    [103:0]    DIN     ; // 8*13
     reg               W_EN    ;
-    reg      [2:0]    endReg  ;
     reg      [1:0]    regFFull; // fifo full
     reg     [31:0]    wrCnt   ; // fifo write count 
 
@@ -92,11 +91,9 @@ module DATA_BUF_singleBRAM2(
             DIN     <= 104'd0;
             W_EN    <=  1'b0;
             ENABLE  <=  1'b0;
-            endReg  <=  3'd0;
             regFFull<=  2'd0;
             wrCnt   <=  32'd0;
         end else begin
-            endReg <= {endReg[1:0],SPLEND};
             if (SPLSTART)begin
                 ENABLE <= 1'b1;
                 //DIN    <= 104'h0246_8ACE_ECA8_6420_048C_26AE_EA;
@@ -107,10 +104,7 @@ module DATA_BUF_singleBRAM2(
                 ENABLE <= 1'b0;
                 //DIN    <= 104'h1357_9BDF_FDB9_7531_159D_37BF_FB;
                 DIN    <= {FOOTER[31:0],SPLCOUNT[15:0],EMCOUNT[15:0],wrCnt[31:0],8'hAB}; // FOOTER = REG_FOOTER[31:0]
-            end else if (endReg[1])begin
                 W_EN   <= 1'b1;
-            end else if (endReg[2])begin
-                W_EN   <= 1'b0;
             end else if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
                 wrCnt    <= wrCnt+32'd1;
