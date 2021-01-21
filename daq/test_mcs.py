@@ -23,7 +23,7 @@ def stopDAQ():
 def readTestBits():
     data = rbcp.read(0x00,8)
     print(data)
-    rbcp.write(0x00,b'\x07') # test run mode
+    rbcp.write(0x00,b'\x07') # test run mode using internal data pattern
     data = rbcp.read(0x00,8)
     print(data)
     data = rbcp.read(0x08,8)
@@ -37,14 +37,19 @@ def readSpillCount():
     data = rbcp.read(0x04,4)
     print('Spill# = ',data)
 
+##### Set the value to subdivide the spill-by-spill MCS data
+def setSpillDiv():
+    rbcp.write(0x1D,b'\x01')
+
 ## DAQ start...
 readTestBits()
 maskTest()
+setSpillDiv()
 sendReset()
 startDAQ()
-for i in range(20):
+for i in range(10):
     readSpillCount()
-    sleep(1.3)
+    sleep(2.62)
 stopDAQ()
 readSpillCount()
 sendReset()
