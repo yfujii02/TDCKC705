@@ -31,10 +31,10 @@ module LOC_REG(
     BOARD_ID            ,    // in     : Board ID [3:0]
     SPILLCOUNT          ,    // in     : Spill count [15:0]
     REG_MODE            ,    // out    : Mode select [2:0]
-                             //         000: TDC
-                             //         001: MCS
-                             //         010-110: Reserved
-                             //         111: Test mode (internal pattern)
+                             //           000: TDC
+                             //           001: MCS
+                             //           010-110: Reserved
+                             //           111: Test mode (internal pattern)
     REG_START           ,    // out    : Start data transferring (0: stop, 1:start)
     REG_RESET           ,    // out    : RESET
     REG_HEADER          ,    // out    : Header
@@ -238,16 +238,16 @@ module LOC_REG(
             4'hF:    rdDataA[7:0]    <= x0F_Reg[7:0];        // Footer
         endcase
         case(irAddr[3:0]) /// channel mask
-            4'h0:    rdDataB[7:0]    <= x10_Reg[7:0];    // Channel mask [63:56]
-            4'h1:    rdDataB[7:0]    <= x11_Reg[7:0];    // Channel mask [55:48]
-            4'h2:    rdDataB[7:0]    <= x12_Reg[7:0];    // Channel mask [47:40]
-            4'h3:    rdDataB[7:0]    <= x13_Reg[7:0];    // Channel mask [39:32]
-            4'h4:    rdDataB[7:0]    <= x14_Reg[7:0];    // Channel mask [31:24]
-            4'h5:    rdDataB[7:0]    <= x15_Reg[7:0];    // Channel mask [23:16]
-            4'h6:    rdDataB[7:0]    <= x16_Reg[7:0];    // Channel mask [15: 8]
-            4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];    // Channel mask [ 7: 0]
-            4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];    // Channel mask 2 [14:8] ([7]:nc)
-            4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];    // Channel mask 2 [ 7:0]
+            4'h0:    rdDataB[7:0]    <= x10_Reg[7:0];      // Channel mask [63:56]
+            4'h1:    rdDataB[7:0]    <= x11_Reg[7:0];      // Channel mask [55:48]
+            4'h2:    rdDataB[7:0]    <= x12_Reg[7:0];      // Channel mask [47:40]
+            4'h3:    rdDataB[7:0]    <= x13_Reg[7:0];      // Channel mask [39:32]
+            4'h4:    rdDataB[7:0]    <= x14_Reg[7:0];      // Channel mask [31:24]
+            4'h5:    rdDataB[7:0]    <= x15_Reg[7:0];      // Channel mask [23:16]
+            4'h6:    rdDataB[7:0]    <= x16_Reg[7:0];      // Channel mask [15: 8]
+            4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];      // Channel mask [ 7: 0]
+            4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];      // Channel mask 2 [14:8] ([7]:nc)
+            4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];      // Channel mask 2 [ 7:0]
             4'hA:    rdDataB[7:0]    <= {7'd0,x1A_Reg};    // NC
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC

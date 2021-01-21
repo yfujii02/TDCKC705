@@ -21,67 +21,44 @@
 
 
 module DATA_BUF_singleBRAM2(
-    RST,      // in  System Reset
-    CLK,      // in  System CLK
-    DATA_TRG, // in  Trigger for signals
-    COUNTER,  // in  Counter value [31:0]
-    SPLSTART, // in  Start Spill (Enable When Spill Signal Comes)
-    SPLEND,   // in  End Spill
-    SPLCOUNT, // in  Header (Header[7:0] SPILL Count [7:0])
-    SIG,      // in  MRSYNC[65], COINC[64], Hodoscope[63:0]
-    START,    // in  DAQ start signal
-    EMCOUNT,  // in  Event matching count [15:0]
-    BOARD_ID, // in  Board ID [3:0]
-    HEADER,   // in  Header [83:0]
-    FOOTER,   // in  Footer [83:0]
-    TRIGGER_INT, // out Internal trigger to readout the data
-    DOUT,        // out Output data [7:0]
-    SEND_EN,     // out Send packet enable
-    TCP_FULL,    // in  TCP Full flag
-    DEBUG_DATA_EN,
-    DEBUG_DATA_END,
-    DEBUG_DLY_EN,
-    DEBUG_RD_EN,
-    DEBUG_CNT,
-    DEBUG_FIFO_CNT
+    input   wire              RST           , // in : System Reset
+    input   wire              CLK           , // in : System CLK
+    input   wire              DATA_TRG      , // in : Trigger for signals
+    input   wire    [31:0]    COUNTER       , // in : Counter value [31:0]
+    input   wire              SPLSTART      , // in : Start Spill (Enable When Spill Signal Comes)
+    input   wire              SPLEND        , // in : End Spill
+    input   wire    [15:0]    SPLCOUNT      , // in : Header (Header[7:0] SPILL Count [7:0])
+    input   wire    [76:0]    SIG           , // in : MRSYNC[76], OLDH[76:64], Hodoscope[63:0]
+    input   wire              START         , // in : DAQ start signal
+    input   wire    [15:0]    EMCOUNT       , // in : Event matching count [15:0]
+    input   wire     [3:0]    BOARD_ID      , // in : Board ID [3:0]
+    input   wire    [31:0]    HEADER        , // in : Header [83:0]
+    input   wire    [31:0]    FOOTER        , // in : Footer [83:0]
+    output  wire              TRIGGER_INT   , // out: Internal trigger to readout the data
+    output  wire     [7:0]    DOUT          , // out: Output data [7:0]
+    output  wire              SEND_EN       , // out: Send packet enable
+    input   wire              TCP_FULL      , // in : TCP Full flag
+    output  wire              DEBUG_DATA_EN , // out:
+    output  wire              DEBUG_DATA_END, // out:
+    output  wire     [7:0]    DEBUG_DLY_EN  , // out:
+    output  wire              DEBUG_RD_EN   , // out:
+    output  wire     [7:0]    DEBUG_CNT     , // out:
+    output  wire    [15:0]    DEBUG_FIFO_CNT  // out:
 );
-    input             RST     ;
-    input             CLK     ;
-    input             DATA_TRG;
-    input   [31:0]    COUNTER ;
-    input             SPLSTART;
-    input             SPLEND  ;
-    input   [15:0]    SPLCOUNT;
-    input   [76:0]    SIG     ; // MRSYNC[76], OLDH[75:64], Hodoscope[63:0]
-    input             START   ;
-    input   [15:0]    EMCOUNT ;
-    input    [3:0]    BOARD_ID;
-    input   [31:0]    HEADER  ;
-    input   [31:0]    FOOTER  ;
-    output            TRIGGER_INT;
-    output   [7:0]    DOUT    ;
-    output            SEND_EN ;
-    input             TCP_FULL;
-    output            DEBUG_DATA_EN;
-    output            DEBUG_DATA_END;
-    output  [  7:0]   DEBUG_DLY_EN;
-    output            DEBUG_RD_EN;
-    output   [7:0]    DEBUG_CNT;
-    output  [15:0]    DEBUG_FIFO_CNT;
 
-    reg               ENABLE  ; // Enable on until the spill end
+    reg               ENABLE    ; // Enable on until the spill end
 
-    reg    [103:0]    DIN     ; // 8*13
-    reg               W_EN    ;
-    reg      [1:0]    regFFull; // fifo full
-    reg     [31:0]    wrCnt   ; // fifo write count 
+    reg    [103:0]    DIN       ; // 8*13
+    reg               W_EN      ;
+    reg      [1:0]    regFFull  ; // fifo full
+    reg     [31:0]    wrCnt     ; // fifo write count 
 
-    wire            fifo_rd_en;
-    wire            fifo_wr_en;
-    wire            fifo_full ;
-    wire            fifo_empty;
-    wire   [103:0]  data_out  ;
-    wire   [ 16:0]  data_count;
+    wire              fifo_rd_en;
+    wire              fifo_wr_en;
+    wire              fifo_full ;
+    wire              fifo_empty;
+    wire   [103:0]    data_out  ;
+    wire   [ 16:0]    data_count;
 
     /// Current data size = 13-bytes, to make the data rate as small as possible.
     /// possible option is to make counter 27-bits to 32-bits and make it 14-bytes
@@ -111,8 +88,7 @@ module DATA_BUF_singleBRAM2(
                 if (DATA_TRG && ~fifo_full && ~SPLSTART) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                                                          // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
-                                                         // COUNTER start from SPILL signal
-                                                         //  and increment with 200MHz SYSCLK
+                                                         // COUNTER start from SPILL signal and increment with 200MHz SYSCLK
 
                     W_EN   <= 1'b1;
                 end else begin
@@ -125,7 +101,7 @@ module DATA_BUF_singleBRAM2(
         end
     end
 
-///// fifo
+    /// fifo
     wire              SYSCLKR      ;
     wire              reg_sysrstA  ;
     wire              reg_sysrstB  ;
@@ -161,25 +137,27 @@ module DATA_BUF_singleBRAM2(
         .OUT            (DOUT[7:0]            ), // out
         .DEBUG_DATA_EN  (DEBUG_DATA_EN        ), // out
         .DEBUG_DATA_END (DEBUG_DATA_END       ), // out
-        .DEBUG_DLY_EN   (DEBUG_DLY_EN         ), // out
+        .DEBUG_DLY_EN   (DEBUG_DLY_EN[7:0]    ), // out
         .DEBUG_RD_EN    (DEBUG_RD_EN          ), // out
-        .DEBUG_CNT      (DEBUG_CNT            )  // out
+        .DEBUG_CNT      (DEBUG_CNT[7:0]       )  // out
     );
 endmodule
 
+
+
 module OUT_DATA_PACK(
-    input           SYSCLK,
-    input           SYSRST,
-    input           TRIGGER,
-    input   [103:0] DATA,
-    output          FIFO_RD_EN,
-    output          OUT_VALID,
-    output  [  7:0] OUT,
-    output          DEBUG_DATA_EN,
-    output          DEBUG_DATA_END,
-    output  [  7:0] DEBUG_DLY_EN,
-    output          DEBUG_RD_EN,
-    output  [  7:0] DEBUG_CNT
+    input   wire           SYSCLK    ,
+    input   wire           SYSRST    ,
+    input   wire           TRIGGER   ,
+    input   wire   [103:0] DATA      ,
+    output  wire           FIFO_RD_EN,
+    output  wire           OUT_VALID ,
+    output  wire   [  7:0] OUT       ,
+    output  wire           DEBUG_DATA_EN ,
+    output  wire           DEBUG_DATA_END,
+    output  wire   [  7:0] DEBUG_DLY_EN  ,
+    output  wire           DEBUG_RD_EN   ,
+    output  wire   [  7:0] DEBUG_CNT
     );
     
     reg         data_en;
@@ -274,10 +252,10 @@ module OUT_DATA_PACK(
     end
     assign OUT[7:0] = out_val ? data_out[7:0] : 8'hCC;
 
-    assign DEBUG_CNT[7:0] = count_tmp[11:4];
+    assign DEBUG_CNT[7:0]    = count_tmp[11:4];
     assign DEBUG_DLY_EN[7:0] = {5'd0,data_en,data_end,rd_en};
-    assign DEBUG_DATA_EN  = data_en;
-    assign DEBUG_DATA_END = data_end;
-    assign DEBUG_RD_EN    = rd_en;
+    assign DEBUG_DATA_EN     = data_en;
+    assign DEBUG_DATA_END    = data_end;
+    assign DEBUG_RD_EN       = rd_en;
     
 endmodule
