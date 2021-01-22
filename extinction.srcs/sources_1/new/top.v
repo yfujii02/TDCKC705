@@ -252,16 +252,17 @@ module
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
     wire    [2:0]  debug_dlysplcnt;
-    assign SPLCNT_RST = INT_SPLCNT_RST | EXIN_SPLCNT_RST;
+    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     top_tdc top_tdc(
         // System
         .RESET          ((~TCP_OPEN_ACK|RUN_RESET)), // in : System Reset
         .CLK_200M       (CLK_200M                 ), // in : Clock
-        .INT_SPLCNT_RST (SPLCNT_RST               ), // in : (In) Spl cnt reset
+        .SPLCNT_RST     (SPLCNT_RST               ), // in : Spill count reset
+        .INT_SPLCNT_RST (INT_SPLCNT_RST           ), // in : (In) Spl cnt reset
         .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]     ), // in : (In) Spl cnt reset timing from spill end
-        .SPLCNT_RST     (EXOUT_SPLCNT_RST         ), // out: (Ex) Spl cnt reset
+        .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST         ), // out: (Ex) Spl cnt reset
         // Counter data
         .SIGNAL         (regSIG[63:0]             ), // in : New hodoscope signals
         .PSPILL         (PSPILL                   ), // in : SPILL signal
