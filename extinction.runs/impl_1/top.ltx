@@ -279,7 +279,7 @@
                                 "portIndex": 5,
                                 "nets": [
                                     {
-                                        "name": "<const0>_1",
+                                        "name": "<const0>",
                                         "isBus": false
                                     }
                                 ]
@@ -295,7 +295,7 @@
                                 "portIndex": 5,
                                 "nets": [
                                     {
-                                        "name": "<const0>_2",
+                                        "name": "TEST_MRSYNC",
                                         "isBus": false
                                     }
                                 ]
@@ -311,7 +311,7 @@
                                 "portIndex": 5,
                                 "nets": [
                                     {
-                                        "name": "<const0>_3",
+                                        "name": "TEST_PSPILL",
                                         "isBus": false
                                     }
                                 ]
@@ -424,50 +424,29 @@
                                 "direction": "IN",
                                 "isVector": true,
                                 "leftIndex": 5,
-                                "rightIndex": 5,
-                                "portIndex": 7,
-                                "nets": [
-                                    {
-                                        "name": "<const0>_4",
-                                        "isBus": false
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "probe7",
-                                "id": 14,
-                                "type": "DATA_TRIGGER",
-                                "direction": "IN",
-                                "isVector": true,
-                                "leftIndex": 6,
-                                "rightIndex": 6,
-                                "portIndex": 7,
-                                "nets": [
-                                    {
-                                        "name": "<const0>_5",
-                                        "isBus": false
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "probe7",
-                                "id": 15,
-                                "type": "DATA_TRIGGER",
-                                "direction": "IN",
-                                "isVector": true,
-                                "leftIndex": 7,
                                 "rightIndex": 7,
                                 "portIndex": 7,
                                 "nets": [
                                     {
-                                        "name": "<const0>",
-                                        "isBus": false
+                                        "name": "irMrsyncTime",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "irMrsyncTime[2]"
+                                            },
+                                            {
+                                                "name": "irMrsyncTime[1]"
+                                            },
+                                            {
+                                                "name": "irMrsyncTime[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
                             {
                                 "name": "probe8",
-                                "id": 16,
+                                "id": 14,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -483,7 +462,7 @@
                             },
                             {
                                 "name": "probe9",
-                                "id": 17,
+                                "id": 15,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -499,7 +478,7 @@
                             },
                             {
                                 "name": "probe10",
-                                "id": 18,
+                                "id": 16,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -515,7 +494,7 @@
                             },
                             {
                                 "name": "probe11",
-                                "id": 19,
+                                "id": 17,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -531,7 +510,7 @@
                             },
                             {
                                 "name": "probe12",
-                                "id": 20,
+                                "id": 18,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -547,7 +526,7 @@
                             },
                             {
                                 "name": "probe13",
-                                "id": 21,
+                                "id": 19,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -563,7 +542,7 @@
                             },
                             {
                                 "name": "probe14",
-                                "id": 22,
+                                "id": 20,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -579,7 +558,7 @@
                             },
                             {
                                 "name": "probe15",
-                                "id": 23,
+                                "id": 21,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -595,7 +574,7 @@
                             },
                             {
                                 "name": "probe16",
-                                "id": 24,
+                                "id": 22,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,

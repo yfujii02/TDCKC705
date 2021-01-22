@@ -43,41 +43,52 @@ module LOC_REG(
     REG_CHMASK2         ,    // out    : mask input channels 2
     REG_FMC_DBG         ,    // out    : enable FMC debug pin (HPC_LA33,32)
     REG_SPLCNT_RST      ,    // out    : spill count reset
-    REG_SPLCNT_RSTT          // out    : spill count reset timing from spill end
+    REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
+    REG_TEST_PSPILL_EN  ,    // out    : test spill enable
+    REG_TEST_MRSYNC_EN  ,    // out    : tset MR sync enable
+    REG_TEST_PSPILL_POS ,    // out    : time width of test spill (Pos.)
+    REG_TEST_PSPILL_NEG ,    // out    : time width of test spill (Pos.)
+    REG_TEST_MRSYNC_FRQ      // out    : Tset MR sync frequency
 );
 
 //-------- Input/Output -------------
-    input            CLK            ;
-    input            RST            ;
+    input            CLK                ;
+    input            RST                ;
 
-    input    [31:0]  LOC_ADDR       ;
-    input     [7:0]  LOC_WD         ;
-    input            LOC_WE         ;
-    input            LOC_RE         ;
-    output           LOC_ACK        ;
-    output    [7:0]  LOC_RD         ;
+    input    [31:0]  LOC_ADDR           ;
+    input     [7:0]  LOC_WD             ;
+    input            LOC_WE             ;
+    input            LOC_RE             ;
+    output           LOC_ACK            ;
+    output    [7:0]  LOC_RD             ;
 
-    input     [3:0]  BOARD_ID       ;
-    input    [31:0]  SPILLCOUNT     ;
-    output    [2:0]  REG_MODE       ;
-    output           REG_START      ;
-    output           REG_RESET      ;
+    input     [3:0]  BOARD_ID           ;
+    input    [31:0]  SPILLCOUNT         ;
+    output    [2:0]  REG_MODE           ;
+    output           REG_START          ;
+    output           REG_RESET          ;
 
-    output   [31:0]  REG_HEADER     ;
-    output   [31:0]  REG_FOOTER     ;
+    output   [31:0]  REG_HEADER         ;
+    output   [31:0]  REG_FOOTER         ;
     
-    output   [63:0]  REG_CHMASK     ;
-    output   [14:0]  REG_CHMASK2    ;
+    output   [63:0]  REG_CHMASK         ;
+    output   [14:0]  REG_CHMASK2        ;
 
-    output           REG_FMC_DBG    ;
+    output           REG_FMC_DBG        ;
 
-    output           REG_SPLCNT_RST ;
-    output   [7:0]   REG_SPLCNT_RSTT;
+    output           REG_SPLCNT_RST     ;
+    output    [7:0]  REG_SPLCNT_RSTT    ;
+
+    output           REG_TEST_PSPILL_EN ;
+    output           REG_TEST_MRSYNC_EN ;
+    output   [31:0]  REG_TEST_PSPILL_POS;
+    output   [31:0]  REG_TEST_PSPILL_NEG;
+    output   [31:0]  REG_TEST_MRSYNC_FRQ;
 
 //------------------------------------------------------------------------------
 //    Input buffer
 //------------------------------------------------------------------------------
-    reg       [1:0]  regCs           ;
+    reg       [2:0]  regCs           ;
     reg      [10:0]  irAddr          ;
     reg              irWe            ;
     reg              irRe            ;
@@ -86,7 +97,7 @@ module LOC_REG(
     always@ (posedge CLK) begin
         regCs[0]     <= (LOC_ADDR[31:4]==28'h0);
         regCs[1]     <= (LOC_ADDR[31:4]==28'h1);
-        //regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
+        regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
 
         irAddr[10:0] <= LOC_ADDR[10:0];
         irWe         <= LOC_WE;
@@ -132,6 +143,23 @@ module LOC_REG(
     reg     [2:0]    irX1E_Reg ; // 
     reg     [7:0]    x1F_Reg   ; //
 
+    reg     [7:0]    x20_Reg   ;
+    reg     [7:0]    x21_Reg   ;
+    reg     [7:0]    x22_Reg   ;
+    reg     [7:0]    x23_Reg   ;
+    reg     [7:0]    x24_Reg   ;
+    reg     [7:0]    x25_Reg   ;
+    reg     [7:0]    x26_Reg   ;
+    reg     [7:0]    x27_Reg   ;
+    reg     [7:0]    x28_Reg   ;
+    reg     [7:0]    x29_Reg   ;
+    reg     [7:0]    x2A_Reg   ;
+    reg     [7:0]    x2B_Reg   ; 
+    reg     [7:0]    x2C_Reg   ;
+    reg     [7:0]    x2D_Reg   ;
+    reg     [7:0]    x2E_Reg   ; // NC
+    reg     [7:0]    x2F_Reg   ; // NC
+
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
 ///////////////////////////////////////////////////////
@@ -174,6 +202,23 @@ module LOC_REG(
             irX1E_Reg[2:0]  <= 3'h0;    // 
             x1F_Reg[7:0]    <= 8'hC8;   // SPLSNT reset timing from spill end (def. 200*5ns=1us)
 
+            x20_Reg[7:0]    <= 8'h00;   // Time width of test spill (Pos.) [31:24]
+            x21_Reg[7:0]    <= 8'h4C;   // Time width of test spill (Pos.) [23:16]
+            x22_Reg[7:0]    <= 8'h4B;   // Time width of test spill (Pos.) [15:8]
+            x23_Reg[7:0]    <= 8'h40;   // Time width of test spill (Pos.) [7:0] (def. 0.5ms)
+            x24_Reg[7:0]    <= 8'h00;   // Time width of test spill (Neg.)
+            x25_Reg[7:0]    <= 8'h4C;   // Time width of test spill (Neg.)
+            x26_Reg[7:0]    <= 8'h4B;   // Time width of test spill (Neg.)
+            x27_Reg[7:0]    <= 8'h40;   // Time width of test spill (Neg.) (def. 0.5ms)
+            x28_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x29_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x2A_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x2B_Reg[7:0]    <= 8'h0A;   // Test MR sync frequency (def. 1MHz, 1us)
+            x2C_Reg         <= 1'h0;    // Test spill enable
+            x2D_Reg         <= 1'h0;    // Test spill enable
+            x2E_Reg[7:0]    <= 8'h00;   // NC
+            x2F_Reg[7:0]    <= 8'h00;   // NC
+
 ///////////////////////////////////////////////////////
 // Write Registers
 ///////////////////////////////////////////////////////
@@ -215,6 +260,21 @@ module LOC_REG(
 
                 x1E_Reg         <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[0:0] : x1E_Reg);
                 x1F_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x1F_Reg[7:0]);
+
+                x20_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x20_Reg[7:0]);
+                x21_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x21_Reg[7:0]);
+                x22_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x22_Reg[7:0]);
+                x23_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h3) ? irWd[7:0] : x23_Reg[7:0]);
+                x24_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h4) ? irWd[7:0] : x24_Reg[7:0]);
+                x25_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x25_Reg[7:0]);
+                x26_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h6) ? irWd[7:0] : x26_Reg[7:0]);
+                x27_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x27_Reg[7:0]);
+                x28_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x28_Reg[7:0]);
+                x29_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x29_Reg[7:0]);
+                x2A_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hA) ? irWd[7:0] : x2A_Reg[7:0]);
+                x2B_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x2B_Reg[7:0]);
+                x2C_Reg         <= (regCs[2] & (irAddr[3:0]==4'hC) ? irWd[0:0] : x2C_Reg     );
+                x2D_Reg         <= (regCs[2] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x2D_Reg     );
             end else begin
                 x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
             end
@@ -224,7 +284,8 @@ module LOC_REG(
 
     reg      [7:0]    rdDataA ;
     reg      [7:0]    rdDataB ;
-    reg      [1:0]    regRv   ;
+    reg      [7:0]    rdDataC ;
+    reg      [2:0]    regRv   ;
     reg               regAck  ;
 
 
@@ -268,9 +329,27 @@ module LOC_REG(
             4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // NC
             4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // SPLCNT reset timing from spill end
         endcase
+        case(irAddr[3:0]) /// Test pulse setting
+            4'h0:    rdDataC[7:0]    <= x20_Reg[7:0];        // T width of test spill (Pos.) [31:24]
+            4'h1:    rdDataC[7:0]    <= x21_Reg[7:0];        // T width of test spill (Pos.) [23:16]
+            4'h2:    rdDataC[7:0]    <= x22_Reg[7:0];        // T width of test spill (Pos.) [15: 8]
+            4'h3:    rdDataC[7:0]    <= x23_Reg[7:0];        // T width of test spill (Pos.) [ 7: 0]
+            4'h4:    rdDataC[7:0]    <= x24_Reg[7:0];        // T width of test spill (Neg.) [31:24]
+            4'h5:    rdDataC[7:0]    <= x25_Reg[7:0];        // T width of test spill (Neg.) [23:16]
+            4'h6:    rdDataC[7:0]    <= x26_Reg[7:0];        // T width of test spill (Neg.) [15: 8]
+            4'h7:    rdDataC[7:0]    <= x27_Reg[7:0];        // T width of test spill (Neg.) [ 7: 0]
+            4'h8:    rdDataC[7:0]    <= x28_Reg[7:0];        // Test MR sync frequency 
+            4'h9:    rdDataC[7:0]    <= x29_Reg[7:0];        // Test MR sync frequency 
+            4'hA:    rdDataC[7:0]    <= x2A_Reg[7:0];        // Test MR sync frequency 
+            4'hB:    rdDataC[7:0]    <= x2B_Reg[7:0];        // Test MR sync frequency 
+            4'hC:    rdDataC[7:0]    <= {7'd0, x2C_Reg};     // Test spill enable
+            4'hD:    rdDataC[7:0]    <= {7'd0, x2D_Reg};     // Test MR sync enable
+            4'hE:    rdDataC[7:0]    <= x2E_Reg[7:0];        // NC
+            4'hF:    rdDataC[7:0]    <= x2F_Reg[7:0];        // NC
+        endcase
 
-        regRv[1:0]    <= (irRe    ? regCs[1:0] : 8'd0);
-        regAck        <= (|regCs[1:0]) & (irWe | irRe);
+        regRv[2:0]    <= (irRe    ? regCs[2:0] : 8'd0);
+        regAck        <= (|regCs[2:0]) & (irWe | irRe);
     end
 
     reg     [7:0]    orRd ;
@@ -278,7 +357,8 @@ module LOC_REG(
 
     always@ (posedge CLK) begin
         orRd[7:0]  <=   (regRv[0]  ? rdDataA[7:0] : 8'd0)|
-                        (regRv[1]  ? rdDataB[7:0] : 8'd0);
+                        (regRv[1]  ? rdDataB[7:0] : 8'd0)|
+                        (regRv[2]  ? rdDataC[7:0] : 8'd0);
         orAck      <=   regAck;
     end
 
@@ -300,4 +380,11 @@ module LOC_REG(
 
     assign  REG_SPLCNT_RST       = x1E_Reg;
     assign  REG_SPLCNT_RSTT[7:0] = x1F_Reg[7:0];
+
+    assign  REG_TEST_PSPILL_EN        = x2C_Reg;
+    assign  REG_TEST_MRSYNC_EN        = x2D_Reg;
+    assign  REG_TEST_PSPILL_POS[31:0] = {x20_Reg[7:0],x21_Reg[7:0],x22_Reg[7:0],x23_Reg[7:0]};
+    assign  REG_TEST_PSPILL_NEG[31:0] = {x24_Reg[7:0],x25_Reg[7:0],x26_Reg[7:0],x27_Reg[7:0]};
+    assign  REG_TEST_MRSYNC_FRQ[31:0] = {x28_Reg[7:0],x29_Reg[7:0],x2A_Reg[7:0],x2B_Reg[7:0]};
+
 endmodule
