@@ -41,7 +41,7 @@ module LOC_REG(
     REG_FOOTER          ,    // out    : Header
     REG_CHMASK          ,    // out    : mask input channels
     REG_CHMASK2         ,    // out    : mask input channels 2
-    REG_FMC_DBG         ,    // out    : enable FMC debug pin (HPC_LA33,32)
+    REG_SPLCNT_RST_EN   ,    // out    : enalbe spill count reset
     REG_SPLCNT_RST      ,    // out    : spill count reset
     REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
     REG_TEST_PSPILL_EN  ,    // out    : test spill enable
@@ -74,8 +74,7 @@ module LOC_REG(
     output   [63:0]  REG_CHMASK         ;
     output   [14:0]  REG_CHMASK2        ;
 
-    output           REG_FMC_DBG        ;
-
+    output           REG_SPLCNT_RST_EN  ;
     output           REG_SPLCNT_RST     ;
     output    [7:0]  REG_SPLCNT_RSTT    ;
 
@@ -135,10 +134,10 @@ module LOC_REG(
     reg     [7:0]    x17_Reg   ;
     reg     [7:0]    x18_Reg   ;
     reg     [7:0]    x19_Reg   ;
-    reg              x1A_Reg   ;
+    reg     [7:0]    x1A_Reg   ;
     reg     [7:0]    x1B_Reg   ; // NC
     reg     [7:0]    x1C_Reg   ; // NC
-    reg     [7:0]    x1D_Reg   ; // NC
+    reg              x1D_Reg   ; // NC
     reg              x1E_Reg   ; //
     reg     [2:0]    irX1E_Reg ; // 
     reg     [7:0]    x1F_Reg   ; //
@@ -194,10 +193,10 @@ module LOC_REG(
             x17_Reg[7:0]    <= 8'h00;   //
             x18_Reg[7:0]    <= 8'h00;   //
             x19_Reg[7:0]    <= 8'h00;   //
-            x1A_Reg         <= 1'd0 ;   //
+            x1A_Reg[7:0]    <= 8'h00;   //
             x1B_Reg[7:0]    <= 8'h1B;   //
             x1C_Reg[7:0]    <= 8'h1C;   //
-            x1D_Reg[7:0]    <= 8'h1D;   //
+            x1D_Reg         <= 1'h0;    // Spill count reset enalbe
             x1E_Reg         <= 1'h0;    // Spill count reset
             irX1E_Reg[2:0]  <= 3'h0;    // 
             x1F_Reg[7:0]    <= 8'hC8;   // SPLSNT reset timing from spill end (def. 200*5ns=1us)
@@ -256,8 +255,8 @@ module LOC_REG(
                 x17_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x17_Reg[7:0]);
                 x18_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x18_Reg[7:0]);
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
-                x1A_Reg         <= (regCs[1] & (irAddr[3:0]==4'hA) ? irWd[0:0] : x1A_Reg);
 
+                x1D_Reg         <= (regCs[1] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x1D_Reg);
                 x1E_Reg         <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[0:0] : x1E_Reg);
                 x1F_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x1F_Reg[7:0]);
 
@@ -322,11 +321,11 @@ module LOC_REG(
             4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];      // Channel mask [ 7: 0]
             4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];      // Channel mask 2 [14:8] ([7]:nc)
             4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];      // Channel mask 2 [ 7:0]
-            4'hA:    rdDataB[7:0]    <= {7'd0,x1A_Reg};    // NC
+            4'hA:    rdDataB[7:0]    <= x1A_Reg[7:0];      // NC
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
-            4'hD:    rdDataB[7:0]    <= 8'h1D;    // NC
-            4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // NC
+            4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset enable
+            4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // SPLCNT reset
             4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // SPLCNT reset timing from spill end
         endcase
         case(irAddr[3:0]) /// Test pulse setting
@@ -376,8 +375,7 @@ module LOC_REG(
                                  x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
     assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
 
-    assign  REG_FMC_DBG = x1A_Reg;
-
+    assign  REG_SPLCNT_RST_EN    = x1D_Reg;
     assign  REG_SPLCNT_RST       = x1E_Reg;
     assign  REG_SPLCNT_RSTT[7:0] = x1F_Reg[7:0];
 

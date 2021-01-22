@@ -68,7 +68,7 @@ module
 
     wire    EXIN_SPLCNT_RST;
     wire    EXOUT_SPLCNT_RST;
-    assign  EXIN_SPLCNT_RST = ~GPIO_SMA0_IN;
+    assign  EXIN_SPLCNT_RST = GPIO_SMA0_IN;
     assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
 
 //-----------------------------------------------------------
@@ -236,6 +236,7 @@ module
 //-----------------------------------------------------------
 //  TDC module
 //-----------------------------------------------------------
+    wire           SPLCNT_RST_EN  ;
     wire           INT_SPLCNT_RST ;
     wire           SPLCNT_RST     ;
     wire    [7:0]  INT_SPLCNT_RSTT;
@@ -252,7 +253,7 @@ module
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
     wire    [2:0]  debug_dlysplcnt;
-    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
+    assign SPLCNT_RST = SPLCNT_RST_EN ? EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST : 1'b0;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     top_tdc top_tdc(
@@ -294,7 +295,6 @@ module
 //-----------------------------------------------------------
 //  UDP Slow Controler
 //-----------------------------------------------------------
-    wire              FMC_DBG;
     wire    [31:0]    TEST_PSPILL_POS;
     wire    [31:0]    TEST_PSPILL_NEG;
     wire    [31:0]    TEST_MRSYNC_FRQ;
@@ -319,7 +319,7 @@ module
         .REG_FOOTER         (FOOTER[31:0]         ), // out: Footer
         .REG_CHMASK         (CHMASK[63:0]         ), // out: Mask channel selector
         .REG_CHMASK2        (CHMASK2[14:0]        ), // out: Mask channel selector
-        .REG_FMC_DBG        (FMC_DBG              ), // out: Enable FMC debug pin (HPC_LA33,32)
+        .REG_SPLCNT_RST_EN  (SPLCNT_RST_EN        ), // out: Enable spill count reset
         .REG_SPLCNT_RST     (INT_SPLCNT_RST       ), // out: Spill count reset
         .REG_SPLCNT_RSTT    (INT_SPLCNT_RSTT[7:0] ), // out: Spill count reset timing from spill end (def: 1us)
         .REG_TEST_PSPILL_EN (TEST_PSPILL_EN       ), // out: Test spill enable 
