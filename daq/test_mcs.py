@@ -30,8 +30,8 @@ def readTestBits():
     print(data)
 
 def maskTest():
-    rbcp.write(0x10,b'\xFFFFFFFFFFFFFFFE')
-    rbcp.write(0x18,b'\xFFFF')
+    rbcp.write(0x10,b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFA')
+    rbcp.write(0x18,b'\xFF\xFF')
 
 def readSpillCount():
     data = rbcp.read(0x04,4)
@@ -39,7 +39,7 @@ def readSpillCount():
 
 ##### Set the value to subdivide the spill-by-spill MCS data
 def setSpillDiv():
-    rbcp.write(0x1D,b'\x01')
+    rbcp.write(0x1D,b'\x03')
 
 ## DAQ start...
 readTestBits()

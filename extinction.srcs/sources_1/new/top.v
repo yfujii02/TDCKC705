@@ -71,6 +71,7 @@ module
     wire    [31:0]    LA_HPC   ; // for main counters
     wire    [31:0]    LA_LPC   ; // for main counters
     wire    [63:0]    SIGNAL   ;
+    wire    [63:0]    SIGTEST  ;
     wire              PSPILL   ; // P0 for resetting counter
     wire              PSPILL_FMC; // P0 for resetting counter from FMC
     wire              MR_SYNC_FMC; // MR sync
@@ -85,6 +86,7 @@ module
     wire    [1:0]     TEST_INT ; // Internal Test, [0]: fast signal, [1]: slow signal
     wire              DLY_TEST_FAST;
 
+    assign    SIGTEST = {31'd0,DLY_TEST_FAST,31'd0,DLY_TEST_FAST};
     assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
     assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]}; // mask signals
     
@@ -140,13 +142,7 @@ for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
             sigEdge[2*i+1:2*i] <= 2'd0;
         end else begin
             if (RUN_MODE==3'b111) begin
-                if (i==0) begin
-                    sigEdge[2*i+1:2*i] <= {sigEdge[2*i],DLY_TEST_FAST};
-                end else if (i==2) begin
-                    sigEdge[2*i+1:2*i] <= {sigEdge[4],sigEdge[1]};
-                end else begin
-                    sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
-                end
+                sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]|SIGTEST[i]};
             end else begin
                 sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
             end
