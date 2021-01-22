@@ -66,9 +66,10 @@ module
         input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
     );
 
+    wire    SPLCNT_RST_EN  ;
     wire    EXIN_SPLCNT_RST;
     wire    EXOUT_SPLCNT_RST;
-    assign  EXIN_SPLCNT_RST = GPIO_SMA0_IN;
+    assign  EXIN_SPLCNT_RST = SPLCNT_RST_EN ? GPIO_SMA0_IN : 1'b0;
     assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
 
 //-----------------------------------------------------------
@@ -236,7 +237,6 @@ module
 //-----------------------------------------------------------
 //  TDC module
 //-----------------------------------------------------------
-    wire           SPLCNT_RST_EN  ;
     wire           INT_SPLCNT_RST ;
     wire           SPLCNT_RST     ;
     wire    [7:0]  INT_SPLCNT_RSTT;
@@ -253,7 +253,7 @@ module
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
     wire    [2:0]  debug_dlysplcnt;
-    assign SPLCNT_RST = SPLCNT_RST_EN ? EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST : 1'b0;
+    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     top_tdc top_tdc(

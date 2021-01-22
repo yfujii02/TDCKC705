@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Fri Jan 22 19:16:41 2021
+| Date             : Fri Jan 22 19:53:49 2021
 | Host             : localhost.localdomain running 64-bit unknown
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.136        |
+| Total On-Chip Power (W)  | 1.134        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.958        |
+| Dynamic (W)              | 0.955        |
 | Device Static (W)        | 0.179        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 83.0         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.105 |       11 |       --- |             --- |
-| Slice Logic              |     0.021 |    18869 |       --- |             --- |
-|   LUT as Logic           |     0.017 |     6411 |    203800 |            3.15 |
+| Clocks                   |     0.102 |       11 |       --- |             --- |
+| Slice Logic              |     0.021 |    18870 |       --- |             --- |
+|   LUT as Logic           |     0.016 |     6407 |    203800 |            3.14 |
 |   CARRY4                 |     0.003 |      475 |     50950 |            0.93 |
 |   Register               |     0.002 |     9057 |    407600 |            2.22 |
 |   LUT as Shift Register  |    <0.001 |      237 |     64000 |            0.37 |
 |   F7/F8 Muxes            |    <0.001 |      445 |    203800 |            0.22 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
 |   Others                 |     0.000 |     1346 |       --- |             --- |
-| Signals                  |     0.034 |    13680 |       --- |             --- |
+| Signals                  |     0.035 |    13680 |       --- |             --- |
 | Block RAM                |     0.155 |    232.5 |       445 |           52.25 |
 | PLL                      |     0.217 |        2 |        10 |           20.00 |
 | I/O                      |     0.424 |      198 |       500 |           39.60 |
 | Static Power             |     0.179 |          |           |                 |
-| Total                    |     1.136 |          |           |                 |
+| Total                    |     1.134 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.427 |       0.348 |      0.079 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.425 |       0.345 |      0.079 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.218 |       0.190 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.103 |       0.102 |      0.001 |       NA    | Unspecified | NA         |
@@ -134,12 +134,12 @@ Table of Contents
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | CLK_10M                                                                                    | CLK_10M                                                              |           100.0 |
-| CLK_125M_1                                                                                 | nolabel_line193/CLK_125M                                             |             8.0 |
-| CLK_200M                                                                                   | nolabel_line193/CLK_200M                                             |             5.0 |
+| CLK_125M_1                                                                                 | nolabel_line194/CLK_125M                                             |             8.0 |
+| CLK_200M                                                                                   | nolabel_line194/CLK_200M                                             |             5.0 |
 | GMII_RX_CLK                                                                                | GMII_RX_CLK                                                          |             8.0 |
 | GMII_TX_CLK                                                                                | GMII_TX_CLK                                                          |            40.0 |
 | PLL_CLKFB_2                                                                                | PLL_CLKFB                                                            |             5.0 |
-| PLL_CLKFB_3                                                                                | nolabel_line193/PLL_CLKFB                                            |             5.0 |
+| PLL_CLKFB_3                                                                                | nolabel_line194/PLL_CLKFB                                            |             5.0 |
 | SYSCLK_200MP_IN                                                                            | SYSCLK_200MP_IN                                                      |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
@@ -154,25 +154,25 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| top                      |     0.958 |
+| top                      |     0.955 |
 |   LOC_REG                |     0.010 |
 |   dbg_hub                |     0.006 |
 |     inst                 |     0.006 |
 |       BSCANID.u_xsdbm_id |     0.006 |
-|   ila_0                  |     0.033 |
-|     inst                 |     0.033 |
+|   ila_0                  |     0.032 |
+|     inst                 |     0.032 |
 |       ila_core_inst      |     0.032 |
-|   nolabel_line193        |     0.284 |
+|   nolabel_line194        |     0.282 |
 |     AT93C46_IIC          |     0.008 |
 |       MIRROR_MEM         |     0.003 |
 |       PCA9548_SW         |     0.003 |
-|     SiTCP                |     0.100 |
-|       SiTCP              |     0.100 |
+|     SiTCP                |     0.099 |
+|       SiTCP              |     0.099 |
 |     fifo_generator_v11_0 |     0.060 |
 |       U0                 |     0.060 |
-|   top_tdc                |     0.091 |
+|   top_tdc                |     0.090 |
 |     DATA_BUF             |     0.088 |
-|       OUT_DATA_PACK      |     0.002 |
+|       OUT_DATA_PACK      |     0.001 |
 |       fifo               |     0.085 |
 +--------------------------+-----------+
 
