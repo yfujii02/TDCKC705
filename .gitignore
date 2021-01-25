@@ -30,6 +30,7 @@
 !extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v
 !extinction.srcs/sources_1/new/LOC_REG.v
 !extinction.srcs/sources_1/new/MCS.v
+!extinction.srcs/sources_1/new/PREPROCESSOR.v
 !extinction.srcs/sources_1/new/SHIFT_COUNTER.v
 !extinction.srcs/sources_1/new/SHIFT_DATA.v
 !extinction.srcs/sources_1/new/kc705fmc.xdc

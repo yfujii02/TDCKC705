@@ -23,9 +23,10 @@
 module top_tdc(
     input    wire              RESET          ,
     input    wire              CLK_200M       ,
+    input    wire              SPLCNT_RST     ,
     input    wire              INT_SPLCNT_RST ,
     input    wire     [7:0]    INT_SPLCNT_RSTT,
-    output   wire              SPLCNT_RST     ,
+    output   wire              EX_SPLCNT_RST  ,
 
     input    wire    [63:0]    SIGNAL         ,
     input    wire              PSPILL         ,
@@ -109,7 +110,7 @@ module top_tdc(
             dlySplCntRst[2:0] <= dlySplCntRst[0] ? 3'b111 : {dlySplCntRst[1:0], 1'b0};
         end
     end
-    assign SPLCNT_RST = dlySplCntRst[2] ^ dlySplCntRst[1]; // H within 2 CLK
+    assign EX_SPLCNT_RST = dlySplCntRst[2] ^ dlySplCntRst[1]; // H within 2 CLK
     assign DEBUG_SPLOFFCNT[7:0] = spl_off_cnt[7:0];
     assign DEBUG_DLYSPLCNT[2:0] = dlySplCntRst[2:0];
 

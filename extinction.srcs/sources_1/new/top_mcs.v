@@ -16,24 +16,6 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-//
-// Multi-Channel Scalar
-//  64 channel, maximum 1088 CLK ticks -> corresponding to 5.44us time window with 200MHz CLK
-//  relative to the start timing.
-//
-//  Data format is as follows:
-//  HEADER: ??-bit
-//   AA AA AA AA 00 00 SPLCOUNT[15:0]
-//
-//  64ch
-//      0:   CH0[15:0],CH1[15:0],...,CH62[15:0],CH63[15:0]
-//      1:   CH0[15:0],CH1[15:0],...,CH62[15:0],CH63[15:0]
-//      2:   CH0[15:0],CH1[15:0],...,CH62[15:0],CH63[15:0]
-//     ...   ...
-//   1086:   CH0[15:0],CH1[15:0],...,CH62[15:0],CH63[15:0]
-//   1087:   CH0[15:0],CH1[15:0],...,CH62[15:0],CH63[15:0]
-//  FOOTER: ??-bit
-//   FF FF FF FF NMRSYNC[31:0]
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

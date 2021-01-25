@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:ip:fifo_generator:13.2
-// IP Revision: 5
+// IP Revision: 3
 
 `timescale 1ns/1ps
 
@@ -68,7 +68,7 @@ module fifo_generator_1 (
   prog_full
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME core_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME core_clk, FREQ_HZ 100000000, PHASE 0.000, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 core_clk CLK" *)
 input wire clk;
 input wire srst;
@@ -90,7 +90,7 @@ output wire valid;
 output wire [16 : 0] data_count;
 output wire prog_full;
 
-  fifo_generator_v13_2_5 #(
+  fifo_generator_v13_2_3 #(
     .C_COMMON_CLOCK(1),
     .C_SELECT_XPM(0),
     .C_COUNT_TYPE(0),
