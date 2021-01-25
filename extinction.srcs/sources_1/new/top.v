@@ -165,7 +165,6 @@ for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
     end
 end
 endgenerate
-generate
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regSync       <= 1'd0;
@@ -175,7 +174,6 @@ generate
             syncEdge[1:0] <= {syncEdge[0],MR_SYNC};
         end
     end
-endgenerate
     wire   [31:0]   RBCP_ADDR;
     wire    [7:0]   RBCP_WD  ;
     wire            RBCP_WE  ;
@@ -307,19 +305,17 @@ endgenerate
         .REG_SPLDIV (SPILLDIV[3:0]   ),
         .REG_CHMASK (CHMASK[63:0]    ),
         .REG_CHMASK2(CHMASK2[14:0]   ),
-        .REG_FMC_DBG(FMC_DBG),
         .REG_DLY_TEST(DELAY_TEST)
     );
 
-    /// Debug
-    wire [1:0] FMC_DEBUG_OUT;
-    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT0(.I(FMC_DEBUG_OUT[0]),.O(FMC_DEBUGOUT_P[0]),.OB(FMC_DEBUGOUT_N[0]));
-    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT1(.I(FMC_DEBUG_OUT[1]),.O(FMC_DEBUGOUT_P[1]),.OB(FMC_DEBUGOUT_N[1]));
+    /// Debug (set to zeros and will be removed later..)
+    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT0(.I(1'b0),.O(FMC_DEBUGOUT_P[0]),.OB(FMC_DEBUGOUT_N[0]));
+    OBUFDS #(.IOSTANDARD("LVDS_25")) LVDS_OUT1(.I(1'b0),.O(FMC_DEBUGOUT_P[1]),.OB(FMC_DEBUGOUT_N[1]));
     reg  [28:0] regCounter;
     always@ (posedge CLK_200M) begin
         if(TCP_RST)begin
             regCounter = 29'd0;
-        end else if (FMC_DBG|RUN_MODE[2])begin
+        end else if (RUN_MODE[2])begin
             regCounter = regCounter + 29'd1;
         end
     end
@@ -333,7 +329,6 @@ endgenerate
     end
 
     assign TEST_INT[1:0] = {test_pulse_slow,test_pulse_fast};
-    assign FMC_DEBUG_OUT[1:0] = (FMC_DBG)? TEST_INT[1:0] : 2'd0;
     assign DLY_TEST_FAST = test_pulse_delayed;
 
     //assign GPIO_LED = BOARD_ID[3:0];
