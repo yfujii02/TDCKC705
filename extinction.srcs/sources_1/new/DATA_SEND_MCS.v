@@ -14,7 +14,7 @@ module DATA_SEND_MCS(
     input   wire [74*16-1:0]  DCOUNTER,
     output  reg      [7:0]    DOUT,
     output  wire              SEND_EN,
-    output  reg               RD_RDY // read ready
+    output  reg               RD_RDY // read ready, but sending is not started yet
 );
     parameter  MAXCOUNT = 18'd161040; // 2*(64+10)*1088 (MPPC Data+PMT Data) + 8*2 (header&footer) byte
     parameter  MAXCWOHD = 18'd161032; // Max count without header
@@ -31,19 +31,23 @@ module DATA_SEND_MCS(
 
     reg        [2:0]  regDlyENABLE ;
     reg               RD_ENABLE    ;
+    reg               irRD_RDY     ;
     always@ (posedge CLK) begin
         if(RST) begin
             regDlyENABLE <= 3'd0;
+            irRD_RDY     <= 1'b0;
             RD_RDY       <= 1'b0;
             RD_ENABLE    <= 1'b0;
         end else begin
             regDlyENABLE <= {regDlyENABLE[1:0],ENABLE};
             if(regDlyENABLE[2:0]==3'b100) begin
-                RD_RDY <= 1'b1;
-            end else if(EOD) begin
-                RD_RDY <= 1'b0;
+                irRD_RDY <= 1'b1;
+                RD_RDY   <= 1'b1;
+            end else begin
+                irRD_RDY <= (EOD)? 1'b0 : irRD_RDY;
+                RD_RDY   <= (irRD_RDY&SEND_EN)? 1'b0 : RD_RDY;
             end
-            RD_ENABLE <= RD_RDY;
+            RD_ENABLE <= irRD_RDY;
         end
     end
 
@@ -225,10 +229,10 @@ module DATA_SEND_MCS(
                         7'd69:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[69*16+7:69*16+0] : DCOUNTER[69*16+15:69*16+8];
                         7'd70:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[70*16+7:70*16+0] : DCOUNTER[70*16+15:70*16+8];
                         7'd71:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[71*16+7:71*16+0] : DCOUNTER[71*16+15:71*16+8];
-                        //7'd72:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[72*16+7:72*16+0] : DCOUNTER[72*16+15:72*16+8];
-                        //7'd73:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[73*16+7:73*16+0] : DCOUNTER[73*16+15:73*16+8];
-                        7'd72:   DOUT <= (CNTROdd==1'b1)? 8'h55 : 8'h66; // for debug
-                        7'd73:   DOUT <= (CNTROdd==1'b1)? 8'h55 : 8'h66; // for debug
+                        7'd72:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[72*16+7:72*16+0] : DCOUNTER[72*16+15:72*16+8];
+                        7'd73:   DOUT <= (CNTROdd==1'b1)? DCOUNTER[73*16+7:73*16+0] : DCOUNTER[73*16+15:73*16+8];
+                        //7'd72:   DOUT <= (CNTROdd==1'b1)? 8'h55 : 8'h66; // for debug
+                        //7'd73:   DOUT <= (CNTROdd==1'b1)? 8'h55 : 8'h66; // for debug
                         default: DOUT <= 8'hCC;
                     endcase
                 end else begin /// send footer

@@ -73,7 +73,7 @@ module SHIFT_COUNTER_EACH(
             if(EN) begin
                 regCNTR <= (SIG==1'b1)? COUNTER + 16'd1 : COUNTER;
             end else if(EOD) begin
-                doRESET <=  1'b1;
+                doRESET <= 1'b1;
             end else if (doRESET) begin
                 regCNTR <= 16'd0;
             end

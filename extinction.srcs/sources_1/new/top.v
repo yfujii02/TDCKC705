@@ -84,9 +84,9 @@ module
     wire    [2:0]     RUN_MODE ; // Run mode determined by the controllable registers
 
     wire    [1:0]     TEST_INT ; // Internal Test, [0]: fast signal, [1]: slow signal
-    wire              DLY_TEST_FAST;
+    wire    [1:0]     DLY_TEST_FAST;
 
-    assign    SIGTEST = {31'd0,DLY_TEST_FAST,31'd0,DLY_TEST_FAST};
+    assign    SIGTEST = {31'd0,DLY_TEST_FAST[1],31'd0,DLY_TEST_FAST[0]};
     assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC}; ///  masksignals by using the register
     assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]}; // mask signals
     
@@ -325,16 +325,18 @@ endgenerate
     end
     reg     test_pulse_slow;
     reg     test_pulse_fast;
-    reg     test_pulse_delayed;
+    reg     test_pulse_0;
+    reg     test_pulse_1;
     always@ (posedge CLK_200M) begin
         test_pulse_slow    <= (regCounter[28:27]==2'b10)?       1'b1 : 1'b0; /// [1] Cycle 2**28 * 5ns *2 = 2.68sec, 33% duty
         test_pulse_fast    <= (regCounter[10:2]==9'b100000000)? 1'b1 : 1'b0; /// [0] Cycle 2**9  * 5ns *2 = 10.24us, 3CLK high
-        test_pulse_delayed <= (regCounter[10:2]==(9'b100000000+{1'b0,DELAY_TEST[7:0]}))? 1'b1 : 1'b0; /// delayed fast test pulse
+        test_pulse_0       <= (regCounter[7:2]==6'b100000)?     1'b1 : 1'b0; ///
+        test_pulse_1       <= (regCounter[7:2]==(6'b100000+DELAY_TEST[5:0]))? 1'b1 : 1'b0; /// delayed fast test pulse
     end
 
     assign TEST_INT[1:0] = {test_pulse_slow,test_pulse_fast};
     assign FMC_DEBUG_OUT[1:0] = (FMC_DBG)? TEST_INT[1:0] : 2'd0;
-    assign DLY_TEST_FAST = test_pulse_delayed;
+    assign DLY_TEST_FAST = {test_pulse_1,test_pulse_0};
 
     //assign GPIO_LED = BOARD_ID[3:0];
     assign GPIO_LED = SPILLCOUNT[3:0];
