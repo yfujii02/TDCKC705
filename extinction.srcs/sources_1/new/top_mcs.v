@@ -55,11 +55,11 @@ module top_mcs(
     output  reg             SEND_EN   ,
     output  wire   [ 7:0]   BUF_SWITCH
     );
-//*******************************************************************************
-//
-//     Get spill information
-//
-//*******************************************************************************
+    //*******************************************************************************
+    //
+    //     Get spill information
+    //
+    //*******************************************************************************
     wire            SPILL_EDGE ;
     wire    [15:0]  EM_COUNT   ;
     GET_SPILLINFO get_spillInfo(
@@ -133,6 +133,12 @@ module top_mcs(
         end
     end
 
+    //*******************************************************************************
+    //
+    // Switch the memory buffer to be used to write the signal
+    //  by cycling "sw_mem" every NMRSYNC
+    //
+    //*******************************************************************************
     always @ (posedge CLK_200M) begin
         if(RESET) begin
             sw_mem <= 1'b0;
@@ -159,19 +165,27 @@ module top_mcs(
         end
     end
 
-    parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
+    parameter NCHANNEL = 74; /// PMT(10) + MPPC(64) (Can be changed later??)
     parameter DWIDTH   = 16; /// Width of each data/bin
     parameter DWIDTH_BUF = NCHANNEL*DWIDTH;
     parameter NBUF     =  4; /// Number of cyclic buffers
     wire    [4*NBUF-1:0]   label;
     assign label={4'd3,4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
     wire    [NCHANNEL-1:0]    INPUT   ;
-    assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// read out 10 PMT channels 
+    assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// Read out 10 PMT channels 
                                              ///  including two ext. PMTs in the new hodoscope.
 
     wire   [NBUF-1:0]    EOD    ;
     reg    [2*NBUF-1:0]  regEOD ; // Reg to check Edge of EOD
     reg    [NBUF-1:0]    edgeEOD; // Edge of EOD
+    //*******************************************************************************
+    //
+    //  Store the counter / bin / channel into the BRAM every "N"
+    //   selected by changing the register value
+    //  Once it reaches the selected value, switch to the next BRAM, and
+    //   start sending the data from the previous BRAM to SiTCP module
+    //
+    //*******************************************************************************
 genvar i;
 generate
     for (i = 0; i < NBUF; i = i+1) begin: CHECK_EOD
@@ -192,14 +206,14 @@ endgenerate
 generate
     for (i = 0; i < NBUF; i = i+1) begin: BUF_LOOP
         SHIFT_COUNTER_ALL shift_cntr_eachbuf(
-            .RST    (RESET    ),
-            .CLK    (CLK_200M ),
-            .EN     (enWrite[i]&START),
-            .SIG    (INPUT[i] ),
-            .EOD    (edgeEOD[i]), // end of data sending
-            .RELCNTR(relCNTR  ),
-            .RLENGTH(LENGTH_INT[i*11+10:i*11]),
-            .COUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF])
+            .RST    (RESET    ),        // input reset signal
+            .CLK    (CLK_200M ),        // input clock
+            .EN     (enWrite[i]&START), // input enable writing
+            .SIG    (INPUT    ),        // input signal
+            .EOD    (edgeEOD[i]),       // end of data sending for this memory block
+            .RELCNTR(relCNTR  ),        // counter w.r.t. MR sync
+            .RLENGTH(LENGTH_INT[i*11+10:i*11]), // input address from send module corresponding to RelCounter
+            .COUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]) // output data
         );
     end
 endgenerate
@@ -212,20 +226,20 @@ endgenerate
 generate
     for (i = 0; i < NBUF; i = i+1) begin: SEND_LOOP
         DATA_SEND_MCS data_send_mcs0(
-            .RST     (RESET     ),
-            .CLK     (CLK_200M  ),
-            .ENABLE  (enWrite[i]&START),
-            .BUFLABEL(label[4*(i+1)-1:4*i]),
-            .TCP_FULL(TCP_BUSY|send_others[i]),
-            .LENGTH  (LENGTH_INT[i*11+10:i*11]),
-            .SPLCOUNT(SPILLCOUNT[15:0]),
-            .EM_COUNT(EM_COUNT  ),
-            .NMRSYNC (regNSYNC  ),
-            .EOD     (EOD[i]    ),
-            .DCOUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]),
-            .DOUT    (OUTDATA_INT[8*(i+1)-1:8*i]),
-            .SEND_EN (SEND_EN_INT[i]),
-            .RD_RDY  (readRdy[i])
+            .RST     (RESET     ),  // input reset
+            .CLK     (CLK_200M  ),  // input clock
+            .ENABLE  (enWrite[i]&START        ), // write enable for mem buffer which also control the data send start
+            .BUFLABEL(label[4*(i+1)-1:4*i]    ), // label of buffer put in the header
+            .TCP_FULL(TCP_BUSY|send_others[i] ), // input TCP busy or other channel is sending data
+            .LENGTH  (LENGTH_INT[i*11+10:i*11]), // output address to be used in the memory buffer
+            .SPLCOUNT(SPILLCOUNT[15:0]        ), // spill id
+            .EM_COUNT(EM_COUNT  ),  // input event muching (just the width of signal changing each spill
+            .NMRSYNC (regNSYNC  ),  // counter of MRSync from spill start
+            .EOD     (EOD[i]    ),  // output end of data sending
+            .DCOUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]), // input data 16-bit * NChannel
+            .DOUT    (OUTDATA_INT[8*(i+1)-1:8*i]),                    // output a decoded 8-bit packet
+            .SEND_EN (SEND_EN_INT[i]), // output enable to send a packet
+            .RD_RDY  (readRdy[i]    )  // output indicating this module is ready to send data
         );
     end
 endgenerate
