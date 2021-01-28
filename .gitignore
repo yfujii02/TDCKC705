@@ -117,7 +117,6 @@ extinction.runs/.jobs/*
 ##########################
 extinction.cache/*
 *synth_1*
-*ip_user_files*
 extinction.runs/impl_1/.Xil
 extinction.runs/impl_1/ISEWrap.sh
 extinction.runs/impl_1/runme.sh
