@@ -1,0 +1,627 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+<<<<<<< HEAD
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Thu Jan 21 16:37:32 2021
+# Process ID: 1256
+# Current directory: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1
+# Command line: vivado.exe -log fifo_generator_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fifo_generator_1.tcl
+# Log file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.vds
+# Journal file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1\vivado.jou
+=======
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Fri Jan 22 16:59:00 2021
+# Process ID: 24686
+# Current directory: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1
+# Command line: vivado -log fifo_generator_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fifo_generator_1.tcl
+# Log file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.vds
+# Journal file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/vivado.jou
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+#-----------------------------------------------------------
+source fifo_generator_1.tcl -notrace
+Command: synth_design -top fifo_generator_1 -part xc7k325tffg900-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t'
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+<<<<<<< HEAD
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 4792
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1019.738 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'fifo_generator_1' [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:74]
+	Parameter C_COMMON_CLOCK bound to: 1 - type: integer 
+	Parameter C_SELECT_XPM bound to: 0 - type: integer 
+	Parameter C_COUNT_TYPE bound to: 0 - type: integer 
+	Parameter C_DATA_COUNT_WIDTH bound to: 14 - type: integer 
+=======
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 24877
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:26 . Memory (MB): peak = 2193.141 ; gain = 21.902 ; free physical = 20615 ; free virtual = 40969
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'fifo_generator_1' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:76]
+	Parameter C_COMMON_CLOCK bound to: 1 - type: integer 
+	Parameter C_SELECT_XPM bound to: 0 - type: integer 
+	Parameter C_COUNT_TYPE bound to: 0 - type: integer 
+	Parameter C_DATA_COUNT_WIDTH bound to: 17 - type: integer 
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+	Parameter C_DEFAULT_VALUE bound to: BlankString - type: string 
+	Parameter C_DIN_WIDTH bound to: 8 - type: integer 
+	Parameter C_DOUT_RST_VAL bound to: 0 - type: string 
+	Parameter C_DOUT_WIDTH bound to: 8 - type: integer 
+	Parameter C_ENABLE_RLOCS bound to: 0 - type: integer 
+	Parameter C_FAMILY bound to: kintex7 - type: string 
+	Parameter C_FULL_FLAGS_RST_VAL bound to: 0 - type: integer 
+	Parameter C_HAS_ALMOST_EMPTY bound to: 0 - type: integer 
+<<<<<<< HEAD
+	Parameter C_HAS_ALMOST_FULL bound to: 0 - type: integer 
+	Parameter C_HAS_BACKUP bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNT bound to: 0 - type: integer 
+=======
+	Parameter C_HAS_ALMOST_FULL bound to: 1 - type: integer 
+	Parameter C_HAS_BACKUP bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNT bound to: 1 - type: integer 
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+	Parameter C_HAS_INT_CLK bound to: 0 - type: integer 
+	Parameter C_HAS_MEMINIT_FILE bound to: 0 - type: integer 
+	Parameter C_HAS_OVERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_RD_DATA_COUNT bound to: 0 - type: integer 
+	Parameter C_HAS_RD_RST bound to: 0 - type: integer 
+	Parameter C_HAS_RST bound to: 0 - type: integer 
+	Parameter C_HAS_SRST bound to: 1 - type: integer 
+	Parameter C_HAS_UNDERFLOW bound to: 0 - type: integer 
+	Parameter C_HAS_VALID bound to: 1 - type: integer 
+	Parameter C_HAS_WR_ACK bound to: 0 - type: integer 
+	Parameter C_HAS_WR_DATA_COUNT bound to: 0 - type: integer 
+	Parameter C_HAS_WR_RST bound to: 0 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE bound to: 0 - type: integer 
+	Parameter C_INIT_WR_PNTR_VAL bound to: 0 - type: integer 
+	Parameter C_MEMORY_TYPE bound to: 1 - type: integer 
+	Parameter C_MIF_FILE_NAME bound to: BlankString - type: string 
+	Parameter C_OPTIMIZATION_MODE bound to: 0 - type: integer 
+	Parameter C_OVERFLOW_LOW bound to: 0 - type: integer 
+	Parameter C_PRELOAD_LATENCY bound to: 1 - type: integer 
+	Parameter C_PRELOAD_REGS bound to: 0 - type: integer 
+	Parameter C_PRIM_FIFO_TYPE bound to: 8kx4 - type: string 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL bound to: 2 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_NEGATE_VAL bound to: 3 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE bound to: 0 - type: integer 
+<<<<<<< HEAD
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL bound to: 16350 - type: integer 
+	Parameter C_PROG_FULL_THRESH_NEGATE_VAL bound to: 16318 - type: integer 
+	Parameter C_PROG_FULL_TYPE bound to: 2 - type: integer 
+	Parameter C_RD_DATA_COUNT_WIDTH bound to: 14 - type: integer 
+	Parameter C_RD_DEPTH bound to: 16384 - type: integer 
+	Parameter C_RD_FREQ bound to: 1 - type: integer 
+	Parameter C_RD_PNTR_WIDTH bound to: 14 - type: integer 
+=======
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL bound to: 131040 - type: integer 
+	Parameter C_PROG_FULL_THRESH_NEGATE_VAL bound to: 131039 - type: integer 
+	Parameter C_PROG_FULL_TYPE bound to: 2 - type: integer 
+	Parameter C_RD_DATA_COUNT_WIDTH bound to: 17 - type: integer 
+	Parameter C_RD_DEPTH bound to: 131072 - type: integer 
+	Parameter C_RD_FREQ bound to: 1 - type: integer 
+	Parameter C_RD_PNTR_WIDTH bound to: 17 - type: integer 
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+	Parameter C_UNDERFLOW_LOW bound to: 0 - type: integer 
+	Parameter C_USE_DOUT_RST bound to: 1 - type: integer 
+	Parameter C_USE_ECC bound to: 0 - type: integer 
+	Parameter C_USE_EMBEDDED_REG bound to: 0 - type: integer 
+	Parameter C_USE_PIPELINE_REG bound to: 0 - type: integer 
+	Parameter C_POWER_SAVING_MODE bound to: 0 - type: integer 
+	Parameter C_USE_FIFO16_FLAGS bound to: 0 - type: integer 
+	Parameter C_USE_FWFT_DATA_COUNT bound to: 0 - type: integer 
+	Parameter C_VALID_LOW bound to: 0 - type: integer 
+	Parameter C_WR_ACK_LOW bound to: 0 - type: integer 
+<<<<<<< HEAD
+	Parameter C_WR_DATA_COUNT_WIDTH bound to: 14 - type: integer 
+	Parameter C_WR_DEPTH bound to: 16384 - type: integer 
+	Parameter C_WR_FREQ bound to: 1 - type: integer 
+	Parameter C_WR_PNTR_WIDTH bound to: 14 - type: integer 
+=======
+	Parameter C_WR_DATA_COUNT_WIDTH bound to: 17 - type: integer 
+	Parameter C_WR_DEPTH bound to: 131072 - type: integer 
+	Parameter C_WR_FREQ bound to: 1 - type: integer 
+	Parameter C_WR_PNTR_WIDTH bound to: 17 - type: integer 
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+	Parameter C_WR_RESPONSE_LATENCY bound to: 1 - type: integer 
+	Parameter C_MSGON_VAL bound to: 1 - type: integer 
+	Parameter C_ENABLE_RST_SYNC bound to: 1 - type: integer 
+	Parameter C_EN_SAFETY_CKT bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE bound to: 0 - type: integer 
+	Parameter C_SYNCHRONIZER_STAGE bound to: 2 - type: integer 
+	Parameter C_INTERFACE_TYPE bound to: 0 - type: integer 
+	Parameter C_AXI_TYPE bound to: 1 - type: integer 
+	Parameter C_HAS_AXI_WR_CHANNEL bound to: 1 - type: integer 
+	Parameter C_HAS_AXI_RD_CHANNEL bound to: 1 - type: integer 
+	Parameter C_HAS_SLAVE_CE bound to: 0 - type: integer 
+	Parameter C_HAS_MASTER_CE bound to: 0 - type: integer 
+	Parameter C_ADD_NGC_CONSTRAINT bound to: 0 - type: integer 
+	Parameter C_USE_COMMON_OVERFLOW bound to: 0 - type: integer 
+	Parameter C_USE_COMMON_UNDERFLOW bound to: 0 - type: integer 
+	Parameter C_USE_DEFAULT_SETTINGS bound to: 0 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_AXI_DATA_WIDTH bound to: 64 - type: integer 
+	Parameter C_AXI_LEN_WIDTH bound to: 8 - type: integer 
+	Parameter C_AXI_LOCK_WIDTH bound to: 1 - type: integer 
+	Parameter C_HAS_AXI_ID bound to: 0 - type: integer 
+	Parameter C_HAS_AXI_AWUSER bound to: 0 - type: integer 
+	Parameter C_HAS_AXI_WUSER bound to: 0 - type: integer 
+	Parameter C_HAS_AXI_BUSER bound to: 0 - type: integer 
+	Parameter C_HAS_AXI_ARUSER bound to: 0 - type: integer 
+	Parameter C_HAS_AXI_RUSER bound to: 0 - type: integer 
+	Parameter C_AXI_ARUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_AWUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_WUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_RUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_HAS_AXIS_TDATA bound to: 1 - type: integer 
+	Parameter C_HAS_AXIS_TID bound to: 0 - type: integer 
+	Parameter C_HAS_AXIS_TDEST bound to: 0 - type: integer 
+	Parameter C_HAS_AXIS_TUSER bound to: 1 - type: integer 
+	Parameter C_HAS_AXIS_TREADY bound to: 1 - type: integer 
+	Parameter C_HAS_AXIS_TLAST bound to: 0 - type: integer 
+	Parameter C_HAS_AXIS_TSTRB bound to: 0 - type: integer 
+	Parameter C_HAS_AXIS_TKEEP bound to: 0 - type: integer 
+	Parameter C_AXIS_TDATA_WIDTH bound to: 8 - type: integer 
+	Parameter C_AXIS_TID_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXIS_TDEST_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXIS_TUSER_WIDTH bound to: 4 - type: integer 
+	Parameter C_AXIS_TSTRB_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXIS_TKEEP_WIDTH bound to: 1 - type: integer 
+	Parameter C_WACH_TYPE bound to: 0 - type: integer 
+	Parameter C_WDCH_TYPE bound to: 0 - type: integer 
+	Parameter C_WRCH_TYPE bound to: 0 - type: integer 
+	Parameter C_RACH_TYPE bound to: 0 - type: integer 
+	Parameter C_RDCH_TYPE bound to: 0 - type: integer 
+	Parameter C_AXIS_TYPE bound to: 0 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_WACH bound to: 1 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_WDCH bound to: 1 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_WRCH bound to: 1 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_RACH bound to: 1 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_RDCH bound to: 1 - type: integer 
+	Parameter C_IMPLEMENTATION_TYPE_AXIS bound to: 1 - type: integer 
+	Parameter C_APPLICATION_TYPE_WACH bound to: 0 - type: integer 
+	Parameter C_APPLICATION_TYPE_WDCH bound to: 0 - type: integer 
+	Parameter C_APPLICATION_TYPE_WRCH bound to: 0 - type: integer 
+	Parameter C_APPLICATION_TYPE_RACH bound to: 0 - type: integer 
+	Parameter C_APPLICATION_TYPE_RDCH bound to: 0 - type: integer 
+	Parameter C_APPLICATION_TYPE_AXIS bound to: 0 - type: integer 
+	Parameter C_PRIM_FIFO_TYPE_WACH bound to: 512x36 - type: string 
+	Parameter C_PRIM_FIFO_TYPE_WDCH bound to: 1kx36 - type: string 
+	Parameter C_PRIM_FIFO_TYPE_WRCH bound to: 512x36 - type: string 
+	Parameter C_PRIM_FIFO_TYPE_RACH bound to: 512x36 - type: string 
+	Parameter C_PRIM_FIFO_TYPE_RDCH bound to: 1kx36 - type: string 
+	Parameter C_PRIM_FIFO_TYPE_AXIS bound to: 1kx18 - type: string 
+	Parameter C_USE_ECC_WACH bound to: 0 - type: integer 
+	Parameter C_USE_ECC_WDCH bound to: 0 - type: integer 
+	Parameter C_USE_ECC_WRCH bound to: 0 - type: integer 
+	Parameter C_USE_ECC_RACH bound to: 0 - type: integer 
+	Parameter C_USE_ECC_RDCH bound to: 0 - type: integer 
+	Parameter C_USE_ECC_AXIS bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_WACH bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_WDCH bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_WRCH bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_RACH bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_RDCH bound to: 0 - type: integer 
+	Parameter C_ERROR_INJECTION_TYPE_AXIS bound to: 0 - type: integer 
+	Parameter C_DIN_WIDTH_WACH bound to: 1 - type: integer 
+	Parameter C_DIN_WIDTH_WDCH bound to: 64 - type: integer 
+	Parameter C_DIN_WIDTH_WRCH bound to: 2 - type: integer 
+	Parameter C_DIN_WIDTH_RACH bound to: 32 - type: integer 
+	Parameter C_DIN_WIDTH_RDCH bound to: 64 - type: integer 
+	Parameter C_DIN_WIDTH_AXIS bound to: 1 - type: integer 
+	Parameter C_WR_DEPTH_WACH bound to: 16 - type: integer 
+	Parameter C_WR_DEPTH_WDCH bound to: 1024 - type: integer 
+	Parameter C_WR_DEPTH_WRCH bound to: 16 - type: integer 
+	Parameter C_WR_DEPTH_RACH bound to: 16 - type: integer 
+	Parameter C_WR_DEPTH_RDCH bound to: 1024 - type: integer 
+	Parameter C_WR_DEPTH_AXIS bound to: 1024 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_WACH bound to: 4 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_WDCH bound to: 10 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_WRCH bound to: 4 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_RACH bound to: 4 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_RDCH bound to: 10 - type: integer 
+	Parameter C_WR_PNTR_WIDTH_AXIS bound to: 10 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_WACH bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_WDCH bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_WRCH bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_RACH bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_RDCH bound to: 0 - type: integer 
+	Parameter C_HAS_DATA_COUNTS_AXIS bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_WACH bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_WDCH bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_WRCH bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_RACH bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_RDCH bound to: 0 - type: integer 
+	Parameter C_HAS_PROG_FLAGS_AXIS bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_WACH bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_WDCH bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_WRCH bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_RACH bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_RDCH bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_TYPE_AXIS bound to: 0 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_WACH bound to: 1023 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_WDCH bound to: 1023 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_WRCH bound to: 1023 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_RACH bound to: 1023 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_RDCH bound to: 1023 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL_AXIS bound to: 1023 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_WACH bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_WDCH bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_WRCH bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_RACH bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_RDCH bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_TYPE_AXIS bound to: 0 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_WACH bound to: 1022 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_WDCH bound to: 1022 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_WRCH bound to: 1022 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_RACH bound to: 1022 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_RDCH bound to: 1022 - type: integer 
+	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL_AXIS bound to: 1022 - type: integer 
+	Parameter C_REG_SLICE_MODE_WACH bound to: 0 - type: integer 
+	Parameter C_REG_SLICE_MODE_WDCH bound to: 0 - type: integer 
+	Parameter C_REG_SLICE_MODE_WRCH bound to: 0 - type: integer 
+	Parameter C_REG_SLICE_MODE_RACH bound to: 0 - type: integer 
+	Parameter C_REG_SLICE_MODE_RDCH bound to: 0 - type: integer 
+	Parameter C_REG_SLICE_MODE_AXIS bound to: 0 - type: integer 
+<<<<<<< HEAD
+INFO: [Synth 8-3491] module 'fifo_generator_v13_2_5' declared at 'c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd:38604' bound to instance 'U0' of component 'fifo_generator_v13_2_5' [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:542]
+INFO: [Synth 8-256] done synthesizing module 'fifo_generator_1' (28#1) [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:74]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+INFO: [Synth 8-3491] module 'fifo_generator_v13_2_5' declared at '/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd:38604' bound to instance 'U0' of component 'fifo_generator_v13_2_5' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:545]
+INFO: [Synth 8-256] done synthesizing module 'fifo_generator_1' (30#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:76]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:00:58 . Memory (MB): peak = 2422.090 ; gain = 250.852 ; free physical = 20607 ; free virtual = 40961
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 1260.324 ; gain = 240.586
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 1260.324 ; gain = 240.586
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.066 . Memory (MB): peak = 1260.324 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 32 Unisim elements for replacement
+=======
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:59 . Memory (MB): peak = 2428.023 ; gain = 256.785 ; free physical = 20631 ; free virtual = 40985
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:59 . Memory (MB): peak = 2428.023 ; gain = 256.785 ; free physical = 20631 ; free virtual = 40985
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2428.023 ; gain = 0.000 ; free physical = 20613 ; free virtual = 40967
+INFO: [Netlist 29-17] Analyzing 77 Unisim elements for replacement
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+<<<<<<< HEAD
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_ooc.xdc] for cell 'U0'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'U0'
+Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.324 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1260.324 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:45 ; elapsed = 00:00:50 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_ooc.xdc] for cell 'U0'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'U0'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'U0'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2505.852 ; gain = 0.000 ; free physical = 20529 ; free virtual = 40883
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2505.852 ; gain = 0.000 ; free physical = 20529 ; free virtual = 40882
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:01:08 . Memory (MB): peak = 2505.852 ; gain = 334.613 ; free physical = 20619 ; free virtual = 40973
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k325tffg900-2
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:45 ; elapsed = 00:00:50 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:01:08 . Memory (MB): peak = 2505.852 ; gain = 334.613 ; free physical = 20619 ; free virtual = 40973
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Applied set_property DONT_TOUCH = true for U0. (constraint file  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:00:50 . Memory (MB): peak = 1260.324 ; gain = 240.586
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:46 ; elapsed = 00:00:51 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:01:08 . Memory (MB): peak = 2505.852 ; gain = 334.613 ; free physical = 20619 ; free virtual = 40973
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:30 ; elapsed = 00:01:09 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20608 ; free virtual = 40963
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+<<<<<<< HEAD
+	   2 Input   15 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 56    
++---Registers : 
+	               15 Bit    Registers := 1     
+	               14 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 11    
+=======
+	   2 Input   18 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 86    
++---Registers : 
+	               18 Bit    Registers := 1     
+	               17 Bit    Registers := 3     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   2 Input    1 Bit        Muxes := 19    
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 840 (col length:140)
+BRAMs: 890 (col length: RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:00:53 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:01:10 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20592 ; free virtual = 40955
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:02 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:01:17 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20461 ; free virtual = 40824
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Timing Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:01:03 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:17 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20457 ; free virtual = 40820
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:01:03 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:01:18 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20457 ; free virtual = 40820
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished IO Insertion : Time (s): cpu = 00:01:03 ; elapsed = 00:01:08 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20474 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:03 ; elapsed = 00:01:08 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20474 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20474 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20474 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20473 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+<<<<<<< HEAD
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+=======
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20473 ; free virtual = 40837
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+<<<<<<< HEAD
+|1     |CARRY4   |    12|
+|2     |LUT1     |     5|
+|3     |LUT2     |    17|
+|4     |LUT4     |    35|
+|5     |LUT5     |     6|
+|6     |LUT6     |    14|
+|7     |MUXCY    |    28|
+|8     |RAMB36E1 |     4|
+|9     |FDRE     |    76|
+|10    |FDSE     |     4|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:03 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:01:04 . Memory (MB): peak = 1260.324 ; gain = 240.586
+Synthesis Optimization Complete : Time (s): cpu = 00:01:04 ; elapsed = 00:01:09 . Memory (MB): peak = 1260.324 ; gain = 240.586
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1260.324 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 44 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1260.324 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 8 instances
+=======
+|1     |CARRY4   |    20|
+|2     |LUT1     |     4|
+|3     |LUT2     |    43|
+|4     |LUT3     |    27|
+|5     |LUT4     |    44|
+|6     |LUT5     |     3|
+|7     |LUT6     |     7|
+|8     |MUXCY    |    45|
+|9     |RAMB36E1 |    32|
+|11    |FDRE     |   156|
+|12    |FDSE     |     5|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20473 ; free virtual = 40837
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:01:17 . Memory (MB): peak = 2505.855 ; gain = 256.789 ; free physical = 20522 ; free virtual = 40885
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:01:20 . Memory (MB): peak = 2505.855 ; gain = 334.617 ; free physical = 20522 ; free virtual = 40885
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2505.855 ; gain = 0.000 ; free physical = 20595 ; free virtual = 40959
+INFO: [Netlist 29-17] Analyzing 97 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2505.855 ; gain = 0.000 ; free physical = 20537 ; free virtual = 40900
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 15 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 15 instances
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9
+
+INFO: [Common 17-83] Releasing license: Synthesis
+19 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+<<<<<<< HEAD
+synth_design: Time (s): cpu = 00:01:11 ; elapsed = 00:01:35 . Memory (MB): peak = 1260.324 ; gain = 240.586
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.collectionResultDisplayLimit
+INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.dcp' has been generated.
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP fifo_generator_1, cache-ID = e802395c91149016
+INFO: [Coretcl 2-1174] Renamed 31 cell refs.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file fifo_generator_1_utilization_synth.rpt -pb fifo_generator_1_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Jan 21 16:39:22 2021...
+=======
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:01:31 . Memory (MB): peak = 2505.855 ; gain = 346.754 ; free physical = 20680 ; free virtual = 41044
+INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.dcp' has been generated.
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+WARNING: [IP_Flow 19-5475] Invalid IP Cache entry found. Please manually delete the directory '/home/nakazawa/8-gev/kc705/firmware/extinction.cache/ip/2020.1/956c00310da31961'
+WARNING: [Coretcl 2-1488] Problem adding IP cache entry: 
+INFO: [Coretcl 2-1174] Renamed 58 cell refs.
+INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/fifo_generator_1_synth_1/fifo_generator_1.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file fifo_generator_1_utilization_synth.rpt -pb fifo_generator_1_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Jan 22 17:00:43 2021...
+>>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9

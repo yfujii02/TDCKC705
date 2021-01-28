@@ -17,8 +17,8 @@
 
 
 module LOC_REG(
-    input   wire    CLK                 ,    // Clock
-    input   wire    RST                 ,    // System reset
+    input   wire            CLK         ,    // Clock
+    input   wire            RST         ,    // System reset
 
     // Register I/F
     input   wire    [31:0]  LOC_ADDR    ,    // Address[31:0]
@@ -42,14 +42,27 @@ module LOC_REG(
     output  wire    [ 3:0]  REG_SPLDIV,      // Divide a spill in MCS readout mode
                                              //  if #of MRSync reaches N=[2^(REG_SPLDIV)]*1024
     // Debug
-    output  wire    [63:0]  REG_CHMASK  ,    // mask input channels
-    output  wire    [14:0]  REG_CHMASK2 ,    // mask input channels (OLDH)
+    output  wire    [63:0]  REG_CHMASK0 ,    // mask input channels
+    output  wire    [14:0]  REG_CHMASK1 ,    // mask input channels (OLDH)
     output  wire     [7:0]  REG_DLY_TEST     // delay for fast_test signal [7:0]
+    output  wire            REG_SPLCNT_RST_EN   ,    // out    : enalbe spill count reset
+    output  wire            REG_SPLCNT_RST      ,    // out    : spill count reset
+    output  wire     [7:0]  REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
+    output  wire            REG_TEST_PSPILL_EN  ,    // out    : test spill enable
+    output  wire            REG_TEST_MRSYNC_EN  ,    // out    : tset MR sync enable
+    output  wire    [31:0]  REG_TEST_PSPILL_POS ,    // out    : time width of test spill (Pos.)
+    output  wire    [31:0]  REG_TEST_PSPILL_NEG ,    // out    : time width of test spill (Pos.)
+    output  wire    [31:0]  REG_TEST_MRSYNC_FRQ ,    // out    : Tset MR sync frequency
+    output  wire     [7:0]  REG_DLY_PSPILL      ,    // out    : Delay for spill signal
+    output  wire     [7:0]  REG_DLY_MRSYNC      ,    // out    : Delay for MR sync
+    output  wire     [7:0]  REG_DLY_EVMATCH     ,    // out    : Delay for Event matching
+    output  wire            REG_DLY_MPPC        ,    // out    : Delay for MPPC
+    output  wire    [95:0]  REG_DLY_PMT              // out    : Delay for PMT
 );
 //------------------------------------------------------------------------------
 //    Input buffer
 //------------------------------------------------------------------------------
-    reg       [1:0]  regCs           ;
+    reg       [3:0]  regCs           ;
     reg      [10:0]  irAddr          ;
     reg              irWe            ;
     reg              irRe            ;
@@ -58,7 +71,8 @@ module LOC_REG(
     always@ (posedge CLK) begin
         regCs[0]     <= (LOC_ADDR[31:4]==28'h0);
         regCs[1]     <= (LOC_ADDR[31:4]==28'h1);
-        //regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
+        regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
+        regCs[3]     <= (LOC_ADDR[31:4]==28'h3);
 
         irAddr[10:0] <= LOC_ADDR[10:0];
         irWe         <= LOC_WE;
@@ -99,9 +113,44 @@ module LOC_REG(
     reg     [3:0]    x1A_Reg   ; // Spill Div for MCS
     reg     [7:0]    x1B_Reg   ; // Delay for the test signal
     reg     [7:0]    x1C_Reg   ; // NC
-    reg     [7:0]    x1D_Reg   ; // NC
-    reg     [7:0]    x1E_Reg   ; // NC
-    reg     [7:0]    x1F_Reg   ; // NC
+    reg              x1D_Reg   ; // NC
+    reg              x1E_Reg   ; //
+    reg     [2:0]    irX1E_Reg ; // 
+    reg     [7:0]    x1F_Reg   ; //
+
+    reg     [7:0]    x20_Reg   ;
+    reg     [7:0]    x21_Reg   ;
+    reg     [7:0]    x22_Reg   ;
+    reg     [7:0]    x23_Reg   ;
+    reg     [7:0]    x24_Reg   ;
+    reg     [7:0]    x25_Reg   ;
+    reg     [7:0]    x26_Reg   ;
+    reg     [7:0]    x27_Reg   ;
+    reg     [7:0]    x28_Reg   ;
+    reg     [7:0]    x29_Reg   ;
+    reg     [7:0]    x2A_Reg   ;
+    reg     [7:0]    x2B_Reg   ; 
+    reg     [7:0]    x2C_Reg   ;
+    reg     [7:0]    x2D_Reg   ;
+    reg     [7:0]    x2E_Reg   ; // NC
+    reg     [7:0]    x2F_Reg   ; // NC
+
+    reg     [7:0]    x30_Reg   ; // Delay for PSPILL
+    reg     [7:0]    x31_Reg   ; // Delay for MR sync
+    reg     [7:0]    x32_Reg   ; // Delay for Event matching
+    reg     [7:0]    x33_Reg   ; // Delay for MPPC
+    reg     [7:0]    x34_Reg   ; // Delay for PMT[0]
+    reg     [7:0]    x35_Reg   ; // Delay for PMT[1]
+    reg     [7:0]    x36_Reg   ; // Delay for PMT[2]
+    reg     [7:0]    x37_Reg   ; // Delay for PMT[3]
+    reg     [7:0]    x38_Reg   ; // Delay for PMT[4]
+    reg     [7:0]    x39_Reg   ; // Delay for PMT[5]
+    reg     [7:0]    x3A_Reg   ; // Delay for PMT[6]
+    reg     [7:0]    x3B_Reg   ; // Delay for PMT[7] 
+    reg     [7:0]    x3C_Reg   ; // Delay for PMT[8]
+    reg     [7:0]    x3D_Reg   ; // Delay for PMT[9]
+    reg     [7:0]    x3E_Reg   ; // Delay for PMT[10]
+    reg     [7:0]    x3F_Reg   ; // Delay for PMT[11]
 
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
@@ -127,7 +176,7 @@ module LOC_REG(
             x0E_Reg[7:0]    <= 8'hAA;   // Footer
             x0F_Reg[7:0]    <= 8'hAA;   // Footer
 
-            x10_Reg[7:0]    <= 8'h00;
+            x10_Reg[7:0]    <= 8'h00;   //
             x11_Reg[7:0]    <= 8'h00;   //
             x12_Reg[7:0]    <= 8'h00;   //
             x13_Reg[7:0]    <= 8'h00;   //
@@ -140,9 +189,44 @@ module LOC_REG(
             x1A_Reg[3:0]    <= 4'hF;    // Spill Div for MCS
             x1B_Reg[7:0]    <= 8'h10;   // Delay for the test signal
             x1C_Reg[7:0]    <= 8'h1C;   //
-            x1D_Reg[7:0]    <= 8'hFF;   //
-            x1E_Reg[7:0]    <= 8'hFF;   //
-            x1F_Reg[7:0]    <= 8'hFF;   //
+            x1D_Reg         <= 1'h0;    // Spill count reset enalbe
+            x1E_Reg         <= 1'h0;    // Spill count reset
+            irX1E_Reg[2:0]  <= 3'h0;    // 
+            x1F_Reg[7:0]    <= 8'hC8;   // SPLSNT reset timing from spill end (def. 200*5ns=1us)
+
+            x20_Reg[7:0]    <= 8'h00;   // Time width of test spill (Pos.) [31:24]
+            x21_Reg[7:0]    <= 8'h4C;   // Time width of test spill (Pos.) [23:16]
+            x22_Reg[7:0]    <= 8'h4B;   // Time width of test spill (Pos.) [15:8]
+            x23_Reg[7:0]    <= 8'h40;   // Time width of test spill (Pos.) [7:0] (def. 0.5ms)
+            x24_Reg[7:0]    <= 8'h00;   // Time width of test spill (Neg.)
+            x25_Reg[7:0]    <= 8'h4C;   // Time width of test spill (Neg.)
+            x26_Reg[7:0]    <= 8'h4B;   // Time width of test spill (Neg.)
+            x27_Reg[7:0]    <= 8'h40;   // Time width of test spill (Neg.) (def. 0.5ms)
+            x28_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x29_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x2A_Reg[7:0]    <= 8'h00;   // Test MR sync frequency
+            x2B_Reg[7:0]    <= 8'h0A;   // Test MR sync frequency (def. 1MHz, 1us)
+            x2C_Reg         <= 1'h0;    // Test spill enable
+            x2D_Reg         <= 1'h0;    // Test spill enable
+            x2E_Reg[7:0]    <= 8'h00;   // NC
+            x2F_Reg[7:0]    <= 8'h00;   // NC
+
+            x30_Reg[7:0]    <= 8'h00;   // Delay for PSPILL        
+            x31_Reg[7:0]    <= 8'h00;   // Delay for MR sync       
+            x32_Reg[7:0]    <= 8'h00;   // Delay for Event matching
+            x33_Reg[7:0]    <= 8'h00;   // Delay for MPPC          
+            x34_Reg[7:0]    <= 8'h00;   // Delay for PMT[0]        
+            x35_Reg[7:0]    <= 8'h00;   // Delay for PMT[1]        
+            x36_Reg[7:0]    <= 8'h00;   // Delay for PMT[2]        
+            x37_Reg[7:0]    <= 8'h00;   // Delay for PMT[3]        
+            x38_Reg[7:0]    <= 8'h00;   // Delay for PMT[4]        
+            x39_Reg[7:0]    <= 8'h00;   // Delay for PMT[5]        
+            x3A_Reg[7:0]    <= 8'h00;   // Delay for PMT[6]        
+            x3B_Reg[7:0]    <= 8'h00;   // Delay for PMT[7]        
+            x3C_Reg[7:0]    <= 8'h00;   // Delay for PMT[8]        
+            x3D_Reg[7:0]    <= 8'h00;   // Delay for PMT[9]        
+            x3E_Reg[7:0]    <= 8'h00;   // Delay for PMT[10]       
+            x3F_Reg[7:0]    <= 8'h00;   // Delay for PMT[11]       
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -181,15 +265,58 @@ module LOC_REG(
                 x17_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x17_Reg[7:0]);
                 x18_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x18_Reg[7:0]);
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
+
                 x1A_Reg[3:0]    <= (regCs[1] & (irAddr[3:0]==4'hA) ? irWd[3:0] : x1A_Reg[3:0]);
                 x1B_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x1B_Reg[7:0]);
+
+                x1D_Reg         <= (regCs[1] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x1D_Reg);
+                x1E_Reg         <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[0:0] : x1E_Reg);
+                x1F_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x1F_Reg[7:0]);
+
+                x20_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x20_Reg[7:0]);
+                x21_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x21_Reg[7:0]);
+                x22_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x22_Reg[7:0]);
+                x23_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h3) ? irWd[7:0] : x23_Reg[7:0]);
+                x24_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h4) ? irWd[7:0] : x24_Reg[7:0]);
+                x25_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x25_Reg[7:0]);
+                x26_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h6) ? irWd[7:0] : x26_Reg[7:0]);
+                x27_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x27_Reg[7:0]);
+                x28_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x28_Reg[7:0]);
+                x29_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x29_Reg[7:0]);
+                x2A_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hA) ? irWd[7:0] : x2A_Reg[7:0]);
+                x2B_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x2B_Reg[7:0]);
+                x2C_Reg         <= (regCs[2] & (irAddr[3:0]==4'hC) ? irWd[0:0] : x2C_Reg     );
+                x2D_Reg         <= (regCs[2] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x2D_Reg     );
+
+                x30_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x30_Reg[7:0]);
+                x31_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x31_Reg[7:0]);
+                x32_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x32_Reg[7:0]);
+                x33_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h3) ? irWd[7:0] : x33_Reg[7:0]);
+                x34_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h4) ? irWd[7:0] : x34_Reg[7:0]);
+                x35_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x35_Reg[7:0]);
+                x36_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h6) ? irWd[7:0] : x36_Reg[7:0]);
+                x37_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x37_Reg[7:0]);
+                x38_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x38_Reg[7:0]);
+                x39_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x39_Reg[7:0]);
+                x3A_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hA) ? irWd[7:0] : x3A_Reg[7:0]);
+                x3B_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x3B_Reg[7:0]);
+                x3C_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hC) ? irWd[7:0] : x3C_Reg[7:0]);
+                x3D_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hD) ? irWd[7:0] : x3D_Reg[7:0]);
+                x3E_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hE) ? irWd[7:0] : x3E_Reg[7:0]);
+                x3F_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x3F_Reg[7:0]);
+                
+            end else begin
+                x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
             end
+            irX1E_Reg[2:0] <= {irX1E_Reg[1:0], x1E_Reg};
         end
     end
 
     reg      [7:0]    rdDataA ;
     reg      [7:0]    rdDataB ;
-    reg      [1:0]    regRv   ;
+    reg      [7:0]    rdDataC ;
+    reg      [7:0]    rdDataD ;
+    reg      [3:0]    regRv   ;
     reg               regAck  ;
 
 
@@ -216,26 +343,62 @@ module LOC_REG(
             4'hF:    rdDataA[7:0]    <= x0F_Reg[7:0];        // Footer
         endcase
         case(irAddr[3:0]) /// channel mask
-            4'h0:    rdDataB[7:0]    <= x10_Reg[7:0];    // Channel mask [63:56]
-            4'h1:    rdDataB[7:0]    <= x11_Reg[7:0];    // Channel mask [55:48]
-            4'h2:    rdDataB[7:0]    <= x12_Reg[7:0];    // Channel mask [47:40]
-            4'h3:    rdDataB[7:0]    <= x13_Reg[7:0];    // Channel mask [39:32]
-            4'h4:    rdDataB[7:0]    <= x14_Reg[7:0];    // Channel mask [31:24]
-            4'h5:    rdDataB[7:0]    <= x15_Reg[7:0];    // Channel mask [23:16]
-            4'h6:    rdDataB[7:0]    <= x16_Reg[7:0];    // Channel mask [15: 8]
-            4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];    // Channel mask [ 7: 0]
-            4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];    // Channel mask 2 [14:8] ([7]:nc)
-            4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];    // Channel mask 2 [ 7:0]
+            4'h0:    rdDataB[7:0]    <= x10_Reg[7:0];      // Channel mask [63:56]
+            4'h1:    rdDataB[7:0]    <= x11_Reg[7:0];      // Channel mask [55:48]
+            4'h2:    rdDataB[7:0]    <= x12_Reg[7:0];      // Channel mask [47:40]
+            4'h3:    rdDataB[7:0]    <= x13_Reg[7:0];      // Channel mask [39:32]
+            4'h4:    rdDataB[7:0]    <= x14_Reg[7:0];      // Channel mask [31:24]
+            4'h5:    rdDataB[7:0]    <= x15_Reg[7:0];      // Channel mask [23:16]
+            4'h6:    rdDataB[7:0]    <= x16_Reg[7:0];      // Channel mask [15: 8]
+            4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];      // Channel mask [ 7: 0]
+            4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];      // Channel mask 2 [14:8] ([7]:nc)
+            4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];      // Channel mask 2 [ 7:0]
             4'hA:    rdDataB[7:0]    <= {4'h0,x1D_Reg[3:0]};// Spill Div for MCS
-            4'hB:    rdDataB[7:0]    <= x1B_Reg[7:0];    // Delay for the test signal w.r.t TEST[0]
+            4'hB:    rdDataB[7:0]    <= x1B_Reg[7:0];      // Delay for the test signal w.r.t TEST[0]
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
-            4'hD:    rdDataB[7:0]    <= 8'h00;    // NC
-            4'hE:    rdDataB[7:0]    <= 8'h00;    // NC
-            4'hF:    rdDataB[7:0]    <= 8'h00;    // NC
+            4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset enable
+            4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // SPLCNT reset
+            4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // SPLCNT reset timing from spill end
+        endcase
+        case(irAddr[3:0]) /// Test pulse setting
+            4'h0:    rdDataC[7:0]    <= x20_Reg[7:0];        // T width of test spill (Pos.) [31:24]
+            4'h1:    rdDataC[7:0]    <= x21_Reg[7:0];        // T width of test spill (Pos.) [23:16]
+            4'h2:    rdDataC[7:0]    <= x22_Reg[7:0];        // T width of test spill (Pos.) [15: 8]
+            4'h3:    rdDataC[7:0]    <= x23_Reg[7:0];        // T width of test spill (Pos.) [ 7: 0]
+            4'h4:    rdDataC[7:0]    <= x24_Reg[7:0];        // T width of test spill (Neg.) [31:24]
+            4'h5:    rdDataC[7:0]    <= x25_Reg[7:0];        // T width of test spill (Neg.) [23:16]
+            4'h6:    rdDataC[7:0]    <= x26_Reg[7:0];        // T width of test spill (Neg.) [15: 8]
+            4'h7:    rdDataC[7:0]    <= x27_Reg[7:0];        // T width of test spill (Neg.) [ 7: 0]
+            4'h8:    rdDataC[7:0]    <= x28_Reg[7:0];        // Test MR sync frequency 
+            4'h9:    rdDataC[7:0]    <= x29_Reg[7:0];        // Test MR sync frequency 
+            4'hA:    rdDataC[7:0]    <= x2A_Reg[7:0];        // Test MR sync frequency 
+            4'hB:    rdDataC[7:0]    <= x2B_Reg[7:0];        // Test MR sync frequency 
+            4'hC:    rdDataC[7:0]    <= {7'd0, x2C_Reg};     // Test spill enable
+            4'hD:    rdDataC[7:0]    <= {7'd0, x2D_Reg};     // Test MR sync enable
+            4'hE:    rdDataC[7:0]    <= x2E_Reg[7:0];        // NC
+            4'hF:    rdDataC[7:0]    <= x2F_Reg[7:0];        // NC
+        endcase
+        case(irAddr[3:0]) /// 
+            4'h0:    rdDataD[7:0]    <= x30_Reg[7:0];        // Delay for PSPILL        
+            4'h1:    rdDataD[7:0]    <= x31_Reg[7:0];        // Delay for MR sync       
+            4'h2:    rdDataD[7:0]    <= x32_Reg[7:0];        // Delay for Event matching
+            4'h3:    rdDataD[7:0]    <= x33_Reg[7:0];        // Delay for MPPC          
+            4'h4:    rdDataD[7:0]    <= x34_Reg[7:0];        // Delay for PMT[0]        
+            4'h5:    rdDataD[7:0]    <= x35_Reg[7:0];        // Delay for PMT[1]        
+            4'h6:    rdDataD[7:0]    <= x36_Reg[7:0];        // Delay for PMT[2]        
+            4'h7:    rdDataD[7:0]    <= x37_Reg[7:0];        // Delay for PMT[3]        
+            4'h8:    rdDataD[7:0]    <= x38_Reg[7:0];        // Delay for PMT[4]        
+            4'h9:    rdDataD[7:0]    <= x39_Reg[7:0];        // Delay for PMT[5]        
+            4'hA:    rdDataD[7:0]    <= x3A_Reg[7:0];        // Delay for PMT[6]        
+            4'hB:    rdDataD[7:0]    <= x3B_Reg[7:0];        // Delay for PMT[7]        
+            4'hC:    rdDataD[7:0]    <= x3C_Reg[7:0];        // Delay for PMT[8]        
+            4'hD:    rdDataD[7:0]    <= x3D_Reg[7:0];        // Delay for PMT[9]        
+            4'hE:    rdDataD[7:0]    <= x3E_Reg[7:0];        // Delay for PMT[10]       
+            4'hF:    rdDataD[7:0]    <= x3F_Reg[7:0];        // Delay for PMT[11]       
         endcase
 
-        regRv[1:0]    <= (irRe    ? regCs[1:0] : 8'd0);
-        regAck        <= (|regCs[1:0]) & (irWe | irRe);
+        regRv[3:0]    <= (irRe    ? regCs[3:0] : 8'd0);
+        regAck        <= (|regCs[3:0]) & (irWe | irRe);
     end
 
     reg     [7:0]    orRd ;
@@ -243,7 +406,9 @@ module LOC_REG(
 
     always@ (posedge CLK) begin
         orRd[7:0]  <=   (regRv[0]  ? rdDataA[7:0] : 8'd0)|
-                        (regRv[1]  ? rdDataB[7:0] : 8'd0);
+                        (regRv[1]  ? rdDataB[7:0] : 8'd0)|
+                        (regRv[2]  ? rdDataC[7:0] : 8'd0)|
+                        (regRv[3]  ? rdDataD[7:0] : 8'd0);
         orAck      <=   regAck;
     end
 
@@ -257,9 +422,25 @@ module LOC_REG(
     assign  REG_HEADER[31:0] = {x08_Reg[7:0],x09_Reg[7:0],x0A_Reg[7:0],x0B_Reg[7:0]}; // Header
     assign  REG_FOOTER[31:0] = {x0C_Reg[7:0],x0D_Reg[7:0],x0E_Reg[7:0],x0F_Reg[7:0]}; // Footer
 
-    assign  REG_CHMASK[63:0]  = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
+    assign  REG_CHMASK0[63:0]  = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
                                  x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
-    assign  REG_CHMASK2[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
+    assign  REG_CHMASK1[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
+
+    assign  REG_SPLCNT_RST_EN    = x1D_Reg;
+    assign  REG_SPLCNT_RST       = x1E_Reg;
+    assign  REG_SPLCNT_RSTT[7:0] = x1F_Reg[7:0];
+
+    assign  REG_TEST_PSPILL_EN        = x2C_Reg;
+    assign  REG_TEST_MRSYNC_EN        = x2D_Reg;
+    assign  REG_TEST_PSPILL_POS[31:0] = {x20_Reg[7:0],x21_Reg[7:0],x22_Reg[7:0],x23_Reg[7:0]};
+    assign  REG_TEST_PSPILL_NEG[31:0] = {x24_Reg[7:0],x25_Reg[7:0],x26_Reg[7:0],x27_Reg[7:0]};
+    assign  REG_TEST_MRSYNC_FRQ[31:0] = {x28_Reg[7:0],x29_Reg[7:0],x2A_Reg[7:0],x2B_Reg[7:0]};
+
+    assign  REG_DLY_PSPILL[7:0]  = x30_Reg[7:0];
+    assign  REG_DLY_MRSYNC[7:0]  = x31_Reg[7:0];
+    assign  REG_DLY_EVMATCH[7:0] = x32_Reg[7:0];
+    assign  REG_DLY_MPPC[7:0]    = x33_Reg[7:0];
+    assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
     assign  REG_SPLDIV[3:0] = x1A_Reg[3:0];
     assign  REG_DLY_TEST    = x1B_Reg[7:0]; // Delay for the test signal w.r.t TEST[0]

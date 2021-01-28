@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 verilog xil_defaultlib  \
 "../../../../extinction.srcs/sources_1/ip/fifo_generator_1/sim/fifo_generator_1.v" \
 
 verilog xil_defaultlib "glbl.v"
 
 nosort
+=======
+verilog xil_defaultlib  \
+"../../../../extinction.srcs/sources_1/ip/fifo_generator_1/sim/fifo_generator_1.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
+>>>>>>> 75b128b8e723975a4dca3a03d38e9920c5d57862

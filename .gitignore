@@ -111,3 +111,9 @@ extinction.runs/.jobs/*
 !*.pdf
 !README.md
 !*.sh
+
+##########################
+##  Ignore chache?
+##########################
+extinction.cache/*
+extinction.runs/impl_1/.Xil

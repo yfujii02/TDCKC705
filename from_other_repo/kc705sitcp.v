@@ -18,12 +18,12 @@
 
 module
     kc705sitcp(
-    // System
+        // System
         input    wire            SYSCLK_200MP_IN ,    // From 200MHz Oscillator module
         input    wire            SYSCLK_200MN_IN ,    // From 200MHz Oscillator module
         output   wire            CLK_200M        ,
         output   wire            TCP_RST         ,
-    // EtherNet
+        // EtherNet
         output   wire            GMII_RSTn       ,
         output   wire            GMII_TX_EN      ,
         output   wire    [7:0]   GMII_TXD        ,
@@ -40,19 +40,20 @@ module
 
         inout    wire            GMII_MDIO       ,
         output   wire            GMII_MDC        ,
-    // status
+        // status
+        output   wire            TCP_OPEN_ACK    ,
         output   wire            FIFO_FULL       ,
-    // input data to be sent
+        // input data to be sent
         input    wire    [7:0]   TCP_TX_DATA_IN  ,
         input    wire            TCP_TX_EN_IN    ,
-    // reset switch
+        // reset switch
         input    wire            SW_N            ,
         input    wire            SOFT_RESET      , 
         input    wire            GPIO_SWITCH_0   ,
         //connect EEPROM
         inout    wire            I2C_SDA         ,
         output   wire            I2C_SCL         ,
-    // RBCP
+        // RBCP
         output   wire  [31:0]    RBCP_ADDR       ,
         output   wire   [7:0]    RBCP_WD         ,
         output   wire            RBCP_WE         ,
@@ -72,7 +73,6 @@ module
     wire            LOCKED            ;
     wire            PLL_CLKFB        ;
     wire            BUF_TX_CLK        ;
-    wire            TCP_OPEN_ACK    ;
     wire            TCP_CLOSE_REQ    ;
     wire            TCP_RX_WR        ;
     wire     [7:0]  TCP_RX_DATA        ;
@@ -128,6 +128,7 @@ module
         end
     end
 
+    wire            RST_EEPROM;
     wire            EEPROM_CS;
     wire            EEPROM_SK;
     wire            EEPROM_DI;
@@ -225,8 +226,8 @@ module
         .USR_REG_X3F        (),                 // out    : Stored at 0xFFFF_FF3F
     // MII interface
         .GMII_RSTn          (GMII_RSTn),        // out    : PHY reset
-        //.GMII_1000M         (GMII_1000M),       // in    : GMII mode (0:MII, 1:GMII)
         .GMII_1000M         (1'b1      ),       // in    : GMII mode (0:MII, 1:GMII)
+        //.GMII_1000M         (GMII_1000M),       // in    : GMII mode (0:MII, 1:GMII)
         // TX
         .GMII_TX_CLK        (BUF_TX_CLK),       // in    : Tx clock
         .GMII_TX_EN         (GMII_TX_EN),       // out    : Tx enable
@@ -253,10 +254,9 @@ module
         .TCP_CLOSE_REQ    (TCP_CLOSE_REQ),      // out    : Connection close request
         .TCP_CLOSE_ACK    (TCP_CLOSE_REQ),      // in    : Acknowledge for closing
         // FIFO I/F
-        //.TCP_RX_WC        ({4'b1111,FIFO_DATA_COUNT[11:0]}),// in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
-        .TCP_RX_WC        (16'd0           ),   // in    : Rx FIFO write count[15:0] (Unused bits should be set 1)
-        .TCP_RX_WR        (TCP_RX_WR       ),   // out    : Write enable
-        .TCP_RX_DATA      (TCP_RX_DATA[7:0]),   // out    : Write data[7:0]
+        .TCP_RX_WC        (16'd0),              // in     : Rx FIFO write count[15:0] (Unused bits should be set 1) (Rx unused: 16'd0)
+        .TCP_RX_WR        (TCP_RX_WR       ),   // out    : Write enable     (unused)
+        .TCP_RX_DATA      (TCP_RX_DATA[7:0]),   // out    : Write data[7:0]  (unused)
         .TCP_TX_FULL      (TCP_TX_FULL     ),   // out    : Almost full flag
         .TCP_TX_WR        (FIFO_RD_VALID   ),   // in     : Write enable
         .TCP_TX_DATA      (TCP_TX_DATA[7:0]),   // in     : Write data[7:0]
@@ -291,7 +291,7 @@ module
         .srst       (fifo_reset           ),//in  :
         .din        (TCP_TX_DATA_IN[7:0]  ),//in  :
         .wr_en      (TCP_TX_EN_IN         ),//in  :
-        .full       (FIFO_COMPLETELY_FULL),//out :
+        .full       (FIFO_COMPLETELY_FULL ),//out :
         .prog_full  (FIFO_FULL            ),//out :
         .dout       (TCP_TX_DATA[7:0]     ),//out :
         .valid      (FIFO_RD_VALID        ),//out :active hi

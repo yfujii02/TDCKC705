@@ -1,8 +1,14 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
 | Date         : Fri Dec 25 22:49:34 2020
 | Host         : dyna-comet running 64-bit major release  (build 9200)
+=======
+| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+| Date         : Fri Jan 22 17:03:34 2021
+| Host         : localhost.localdomain running 64-bit unknown
+>>>>>>> 75b128b8e723975a4dca3a03d38e9920c5d57862
 | Command      : report_utilization -file fifo_generator_0_utilization_synth.rpt -pb fifo_generator_0_utilization_synth.pb
 | Design       : fifo_generator_0
 | Device       : 7k325tffg900-2
@@ -30,14 +36,14 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             | 1186 |     0 |    203800 |  0.58 |
-|   LUT as Logic          | 1186 |     0 |    203800 |  0.58 |
+| Slice LUTs*             |  595 |     0 |    203800 |  0.29 |
+|   LUT as Logic          |  595 |     0 |    203800 |  0.29 |
 |   LUT as Memory         |    0 |     0 |     64000 |  0.00 |
-| Slice Registers         |  655 |     0 |    407600 |  0.16 |
-|   Register as Flip Flop |  655 |     0 |    407600 |  0.16 |
+| Slice Registers         |  394 |     0 |    407600 |  0.10 |
+|   Register as Flip Flop |  394 |     0 |    407600 |  0.10 |
 |   Register as Latch     |    0 |     0 |    407600 |  0.00 |
-| F7 Muxes                |  396 |     0 |    101900 |  0.39 |
-| F8 Muxes                |    0 |     0 |     50950 |  0.00 |
+| F7 Muxes                |  198 |     0 |    101900 |  0.19 |
+| F8 Muxes                |   99 |     0 |     50950 |  0.19 |
 +-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -57,7 +63,7 @@ Table of Contents
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 5     |          Yes |         Set |            - |
-| 650   |          Yes |       Reset |            - |
+| 389   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -67,9 +73,9 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    |  372 |     0 |       445 | 83.60 |
-|   RAMB36/FIFO*    |  372 |     0 |       445 | 83.60 |
-|     RAMB36E1 only |  372 |       |           |       |
+| Block RAM Tile    |  186 |     0 |       445 | 41.80 |
+|   RAMB36/FIFO*    |  186 |     0 |       445 | 41.80 |
+|     RAMB36E1 only |  186 |       |           |       |
 |   RAMB18          |    0 |     0 |       890 |  0.00 |
 +-------------------+------+-------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
@@ -152,17 +158,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |  957 |                 LUT |
-| FDRE     |  650 |        Flop & Latch |
-| MUXF7    |  396 |               MuxFx |
-| RAMB36E1 |  372 |        Block Memory |
-| LUT2     |  162 |                 LUT |
-| LUT4     |   40 |                 LUT |
-| CARRY4   |   30 |          CarryLogic |
-| LUT3     |   24 |                 LUT |
+| LUT6     |  401 |                 LUT |
+| FDRE     |  389 |        Flop & Latch |
+| MUXF7    |  198 |               MuxFx |
+| RAMB36E1 |  186 |        Block Memory |
+| MUXF8    |   99 |               MuxFx |
+| LUT2     |   97 |                 LUT |
+| LUT4     |   42 |                 LUT |
+| LUT5     |   33 |                 LUT |
+| CARRY4   |   26 |          CarryLogic |
+| LUT3     |   19 |                 LUT |
 | FDSE     |    5 |        Flop & Latch |
 | LUT1     |    4 |                 LUT |
-| LUT5     |    1 |                 LUT |
 +----------+------+---------------------+
 
 
