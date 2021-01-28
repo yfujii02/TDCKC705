@@ -72,54 +72,6 @@ module
     assign  EXIN_SPLCNT_RST = SPLCNT_RST_EN ? GPIO_SMA0_IN : 1'b0;
     assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
 
-//-----------------------------------------------------------
-//  Pre-processing for counter signals, SPILL, and MR sync
-//-----------------------------------------------------------
-    wire    [19:0]    HA_HPC        ; // for additional information
-    wire    [31:0]    LA_HPC        ; // for main counters
-    wire    [31:0]    LA_LPC        ; // for main counters
-    wire    [63:0]    SIGNAL        ;
-    wire              PSPILL        ; // P0 for resetting counter
-    wire              PSPILL_FMC    ; // P0 for resetting counter from FMC
-    wire              MR_SYNC_FMC   ; // MR sync
-    wire              MR_SYNC       ; // MR sync
-    wire              EV_MATCH      ; // Event matching signal spill-by-spill
-    wire    [11:0]    OLDH          ; // PMT and old hodoscope
-
-    wire              TEST_PSPILL_EN; // Tset spill enable
-    wire              TEST_MRSYNC_EN; // Tset MR sync enable
-    wire              TEST_PSPILL   ; // Test spill signal
-    wire              TEST_MRSYNC   ; // Test MR sync signal
-    wire    [63:0]    CHMASK        ; // mask channel if corresponding bit is high
-    wire    [14:0]    CHMASK2       ; // mask for non-main counter channels
-     
-    /// Differential to signle
-    genvar i;
-    generate
-    for (i = 0; i < 32; i = i+1) begin: LVDS_BUF_LA
-        IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
-            LVDS_BUF0(.O(LA_HPC[i]),.I(LA_HPC_P[i]),.IB(LA_HPC_N[i]));
-        IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
-            LVDS_BUF1(.O(LA_LPC[i]),.I(LA_LPC_P[i]),.IB(LA_LPC_N[i]));
-    end
-    endgenerate
-    generate
-    for (i = 0; i < 20; i = i+1) begin: LVDS_BUF_HA
-        IBUFDS #(.IOSTANDARD("LVDS_25"),.DIFF_TERM("TRUE"))
-            LVDS_BUF2(.O(HA_HPC[i]),.I(HA_HPC_P[i]),.IB(HA_HPC_N[i]));
-    end
-    endgenerate
-    generate
-
-    /// mask signals by using the register
-    assign    SIGNAL = ~CHMASK & {LA_HPC,LA_LPC};
-//    assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = (GPIO_SWITCH[3:1]==3'b111)?
-//                     {13'd0,SW_DEBUG[1:0]} : ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]};
-    assign    {OLDH,EV_MATCH,MR_SYNC_FMC,PSPILL_FMC} = ~CHMASK2 & {HA_HPC[16:10], HA_HPC[7:3], HA_HPC[2:0]};
-    
-    assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
-    assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
-
     wire             CLK_200M     ;
     wire             TCP_OPEN_ACK ;
     wire             FIFO_FULL    ;
@@ -129,54 +81,54 @@ module
     wire             RUN_START    ;
     wire             RUN_RESET    ;
 
-    reg    [63:0]    regSIG       ;
-    reg   [127:0]    sigEdge      ;
+//-----------------------------------------------------------
+//  Pre-processing for counter signals, SPILL, and MR sync
+//-----------------------------------------------------------
+    wire              PSPILL        ; // P0 for resetting counter
+    wire              PSPILL_FMC    ; // P0 for resetting counter from FMC
+    wire              MR_SYNC_FMC   ; // MR sync
+    wire              MR_SYNC       ; // MR sync
+    wire              EV_MATCH      ; // Event matching signal spill-by-spill
+    wire    [63:0]    SIGNAL        ;
+    wire    [11:0]    OLDH          ; // PMT and old hodoscope
 
-    reg    [11:0]    regOLDH      ; // from old hodoscope and other PMTs
-    reg    [23:0]    oldhEdge     ; // detect the edge timing
+    wire    [63:0]    CHMASK0       ; // mask channel if corresponding bit is high
+    wire    [14:0]    CHMASK1       ; // mask for non-main counter channels
+    wire              TEST_PSPILL_EN; // Tset spill enable
+    wire              TEST_MRSYNC_EN; // Tset MR sync enable
+    wire              TEST_PSPILL   ; // Test spill signal
+    wire              TEST_MRSYNC   ; // Test MR sync signal
+    wire     [7:0]    DLY_PSPILL    ; // Delay for spill singal
+    wire     [7:0]    DLY_MRSYNC    ; // Delay for MR sync
+    wire     [7:0]    DLY_EVMATCH   ; // Delay for Event matching
+    wire     [7:0]    DLY_MPPC      ; // Delay for MPPC
+    wire    [95:0]    DLY_PMT       ; // Delay for PMT
 
-    reg     [1:0]    syncEdge     ;
-    reg              regSync      ;
-
-    /// Signal-edge detection
-    // loop for the MPPC signals
-    for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
-        always@ (posedge CLK_200M) begin
-            if(TCP_RST)begin
-                regSIG[i]          <= 1'd0;
-                sigEdge[2*i+1:2*i] <= 2'd0;
-            end else begin
-                sigEdge[2*i+1:2*i] <= {sigEdge[2*i],SIGNAL[i]};
-                regSIG[i]          <= (sigEdge[2*i+1:2*i]==2'b01);
-            end
-        end
-    end
-    endgenerate
-    // loop for the PMT signals
-    generate
-    for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
-        always@ (posedge CLK_200M) begin
-            if(TCP_RST)begin
-                regOLDH[i]          <= 1'd0;
-                oldhEdge[2*i+1:2*i] <= 2'd0;
-            end else begin
-                oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],OLDH[i]};
-                regOLDH[i]          <= (oldhEdge[2*i+1:2*i]==2'b01);
-            end
-        end
-    end
-    endgenerate
-    generate
-        always@ (posedge CLK_200M) begin
-            if(TCP_RST)begin
-                regSync       <= 1'd0;
-                syncEdge[1:0] <= 2'd0;
-            end else begin
-                regSync       <= (syncEdge[1:0]==2'b01);
-                syncEdge[1:0] <= {syncEdge[0],MR_SYNC};
-            end
-        end
-    endgenerate
+    PREPROCESSOR PREPROCESSOR(
+        .SYSCLK       (CLK_200M         ), // in : System clock
+        .SYSRST       (TCP_RST          ), // in : System reset
+        .LA_HPC_P     (LA_HPC_P[31:0]   ), // in : Connector
+        .LA_HPC_N     (LA_HPC_N[31:0]   ), // in : Connector
+        .LA_LPC_P     (LA_LPC_P[31:0]   ), // in : Connector
+        .LA_LPC_N     (LA_LPC_N[31:0]   ), // in : Connector
+        .HA_HPC_P     (HA_HPC_P[19:0]   ), // in : Connector
+        .HA_HPC_N     (HA_HPC_N[19:0]   ), // in : Connector
+        .DLY_PSPILL   (DLY_PSPILL[7:0]  ), // in : Delay for spill singal
+        .DLY_MRSYNC   (DLY_MRSYNC[7:0]  ), // in : Delay for MR sync
+        .DLY_EVMATCH  (DLY_EVMATCH[7:0] ), // in : Delay for Event matching
+        .DLY_MPPC     (DLY_MPPC[7:0]    ), // in : Delay for MPPC
+        .DLY_PMT      (DLY_PMT[95:0]    ), // in : Delay for PMT
+        .CHMASK0      (CHMASK0[63:0]    ), // in : mask channel if corresponding bit is high
+        .CHMASK1      (CHMASK1[14:0]    ), // in : mask for non-main counter channels
+        .PSPILL       (PSPILL_FMC       ), // out: Spill signal (P3)
+        .MR_SYNC      (MR_SYNC_FMC      ), // out: MR sync
+        .EV_MATCH     (EV_MATCH         ), // out: Event-matching signal
+        .SIGNAL       (SIGNAL[63:0]     ), // out: New hodoscope signal
+        .OLDH         (OLDH[11:0]       )  // out: Old hodoscope signal
+    );
+     
+    assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
+    assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
 
 
 //-----------------------------------------------------------
@@ -265,10 +217,10 @@ module
         .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]     ), // in : (In) Spl cnt reset timing from spill end
         .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST         ), // out: (Ex) Spl cnt reset
         // Counter data
-        .SIGNAL         (regSIG[63:0]             ), // in : New hodoscope signals
+        .SIGNAL         (SIGNAL[63:0]             ), // in : New hodoscope signals
         .PSPILL         (PSPILL                   ), // in : SPILL signal
-        .MR_SYNC        (regSync                  ), // in : MR sync signal
-        .OLDH           (regOLDH[11:0]            ), // in : Old hodoscope signals
+        .MR_SYNC        (MR_SYNC                  ), // in : MR sync signal
+        .OLDH           (OLDH[11:0]               ), // in : Old hodoscope signals
         .EV_MATCH       (EV_MATCH                 ), // in : Event-mathcing signal
         .TCP_BUSY       (FIFO_FULL                ), // in : Busy flag for DAQ to pend the data sending
         .START          (RUN_START                ), // in : Start signal to send the data
@@ -317,8 +269,8 @@ module
         .REG_RESET          (RUN_RESET            ), // out: Reset
         .REG_HEADER         (HEADER[31:0]         ), // out: Header
         .REG_FOOTER         (FOOTER[31:0]         ), // out: Footer
-        .REG_CHMASK         (CHMASK[63:0]         ), // out: Mask channel selector
-        .REG_CHMASK2        (CHMASK2[14:0]        ), // out: Mask channel selector
+        .REG_CHMASK0        (CHMASK0[63:0]        ), // out: Mask channel selector
+        .REG_CHMASK1        (CHMASK1[14:0]        ), // out: Mask channel selector
         .REG_SPLCNT_RST_EN  (SPLCNT_RST_EN        ), // out: Enable spill count reset
         .REG_SPLCNT_RST     (INT_SPLCNT_RST       ), // out: Spill count reset
         .REG_SPLCNT_RSTT    (INT_SPLCNT_RSTT[7:0] ), // out: Spill count reset timing from spill end (def: 1us)
@@ -326,7 +278,12 @@ module
         .REG_TEST_MRSYNC_EN (TEST_MRSYNC_EN       ), // out: Test MR sync enable
         .REG_TEST_PSPILL_POS(TEST_PSPILL_POS[31:0]), // out: Time width of test spill (Pos.)
         .REG_TEST_PSPILL_NEG(TEST_PSPILL_NEG[31:0]), // out: Time width of test spill (Neg.)
-        .REG_TEST_MRSYNC_FRQ(TEST_MRSYNC_FRQ[31:0])  // out: Test MR sync frequency
+        .REG_TEST_MRSYNC_FRQ(TEST_MRSYNC_FRQ[31:0]), // out: Test MR sync frequency
+        .REG_DLY_PSPILL     (DLY_PSPILL[7:0]      ), // out: Delay for spill singal
+        .REG_DLY_MRSYNC     (DLY_MRSYNC[7:0]      ), // out: Delay for MR sync
+        .REG_DLY_EVMATCH    (DLY_EVMATCH[7:0]     ), // out: Delay for Event matching
+        .REG_DLY_MPPC       (DLY_MPPC[7:0]        ), // out: Delay for MPPC
+        .REG_DLY_PMT        (DLY_PMT[95:0]        )  // out: Delay for PMT
     );
 
 
@@ -362,7 +319,7 @@ module
     );
 
     /// Generate a pseudo spill signal
-    reg             irTestSpill;
+    reg    [1:0]    irTestSpill;
     reg   [31:0]    irSpillTime;
     always@(posedge CLK_10M) begin
         if(TCP_RST) begin
@@ -374,21 +331,21 @@ module
         end
 
         if(TCP_RST) begin
-            irTestSpill <= 1'b0;
+            irTestSpill[1:0] <= 2'b00;
         end else if(irSpillTime[31:0]==TEST_PSPILL_POS[30:0]) begin
-            irTestSpill <= 1'b1;
+            irTestSpill[1:0] <= {irTestSpill[0],1'b1};
         end else if(irSpillTime[31:0]==(TEST_PSPILL_POS[30:0]+TEST_PSPILL_NEG[30:0])) begin
-            irTestSpill <= 1'b0;
+            irTestSpill[1:0] <= {irTestSpill[0],1'b0};
         end else begin
-            irTestSpill <= irTestSpill;
+            irTestSpill[1:0] <= irTestSpill[1:0];
         end
     end
-    assign TEST_PSPILL = irTestSpill;
+    assign TEST_PSPILL = irTestSpill[1];
 
     /// Generate a pseudo MR sync signal
     reg             irTestMrsync;
     reg   [31:0]    irMrsyncTime;
-    reg    [1:0]    irMrsyncPulse;
+    reg    [2:0]    irMrsyncPulse;
     always@(posedge CLK_10M) begin
         if(TCP_RST) begin
             irMrsyncTime[31:0] <= 32'd1;
@@ -406,12 +363,12 @@ module
     end
     always@(posedge CLK_200M) begin
         if(TCP_RST) begin
-            irMrsyncPulse[1:0] <= 2'd0;
+            irMrsyncPulse[2:0] <= 3'd0;
         end else begin
-            irMrsyncPulse[1:0] <= {irMrsyncPulse[0], irTestMrsync};
+            irMrsyncPulse[2:0] <= {irMrsyncPulse[1:0], irTestMrsync};
         end
     end
-    assign TEST_MRSYNC = (irMrsyncPulse[1:0]==2'b01) & TEST_PSPILL ? 1'b1 : 1'b0;
+    assign TEST_MRSYNC = (irMrsyncPulse[2:1]==2'b01) & TEST_PSPILL ? 1'b1 : 1'b0;
 
     
     //assign GPIO_LED = SPILLCOUNT[3:0];
