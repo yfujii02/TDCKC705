@@ -41,6 +41,11 @@
 module top_mcs(
     input   wire            RESET     ,
     input   wire            CLK_200M  ,
+    input   wire            SPLCNT_RST     ,
+    input   wire            INT_SPLCNT_RST ,
+    input   wire    [7:0]   INT_SPLCNT_RSTT,
+    output  wire            EX_SPLCNT_RST  ,
+
     input   wire   [63:0]   SIGNAL    ,
     input   wire            PSPILL    ,
     input   wire            MR_SYNC   ,
@@ -53,7 +58,9 @@ module top_mcs(
     input   wire   [ 3:0]   SPILLDIV  ,
     output  reg    [ 7:0]   OUTDATA   ,
     output  reg             SEND_EN   ,
-    output  wire   [ 7:0]   BUF_SWITCH
+    output  wire   [ 7:0]   BUF_SWITCH,
+    output  wire    [7:0]   DEBUG_SPLOFFCNT,
+    output  wire    [2:0]   DEBUG_DLYSPLCNT
     );
     //*******************************************************************************
     //
@@ -63,14 +70,21 @@ module top_mcs(
     wire            SPILL_EDGE ;
     wire    [15:0]  EM_COUNT   ;
     GET_SPILLINFO get_spillInfo(
-        .RESET     (~START    ),
+        .RESET     (RESET     ),
         .CLK_200M  (CLK_200M  ),
+        .SPLCNT_RST(SPLCNT_RST),
+        .INT_SPLCNT_RST (INT_SPLCNT_RST      ),
+        .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]),
+        .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST    ),
         .PSPILL    (PSPILL    ),
         .MR_SYNC   (MR_SYNC   ),
         .SPILLCOUNT(SPILLCOUNT),
         .SPILL_EDGE(SPILL_EDGE),
+        .SPILL_END (          ),
         .EV_MATCH  (EV_MATCH  ),
-        .EM_COUNT  (EM_COUNT  )
+        .EM_COUNT  (EM_COUNT  ),
+        .DEBUG_SPLOFFCNT(DEBUG_SPLOFFCNT),
+        .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
 
     reg  [10:0]    relCNTR; // counter relative to MR_SYNC

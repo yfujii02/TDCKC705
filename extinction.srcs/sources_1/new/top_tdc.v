@@ -64,79 +64,14 @@ module top_tdc(
         .PSPILL    (PSPILL    ),
         .MR_SYNC   (MR_SYNC   ),
         .SPILLCOUNT(SPILLCOUNT),
-        .SPILL_EDGE(SPILL_EDGE),
+        .SPILL_EDGE(SPL_EDGE  ),
+        .SPILL_EDGE(SPL_END   ),
         .EV_MATCH  (EV_MATCH  ),
-        .EM_COUNT  (EM_COUNT  )
+        .EM_COUNT  (EM_COUNT  ),
+        .DEBUG_SPLOFFCNT(DEBUG_SPLOFFCNT),
+        .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
-//*******************************************************************************
-//
-//     TDC count-up
-//
-//*******************************************************************************
-    reg      [1:0]    SPL_REG     ;
-    reg               SPL_EDGE    ;
-    reg               SPL_END     ;
-    reg      [1:0]    EM_REG      ;
-    reg               EM_EDGE     ;
-    reg     [31:0]    COUNTER     ;
-    reg     [31:0]    irSPILLCOUNT; // Spill counter
-    assign SPILLCOUNT = irSPILLCOUNT;
 
-    always@ (posedge CLK_200M) begin
-        if(RESET)begin
-            SPL_REG      <= 2'b00;
-            SPL_EDGE     <= 1'b0;
-            SPL_END      <= 1'b0;
-            irSPILLCOUNT <= 32'd0;
-
-            EM_REG       <= 2'b00;
-            EM_EDGE      <= 1'b0;
-        end else begin
-            SPL_REG      <= {SPL_REG[0],PSPILL};
-            SPL_EDGE     <= (SPL_REG==2'b01);
-            SPL_END      <= (SPL_REG==2'b10);
-            if(SPLCNT_RST) begin
-              irSPILLCOUNT <= 32'd0;
-            end else begin
-              irSPILLCOUNT <= (SPL_END==1'b1) ? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
-            end
-
-            EM_REG       <= {EM_REG[0],EV_MATCH};
-            EM_EDGE      <= (EM_REG==2'b01);
-        end
-    end
-
-    reg     [7:0]    spl_off_cnt ;
-    reg     [2:0]    dlySplCntRst;
-    always@(posedge CLK_200M) begin
-        if(RESET || SPL_END)begin
-            spl_off_cnt[7:0] <= 8'd0;
-        end else if(spl_off_cnt[7:0]==8'hFF) begin
-            spl_off_cnt[7:0] <= spl_off_cnt[7:0];
-        end else begin
-            spl_off_cnt[7:0] <= spl_off_cnt[7:0] + 8'd1;
-        end
-
-        if(RESET) begin
-            dlySplCntRst[2:0] <= 3'b000;
-        end else if(INT_SPLCNT_RST) begin
-            dlySplCntRst[2:0] <= 3'b111;
-        end else if(spl_off_cnt[7:0]==INT_SPLCNT_RSTT[7:0]) begin
-            dlySplCntRst[2:0] <= dlySplCntRst[0] ? 3'b010 : {dlySplCntRst[1:0], 1'b0};
-        end else begin
-            dlySplCntRst[2:0] <= dlySplCntRst[0] ? 3'b111 : {dlySplCntRst[1:0], 1'b0};
-        end
-    end
-    assign EX_SPLCNT_RST = dlySplCntRst[2] ^ dlySplCntRst[1]; // H within 2 CLK
-    assign DEBUG_SPLOFFCNT[7:0] = spl_off_cnt[7:0];
-    assign DEBUG_DLYSPLCNT[2:0] = dlySplCntRst[2:0];
-
-    reg    [15:0]    EMCOUNTER ; // Counter for Event matching signal
-    reg              EMDONE    ;
-    reg    [15:0]    regEMCNTR ;
-    reg              EN_EMCOUNT;
-
->>>>>>> 75b128b8e723975a4dca3a03d38e9920c5d57862
     always@ (posedge CLK_200M) begin
         if(RESET)begin
             COUNTER   <= 32'd0;

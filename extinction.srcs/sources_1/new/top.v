@@ -105,9 +105,7 @@ module
     wire     [7:0]    DLY_MPPC      ; // Delay for MPPC
     wire    [95:0]    DLY_PMT       ; // Delay for PMT
 
-    wire    [1:0]     DLY_TEST_FAST;
     wire    [63:0]    SIGTEST  ;
-    assign    SIGTEST = {31'd0,DLY_TEST_FAST[1],31'd0,DLY_TEST_FAST[0]};
 
     PREPROCESSOR PREPROCESSOR(
         .SYSCLK       (CLK_200M         ), // in : System clock
@@ -218,13 +216,17 @@ module
 
     top_mcs top_mcs(
     // system
-        .RESET      ((TCP_RST|RUN_RESET)),
+        .RESET      ((~TCP_OPEN_ACK|RUN_RESET)),
         .CLK_200M   (CLK_200M     ),
+        .SPLCNT_RST     (SPLCNT_RST          ), // in : Spill count reset
+        .INT_SPLCNT_RST (INT_SPLCNT_RST      ), // in : (In) Spl cnt reset
+        .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]), // in : (In) Spl cnt reset timing from spill end
+        .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST    ), // out: (Ex) Spl cnt reset
     //
-        .SIGNAL     (regSIG       ),
+        .SIGNAL     (SIGNAL[63:0] ),
         .PSPILL     (PSPILL       ),
-        .MR_SYNC    (regSync      ),
-        .OLDH       (regOLDH      ),
+        .MR_SYNC    (MR_SYNC      ),
+        .OLDH       (OLDH[11:0]   ),
         .EV_MATCH   (EV_MATCH     ),
         .TCP_BUSY   (FIFO_FULL    ), // Busy flag for DAQ to pend the data sending
         .START      (RUN_START    ), // Start signal to send the data
@@ -233,7 +235,9 @@ module
         .SPILLDIV   (SPILLDIV[3:0]),
         .OUTDATA    (OUTDATA      ), // Output data into SiTCP
         .SEND_EN    (TCP_TX_EN    ), // Output data enable SiTCP
-        .BUF_SWITCH (dbg_buf_switch)
+        .BUF_SWITCH (dbg_buf_switch),
+        .DEBUG_SPLOFFCNT(debug_sploffcnt),
+        .DEBUG_DLYSPLCNT(debug_dlysplcnt)
     );
 
     wire    [7:0]   DELAY_TEST;
@@ -415,7 +419,7 @@ module
     end
 
     ila_0 ila_0(
-        //.trig_in(PSPILL   ),
+        .trig_in(PSPILL   ),
         .clk    (CLK_200M ),
         // 8 bits per each
         .probe0 (OUTDATA  ),
@@ -434,8 +438,8 @@ module
         .probe12(MR_SYNC                ),
         .probe13(TRIGGER_INT            ),
         .probe14(debug_data_en          ),
-        .probe15(debug_data_end         ),
-        .probe16(debug_rd_en            )
+        .probe15(debug_data_end         )//,
+        //.probe16(debug_rd_en            )
     );
 
 endmodule

@@ -1,6 +1,2 @@
 
-<<<<<<< HEAD
-2018.1’Bus skew results˜¥ü™’@
-=======
-2018.1’Bus skew results˜¥N’@
->>>>>>> 75b128b8e723975a4dca3a03d38e9920c5d57862
+2018.1’Bus skew results˜¥GŽ@

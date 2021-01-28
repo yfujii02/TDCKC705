@@ -44,7 +44,7 @@ module LOC_REG(
     // Debug
     output  wire    [63:0]  REG_CHMASK0 ,    // mask input channels
     output  wire    [14:0]  REG_CHMASK1 ,    // mask input channels (OLDH)
-    output  wire     [7:0]  REG_DLY_TEST     // delay for fast_test signal [7:0]
+    output  wire     [7:0]  REG_DLY_TEST,    // delay for fast_test signal [7:0]
     output  wire            REG_SPLCNT_RST_EN   ,    // out    : enalbe spill count reset
     output  wire            REG_SPLCNT_RST      ,    // out    : spill count reset
     output  wire     [7:0]  REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
@@ -56,7 +56,7 @@ module LOC_REG(
     output  wire     [7:0]  REG_DLY_PSPILL      ,    // out    : Delay for spill signal
     output  wire     [7:0]  REG_DLY_MRSYNC      ,    // out    : Delay for MR sync
     output  wire     [7:0]  REG_DLY_EVMATCH     ,    // out    : Delay for Event matching
-    output  wire            REG_DLY_MPPC        ,    // out    : Delay for MPPC
+    output  wire     [7:0]  REG_DLY_MPPC        ,    // out    : Delay for MPPC
     output  wire    [95:0]  REG_DLY_PMT              // out    : Delay for PMT
 );
 //------------------------------------------------------------------------------
@@ -353,7 +353,7 @@ module LOC_REG(
             4'h7:    rdDataB[7:0]    <= x17_Reg[7:0];      // Channel mask [ 7: 0]
             4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];      // Channel mask 2 [14:8] ([7]:nc)
             4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];      // Channel mask 2 [ 7:0]
-            4'hA:    rdDataB[7:0]    <= {4'h0,x1D_Reg[3:0]};// Spill Div for MCS
+            4'hA:    rdDataB[7:0]    <= {4'h0,x1A_Reg[3:0]};// Spill Div for MCS
             4'hB:    rdDataB[7:0]    <= x1B_Reg[7:0];      // Delay for the test signal w.r.t TEST[0]
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
             4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset enable
