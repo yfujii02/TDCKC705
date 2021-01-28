@@ -43,13 +43,7 @@ module
         output   wire            GPIO_SMA1_OUT  ,
         // Test inputs
         input    wire    [3:0]   GPIO_SWITCH    ,
-<<<<<<< HEAD
-        input    wire            GPIO_SMA_IN    ,
-        output   wire            GPIO_SMA_OUT   ,
-    // test outputs
-=======
         // Test outputs
->>>>>>> 75b128b8e723975a4dca3a03d38e9920c5d57862
         output   wire    [3:0]   GPIO_LED       , /// GPIO_LED_[4,5,6,7]
         // Connect EEPROM
         inout    wire            I2C_SDA   ,
@@ -72,9 +66,6 @@ module
         input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
     );
 
-    wire    [1:0]     DLY_TEST_FAST;
-    wire    [63:0]    SIGTEST  ;
-    assign    SIGTEST = {31'd0,DLY_TEST_FAST[1],31'd0,DLY_TEST_FAST[0]};
 
     wire    SPLCNT_RST_EN  ;
     wire    EXIN_SPLCNT_RST;
@@ -113,6 +104,10 @@ module
     wire     [7:0]    DLY_EVMATCH   ; // Delay for Event matching
     wire     [7:0]    DLY_MPPC      ; // Delay for MPPC
     wire    [95:0]    DLY_PMT       ; // Delay for PMT
+
+    wire    [1:0]     DLY_TEST_FAST;
+    wire    [63:0]    SIGTEST  ;
+    assign    SIGTEST = {31'd0,DLY_TEST_FAST[1],31'd0,DLY_TEST_FAST[0]};
 
     PREPROCESSOR PREPROCESSOR(
         .SYSCLK       (CLK_200M         ), // in : System clock
