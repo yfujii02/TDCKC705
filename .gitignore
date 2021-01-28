@@ -30,8 +30,8 @@
 !*.xcix
 !*.ngc
 #*.dcp(checkpoint files)
-!*.dcp
-!*.vds
+#!*.dcp
+#!*.vds
 #!*.pb
 #All bd comments and layout coordinates are stored within .ui
 !*.ui
