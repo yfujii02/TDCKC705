@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -63,7 +63,8 @@ module fifo_generator_0 (
   full,
   almost_full,
   empty,
-  data_count
+  data_count,
+  prog_full
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME core_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0" *)
@@ -84,13 +85,14 @@ output wire full;
 output wire almost_full;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ EMPTY" *)
 output wire empty;
-output wire [16 : 0] data_count;
+output wire [15 : 0] data_count;
+output wire prog_full;
 
   fifo_generator_v13_2_5 #(
     .C_COMMON_CLOCK(1),
     .C_SELECT_XPM(0),
     .C_COUNT_TYPE(0),
-    .C_DATA_COUNT_WIDTH(17),
+    .C_DATA_COUNT_WIDTH(16),
     .C_DEFAULT_VALUE("BlankString"),
     .C_DIN_WIDTH(104),
     .C_DOUT_RST_VAL("0"),
@@ -126,13 +128,13 @@ output wire [16 : 0] data_count;
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
-    .C_PROG_FULL_THRESH_ASSERT_VAL(131070),
-    .C_PROG_FULL_THRESH_NEGATE_VAL(131069),
-    .C_PROG_FULL_TYPE(0),
-    .C_RD_DATA_COUNT_WIDTH(17),
-    .C_RD_DEPTH(131072),
+    .C_PROG_FULL_THRESH_ASSERT_VAL(65534),
+    .C_PROG_FULL_THRESH_NEGATE_VAL(65533),
+    .C_PROG_FULL_TYPE(2),
+    .C_RD_DATA_COUNT_WIDTH(16),
+    .C_RD_DEPTH(65536),
     .C_RD_FREQ(1),
-    .C_RD_PNTR_WIDTH(17),
+    .C_RD_PNTR_WIDTH(16),
     .C_UNDERFLOW_LOW(0),
     .C_USE_DOUT_RST(1),
     .C_USE_ECC(0),
@@ -143,10 +145,10 @@ output wire [16 : 0] data_count;
     .C_USE_FWFT_DATA_COUNT(0),
     .C_VALID_LOW(0),
     .C_WR_ACK_LOW(0),
-    .C_WR_DATA_COUNT_WIDTH(17),
-    .C_WR_DEPTH(131072),
+    .C_WR_DATA_COUNT_WIDTH(16),
+    .C_WR_DEPTH(65536),
     .C_WR_FREQ(1),
-    .C_WR_PNTR_WIDTH(17),
+    .C_WR_PNTR_WIDTH(16),
     .C_WR_RESPONSE_LATENCY(1),
     .C_MSGON_VAL(1),
     .C_ENABLE_RST_SYNC(1),
@@ -302,12 +304,12 @@ output wire [16 : 0] data_count;
     .din(din),
     .wr_en(wr_en),
     .rd_en(rd_en),
-    .prog_empty_thresh(17'B0),
-    .prog_empty_thresh_assert(17'B0),
-    .prog_empty_thresh_negate(17'B0),
-    .prog_full_thresh(17'B0),
-    .prog_full_thresh_assert(17'B0),
-    .prog_full_thresh_negate(17'B0),
+    .prog_empty_thresh(16'B0),
+    .prog_empty_thresh_assert(16'B0),
+    .prog_empty_thresh_negate(16'B0),
+    .prog_full_thresh(16'B0),
+    .prog_full_thresh_assert(16'B0),
+    .prog_full_thresh_negate(16'B0),
     .int_clk(1'D0),
     .injectdbiterr(1'D0),
     .injectsbiterr(1'D0),
@@ -324,7 +326,7 @@ output wire [16 : 0] data_count;
     .data_count(data_count),
     .rd_data_count(),
     .wr_data_count(),
-    .prog_full(),
+    .prog_full(prog_full),
     .prog_empty(),
     .sbiterr(),
     .dbiterr(),

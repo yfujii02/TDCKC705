@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1608264724">
+<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1611312184">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BITSTR-SYSDEF" Name="top.sysdef"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
@@ -77,12 +77,6 @@
   <File Type="PA-TCL" Name="top.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.ngc">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -153,13 +147,6 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -328,27 +315,6 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_SFP/SiTCP.xdc">
-      <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_SFP/gig_ethernet_pcs_pma_0.xdc">
-      <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_SFP/kc705sitcp.xdc">
-      <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -390,6 +356,7 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_1"/>
   <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
 </GenRun>

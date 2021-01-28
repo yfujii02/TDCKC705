@@ -2,12 +2,12 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri Dec 18 15:12:06 2020
-# Process ID: 78938
-# Current directory: /home/comet/FPGA/extinction/extinction.runs/synth_1
+# Start of session at: Fri Jan 22 19:43:06 2021
+# Process ID: 32767
+# Current directory: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1
 # Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
-# Log file: /home/comet/FPGA/extinction/extinction.runs/synth_1/top.vds
-# Journal file: /home/comet/FPGA/extinction/extinction.runs/synth_1/vivado.jou
+# Log file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.vds
+# Journal file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
 source top.tcl -notrace
 Command: synth_design -top top -part xc7k325tffg900-2
@@ -17,12 +17,12 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 79942
+INFO: [Synth 8-7075] Helper process launched with PID 346
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 2270.547 ; gain = 30.902 ; free physical = 833 ; free virtual = 38450
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 2209.074 ; gain = 37.840 ; free physical = 19237 ; free virtual = 39715
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'top' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:18]
-INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
+INFO: [Synth 8-6157] synthesizing module 'top' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:18]
+INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
 	Parameter DIFF_TERM bound to: TRUE - type: string 
 	Parameter DQS_BIAS bound to: FALSE - type: string 
@@ -30,9 +30,9 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/opt/software/Vivado/2020.1/s
 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
-INFO: [Synth 8-6157] synthesizing module 'kc705sitcp' [/home/comet/FPGA/extinction/from_other_repo/kc705sitcp.v:20]
-INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
+INFO: [Synth 8-6157] synthesizing module 'kc705sitcp' [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:20]
+INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
 	Parameter DIFF_TERM bound to: FALSE - type: string 
 	Parameter DQS_BIAS bound to: FALSE - type: string 
@@ -40,10 +40,10 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [/opt/software
 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'IBUFDS__parameterized0' (1#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
-INFO: [Synth 8-6157] synthesizing module 'BUFG' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
-INFO: [Synth 8-6155] done synthesizing module 'BUFG' (2#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
-INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS__parameterized0' (1#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (2#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
 	Parameter CLKFBOUT_MULT bound to: 5 - type: integer 
 	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
@@ -69,8 +69,8 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [/opt/software/Vivado/2020
 	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
 	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (3#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
-INFO: [Synth 8-6157] synthesizing module 'AT93C46_IIC' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (3#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+INFO: [Synth 8-6157] synthesizing module 'AT93C46_IIC' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
 	Parameter PCA9548_AD bound to: 7'b1110100 
 	Parameter PCA9548_SL bound to: 8'b00001000 
 	Parameter IIC_MEM_AD bound to: 7'b1010100 
@@ -78,8 +78,8 @@ INFO: [Synth 8-6157] synthesizing module 'AT93C46_IIC' [/home/comet/FPGA/SiTCP_S
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6157] synthesizing module 'BRAM128_9B9B' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
-INFO: [Synth 8-6157] synthesizing module 'RAMB18E1' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
+INFO: [Synth 8-6157] synthesizing module 'BRAM128_9B9B' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
+INFO: [Synth 8-6157] synthesizing module 'RAMB18E1' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
 	Parameter DOA_REG bound to: 1 - type: integer 
 	Parameter DOB_REG bound to: 1 - type: integer 
 	Parameter INITP_00 bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
@@ -179,228 +179,263 @@ INFO: [Synth 8-6157] synthesizing module 'RAMB18E1' [/opt/software/Vivado/2020.1
 	Parameter WRITE_MODE_B bound to: WRITE_FIRST - type: string 
 	Parameter WRITE_WIDTH_A bound to: 0 - type: integer 
 	Parameter WRITE_WIDTH_B bound to: 9 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'RAMB18E1' (4#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
-WARNING: [Synth 8-689] width (8) of port connection 'DOADO' does not match port width (16) of module 'RAMB18E1' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:148]
-WARNING: [Synth 8-689] width (1) of port connection 'DOPADOP' does not match port width (2) of module 'RAMB18E1' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:149]
-WARNING: [Synth 8-7071] port 'DOBDO' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-WARNING: [Synth 8-7071] port 'DOPBDOP' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-WARNING: [Synth 8-7071] port 'DIADI' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-WARNING: [Synth 8-7071] port 'DIPADIP' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-WARNING: [Synth 8-7071] port 'WEA' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-WARNING: [Synth 8-7023] instance 'RAMB18E1_i' of module 'RAMB18E1' has 22 connections declared, but only 17 given [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-INFO: [Synth 8-6155] done synthesizing module 'BRAM128_9B9B' (5#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
-INFO: [Synth 8-6157] synthesizing module 'PCA9548_SW' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'RAMB18E1' (4#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
+WARNING: [Synth 8-689] width (8) of port connection 'DOADO' does not match port width (16) of module 'RAMB18E1' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:148]
+WARNING: [Synth 8-689] width (1) of port connection 'DOPADOP' does not match port width (2) of module 'RAMB18E1' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:149]
+WARNING: [Synth 8-7071] port 'DOBDO' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+WARNING: [Synth 8-7071] port 'DOPBDOP' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+WARNING: [Synth 8-7071] port 'DIADI' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+WARNING: [Synth 8-7071] port 'DIPADIP' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+WARNING: [Synth 8-7071] port 'WEA' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+WARNING: [Synth 8-7023] instance 'RAMB18E1_i' of module 'RAMB18E1' has 22 connections declared, but only 17 given [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
+INFO: [Synth 8-6155] done synthesizing module 'BRAM128_9B9B' (5#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
+INFO: [Synth 8-6157] synthesizing module 'PCA9548_SW' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
 	Parameter PCA9548_AD bound to: 7'b1110100 
 	Parameter PCA9548_SL bound to: 8'b00001000 
 	Parameter FREQUENCY bound to: 8'b11001000 
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6157] synthesizing module 'IIC_CTL' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
+INFO: [Synth 8-6157] synthesizing module 'IIC_CTL' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
 	Parameter FREQUENCY bound to: 8'b11001000 
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6157] synthesizing module 'IIC_CORE' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
+INFO: [Synth 8-6157] synthesizing module 'IIC_CORE' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
 	Parameter FREQUENCY bound to: 8'b11001000 
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6157] synthesizing module 'FD' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
+INFO: [Synth 8-6157] synthesizing module 'FD' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
 	Parameter INIT bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'FD' (6#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
-INFO: [Synth 8-6157] synthesizing module 'OBUF' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
+INFO: [Synth 8-6155] done synthesizing module 'FD' (6#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
+INFO: [Synth 8-6157] synthesizing module 'OBUF' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'OBUF' (7#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
-INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
+INFO: [Synth 8-6155] done synthesizing module 'OBUF' (7#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (8#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
-INFO: [Synth 8-6157] synthesizing module 'PULLUP' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
-INFO: [Synth 8-6155] done synthesizing module 'PULLUP' (9#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
-INFO: [Synth 8-6155] done synthesizing module 'IIC_CORE' (10#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'IIC_CTL' (11#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
-INFO: [Synth 8-6155] done synthesizing module 'PCA9548_SW' (12#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
-INFO: [Synth 8-6155] done synthesizing module 'AT93C46_IIC' (13#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
-INFO: [Synth 8-6157] synthesizing module 'BUFGMUX' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1183]
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (8#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
+INFO: [Synth 8-6157] synthesizing module 'PULLUP' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
+INFO: [Synth 8-6155] done synthesizing module 'PULLUP' (9#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
+INFO: [Synth 8-6155] done synthesizing module 'IIC_CORE' (10#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'IIC_CTL' (11#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'PCA9548_SW' (12#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'AT93C46_IIC' (13#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
+INFO: [Synth 8-6157] synthesizing module 'BUFGMUX' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1183]
 	Parameter CLK_SEL_TYPE bound to: SYNC - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'BUFGMUX' (14#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1183]
-INFO: [Synth 8-6157] synthesizing module 'ODDR' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
+INFO: [Synth 8-6155] done synthesizing module 'BUFGMUX' (14#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1183]
+INFO: [Synth 8-6157] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
 	Parameter DDR_CLK_EDGE bound to: OPPOSITE_EDGE - type: string 
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D1_INVERTED bound to: 1'b0 
 	Parameter IS_D2_INVERTED bound to: 1'b0 
 	Parameter SRTYPE bound to: SYNC - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'ODDR' (15#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
-INFO: [Synth 8-6157] synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
+INFO: [Synth 8-6155] done synthesizing module 'ODDR' (15#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
+INFO: [Synth 8-6157] synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
 	Parameter TIM_PERIOD bound to: 8'b11001000 
-INFO: [Synth 8-6157] synthesizing module 'TIMER' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
+INFO: [Synth 8-6157] synthesizing module 'TIMER' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
 	Parameter TIM_PERIOD bound to: 8'b11000110 
-INFO: [Synth 8-6155] done synthesizing module 'TIMER' (16#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
-INFO: [Synth 8-6157] synthesizing module 'SiTCP_XC7K_32K_BBT_V110' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
-INFO: [Synth 8-6155] done synthesizing module 'SiTCP_XC7K_32K_BBT_V110' (17#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
-INFO: [Synth 8-6155] done synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' (18#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_v11_0' [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v:39]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_v11_0' (19#1) [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.v:39]
-INFO: [Synth 8-6155] done synthesizing module 'kc705sitcp' (20#1) [/home/comet/FPGA/extinction/from_other_repo/kc705sitcp.v:20]
-INFO: [Synth 8-6157] synthesizing module 'top_tdc' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top_tdc.v:23]
-INFO: [Synth 8-6157] synthesizing module 'DATA_BUF_singleBRAM2' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:23]
-INFO: [Synth 8-6157] synthesizing module 'BUFR' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1410]
+INFO: [Synth 8-6155] done synthesizing module 'TIMER' (16#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
+INFO: [Synth 8-6157] synthesizing module 'SiTCP_XC7K_32K_BBT_V110' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
+INFO: [Synth 8-6155] done synthesizing module 'SiTCP_XC7K_32K_BBT_V110' (17#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
+INFO: [Synth 8-6155] done synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' (18#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_1' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/fifo_generator_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_1' (19#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/fifo_generator_1_stub.v:6]
+WARNING: [Synth 8-689] width (12) of port connection 'data_count' does not match port width (17) of module 'fifo_generator_1' [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:298]
+WARNING: [Synth 8-7071] port 'almost_full' of module 'fifo_generator_1' is unconnected for instance 'fifo_generator_v11_0' [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:287]
+WARNING: [Synth 8-7023] instance 'fifo_generator_v11_0' of module 'fifo_generator_1' has 12 connections declared, but only 11 given [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:287]
+INFO: [Synth 8-6155] done synthesizing module 'kc705sitcp' (20#1) [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:20]
+INFO: [Synth 8-6157] synthesizing module 'top_tdc' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_tdc.v:23]
+INFO: [Synth 8-6157] synthesizing module 'DATA_BUF_singleBRAM2' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:23]
+INFO: [Synth 8-6157] synthesizing module 'BUFR' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1410]
 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 
 	Parameter SIM_DEVICE bound to: 7SERIES - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'BUFR' (21#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1410]
-WARNING: [Synth 8-7071] port 'CE' of module 'BUFR' is unconnected for instance 'BUFR_RAD' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:130]
-WARNING: [Synth 8-7071] port 'CLR' of module 'BUFR' is unconnected for instance 'BUFR_RAD' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:130]
-WARNING: [Synth 8-7023] instance 'BUFR_RAD' of module 'BUFR' has 4 connections declared, but only 2 given [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:130]
-INFO: [Synth 8-6157] synthesizing module 'FD__parameterized0' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
+INFO: [Synth 8-6155] done synthesizing module 'BUFR' (21#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1410]
+WARNING: [Synth 8-7071] port 'CE' of module 'BUFR' is unconnected for instance 'BUFR_RAD' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:109]
+WARNING: [Synth 8-7071] port 'CLR' of module 'BUFR' is unconnected for instance 'BUFR_RAD' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:109]
+WARNING: [Synth 8-7023] instance 'BUFR_RAD' of module 'BUFR' has 4 connections declared, but only 2 given [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:109]
+INFO: [Synth 8-6157] synthesizing module 'FD__parameterized0' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'FD__parameterized0' (21#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [/home/comet/FPGA/extinction/extinction.runs/synth_1/.Xil/Vivado-78938-moncomet01/realtime/fifo_generator_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (22#1) [/home/comet/FPGA/extinction/extinction.runs/synth_1/.Xil/Vivado-78938-moncomet01/realtime/fifo_generator_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'almost_full' of module 'fifo_generator_0' is unconnected for instance 'fifo' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:139]
-WARNING: [Synth 8-7023] instance 'fifo' of module 'fifo_generator_0' has 10 connections declared, but only 9 given [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:139]
-INFO: [Synth 8-6157] synthesizing module 'OUT_DATA_PACK' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:169]
-INFO: [Synth 8-6155] done synthesizing module 'OUT_DATA_PACK' (23#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:169]
-INFO: [Synth 8-6155] done synthesizing module 'DATA_BUF_singleBRAM2' (24#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'top_tdc' (25#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top_tdc.v:23]
-INFO: [Synth 8-6157] synthesizing module 'LOC_REG' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/LOC_REG.v:19]
-INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (26#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/LOC_REG.v:19]
-INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46328]
-	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
-	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
-	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (27#1) [/opt/software/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46328]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6157] synthesizing module 'ila_0' [/home/comet/FPGA/extinction/extinction.runs/synth_1/.Xil/Vivado-78938-moncomet01/realtime/ila_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ila_0' (28#1) [/home/comet/FPGA/extinction/extinction.runs/synth_1/.Xil/Vivado-78938-moncomet01/realtime/ila_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_0' is unconnected for instance 'ila_0' [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:289]
-WARNING: [Synth 8-7023] instance 'ila_0' of module 'ila_0' has 19 connections declared, but only 18 given [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_tdc'. This will prevent further optimization [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:223]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:289]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line171'. This will prevent further optimization [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:171]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'LOC_REG'. This will prevent further optimization [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:247]
-INFO: [Synth 8-6155] done synthesizing module 'top' (29#1) [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/top.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'FD__parameterized0' (21#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/fifo_generator_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (22#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/fifo_generator_0_stub.v:6]
+WARNING: [Synth 8-689] width (17) of port connection 'data_count' does not match port width (16) of module 'fifo_generator_0' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:127]
+WARNING: [Synth 8-7071] port 'full' of module 'fifo_generator_0' is unconnected for instance 'fifo' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:118]
+WARNING: [Synth 8-7071] port 'almost_full' of module 'fifo_generator_0' is unconnected for instance 'fifo' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:118]
+WARNING: [Synth 8-7023] instance 'fifo' of module 'fifo_generator_0' has 11 connections declared, but only 9 given [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:118]
+INFO: [Synth 8-6157] synthesizing module 'OUT_DATA_PACK' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:148]
+INFO: [Synth 8-6155] done synthesizing module 'OUT_DATA_PACK' (23#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:148]
+INFO: [Synth 8-6155] done synthesizing module 'DATA_BUF_singleBRAM2' (24#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_BUF_singleBRAM2.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'top_tdc' (25#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_tdc.v:23]
+INFO: [Synth 8-6157] synthesizing module 'LOC_REG' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (26#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v:19]
+INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT bound to: 5 - type: integer 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 5.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE bound to: 10 - type: integer 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_DIVIDE bound to: 100 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (26#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:429]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (27#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-32767-localhost.localdomain/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:429]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line194'. This will prevent further optimization [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:194]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_tdc'. This will prevent further optimization [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:259]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'LOC_REG'. This will prevent further optimization [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:301]
+INFO: [Synth 8-6155] done synthesizing module 'top' (28#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:18]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 2350.457 ; gain = 110.812 ; free physical = 845 ; free virtual = 38464
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 2304.984 ; gain = 133.750 ; free physical = 19251 ; free virtual = 39730
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 2365.297 ; gain = 125.652 ; free physical = 845 ; free virtual = 38463
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 2310.918 ; gain = 139.684 ; free physical = 19252 ; free virtual = 39731
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 2365.297 ; gain = 125.652 ; free physical = 845 ; free virtual = 38463
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 2310.918 ; gain = 139.684 ; free physical = 19252 ; free virtual = 39731
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2373.234 ; gain = 0.000 ; free physical = 838 ; free virtual = 38456
-INFO: [Netlist 29-17] Analyzing 99 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2320.824 ; gain = 0.000 ; free physical = 19244 ; free virtual = 39724
+INFO: [Netlist 29-17] Analyzing 98 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'top_tdc/DATA_BUF/fifo'
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'top_tdc/DATA_BUF/fifo'
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
-Parsing XDC File [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
-WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:7]
-Finished Parsing XDC File [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
-WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
-Parsing XDC File [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
-INFO: [Timing 38-2] Deriving generated clocks [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:95]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RD_*}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:105]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RDV}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:106]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:107]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TD_*}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:121]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TEN}'. [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:122]
-Finished Parsing XDC File [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
-WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'top_tdc/DATA_BUF/fifo'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'top_tdc/DATA_BUF/fifo'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/ila_0/ila_0/ila_0_in_context.xdc] for cell 'ila_0'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line194/fifo_generator_v11_0'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1/fifo_generator_1_in_context.xdc] for cell 'nolabel_line194/fifo_generator_v11_0'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
+WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:7]
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
+INFO: [Timing 38-2] Deriving generated clocks [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:95]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RD_*}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:105]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RDV}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:106]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:107]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TD_*}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:121]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TEN}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc:122]
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/kc705fmc.xdc]
-Finished Parsing XDC File [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/kc705fmc.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/comet/FPGA/extinction/extinction.srcs/sources_1/new/kc705fmc.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]
+WARNING: [Vivado 12-507] No nets matched 'CLK_100M'. [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc:202]
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+WARNING: [Timing 38-3] User defined clock exists on pin PLLE2_DEBUG/CLKOUT1 and will prevent any subsequent automatic derivation of generated clocks on that pin. If the user defined clock specifies '-add', any existing auto-derived clocks on that pin are retained.
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2535.047 ; gain = 0.000 ; free physical = 747 ; free virtual = 38365
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2449.621 ; gain = 0.000 ; free physical = 19152 ; free virtual = 39631
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 9 instances were transformed.
+  A total of 10 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
   FD => FDRE: 6 instances
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
-  PLLE2_BASE => PLLE2_ADV: 1 instance 
+  PLLE2_BASE => PLLE2_ADV: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2535.047 ; gain = 0.000 ; free physical = 747 ; free virtual = 38365
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2449.621 ; gain = 0.000 ; free physical = 19152 ; free virtual = 39631
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'ila_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'nolabel_line194/fifo_generator_v11_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'top_tdc/DATA_BUF/fifo' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:18 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 822 ; free virtual = 38441
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 2449.621 ; gain = 278.387 ; free physical = 19229 ; free virtual = 39709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:18 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 822 ; free virtual = 38441
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 2449.621 ; gain = 278.387 ; free physical = 19229 ; free virtual = 39709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for top_tdc/DATA_BUF/fifo. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for ila_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for nolabel_line194/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:18 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 820 ; free virtual = 38439
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 2449.621 ; gain = 278.387 ; free physical = 19229 ; free virtual = 39709
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:19 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 812 ; free virtual = 38432
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19221 ; free virtual = 39701
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   32 Bit       Adders := 2     
 	   2 Input   11 Bit       Adders := 2     
 	   2 Input    9 Bit       Adders := 4     
-	   2 Input    8 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 3     
 	   2 Input    7 Bit       Adders := 4     
 	   2 Input    4 Bit       Adders := 4     
 	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
 +---Registers : 
 	              104 Bit    Registers := 2     
 	               77 Bit    Registers := 1     
-	               32 Bit    Registers := 1     
+	               32 Bit    Registers := 2     
 	               16 Bit    Registers := 1     
 	               12 Bit    Registers := 1     
 	               11 Bit    Registers := 2     
 	                9 Bit    Registers := 5     
-	                8 Bit    Registers := 47    
+	                8 Bit    Registers := 67    
 	                7 Bit    Registers := 10    
-	                5 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
 	                4 Bit    Registers := 7     
-	                3 Bit    Registers := 3     
-	                2 Bit    Registers := 89    
-	                1 Bit    Registers := 168   
+	                3 Bit    Registers := 7     
+	                2 Bit    Registers := 88    
+	                1 Bit    Registers := 164   
 +---Muxes : 
-	   2 Input  104 Bit        Muxes := 3     
 	   2 Input   32 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 2     
 	   2 Input   11 Bit        Muxes := 2     
 	   2 Input    9 Bit        Muxes := 10    
-	   2 Input    8 Bit        Muxes := 30    
+	   2 Input    8 Bit        Muxes := 31    
 	   2 Input    7 Bit        Muxes := 10    
 	   2 Input    4 Bit        Muxes := 5     
-	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 4     
 	   2 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 21    
+	   2 Input    1 Bit        Muxes := 23    
+	   5 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -417,25 +452,26 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:22 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 795 ; free virtual = 38420
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:25 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19199 ; free virtual = 39685
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'CLK_10M'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:28 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 679 ; free virtual = 38304
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19083 ; free virtual = 39568
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:28 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 677 ; free virtual = 38302
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19081 ; free virtual = 39567
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:29 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 674 ; free virtual = 38299
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -453,37 +489,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -495,7 +531,7 @@ Static Shift Register Report:
 +------------+------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |kc705sitcp  | AT93C46_IIC/SYNC_CS_reg[3]               | 4      | 1     | YES          | NO                 | YES               | 1      | 0       | 
 |kc705sitcp  | AT93C46_IIC/CMD_DI_reg                   | 5      | 1     | YES          | NO                 | YES               | 1      | 0       | 
-|top_tdc     | DATA_BUF/OUT_DATA_PACK/count_tmp_reg[11] | 3      | 4     | NO           | NO                 | YES               | 4      | 0       | 
+|top_tdc     | DATA_BUF/OUT_DATA_PACK/data_outEN_reg[2] | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 +------------+------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -509,7 +545,7 @@ Report BlackBoxes:
 +------+------------------------+----------+
 |      |BlackBox name           |Instances |
 +------+------------------------+----------+
-|1     |fifo_generator_v11_0    |         1|
+|1     |fifo_generator_1        |         1|
 |2     |SiTCP_XC7K_32K_BBT_V110 |         1|
 |3     |fifo_generator_0        |         1|
 |4     |ila_0                   |         1|
@@ -520,69 +556,43 @@ Report Cell Usage:
 |      |Cell                    |Count |
 +------+------------------------+------+
 |1     |SiTCP_XC7K_32K_BBT_V110 |     1|
-|2     |fifo_generator          |     1|
-|3     |fifo_generator_v11      |     1|
+|2     |fifo_generator          |     2|
 |4     |ila                     |     1|
-|5     |BUFG                    |     2|
+|5     |BUFG                    |     3|
 |6     |BUFGMUX                 |     1|
 |7     |BUFR                    |     1|
-|8     |CARRY4                  |    34|
-|9     |LUT1                    |    10|
-|10    |LUT2                    |   314|
-|11    |LUT3                    |   108|
-|12    |LUT4                    |    88|
-|13    |LUT5                    |   210|
-|14    |LUT6                    |   184|
+|8     |CARRY4                  |    68|
+|9     |LUT1                    |    11|
+|10    |LUT2                    |   352|
+|11    |LUT3                    |   120|
+|12    |LUT4                    |    80|
+|13    |LUT5                    |   129|
+|14    |LUT6                    |   369|
 |15    |MUXF7                   |    24|
 |16    |MUXF8                   |     8|
 |17    |ODDR                    |     1|
-|18    |PLLE2_BASE              |     1|
+|18    |PLLE2_BASE              |     2|
 |19    |PULLUP                  |     1|
 |20    |RAMB18E1                |     1|
-|21    |SRL16E                  |     6|
+|21    |SRL16E                  |     3|
 |22    |FD                      |     6|
-|23    |FDCE                    |   490|
-|24    |FDPE                    |    93|
-|25    |FDRE                    |   773|
-|26    |LDC                     |    35|
-|27    |IBUF                    |    20|
-|28    |IBUFDS                  |    85|
-|29    |IOBUF                   |     2|
-|30    |OBUF                    |    18|
-|31    |OBUFDS                  |     2|
+|23    |FDCE                    |   579|
+|24    |FDPE                    |   114|
+|25    |FDRE                    |   865|
+|26    |FDSE                    |     7|
+|27    |LDC                     |    35|
+|28    |IBUF                    |    19|
+|29    |IBUFDS                  |    85|
+|30    |IOBUF                   |     2|
+|31    |OBUF                    |    19|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 675 ; free virtual = 38300
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:35 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19079 ; free virtual = 39565
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:28 . Memory (MB): peak = 2535.047 ; gain = 125.652 ; free physical = 729 ; free virtual = 38354
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 2535.047 ; gain = 295.402 ; free physical = 729 ; free virtual = 38354
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 2449.625 ; gain = 139.688 ; free physical = 19129 ; free virtual = 39615
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:36 . Memory (MB): peak = 2449.625 ; gain = 278.391 ; free physical = 19129 ; free virtual = 39615
 INFO: [Project 1-571] Translating synthesized netlist
-Release 14.7 - ngc2edif P_INT.20191124 (lin64)
-Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
-
-Release 14.7 - ngc2edif P_INT.20191124 (lin64)
-Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
-Reading design fifo_generator_v11_0.ngc ...
-WARNING:NetListWriters:298 - No output is written to fifo_generator_v11_0.xncf,
-   ignored.
-Processing design ...
-   Preping design's networks ...
-   Preping design's macros ...
-WARNING:NetListWriters:306 - Signal bus
-   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg<2 :
-   0> on block fifo_generator_v11_0 is not reconstructed, because there are some
-   missing bus signals.
-  finished :Prep
-Writing EDIF netlist file fifo_generator_v11_0.edif ...
-PMSPEC -- Overriding Xilinx file
-</opt/software/Vivado/2020.1/ids_lite/ISE/data/ngc2edif.pfd> with local file
-</mnt/sda1/software/Vivado/2020.1/ids_lite/ISE/data/ngc2edif.pfd>
-ngc2edif: Total memory usage is 104368 kilobytes
-
-Reading core file '/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/fifo_generator_v11_0.ngc' for (cell view 'fifo_generator_v11_0', library 'work')
-Parsing EDIF File [./.ngc2edfcache/fifo_generator_v11_0_ngc_7c9faa80.edif]
-Finished Parsing EDIF File [./.ngc2edfcache/fifo_generator_v11_0_ngc_7c9faa80.edif]
 Release 14.7 - ngc2edif P_INT.20191124 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
@@ -660,43 +670,40 @@ WARNING:NetListWriters:306 - Signal bus SiTCP_INT/SiTCP_INT_REG/muxData[31 : 0]
    missing bus signals.
   finished :Prep
 Writing EDIF netlist file SiTCP_XC7K_32K_BBT_V110.edif ...
-PMSPEC -- Overriding Xilinx file
-</opt/software/Vivado/2020.1/ids_lite/ISE/data/ngc2edif.pfd> with local file
-</mnt/sda1/software/Vivado/2020.1/ids_lite/ISE/data/ngc2edif.pfd>
-ngc2edif: Total memory usage is 123324 kilobytes
+ngc2edif: Total memory usage is 123320 kilobytes
 
-Reading core file '/home/comet/FPGA/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
-Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_7c9faa80.edif]
-Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_7c9faa80.edif]
-Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2535.047 ; gain = 0.000 ; free physical = 774 ; free virtual = 38424
-INFO: [Netlist 29-17] Analyzing 5841 Unisim elements for replacement
+Reading core file '/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
+Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_27e62b37.edif]
+Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_27e62b37.edif]
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2449.625 ; gain = 0.000 ; free physical = 19184 ; free virtual = 39686
+INFO: [Netlist 29-17] Analyzing 5760 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Xilinx ngc2edif P_INT.20191124
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2535.047 ; gain = 0.000 ; free physical = 708 ; free virtual = 38358
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2449.625 ; gain = 0.000 ; free physical = 19119 ; free virtual = 39622
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 3772 instances were transformed.
-  (MUXCY,XORCY) => CARRY4: 305 instances
+  A total of 3735 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 288 instances
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
-  FD => FDRE: 1641 instances
-  FDC => FDCE: 251 instances
+  FD => FDRE: 1637 instances
+  FDC => FDCE: 249 instances
   FDE => FDRE: 1018 instances
-  FDP => FDPE: 19 instances
+  FDP => FDPE: 7 instances
   FDR => FDRE: 277 instances
   FDS => FDSE: 21 instances
-  INV => LUT1: 193 instances
+  INV => LUT1: 190 instances
   IOBUF => IOBUF (IBUF, OBUFT): 2 instances
   LDC => LDCE: 35 instances
-  PLLE2_BASE => PLLE2_ADV: 1 instance 
+  PLLE2_BASE => PLLE2_ADV: 2 instances
   RAM32X1S => RAM32X1S (RAMS32): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-87 Infos, 26 Warnings, 0 Critical Warnings and 0 Errors encountered.
+87 Infos, 34 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:34 ; elapsed = 00:00:54 . Memory (MB): peak = 2535.047 ; gain = 307.539 ; free physical = 850 ; free virtual = 38500
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:50 . Memory (MB): peak = 2449.625 ; gain = 290.527 ; free physical = 19261 ; free virtual = 39763
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint '/home/comet/FPGA/extinction/extinction.runs/synth_1/top.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Dec 18 15:13:13 2020...
+INFO: [Common 17-206] Exiting Vivado at Fri Jan 22 19:44:09 2021...
