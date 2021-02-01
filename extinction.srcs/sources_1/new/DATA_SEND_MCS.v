@@ -51,6 +51,23 @@ module DATA_SEND_MCS(
         end
     end
 
+    reg     [15:0]  irSPLCOUNT;
+    reg     [15:0]  irEM_COUNT;
+    reg     [31:0]  irNMRSYNC ;
+    always@ (posedge CLK) begin
+        if(RST) begin
+            irSPLCOUNT <= 16'd0;
+            irEM_COUNT <= 16'd0;
+            irNMRSYNC  <= 32'd0;
+        end else begin
+            if(regDlyENABLE[1:0]==2'b01) begin
+                irSPLCOUNT <= SPLCOUNT;
+                irEM_COUNT <= EM_COUNT;
+                irNMRSYNC  <= NMRSYNC ;
+            end
+        end
+    end
+
     parameter    MAXWAIT = 7'd96;/// Additional 96 CLKs waiting to shift the data
     reg           shift_wait_hi;
     reg    [6:0]  shift_wait_cnt;
@@ -152,8 +169,8 @@ module DATA_SEND_MCS(
                         3'h4: DOUT <= 8'hAA;
                         3'h3: DOUT <= 8'h00;
                         3'h2: DOUT <= {4'h0,BUFLABEL[3:0]};
-                        3'h1: DOUT <= SPLCOUNT[15: 8];
-                        3'h0: DOUT <= SPLCOUNT[ 7: 0];
+                        3'h1: DOUT <= irSPLCOUNT[15: 8];
+                        3'h0: DOUT <= irSPLCOUNT[ 7: 0];
                     endcase
                 end else if(dlyTXCOUNT>=18'd8) begin /// send data
                     case(dlyEachCNTR[7:1])
@@ -239,12 +256,12 @@ module DATA_SEND_MCS(
                     case(dlyTXCOUNT[2:0])
                         3'h7: DOUT <= 8'hFF;
                         3'h6: DOUT <= 8'hFF;
-                        3'h5: DOUT <= EM_COUNT[15:8];
-                        3'h4: DOUT <= EM_COUNT[ 7:0];
-                        3'h3: DOUT <= NMRSYNC[31:24];
-                        3'h2: DOUT <= NMRSYNC[23:16];
-                        3'h1: DOUT <= NMRSYNC[15: 8];
-                        3'h0: DOUT <= NMRSYNC[ 7: 0];
+                        3'h5: DOUT <= irEM_COUNT[15:8];
+                        3'h4: DOUT <= irEM_COUNT[ 7:0];
+                        3'h3: DOUT <= irNMRSYNC[31:24];
+                        3'h2: DOUT <= irNMRSYNC[23:16];
+                        3'h1: DOUT <= irNMRSYNC[15: 8];
+                        3'h0: DOUT <= irNMRSYNC[ 7: 0];
                     endcase
                     if(dlyTXCOUNT==18'd0) begin
                         EOD <= 1'b1;

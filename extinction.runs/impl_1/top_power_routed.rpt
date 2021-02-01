@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Thu Jan 28 16:05:12 2021
+| Date             : Mon Feb  1 15:26:48 2021
 | Host             : dyna-comet running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.478        |
+| Total On-Chip Power (W)  | 2.479        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.284        |
+| Dynamic (W)              | 2.285        |
 | Device Static (W)        | 0.194        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 80.6         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.230 |       11 |       --- |             --- |
-| Slice Logic              |     0.032 |    47778 |       --- |             --- |
-|   LUT as Logic           |     0.025 |    17469 |    203800 |            8.57 |
+| Clocks                   |     0.228 |       12 |       --- |             --- |
+| Slice Logic              |     0.033 |    48287 |       --- |             --- |
+|   LUT as Logic           |     0.025 |    17540 |    203800 |            8.61 |
 |   CARRY4                 |     0.003 |     2525 |     50950 |            4.96 |
-|   Register               |     0.002 |    17892 |    407600 |            4.39 |
+|   Register               |     0.002 |    18331 |    407600 |            4.50 |
 |   LUT as Shift Register  |     0.002 |      842 |     64000 |            1.32 |
 |   F7/F8 Muxes            |    <0.001 |     1606 |    203800 |            0.79 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
 |   Others                 |     0.000 |     2469 |       --- |             --- |
-| Signals                  |     0.047 |    37168 |       --- |             --- |
+| Signals                  |     0.049 |    37711 |       --- |             --- |
 | Block RAM                |     1.344 |    320.5 |       445 |           72.02 |
 | PLL                      |     0.217 |        2 |        10 |           20.00 |
 | I/O                      |     0.414 |      193 |       500 |           38.60 |
 | Static Power             |     0.194 |          |           |                 |
-| Total                    |     2.478 |          |           |                 |
+| Total                    |     2.479 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.669 |       1.579 |      0.090 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     1.671 |       1.581 |      0.090 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.217 |       0.188 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.101 |       0.100 |      0.001 |       NA    | Unspecified | NA         |
@@ -133,12 +133,13 @@ Table of Contents
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
-| CLK_10M                                                                                    | CLK_10M                                                              |           100.0 |
-| CLK_125M_1                                                                                 | nolabel_line149/CLK_125M                                             |             8.0 |
-| CLK_200M                                                                                   | nolabel_line149/CLK_200M                                             |             5.0 |
+| CLK_10M                                                                                    | CLK_10M_BUFG_1                                                       |           100.0 |
+| CLK_10M_1                                                                                  | CLK_10M                                                              |           100.0 |
+| CLK_125M_1                                                                                 | nolabel_line150/CLK_125M                                             |             8.0 |
+| CLK_200M                                                                                   | nolabel_line150/CLK_200M                                             |             5.0 |
 | GMII_RX_CLK                                                                                | GMII_RX_CLK                                                          |             8.0 |
 | PLL_CLKFB_2                                                                                | PLL_CLKFB                                                            |             5.0 |
-| PLL_CLKFB_3                                                                                | nolabel_line149/PLL_CLKFB                                            |             5.0 |
+| PLL_CLKFB_3                                                                                | nolabel_line150/PLL_CLKFB                                            |             5.0 |
 | SYSCLK_200MP_IN                                                                            | SYSCLK_200MP_IN                                                      |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
@@ -153,25 +154,25 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| top                                |     2.284 |
-|   LOC_REG                          |     0.020 |
+| top                                |     2.285 |
+|   LOC_REG                          |     0.021 |
 |   PREPROCESSOR                     |     0.416 |
 |   dbg_hub                          |     0.006 |
 |     inst                           |     0.006 |
 |       BSCANID.u_xsdbm_id           |     0.006 |
-|   ila_0                            |     0.042 |
-|     inst                           |     0.042 |
-|       ila_core_inst                |     0.042 |
-|   nolabel_line149                  |     0.234 |
+|   ila_0                            |     0.041 |
+|     inst                           |     0.041 |
+|       ila_core_inst                |     0.041 |
+|   nolabel_line150                  |     0.233 |
 |     AT93C46_IIC                    |     0.008 |
 |       MIRROR_MEM                   |     0.003 |
 |       PCA9548_SW                   |     0.003 |
-|     SiTCP                          |     0.105 |
-|       SiTCP                        |     0.105 |
+|     SiTCP                          |     0.104 |
+|       SiTCP                        |     0.104 |
 |     fifo_generator_v11_0           |     0.005 |
 |       U0                           |     0.005 |
-|   top_mcs                          |     1.442 |
-|     BUF_LOOP[0].shift_cntr_eachbuf |     0.276 |
+|   top_mcs                          |     1.441 |
+|     BUF_LOOP[0].shift_cntr_eachbuf |     0.275 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.005 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.004 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.004 |
@@ -246,7 +247,7 @@ Table of Contents
 |       CHANNEL_BLK[7].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.004 |
-|     BUF_LOOP[1].shift_cntr_eachbuf |     0.386 |
+|     BUF_LOOP[1].shift_cntr_eachbuf |     0.385 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.007 |
@@ -321,7 +322,7 @@ Table of Contents
 |       CHANNEL_BLK[7].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.007 |
-|     BUF_LOOP[2].shift_cntr_eachbuf |     0.386 |
+|     BUF_LOOP[2].shift_cntr_eachbuf |     0.385 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.007 |
@@ -396,7 +397,7 @@ Table of Contents
 |       CHANNEL_BLK[7].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.007 |
-|     BUF_LOOP[3].shift_cntr_eachbuf |     0.386 |
+|     BUF_LOOP[3].shift_cntr_eachbuf |     0.385 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.007 |
@@ -471,10 +472,10 @@ Table of Contents
 |       CHANNEL_BLK[7].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.007 |
-|     SEND_LOOP[0].data_send_mcs0    |     0.001 |
-|     SEND_LOOP[1].data_send_mcs0    |     0.001 |
-|     SEND_LOOP[2].data_send_mcs0    |     0.001 |
-|     SEND_LOOP[3].data_send_mcs0    |     0.001 |
+|     SEND_LOOP[0].data_send_mcs0    |     0.002 |
+|     SEND_LOOP[1].data_send_mcs0    |     0.002 |
+|     SEND_LOOP[2].data_send_mcs0    |     0.002 |
+|     SEND_LOOP[3].data_send_mcs0    |     0.002 |
 |     get_spillInfo                  |     0.001 |
 +------------------------------------+-----------+
 

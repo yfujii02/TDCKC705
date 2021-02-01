@@ -91,6 +91,7 @@ module
     wire              MR_SYNC       ; // MR sync
     wire              EV_MATCH      ; // Event matching signal spill-by-spill
     wire    [63:0]    SIGNAL        ;
+    wire    [63:0]    TEST_SIGNAL   ;
     wire    [11:0]    OLDH          ; // PMT and old hodoscope
 
     wire    [63:0]    CHMASK0       ; // mask channel if corresponding bit is high
@@ -214,6 +215,8 @@ module
     wire    [3:0]  SPILLDIV;
     wire    [7:0]  dbg_buf_switch;
 
+    wire   [63:0]  SIG_IN;
+    assign SIG_IN = (RUN_MODE[2:0]==3'h7)? TEST_SIGNAL : SIGNAL;
     top_mcs top_mcs(
     // system
         .RESET      ((~TCP_OPEN_ACK|RUN_RESET)),
@@ -223,7 +226,8 @@ module
         .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]), // in : (In) Spl cnt reset timing from spill end
         .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST    ), // out: (Ex) Spl cnt reset
     //
-        .SIGNAL     (SIGNAL[63:0] ),
+        //.SIGNAL     (SIGNAL[63:0] ),
+        .SIGNAL     (SIG_IN[63:0] ),
         .PSPILL     (PSPILL       ),
         .MR_SYNC    (MR_SYNC      ),
         .OLDH       (OLDH[11:0]   ),
@@ -381,6 +385,9 @@ module
     reg             irTestMrsync;
     reg   [31:0]    irMrsyncTime;
     reg    [2:0]    irMrsyncPulse;
+    reg   [63:0]    irTestSignal;
+    reg   [63:0]    irTestSignal_dly1;
+    reg   [63:0]    irTestSignal_dly2;
     always@(posedge CLK_10M) begin
         if(TCP_RST) begin
             irMrsyncTime[31:0] <= 32'd1;
@@ -399,11 +406,22 @@ module
     always@(posedge CLK_200M) begin
         if(TCP_RST) begin
             irMrsyncPulse[2:0] <= 3'd0;
+            irTestSignal[63:0] <= 64'd0;
         end else begin
             irMrsyncPulse[2:0] <= {irMrsyncPulse[1:0], irTestMrsync};
+            if (irMrsyncPulse[2:1]==2'b01) begin
+                irTestSignal[63:0] <= {irTestSignal[62:0],1'b1};
+            end else if (CLK_10M)begin
+                irTestSignal[63:0] <= {irTestSignal[62:0],irTestSignal_dly1[63]};
+            end
         end
     end
+    always@(posedge CLK_200M) begin
+        irTestSignal_dly1 <= irTestSignal;
+        irTestSignal_dly2 <= irTestSignal_dly1;
+    end
     assign TEST_MRSYNC = (irMrsyncPulse[2:1]==2'b01) & TEST_PSPILL ? 1'b1 : 1'b0;
+    assign TEST_SIGNAL = irTestSignal_dly2;
 
     
     //assign GPIO_LED = SPILLCOUNT[3:0];
