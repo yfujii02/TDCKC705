@@ -42,12 +42,8 @@ set_property IOSTANDARD LVCMOS25 [get_ports {GPIO_LED[1]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {GPIO_LED[2]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {GPIO_LED[3]}]
 set_property IOSTANDARD LVCMOS15 [get_ports SW_N]
-set_property IOSTANDARD LVDS [get_ports SYSCLK_200MP_IN]
-set_property IOSTANDARD LVDS [get_ports SYSCLK_200MN_IN]
 
 
-set_property PACKAGE_PIN AD12 [get_ports SYSCLK_200MP_IN]
-set_property PACKAGE_PIN AD11 [get_ports SYSCLK_200MN_IN]
 set_property PACKAGE_PIN L20 [get_ports GMII_RSTn]
 set_property PACKAGE_PIN M27 [get_ports GMII_TX_EN]
 set_property PACKAGE_PIN N27 [get_ports {GMII_TXD[0]}]
@@ -89,7 +85,6 @@ set_property PACKAGE_PIN E18 [get_ports {GPIO_LED[2]}]
 set_property PACKAGE_PIN F16 [get_ports {GPIO_LED[3]}]
 set_property PACKAGE_PIN AA12 [get_ports SW_N]
 
-create_clock -period 5.000 -name SYSCLK_200MP_IN -waveform {0.000 2.500} [get_ports SYSCLK_200MP_IN]
 create_clock -period 40.000 -name GMII_TX_CLK -waveform {0.000 20.000} [get_ports GMII_TX_CLK]
 create_clock -period 8.000 -name GMII_RX_CLK -waveform {0.000 4.000} [get_ports GMII_RX_CLK]
 set_clock_groups -logically_exclusive -group [get_clocks GMII_TX_CLK] -group [get_clocks CLK_125M]
@@ -134,10 +129,11 @@ set_max_delay -datapath_only -from [get_clocks CLK_125M] -to [get_ports GMII_TX_
 set_max_delay -datapath_only -from [get_clocks CLK_125M] -to [get_ports GMII_TXD*] 3.200
 set_max_delay -datapath_only -from [get_clocks CLK_125M] -to [get_ports GMII_TX_ER] 3.200
 
-set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports GMII_MDC] 10.000
-set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports GMII_MDIO] 10.000
-set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports GMII_RSTn] 10.000
-set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports I2C_SCL] 10.000
-set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports I2C_SDA] 10.000
+create_clock -period 5.000 -name CLK_200M -waveform {0.000 2.500} -add [get_nets CLK_200M]
+set_max_delay -datapath_only -from [get_clocks CLK_200M] -to [get_ports GMII_MDC] 10.000
+set_max_delay -datapath_only -from [get_clocks CLK_200M] -to [get_ports GMII_MDIO] 10.000
+set_max_delay -datapath_only -from [get_clocks CLK_200M] -to [get_ports GMII_RSTn] 10.000
+set_max_delay -datapath_only -from [get_clocks CLK_200M] -to [get_ports I2C_SCL] 10.000
+set_max_delay -datapath_only -from [get_clocks CLK_200M] -to [get_ports I2C_SDA] 10.000
 
 

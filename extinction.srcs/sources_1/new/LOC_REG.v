@@ -53,7 +53,9 @@ module LOC_REG(
     REG_DLY_MRSYNC      ,    // out    : Delay for MR sync
     REG_DLY_EVMATCH     ,    // out    : Delay for Event matching
     REG_DLY_MPPC        ,    // out    : Delay for MPPC
-    REG_DLY_PMT              // out    : Delay for PMT
+    REG_DLY_PMT         ,    // out    : Delay for PMT
+    REG_TEST_VAL        ,    // out
+    REG_TEST_EMP             // out
 );
 
 //-------- Input/Output -------------
@@ -95,11 +97,14 @@ module LOC_REG(
     output    [7:0]  REG_DLY_MPPC       ;
     output   [95:0]  REG_DLY_PMT        ;
 
+    output           REG_TEST_VAL       ;
+    output           REG_TEST_EMP       ;
+
 //------------------------------------------------------------------------------
 //    Input buffer
 //------------------------------------------------------------------------------
     reg       [3:0]  regCs           ;
-    reg      [10:0]  irAddr          ;
+    reg       [3:0]  irAddr          ;
     reg              irWe            ;
     reg              irRe            ;
     reg       [7:0]  irWd            ;
@@ -110,7 +115,7 @@ module LOC_REG(
         regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
         regCs[3]     <= (LOC_ADDR[31:4]==28'h3);
 
-        irAddr[10:0] <= LOC_ADDR[10:0];
+        irAddr[3:0]  <= LOC_ADDR[3:0];
         irWe         <= LOC_WE;
         irRe         <= LOC_RE;
         irWd[7:0]    <= LOC_WD[7:0];
@@ -121,7 +126,8 @@ module LOC_REG(
 //------------------------------------------------------------------------------
     reg     [2:0]    x00_Reg   ;
     reg     [7:0]    x01_Reg   ;
-    reg     [7:0]    x02_Reg   ;
+    reg              x02_Reg   ;
+    reg     [11:0]   irX02_Reg ; // 
     reg     [7:0]    x03_Reg   ;
     reg     [7:0]    x04_Reg   ;
     reg     [7:0]    x05_Reg   ;
@@ -166,10 +172,10 @@ module LOC_REG(
     reg     [7:0]    x29_Reg   ;
     reg     [7:0]    x2A_Reg   ;
     reg     [7:0]    x2B_Reg   ; 
-    reg     [7:0]    x2C_Reg   ;
-    reg     [7:0]    x2D_Reg   ;
-    reg     [7:0]    x2E_Reg   ; // NC
-    reg     [7:0]    x2F_Reg   ; // NC
+    reg              x2C_Reg   ;
+    reg              x2D_Reg   ;
+    reg     [7:0]    x2E_Reg   ; // tester (valid)
+    reg     [7:0]    x2F_Reg   ; // tester (fifo empty)
 
     reg     [7:0]    x30_Reg   ; // Delay for PSPILL
     reg     [7:0]    x31_Reg   ; // Delay for MR sync
@@ -197,7 +203,8 @@ module LOC_REG(
             x00_Reg[2:0]    <= 3'd0;    // Trigger Mode [2:0]
             // Data length in CLK length default [0x0BEBC200 = 1sec]
             x01_Reg[7:0]    <= 8'h00;   // Start
-            x02_Reg[7:0]    <= 8'h00;   // Reset
+            x02_Reg         <= 1'd0;    // Reset
+            irX02_Reg[11:0] <= 12'd0;   // 
             x03_Reg[7:0]    <= {4'd0,BOARD_ID[3:0]}; // Board ID
             x04_Reg[7:0]    <= SPILLCOUNT[31:24];   // Spill count
             x05_Reg[7:0]    <= SPILLCOUNT[23:16];   // Spill count
@@ -278,7 +285,7 @@ module LOC_REG(
             if(irWe)begin
                 x00_Reg[2:0]    <= (regCs[0] & (irAddr[3:0]==4'h0) ? irWd[2:0] : x00_Reg[2:0]);
                 x01_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x01_Reg[7:0]);
-                x02_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x02_Reg[7:0]);
+                x02_Reg         <= (regCs[0] & (irAddr[3:0]==4'h2) ? irWd[0:0] : x02_Reg     );
 
                 //// Header
                 x08_Reg[7:0]    <= (regCs[0] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x08_Reg[7:0]);
@@ -320,6 +327,8 @@ module LOC_REG(
                 x2B_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x2B_Reg[7:0]);
                 x2C_Reg         <= (regCs[2] & (irAddr[3:0]==4'hC) ? irWd[0:0] : x2C_Reg     );
                 x2D_Reg         <= (regCs[2] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x2D_Reg     );
+                x2E_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hE) ? irWd[7:0] : x2E_Reg[7:0]);
+                x2F_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x2F_Reg[7:0]);
 
                 x30_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x30_Reg[7:0]);
                 x31_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x31_Reg[7:0]);
@@ -339,9 +348,11 @@ module LOC_REG(
                 x3F_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x3F_Reg[7:0]);
                 
             end else begin
-                x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
+                x02_Reg <= (~irX02_Reg[11]) & x02_Reg; // High only within 10CLK
+                x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg;  // High only within 1CLK
             end
-            irX1E_Reg[2:0] <= {irX1E_Reg[1:0], x1E_Reg};
+            irX02_Reg[11:0] <= {irX02_Reg[10:0], x02_Reg};
+            irX1E_Reg[2:0]  <= {irX1E_Reg[1:0], x1E_Reg};
         end
     end
 
@@ -360,7 +371,7 @@ module LOC_REG(
         case(irAddr[3:0]) /// FPGA setup, DAQ setup
             4'h0:    rdDataA[7:0]    <= {5'd0,x00_Reg[2:0]}; // Trigger Mode
             4'h1:    rdDataA[7:0]    <= x01_Reg[7:0];        // Start DAQ
-            4'h2:    rdDataA[7:0]    <= x02_Reg[7:0];        // Reset
+            4'h2:    rdDataA[7:0]    <= {7'd0,x02_Reg};      // Reset
             4'h3:    rdDataA[7:0]    <= x03_Reg[7:0];        // Board ID
             4'h4:    rdDataA[7:0]    <= x04_Reg[7:0];        // Spill count [31:24]
             4'h5:    rdDataA[7:0]    <= x05_Reg[7:0];        // Spill count [23:16]
@@ -450,7 +461,7 @@ module LOC_REG(
 
     assign  REG_MODE[2:0]  = x00_Reg[2:0];
     assign  REG_START      = x01_Reg[0];   // Start data transfer
-    assign  REG_RESET      = x02_Reg[0];   // Reset status
+    assign  REG_RESET      = x02_Reg;   // Reset status
 
     assign  REG_HEADER[31:0] = {x08_Reg[7:0],x09_Reg[7:0],x0A_Reg[7:0],x0B_Reg[7:0]}; // Header
     assign  REG_FOOTER[31:0] = {x0C_Reg[7:0],x0D_Reg[7:0],x0E_Reg[7:0],x0F_Reg[7:0]}; // Footer
@@ -475,4 +486,6 @@ module LOC_REG(
     assign  REG_DLY_MPPC[7:0]    = x33_Reg[7:0];
     assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
+    assign  REG_TEST_VAL = x2E_Reg[0];
+    assign  REG_TEST_EMP = x2F_Reg[0];
 endmodule

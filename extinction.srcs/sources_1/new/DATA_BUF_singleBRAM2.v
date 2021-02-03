@@ -35,6 +35,13 @@ module DATA_BUF_singleBRAM2(
     input   wire    [31:0]    HEADER        , // in : Header [83:0]
     input   wire    [31:0]    FOOTER        , // in : Footer [83:0]
     output  wire              TRIGGER_INT   , // out: Internal trigger to readout the data
+
+    output  wire              FIFO_EMPTY    , // out: FIFO empty 
+    output  wire              FIFO_READY    , // out: FIFO ready 
+    input   wire              FIFO_RD_EN    , // in : FIFO read enable
+    output  wire   [111:0]    DATA_OUT      , // out: FIFO data out
+    output  wire              DATA_VALID    , // out: FIFO data valid
+
     output  wire     [7:0]    DOUT          , // out: Output data [7:0]
     output  wire              SEND_EN       , // out: Send packet enable
     input   wire              TCP_FULL      , // in : TCP Full flag
@@ -42,15 +49,13 @@ module DATA_BUF_singleBRAM2(
     output  wire              DEBUG_DATA_END, // out:
     output  wire     [7:0]    DEBUG_DLY_EN  , // out:
     output  wire              DEBUG_RD_EN   , // out:
-    output  wire     [7:0]    DEBUG_CNT     , // out:
-    output  wire    [15:0]    DEBUG_FIFO_CNT  // out:
+    output  wire     [7:0]    DEBUG_CNT     
 );
 
     reg               ENABLE    ; // Enable on until the spill end
 
     reg    [103:0]    DIN       ; // 8*13
     reg               W_EN      ;
-    reg      [1:0]    regFFull  ; // fifo full
     reg     [31:0]    wrCnt     ; // fifo write count 
 
     wire              fifo_rd_en;
@@ -60,6 +65,15 @@ module DATA_BUF_singleBRAM2(
     wire   [103:0]    data_out  ;
     wire   [ 16:0]    data_count;
 
+    reg    [ 76:0]    test_counter;
+    always@(posedge CLK) begin
+        if(RST) begin
+            test_counter[76:0] <= 77'd0;
+        end else if(DATA_TRG) begin
+            test_counter[76:0] <= test_counter[76:0] + 77'd1;
+        end
+    end
+
     /// Current data size = 13-bytes, to make the data rate as small as possible.
     /// possible option is to make counter 27-bits to 32-bits and make it 14-bytes
     /// for analysis convenience and redundancy. To be decided later...
@@ -68,7 +82,6 @@ module DATA_BUF_singleBRAM2(
             DIN     <= 104'd0;
             W_EN    <=  1'b0;
             ENABLE  <=  1'b0;
-            regFFull<=  2'd0;
             wrCnt   <=  32'd0;
         end else begin
             if (SPLSTART)begin
@@ -83,10 +96,10 @@ module DATA_BUF_singleBRAM2(
                 DIN    <= {FOOTER[31:0],SPLCOUNT[15:0],EMCOUNT[15:0],wrCnt[31:0],8'hAB}; // FOOTER = REG_FOOTER[31:0]
                 W_EN   <= 1'b1;
             end else if (ENABLE)begin
-                regFFull <= {regFFull[0],fifo_full};
                 wrCnt    <= wrCnt+32'd1;
                 if (DATA_TRG && ~fifo_full && ~SPLSTART) begin
-                    DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
+                    DIN    <= {test_counter[76:0],COUNTER[26:0]}; // 104-bits
+                    //DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                                                          // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
                                                          // COUNTER start from SPILL signal and increment with 200MHz SYSCLK
 
@@ -113,34 +126,64 @@ module DATA_BUF_singleBRAM2(
 
     assign fifo_wr_en = W_EN;
 
-    assign TRIGGER_INT = (START==1'b1)? ~fifo_empty && ~TCP_FULL : 1'b0;
+    assign TRIGGER_INT = (START==1'b1)? ~FIFO_EMPTY && ~TCP_FULL : 1'b0;
 
     fifo_generator_0 fifo(
         .clk            (SYSCLKR         ), // in : System Clock
         .srst           (reg_sysrstA     ), // in : System Reset
         .din            (DIN[103:0]      ), // in : Input data [63:0]
         .wr_en          (fifo_wr_en      ), // in : Write Enable
-        .rd_en          (fifo_rd_en      ), // in : Read Enable
+        .rd_en          (FIFO_RD_EN      ), // in : Read Enable
         .dout           (data_out[103:0] ), // out: Output Data [63:0]
         .prog_full      (fifo_full       ), // out: FIFO Almost Full
-        .empty          (fifo_empty      ), // out: FIFO Empty
-        .data_count     (data_count[16:0])  // out: # of data in FIFO
+        .empty          (FIFO_EMPTY      ), // out: FIFO Empty
+        .data_count     (data_count[14:0])  // out: # of data in FIFO
     );
 
-    OUT_DATA_PACK OUT_DATA_PACK(
-        .SYSCLK         (SYSCLKR              ), // in
-        .SYSRST         (reg_sysrstB          ), // in
-        .TRIGGER        (TRIGGER_INT          ), // in
-        .DATA           (data_out[103:0]      ), // in
-        .FIFO_RD_EN     (fifo_rd_en           ), // out
-        .OUT_VALID      (SEND_EN              ), // out
-        .OUT            (DOUT[7:0]            ), // out
-        .DEBUG_DATA_EN  (DEBUG_DATA_EN        ), // out
-        .DEBUG_DATA_END (DEBUG_DATA_END       ), // out
-        .DEBUG_DLY_EN   (DEBUG_DLY_EN[7:0]    ), // out
-        .DEBUG_RD_EN    (DEBUG_RD_EN          ), // out
-        .DEBUG_CNT      (DEBUG_CNT[7:0]       )  // out
-    );
+    assign FIFO_READY = (data_count[14:0]==15'd4);
+
+    reg       [7:0]   fifo_data_beat;
+    reg       [1:0]   fifo_data_valid;
+    reg     [111:0]   reg_data;
+    always@(posedge SYSCLKR) begin
+        if(reg_sysrstA) begin
+            fifo_data_beat[7:0] <= 8'd0;
+        end else if(FIFO_RD_EN) begin
+            fifo_data_beat[7:0] <= fifo_data_beat[7:0] + 8'd1;
+        end
+            
+        if(reg_sysrstA) begin
+            fifo_data_valid[1:0] <= 2'b00;
+            reg_data[111:0]      <= 112'd0;
+        end else begin
+            fifo_data_valid[1:0] <= {fifo_data_valid[0], FIFO_RD_EN};
+            reg_data[111:0]      <= {fifo_data_beat[7:0], data_out[103:0]};
+        end
+    end
+    assign DATA_OUT[111:0] = reg_data[111:0];
+    assign DATA_VALID      = fifo_data_valid[1];
+
+    assign DOUT = 8'd0;
+    assign SEND_EN = 1'b0;
+    assign DEBUG_DATA_EN = 1'b0;
+    assign DEBUG_DATA_END = 1'b0;
+    assign DEBUG_DLY_EN =  8'd0;
+    assign DEBUG_RD_EN  =  1'b0;
+    assign DEBUG_CNT = 8'd0;
+    //OUT_DATA_PACK OUT_DATA_PACK(
+    //    .SYSCLK         (SYSCLKR              ), // in
+    //    .SYSRST         (reg_sysrstB          ), // in
+    //    .TRIGGER        (TRIGGER_INT          ), // in
+    //    .DATA           (data_out[103:0]      ), // in
+    //    .FIFO_RD_EN     (fifo_rd_en           ), // out
+    //    .OUT_VALID      (SEND_EN              ), // out
+    //    .OUT            (DOUT[7:0]            ), // out
+    //    .DEBUG_DATA_EN  (DEBUG_DATA_EN        ), // out
+    //    .DEBUG_DATA_END (DEBUG_DATA_END       ), // out
+    //    .DEBUG_DLY_EN   (DEBUG_DLY_EN[7:0]    ), // out
+    //    .DEBUG_RD_EN    (DEBUG_RD_EN          ), // out
+    //    .DEBUG_CNT      (DEBUG_CNT[7:0]       )  // out
+    //);
 endmodule
 
 

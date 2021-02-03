@@ -39,6 +39,13 @@ module top_tdc(
     input    wire    [31:0]    HEADER         ,
     input    wire    [31:0]    FOOTER         ,
     output   wire              TRIGGER_INT    ,
+    
+    output   wire              FIFO_EMPTY     , // out: FIFO empty 
+    output   wire              FIFO_READY     , // out: FIFO ready 
+    input    wire              FIFO_RD_EN     , // in : FIFO read enable
+    output   wire   [111:0]    DATA_OUT       , // out: FIFO data out
+    output   wire              DATA_VALID     , // out: FIFO data valid
+
     output   wire    [31:0]    SPILLCOUNT     ,
     output   wire     [7:0]    OUTDATA        ,
     output   wire              SEND_EN        ,
@@ -47,7 +54,6 @@ module top_tdc(
     output   wire     [7:0]    DEBUG_DLY_EN   ,
     output   wire              DEBUG_RD_EN    ,
     output   wire     [7:0]    DEBUG_CNT      ,
-    output   wire    [15:0]    DEBUG_FIFO_CNT ,
     output   wire     [7:0]    DEBUG_SPLOFFCNT,
     output   wire     [2:0]    DEBUG_DLYSPLCNT
     );
@@ -191,6 +197,13 @@ module top_tdc(
         .HEADER     (HEADER[31:0]    ), // in : Header [83:0]
         .FOOTER     (FOOTER[31:0]    ), // in : Footer [83:0]
         .TRIGGER_INT(TRIGGER_INT     ), // out: Internal trigger to readout the data        
+
+        .FIFO_EMPTY (FIFO_EMPTY      ), // out: FIFO empty
+        .FIFO_READY (FIFO_READY      ), // out: FIFO ready
+        .FIFO_RD_EN (FIFO_RD_EN      ), // in : FIFO read enable
+        .DATA_OUT   (DATA_OUT[111:0] ), // out: FIFO data out
+        .DATA_VALID (DATA_VALID      ), // out: FIFO data valid
+
         .DOUT       (OUTDATA[7:0]    ), // out: Output data [7:0]                           
         .SEND_EN    (SEND_EN         ), // out: Send packet enable                          
         .TCP_FULL   (TCP_BUSY        ), // in : TCP Full flag                               
@@ -198,7 +211,6 @@ module top_tdc(
         .DEBUG_DATA_END(DEBUG_DATA_END      ), // out:
         .DEBUG_DLY_EN  (DEBUG_DLY_EN[7:0]   ), // out:
         .DEBUG_RD_EN   (DEBUG_RD_EN         ), // out:
-        .DEBUG_CNT     (DEBUG_CNT[7:0]      ), // out:
-        .DEBUG_FIFO_CNT(DEBUG_FIFO_CNT[15:0])  // out:
+        .DEBUG_CNT     (DEBUG_CNT[7:0]      )  // out:
     );
 endmodule

@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Mon Jan 25 18:33:43 2021
+// Date        : Fri Jan 29 23:59:29 2021
 // Host        : cometdaq03 running 64-bit Scientific Linux release 6.10 (Carbon)
 // Command     : write_verilog -force -mode synth_stub
 //               /home/comet-daq/8GeV/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_stub.v

@@ -36,32 +36,32 @@
                                 "portIndex": 0,
                                 "nets": [
                                     {
-                                        "name": "OUTDATA",
+                                        "name": "memory_data_1",
                                         "isBus": true,
                                         "subnets": [
                                             {
-                                                "name": "OUTDATA[7]"
+                                                "name": "memory_data_1[7]"
                                             },
                                             {
-                                                "name": "OUTDATA[6]"
+                                                "name": "memory_data_1[6]"
                                             },
                                             {
-                                                "name": "OUTDATA[5]"
+                                                "name": "memory_data_1[5]"
                                             },
                                             {
-                                                "name": "OUTDATA[4]"
+                                                "name": "memory_data_1[4]"
                                             },
                                             {
-                                                "name": "OUTDATA[3]"
+                                                "name": "memory_data_1[3]"
                                             },
                                             {
-                                                "name": "OUTDATA[2]"
+                                                "name": "memory_data_1[2]"
                                             },
                                             {
-                                                "name": "OUTDATA[1]"
+                                                "name": "memory_data_1[1]"
                                             },
                                             {
-                                                "name": "OUTDATA[0]"
+                                                "name": "memory_data_1[0]"
                                             }
                                         ]
                                     }
@@ -74,44 +74,135 @@
                                 "direction": "IN",
                                 "isVector": true,
                                 "leftIndex": 0,
-                                "rightIndex": 7,
+                                "rightIndex": 0,
                                 "portIndex": 1,
                                 "nets": [
                                     {
-                                        "name": "debug_fifo_cnt_1",
+                                        "name": "dram_reg_data",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 1,
+                                "rightIndex": 1,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "dram_rdata104",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 2,
+                                "rightIndex": 2,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "DATA_OUT_1",
                                         "isBus": true,
                                         "subnets": [
                                             {
-                                                "name": "debug_fifo_cnt_1[15]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[14]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[13]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[12]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[11]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[10]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[9]"
-                                            },
-                                            {
-                                                "name": "debug_fifo_cnt_1[8]"
+                                                "name": "DATA_OUT_1[104]"
                                             }
                                         ]
                                     }
                                 ]
                             },
                             {
+                                "name": "probe1",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 3,
+                                "rightIndex": 3,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "DATA_VALID",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 4,
+                                "rightIndex": 4,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "dram_writting",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 5,
+                                "rightIndex": 5,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "TCP_OPEN_ACK",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 6,
+                                "rightIndex": 6,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "FIFO_RD_EN",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 7,
+                                "rightIndex": 7,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "FIFO_EMPTY",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
                                 "name": "probe2",
-                                "id": 2,
+                                "id": 9,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -120,32 +211,32 @@
                                 "portIndex": 2,
                                 "nets": [
                                     {
-                                        "name": "debug_fifo_cnt",
+                                        "name": "DATA_OUT_2",
                                         "isBus": true,
                                         "subnets": [
                                             {
-                                                "name": "debug_fifo_cnt[7]"
+                                                "name": "DATA_OUT_2[103]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[6]"
+                                                "name": "DATA_OUT_2[102]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[5]"
+                                                "name": "DATA_OUT_2[101]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[4]"
+                                                "name": "DATA_OUT_2[100]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[3]"
+                                                "name": "DATA_OUT_2[99]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[2]"
+                                                "name": "DATA_OUT_2[98]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[1]"
+                                                "name": "DATA_OUT_2[97]"
                                             },
                                             {
-                                                "name": "debug_fifo_cnt[0]"
+                                                "name": "DATA_OUT_2[96]"
                                             }
                                         ]
                                     }
@@ -153,7 +244,7 @@
                             },
                             {
                                 "name": "probe3",
-                                "id": 3,
+                                "id": 10,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -195,7 +286,7 @@
                             },
                             {
                                 "name": "probe4",
-                                "id": 4,
+                                "id": 11,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -237,7 +328,7 @@
                             },
                             {
                                 "name": "probe5",
-                                "id": 5,
+                                "id": 12,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -270,7 +361,7 @@
                             },
                             {
                                 "name": "probe5",
-                                "id": 6,
+                                "id": 13,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -286,7 +377,7 @@
                             },
                             {
                                 "name": "probe5",
-                                "id": 7,
+                                "id": 14,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -302,7 +393,7 @@
                             },
                             {
                                 "name": "probe5",
-                                "id": 8,
+                                "id": 15,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -318,7 +409,7 @@
                             },
                             {
                                 "name": "probe6",
-                                "id": 9,
+                                "id": 16,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -360,7 +451,7 @@
                             },
                             {
                                 "name": "probe7",
-                                "id": 10,
+                                "id": 17,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -387,7 +478,7 @@
                             },
                             {
                                 "name": "probe7",
-                                "id": 11,
+                                "id": 18,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -403,7 +494,7 @@
                             },
                             {
                                 "name": "probe7",
-                                "id": 12,
+                                "id": 19,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -419,7 +510,7 @@
                             },
                             {
                                 "name": "probe7",
-                                "id": 13,
+                                "id": 20,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": true,
@@ -446,7 +537,7 @@
                             },
                             {
                                 "name": "probe8",
-                                "id": 14,
+                                "id": 21,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -462,7 +553,7 @@
                             },
                             {
                                 "name": "probe9",
-                                "id": 15,
+                                "id": 22,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -471,14 +562,14 @@
                                 "portIndex": 9,
                                 "nets": [
                                     {
-                                        "name": "TCP_TX_EN",
+                                        "name": "TCP_TX_EN_1",
                                         "isBus": false
                                     }
                                 ]
                             },
                             {
                                 "name": "probe10",
-                                "id": 16,
+                                "id": 23,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -494,7 +585,7 @@
                             },
                             {
                                 "name": "probe11",
-                                "id": 17,
+                                "id": 24,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -510,7 +601,7 @@
                             },
                             {
                                 "name": "probe12",
-                                "id": 18,
+                                "id": 25,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -526,7 +617,7 @@
                             },
                             {
                                 "name": "probe13",
-                                "id": 19,
+                                "id": 26,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -542,7 +633,7 @@
                             },
                             {
                                 "name": "probe14",
-                                "id": 20,
+                                "id": 27,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -558,7 +649,7 @@
                             },
                             {
                                 "name": "probe15",
-                                "id": 21,
+                                "id": 28,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -574,7 +665,7 @@
                             },
                             {
                                 "name": "probe16",
-                                "id": 22,
+                                "id": 29,
                                 "type": "DATA_TRIGGER",
                                 "direction": "IN",
                                 "isVector": false,
@@ -585,6 +676,1227 @@
                                     {
                                         "name": "debug_rd_en",
                                         "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe17",
+                                "id": 30,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 27,
+                                "portIndex": 17,
+                                "nets": [
+                                    {
+                                        "name": "app_addr",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "app_addr[27]"
+                                            },
+                                            {
+                                                "name": "app_addr[26]"
+                                            },
+                                            {
+                                                "name": "app_addr[25]"
+                                            },
+                                            {
+                                                "name": "app_addr[24]"
+                                            },
+                                            {
+                                                "name": "app_addr[23]"
+                                            },
+                                            {
+                                                "name": "app_addr[22]"
+                                            },
+                                            {
+                                                "name": "app_addr[21]"
+                                            },
+                                            {
+                                                "name": "app_addr[20]"
+                                            },
+                                            {
+                                                "name": "app_addr[19]"
+                                            },
+                                            {
+                                                "name": "app_addr[18]"
+                                            },
+                                            {
+                                                "name": "app_addr[17]"
+                                            },
+                                            {
+                                                "name": "app_addr[16]"
+                                            },
+                                            {
+                                                "name": "app_addr[15]"
+                                            },
+                                            {
+                                                "name": "app_addr[14]"
+                                            },
+                                            {
+                                                "name": "app_addr[13]"
+                                            },
+                                            {
+                                                "name": "app_addr[12]"
+                                            },
+                                            {
+                                                "name": "app_addr[11]"
+                                            },
+                                            {
+                                                "name": "app_addr[10]"
+                                            },
+                                            {
+                                                "name": "app_addr[9]"
+                                            },
+                                            {
+                                                "name": "app_addr[8]"
+                                            },
+                                            {
+                                                "name": "app_addr[7]"
+                                            },
+                                            {
+                                                "name": "app_addr[6]"
+                                            },
+                                            {
+                                                "name": "app_addr[5]"
+                                            },
+                                            {
+                                                "name": "app_addr[4]"
+                                            },
+                                            {
+                                                "name": "app_addr[3]"
+                                            },
+                                            {
+                                                "name": "app_addr[2]"
+                                            },
+                                            {
+                                                "name": "app_addr[1]"
+                                            },
+                                            {
+                                                "name": "app_addr[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe18",
+                                "id": 31,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 2,
+                                "portIndex": 18,
+                                "nets": [
+                                    {
+                                        "name": "app_cmd",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "app_cmd[2]"
+                                            },
+                                            {
+                                                "name": "app_cmd[1]"
+                                            },
+                                            {
+                                                "name": "app_cmd[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe19",
+                                "id": 32,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 19,
+                                "nets": [
+                                    {
+                                        "name": "app_en",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe20",
+                                "id": 33,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 20,
+                                "nets": [
+                                    {
+                                        "name": "app_rdy",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe21",
+                                "id": 34,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 21,
+                                "nets": [
+                                    {
+                                        "name": "app_wdf_data",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "app_wdf_data[31]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[30]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[29]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[28]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[27]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[26]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[25]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[24]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[23]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[22]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[21]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[20]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[19]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[18]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[17]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[16]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[15]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[14]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[13]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[12]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[11]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[10]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[9]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[8]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[7]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[6]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[5]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[4]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[3]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[2]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[1]"
+                                            },
+                                            {
+                                                "name": "app_wdf_data[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe22",
+                                "id": 35,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 22,
+                                "nets": [
+                                    {
+                                        "name": "app_wdf_end",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe23",
+                                "id": 36,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 23,
+                                "nets": [
+                                    {
+                                        "name": "app_wdf_wren",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe24",
+                                "id": 37,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 24,
+                                "nets": [
+                                    {
+                                        "name": "app_wdf_rdy",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe25",
+                                "id": 38,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 25,
+                                "nets": [
+                                    {
+                                        "name": "app_rd_data",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "app_rd_data[31]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[30]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[29]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[28]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[27]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[26]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[25]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[24]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[23]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[22]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[21]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[20]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[19]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[18]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[17]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[16]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[15]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[14]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[13]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[12]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[11]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[10]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[9]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[8]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[7]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[6]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[5]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[4]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[3]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[2]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[1]"
+                                            },
+                                            {
+                                                "name": "app_rd_data[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe26",
+                                "id": 39,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 26,
+                                "nets": [
+                                    {
+                                        "name": "app_rd_data_end",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe27",
+                                "id": 40,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 27,
+                                "nets": [
+                                    {
+                                        "name": "app_rd_data_valid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe28",
+                                "id": 41,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 28,
+                                "nets": [
+                                    {
+                                        "name": "init_calib_complete",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe29",
+                                "id": 42,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 29,
+                                "nets": [
+                                    {
+                                        "name": "TCP_TX_EN",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe30",
+                                "id": 43,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 30,
+                                "nets": [
+                                    {
+                                        "name": "memory_data",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "memory_data[7]"
+                                            },
+                                            {
+                                                "name": "memory_data[6]"
+                                            },
+                                            {
+                                                "name": "memory_data[5]"
+                                            },
+                                            {
+                                                "name": "memory_data[4]"
+                                            },
+                                            {
+                                                "name": "memory_data[3]"
+                                            },
+                                            {
+                                                "name": "memory_data[2]"
+                                            },
+                                            {
+                                                "name": "memory_data[1]"
+                                            },
+                                            {
+                                                "name": "memory_data[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe31",
+                                "id": 44,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 31,
+                                "nets": [
+                                    {
+                                        "name": "dram_ren",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe32",
+                                "id": 45,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 32,
+                                "nets": [
+                                    {
+                                        "name": "dram_wen",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe33",
+                                "id": 46,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 27,
+                                "portIndex": 33,
+                                "nets": [
+                                    {
+                                        "name": "dram_addr",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "dram_addr[27]"
+                                            },
+                                            {
+                                                "name": "dram_addr[26]"
+                                            },
+                                            {
+                                                "name": "dram_addr[25]"
+                                            },
+                                            {
+                                                "name": "dram_addr[24]"
+                                            },
+                                            {
+                                                "name": "dram_addr[23]"
+                                            },
+                                            {
+                                                "name": "dram_addr[22]"
+                                            },
+                                            {
+                                                "name": "dram_addr[21]"
+                                            },
+                                            {
+                                                "name": "dram_addr[20]"
+                                            },
+                                            {
+                                                "name": "dram_addr[19]"
+                                            },
+                                            {
+                                                "name": "dram_addr[18]"
+                                            },
+                                            {
+                                                "name": "dram_addr[17]"
+                                            },
+                                            {
+                                                "name": "dram_addr[16]"
+                                            },
+                                            {
+                                                "name": "dram_addr[15]"
+                                            },
+                                            {
+                                                "name": "dram_addr[14]"
+                                            },
+                                            {
+                                                "name": "dram_addr[13]"
+                                            },
+                                            {
+                                                "name": "dram_addr[12]"
+                                            },
+                                            {
+                                                "name": "dram_addr[11]"
+                                            },
+                                            {
+                                                "name": "dram_addr[10]"
+                                            },
+                                            {
+                                                "name": "dram_addr[9]"
+                                            },
+                                            {
+                                                "name": "dram_addr[8]"
+                                            },
+                                            {
+                                                "name": "dram_addr[7]"
+                                            },
+                                            {
+                                                "name": "dram_addr[6]"
+                                            },
+                                            {
+                                                "name": "dram_addr[5]"
+                                            },
+                                            {
+                                                "name": "dram_addr[4]"
+                                            },
+                                            {
+                                                "name": "dram_addr[3]"
+                                            },
+                                            {
+                                                "name": "dram_addr[2]"
+                                            },
+                                            {
+                                                "name": "dram_addr[1]"
+                                            },
+                                            {
+                                                "name": "dram_addr[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe34",
+                                "id": 47,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 34,
+                                "nets": [
+                                    {
+                                        "name": "dram_wdata",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "dram_wdata[31]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[30]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[29]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[28]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[27]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[26]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[25]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[24]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[23]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[22]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[21]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[20]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[19]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[18]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[17]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[16]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[15]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[14]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[13]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[12]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[11]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[10]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[9]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[8]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[7]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[6]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[5]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[4]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[3]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[2]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[1]"
+                                            },
+                                            {
+                                                "name": "dram_wdata[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe35",
+                                "id": 48,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 35,
+                                "nets": [
+                                    {
+                                        "name": "dram_rdata",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "dram_rdata[31]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[30]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[29]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[28]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[27]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[26]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[25]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[24]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[23]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[22]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[21]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[20]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[19]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[18]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[17]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[16]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[15]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[14]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[13]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[12]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[11]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[10]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[9]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[8]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[7]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[6]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[5]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[4]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[3]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[2]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[1]"
+                                            },
+                                            {
+                                                "name": "dram_rdata[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe36",
+                                "id": 49,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 36,
+                                "nets": [
+                                    {
+                                        "name": "dram_rdata_valid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe37",
+                                "id": 50,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 37,
+                                "nets": [
+                                    {
+                                        "name": "dram_ready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe38",
+                                "id": 51,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 38,
+                                "nets": [
+                                    {
+                                        "name": "dram_wdf_ready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe39",
+                                "id": 52,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 39,
+                                "nets": [
+                                    {
+                                        "name": "dram_wdone",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe40",
+                                "id": 53,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 26,
+                                "portIndex": 40,
+                                "nets": [
+                                    {
+                                        "name": "DATA_OUT_3",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "DATA_OUT_3[53]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[52]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[51]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[50]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[49]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[48]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[47]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[46]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[45]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[44]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[43]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[42]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[41]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[40]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[39]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[38]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[37]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[36]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[35]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[34]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[33]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[32]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[31]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[30]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[29]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[28]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT_3[27]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe41",
+                                "id": 54,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 41,
+                                "nets": [
+                                    {
+                                        "name": "DATA_OUT",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "DATA_OUT[111]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[110]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[109]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[108]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[107]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[106]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[105]"
+                                            },
+                                            {
+                                                "name": "DATA_OUT[104]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe41",
+                                "id": 55,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 8,
+                                "rightIndex": 10,
+                                "portIndex": 41,
+                                "nets": [
+                                    {
+                                        "name": "dram_reg_dat",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "dram_reg_dat[2]"
+                                            },
+                                            {
+                                                "name": "dram_reg_dat[1]"
+                                            },
+                                            {
+                                                "name": "dram_reg_dat[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe41",
+                                "id": 56,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 11,
+                                "rightIndex": 18,
+                                "portIndex": 41,
+                                "nets": [
+                                    {
+                                        "name": "ren_cnt",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "ren_cnt[7]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[6]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[5]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[4]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[3]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[2]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[1]"
+                                            },
+                                            {
+                                                "name": "ren_cnt[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe41",
+                                "id": 57,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 19,
+                                "rightIndex": 26,
+                                "portIndex": 41,
+                                "nets": [
+                                    {
+                                        "name": "rva_cnt",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "rva_cnt[7]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[6]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[5]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[4]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[3]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[2]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[1]"
+                                            },
+                                            {
+                                                "name": "rva_cnt[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             }

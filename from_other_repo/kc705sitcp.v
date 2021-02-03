@@ -19,9 +19,10 @@
 module
     kc705sitcp(
         // System
-        input    wire            SYSCLK_200MP_IN ,    // From 200MHz Oscillator module
-        input    wire            SYSCLK_200MN_IN ,    // From 200MHz Oscillator module
-        output   wire            CLK_200M        ,
+        //input    wire            SYSCLK_200MP_IN ,    // From 200MHz Oscillator module
+        //input    wire            SYSCLK_200MN_IN ,    // From 200MHz Oscillator module
+        //output   wire            CLK_200M        ,
+        input    wire            CLK_200M        ,
         output   wire            TCP_RST         ,
         // EtherNet
         output   wire            GMII_RSTn       ,
@@ -90,9 +91,9 @@ module
     reg             CNT_LD;
     reg      [6:0]  RX_CNT;
 
-    wire CLK_200M_buf;
-    IBUFDS #(.IOSTANDARD ("LVDS")) LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
-    BUFG BUFG0 ( .O(CLK_200M), .I(CLK_200M_buf));
+    //wire CLK_200M_buf;
+    //IBUFDS #(.IOSTANDARD ("LVDS")) LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
+    //BUFG BUFG0 ( .O(CLK_200M), .I(CLK_200M_buf));
 
 
     PLLE2_BASE #(
