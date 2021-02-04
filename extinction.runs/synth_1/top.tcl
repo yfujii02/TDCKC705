@@ -96,6 +96,7 @@ read_verilog -library xil_defaultlib {
   /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v
   /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v
   /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/PREPROCESSOR.v
   /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V
   /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
   /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
@@ -117,6 +118,9 @@ read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/
 set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc]
 set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1_ooc.xdc]
 
+read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit.xci
+set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit_ooc.xdc]
+
 read_edif /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -130,11 +134,11 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
 set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 
-read_xdc /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc
-set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
-
 read_xdc /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc
 set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]
+
+read_xdc /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc
+set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/kc705sitcp.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

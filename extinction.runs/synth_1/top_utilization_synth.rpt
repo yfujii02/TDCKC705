@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Fri Jan 22 19:44:09 2021
+| Date         : Fri Feb  5 01:48:46 2021
 | Host         : localhost.localdomain running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,16 +30,16 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 4645 |     0 |    203800 |  2.28 |
-|   LUT as Logic             | 4563 |     0 |    203800 |  2.24 |
+| Slice LUTs*                | 4702 |     0 |    203800 |  2.31 |
+|   LUT as Logic             | 4620 |     0 |    203800 |  2.27 |
 |   LUT as Memory            |   82 |     0 |     64000 |  0.13 |
 |     LUT as Distributed RAM |    8 |     0 |           |       |
 |     LUT as Shift Register  |   74 |     0 |           |       |
-| Slice Registers            | 5839 |     3 |    407600 |  1.43 |
-|   Register as Flip Flop    | 5804 |     3 |    407600 |  1.42 |
+| Slice Registers            | 5979 |     3 |    407600 |  1.47 |
+|   Register as Flip Flop    | 5944 |     3 |    407600 |  1.46 |
 |   Register as Latch        |   35 |     0 |    407600 | <0.01 |
-| F7 Muxes                   |  105 |     0 |    101900 |  0.10 |
-| F8 Muxes                   |   40 |     0 |     50950 |  0.08 |
+| F7 Muxes                   |  121 |     0 |    101900 |  0.12 |
+| F8 Muxes                   |   48 |     0 |     50950 |  0.09 |
 +----------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -57,9 +57,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 218   |          Yes |           - |          Set |
-| 1506  |          Yes |           - |        Reset |
+| 1634  |          Yes |           - |        Reset |
 | 84    |          Yes |         Set |            - |
-| 4031  |          Yes |       Reset |            - |
+| 4043  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -156,21 +156,21 @@ Table of Contents
 +-----------+------+---------------------+
 |  Ref Name | Used | Functional Category |
 +-----------+------+---------------------+
-| FDRE      | 4031 |        Flop & Latch |
-| FDCE      | 1471 |        Flop & Latch |
-| LUT3      | 1205 |                 LUT |
-| LUT2      | 1128 |                 LUT |
-| LUT6      | 1059 |                 LUT |
-| LUT4      |  466 |                 LUT |
-| LUT1      |  449 |                 LUT |
-| LUT5      |  416 |                 LUT |
+| FDRE      | 4043 |        Flop & Latch |
+| FDCE      | 1599 |        Flop & Latch |
+| LUT3      | 1203 |                 LUT |
+| LUT2      | 1130 |                 LUT |
+| LUT6      | 1096 |                 LUT |
+| LUT4      |  475 |                 LUT |
+| LUT1      |  450 |                 LUT |
+| LUT5      |  427 |                 LUT |
 | CARRY4    |  356 |          CarryLogic |
 | FDPE      |  218 |        Flop & Latch |
-| MUXF7     |  105 |               MuxFx |
+| MUXF7     |  121 |               MuxFx |
 | IBUFDS    |   85 |                  IO |
 | FDSE      |   84 |        Flop & Latch |
 | SRLC16E   |   71 |  Distributed Memory |
-| MUXF8     |   40 |               MuxFx |
+| MUXF8     |   48 |               MuxFx |
 | LDCE      |   35 |        Flop & Latch |
 | IBUF      |   21 |                  IO |
 | OBUF      |   19 |                  IO |
@@ -194,6 +194,7 @@ Table of Contents
 +------------------+------+
 |     Ref Name     | Used |
 +------------------+------+
+| shift_ram_hit    |   79 |
 | ila_0            |    1 |
 | fifo_generator_1 |    1 |
 | fifo_generator_0 |    1 |

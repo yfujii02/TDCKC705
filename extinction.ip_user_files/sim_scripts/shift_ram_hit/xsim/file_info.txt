@@ -1,0 +1,2 @@
+shift_ram_hit.vhd,vhdl,xil_defaultlib,../../../../extinction.srcs/sources_1/ip/shift_ram_hit/sim/shift_ram_hit.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v
