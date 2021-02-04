@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Mon Feb  1 15:26:48 2021
+| Date             : Thu Feb  4 16:06:09 2021
 | Host             : dyna-comet running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.479        |
+| Total On-Chip Power (W)  | 2.664        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.285        |
-| Device Static (W)        | 0.194        |
+| Dynamic (W)              | 2.468        |
+| Device Static (W)        | 0.195        |
 | Effective TJA (C/W)      | 1.8          |
-| Max Ambient (C)          | 80.6         |
-| Junction Temperature (C) | 29.4         |
+| Max Ambient (C)          | 80.3         |
+| Junction Temperature (C) | 29.7         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.228 |       12 |       --- |             --- |
-| Slice Logic              |     0.033 |    48287 |       --- |             --- |
-|   LUT as Logic           |     0.025 |    17540 |    203800 |            8.61 |
-|   CARRY4                 |     0.003 |     2525 |     50950 |            4.96 |
-|   Register               |     0.002 |    18331 |    407600 |            4.50 |
+| Clocks                   |     0.229 |       12 |       --- |             --- |
+| Slice Logic              |     0.030 |    47376 |       --- |             --- |
+|   LUT as Logic           |     0.023 |    17962 |    203800 |            8.81 |
+|   CARRY4                 |     0.002 |     1637 |     50950 |            3.21 |
+|   Register               |     0.002 |    18046 |    407600 |            4.43 |
 |   LUT as Shift Register  |     0.002 |      842 |     64000 |            1.32 |
-|   F7/F8 Muxes            |    <0.001 |     1606 |    203800 |            0.79 |
+|   F7/F8 Muxes            |    <0.001 |     1579 |    203800 |            0.77 |
 |   LUT as Distributed RAM |    <0.001 |       32 |     64000 |            0.05 |
 |   Others                 |     0.000 |     2469 |       --- |             --- |
-| Signals                  |     0.049 |    37711 |       --- |             --- |
-| Block RAM                |     1.344 |    320.5 |       445 |           72.02 |
+| Signals                  |     0.048 |    34138 |       --- |             --- |
+| Block RAM                |     1.530 |    320.5 |       445 |           72.02 |
 | PLL                      |     0.217 |        2 |        10 |           20.00 |
 | I/O                      |     0.414 |      193 |       500 |           38.60 |
-| Static Power             |     0.194 |          |           |                 |
-| Total                    |     2.479 |          |           |                 |
+| Static Power             |     0.195 |          |           |                 |
+| Total                    |     2.664 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.671 |       1.581 |      0.090 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     1.838 |       1.747 |      0.091 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.217 |       0.188 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.101 |       0.100 |      0.001 |       NA    | Unspecified | NA         |
@@ -85,7 +85,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.131 |       0.118 |      0.013 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.148 |       0.135 |      0.014 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -154,25 +154,25 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| top                                |     2.285 |
+| top                                |     2.468 |
 |   LOC_REG                          |     0.021 |
-|   PREPROCESSOR                     |     0.416 |
+|   PREPROCESSOR                     |     0.417 |
 |   dbg_hub                          |     0.006 |
 |     inst                           |     0.006 |
 |       BSCANID.u_xsdbm_id           |     0.006 |
-|   ila_0                            |     0.041 |
-|     inst                           |     0.041 |
-|       ila_core_inst                |     0.041 |
-|   nolabel_line150                  |     0.233 |
+|   ila_0                            |     0.042 |
+|     inst                           |     0.042 |
+|       ila_core_inst                |     0.042 |
+|   nolabel_line150                  |     0.234 |
 |     AT93C46_IIC                    |     0.008 |
 |       MIRROR_MEM                   |     0.003 |
 |       PCA9548_SW                   |     0.003 |
-|     SiTCP                          |     0.104 |
-|       SiTCP                        |     0.104 |
+|     SiTCP                          |     0.106 |
+|       SiTCP                        |     0.105 |
 |     fifo_generator_v11_0           |     0.005 |
 |       U0                           |     0.005 |
-|   top_mcs                          |     1.441 |
-|     BUF_LOOP[0].shift_cntr_eachbuf |     0.275 |
+|   top_mcs                          |     1.621 |
+|     BUF_LOOP[0].shift_cntr_eachbuf |     0.273 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.005 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.004 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.004 |
@@ -247,7 +247,82 @@ Table of Contents
 |       CHANNEL_BLK[7].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.004 |
-|     BUF_LOOP[1].shift_cntr_eachbuf |     0.385 |
+|     BUF_LOOP[1].shift_cntr_eachbuf |     0.273 |
+|       CHANNEL_BLK[0].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[10].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[11].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[12].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[13].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[14].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[15].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[16].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[17].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[18].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[19].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[1].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[20].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[21].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[22].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[23].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[24].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[25].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[26].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[27].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[28].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[29].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[2].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[30].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[31].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[3].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[4].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[5].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[6].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[7].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[8].shift_cntr    |     0.004 |
+|       CHANNEL_BLK[9].shift_cntr    |     0.004 |
+|     BUF_LOOP[2].shift_cntr_eachbuf |     0.530 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.007 |
@@ -273,56 +348,56 @@ Table of Contents
 |       CHANNEL_BLK[2].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[30].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[31].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[3].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[4].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[5].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[6].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[7].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.007 |
-|     BUF_LOOP[2].shift_cntr_eachbuf |     0.385 |
+|     BUF_LOOP[3].shift_cntr_eachbuf |     0.534 |
 |       CHANNEL_BLK[0].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[10].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[11].shift_cntr   |     0.007 |
@@ -348,127 +423,52 @@ Table of Contents
 |       CHANNEL_BLK[2].shift_cntr    |     0.004 |
 |       CHANNEL_BLK[30].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[31].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[3].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[4].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[5].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[6].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[7].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[8].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[9].shift_cntr    |     0.007 |
-|     BUF_LOOP[3].shift_cntr_eachbuf |     0.385 |
-|       CHANNEL_BLK[0].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[10].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[11].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[12].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[13].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[14].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[15].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[16].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[17].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[18].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[19].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[1].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[20].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[21].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[22].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[23].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[24].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[25].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[26].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[27].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[28].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[29].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[2].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[30].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[31].shift_cntr   |     0.007 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[3].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[4].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[5].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[6].shift_cntr    |     0.007 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[72].shift_cntr   |     0.007 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.007 |
 |       CHANNEL_BLK[7].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[8].shift_cntr    |     0.007 |
 |       CHANNEL_BLK[9].shift_cntr    |     0.007 |

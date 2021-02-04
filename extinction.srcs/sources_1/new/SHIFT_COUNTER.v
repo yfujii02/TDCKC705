@@ -45,7 +45,7 @@ module SHIFT_COUNTER_EACH(
     wire        [15:0]  wCNTR   ;
     wire        [10:0]  raddr   ;
     reg                 doRESET ;
-    reg         [11:0]  RSTCNTR ;
+    reg         [10:0]  RSTCNTR ;
 
     reg  [10:0]  dlyCNTR1CLK;
     reg  [10:0]  dlyCNTR2CLK;
@@ -60,7 +60,6 @@ module SHIFT_COUNTER_EACH(
             ROMODE  <=  1'b0;
             regEN   <=  2'd0;
             doRESET <=  1'b1;
-            RSTCNTR <= 11'd0;
         end else begin
             regEN   <= {regEN[0],EN};
             if(regEN==2'b10) begin // End of spill
@@ -78,11 +77,21 @@ module SHIFT_COUNTER_EACH(
                 regCNTR <= 16'd0;
             end
 
-            RSTCNTR <= (doRESET)? RSTCNTR + 11'd1 : 11'd0;
-
             if (RSTCNTR==11'd1153) begin
                 doRESET  <=  1'b0;
-                RSTCNTR  <= 12'd0;
+            end
+        end
+    end
+
+    /// Loop for the reset counter to clear the RAM
+    always@ (posedge CLK) begin
+        if(RST) begin
+            RSTCNTR <= 11'd0;
+        end else begin
+            if (doRESET) begin
+                RSTCNTR <= RSTCNTR + 11'd1;
+            end else begin
+                RSTCNTR <= 11'd0;
             end
         end
     end
