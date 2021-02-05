@@ -63,7 +63,9 @@ module DATA_SEND_MCS(
             if(regDlyENABLE[1:0]==2'b01) begin
                 irSPLCOUNT <= SPLCOUNT;
                 irEM_COUNT <= EM_COUNT;
-                irNMRSYNC  <= NMRSYNC ;
+            end
+            if(regDlyENABLE[1:0]==2'b10) begin
+                irNMRSYNC  <= NMRSYNC ; /// Record the number of MR sync when writing has finished in the RAM
             end
         end
     end

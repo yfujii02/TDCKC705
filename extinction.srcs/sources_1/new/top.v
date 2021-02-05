@@ -217,9 +217,17 @@ module
 
     wire   [63:0]  SIG_IN;
     assign SIG_IN = (RUN_MODE[2:0]==3'h7)? TEST_SIGNAL : SIGNAL;
+    reg  TCP_NOACK;
+    always @(posedge CLK_200M)begin
+        if (TCP_RST) begin
+            TCP_NOACK <= 1'b1;
+        end else begin
+            TCP_NOACK <= ~TCP_OPEN_ACK;
+        end
+    end
     top_mcs top_mcs(
     // system
-        .RESET      ((~TCP_OPEN_ACK|RUN_RESET)),
+        .RESET      ((TCP_NOACK|RUN_RESET)),
         .CLK_200M   (CLK_200M     ),
         .SPLCNT_RST     (SPLCNT_RST          ), // in : Spill count reset
         .INT_SPLCNT_RST (INT_SPLCNT_RST      ), // in : (In) Spl cnt reset
@@ -408,15 +416,18 @@ module
             irTestMrsync <= 1'b0;
         end
     end
+    reg [1:0] irCLK_10M;
     always@(posedge CLK_200M) begin
         if(TCP_RST) begin
             irMrsyncPulse[2:0] <= 3'd0;
             irTestSignal[63:0] <= 64'd0;
+            irCLK_10M[1:0]     <= 2'd0;
         end else begin
             irMrsyncPulse[2:0] <= {irMrsyncPulse[1:0], irTestMrsync};
+            irCLK_10M[1:0]     <= {irCLK_10M[0],CLK_10M};
             if (irMrsyncPulse[2:1]==2'b01) begin
-                irTestSignal[63:0] <= {irTestSignal[62:0],1'b1};
-            end else if (CLK_10M)begin
+                irTestSignal[63:0] <= {16'd1,16'd1,16'd1,16'd1};
+            end else if (irCLK_10M[1:0]==2'b01)begin
                 irTestSignal[63:0] <= {irTestSignal[62:0],irTestSignal_dly1[63]};
             end
         end
