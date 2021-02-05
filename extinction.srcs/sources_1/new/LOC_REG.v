@@ -44,7 +44,6 @@ module LOC_REG(
     // Debug
     output  wire    [63:0]  REG_CHMASK0 ,    // mask input channels
     output  wire    [14:0]  REG_CHMASK1 ,    // mask input channels (OLDH)
-    output  wire     [7:0]  REG_DLY_TEST,    // delay for fast_test signal [7:0]
     output  wire            REG_SPLCNT_RST_EN   ,    // out    : enalbe spill count reset
     output  wire            REG_SPLCNT_RST      ,    // out    : spill count reset
     output  wire     [7:0]  REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
@@ -111,7 +110,7 @@ module LOC_REG(
     reg     [7:0]    x18_Reg   ;
     reg     [7:0]    x19_Reg   ;
     reg     [3:0]    x1A_Reg   ; // Spill Div for MCS
-    reg     [7:0]    x1B_Reg   ; // Delay for the test signal
+    reg     [7:0]    x1B_Reg   ; // NC
     reg     [7:0]    x1C_Reg   ; // NC
     reg              x1D_Reg   ; // NC
     reg              x1E_Reg   ; //
@@ -187,7 +186,7 @@ module LOC_REG(
             x18_Reg[7:0]    <= 8'h00;   //
             x19_Reg[7:0]    <= 8'h00;   //
             x1A_Reg[3:0]    <= 4'hF;    // Spill Div for MCS
-            x1B_Reg[7:0]    <= 8'h10;   // Delay for the test signal
+            x1B_Reg[7:0]    <= 8'h10;   // NC
             x1C_Reg[7:0]    <= 8'h1C;   //
             x1D_Reg         <= 1'h0;    // Spill count reset enalbe
             x1E_Reg         <= 1'h0;    // Spill count reset
@@ -354,7 +353,7 @@ module LOC_REG(
             4'h8:    rdDataB[7:0]    <= x18_Reg[7:0];      // Channel mask 2 [14:8] ([7]:nc)
             4'h9:    rdDataB[7:0]    <= x19_Reg[7:0];      // Channel mask 2 [ 7:0]
             4'hA:    rdDataB[7:0]    <= {4'h0,x1A_Reg[3:0]};// Spill Div for MCS
-            4'hB:    rdDataB[7:0]    <= x1B_Reg[7:0];      // Delay for the test signal w.r.t TEST[0]
+            4'hB:    rdDataB[7:0]    <= x1B_Reg[7:0];      // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
             4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset enable
             4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // SPLCNT reset
@@ -443,5 +442,4 @@ module LOC_REG(
     assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
     assign  REG_SPLDIV[3:0] = x1A_Reg[3:0];
-    assign  REG_DLY_TEST    = x1B_Reg[7:0]; // Delay for the test signal w.r.t TEST[0]
 endmodule

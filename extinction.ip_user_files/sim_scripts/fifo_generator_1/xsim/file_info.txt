@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 fifo_generator_1.v,verilog,xil_defaultlib,../../../../extinction.srcs/sources_1/ip/fifo_generator_1/sim/fifo_generator_1.v,
 glbl.v,Verilog,xil_defaultlib,glbl.v
-=======
-fifo_generator_1.v,verilog,xil_defaultlib,../../../../extinction.srcs/sources_1/ip/fifo_generator_1/sim/fifo_generator_1.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v
->>>>>>> 984f081886e2813de6ae5c2952ba6ed289dd85a9

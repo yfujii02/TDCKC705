@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Thu Feb  4 15:42:17 2021
+| Date         : Fri Feb  5 13:15:18 2021
 | Host         : dyna-comet running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,16 +30,16 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 17131 |     0 |    203800 |  8.41 |
-|   LUT as Logic             | 17050 |     0 |    203800 |  8.37 |
+| Slice LUTs*                | 14177 |     0 |    203800 |  6.96 |
+|   LUT as Logic             | 14096 |     0 |    203800 |  6.92 |
 |   LUT as Memory            |    81 |     0 |     64000 |  0.13 |
 |     LUT as Distributed RAM |     8 |     0 |           |       |
 |     LUT as Shift Register  |    73 |     0 |           |       |
-| Slice Registers            | 15215 |     3 |    407600 |  3.73 |
-|   Register as Flip Flop    | 15180 |     3 |    407600 |  3.72 |
+| Slice Registers            | 13103 |     3 |    407600 |  3.21 |
+|   Register as Flip Flop    | 13068 |     3 |    407600 |  3.21 |
 |   Register as Latch        |    35 |     0 |    407600 | <0.01 |
-| F7 Muxes                   |   723 |     0 |    101900 |  0.71 |
-| F8 Muxes                   |   322 |     0 |     50950 |  0.63 |
+| F7 Muxes                   |   565 |     0 |    101900 |  0.55 |
+| F8 Muxes                   |   255 |     0 |     50950 |  0.50 |
 +----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 220   |          Yes |           - |          Set |
 | 1625  |          Yes |           - |        Reset |
-| 438   |          Yes |         Set |            - |
-| 12932 |          Yes |       Reset |            - |
+| 353   |          Yes |         Set |            - |
+| 10905 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    |   12 |     0 |       445 |  2.70 |
-|   RAMB36/FIFO*    |    9 |     0 |       445 |  2.02 |
-|     RAMB36E1 only |    9 |       |           |       |
+| Block RAM Tile    |   20 |     0 |       445 |  4.49 |
+|   RAMB36/FIFO*    |   17 |     0 |       445 |  3.82 |
+|     RAMB36E1 only |   17 |       |           |       |
 |   RAMB18          |    6 |     0 |       890 |  0.67 |
 |     RAMB18E1 only |    6 |       |           |       |
 +-------------------+------+-------+-----------+-------+
@@ -122,7 +122,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    3 |     0 |        32 |  9.38 |
+| BUFGCTRL   |    5 |     0 |        32 | 15.63 |
 | BUFIO      |    0 |     0 |        40 |  0.00 |
 | MMCME2_ADV |    0 |     0 |        10 |  0.00 |
 | PLLE2_ADV  |    2 |     0 |        10 | 20.00 |
@@ -156,28 +156,28 @@ Table of Contents
 +-----------+-------+---------------------+
 |  Ref Name |  Used | Functional Category |
 +-----------+-------+---------------------+
-| FDRE      | 12932 |        Flop & Latch |
-| LUT3      | 10724 |                 LUT |
-| LUT6      |  3344 |                 LUT |
-| LUT2      |  2090 |                 LUT |
-| LUT4      |  2065 |                 LUT |
-| LUT5      |  1734 |                 LUT |
+| FDRE      | 10905 |        Flop & Latch |
+| LUT3      |  8331 |                 LUT |
+| LUT6      |  2804 |                 LUT |
+| LUT2      |  1936 |                 LUT |
+| LUT4      |  1680 |                 LUT |
 | FDCE      |  1590 |        Flop & Latch |
-| CARRY4    |  1553 |          CarryLogic |
-| LUT1      |   866 |                 LUT |
-| MUXF7     |   723 |               MuxFx |
-| FDSE      |   438 |        Flop & Latch |
-| MUXF8     |   322 |               MuxFx |
+| LUT5      |  1433 |                 LUT |
+| CARRY4    |  1272 |          CarryLogic |
+| LUT1      |   776 |                 LUT |
+| MUXF7     |   565 |               MuxFx |
+| FDSE      |   353 |        Flop & Latch |
+| MUXF8     |   255 |               MuxFx |
 | FDPE      |   220 |        Flop & Latch |
 | IBUFDS    |    85 |                  IO |
 | SRLC16E   |    71 |  Distributed Memory |
 | LDCE      |    35 |        Flop & Latch |
 | IBUF      |    20 |                  IO |
 | OBUF      |    19 |                  IO |
-| RAMB36E1  |     9 |        Block Memory |
+| RAMB36E1  |    17 |        Block Memory |
 | RAMS32    |     8 |  Distributed Memory |
 | RAMB18E1  |     6 |        Block Memory |
-| BUFG      |     3 |               Clock |
+| BUFG      |     5 |               Clock |
 | SRL16E    |     2 |  Distributed Memory |
 | PLLE2_ADV |     2 |               Clock |
 | OBUFT     |     2 |                  IO |
@@ -189,14 +189,13 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+------------------+------+
-|     Ref Name     | Used |
-+------------------+------+
-| bram_2byte_2K    |  296 |
-| shift_ram_hit    |   79 |
-| ila_0            |    1 |
-| fifo_generator_1 |    1 |
-+------------------+------+
++---------------+------+
+|    Ref Name   | Used |
++---------------+------+
+| bram_2byte_2K |  222 |
+| shift_ram_hit |   79 |
+| ila_0         |    1 |
++---------------+------+
 
 
 9. Instantiated Netlists

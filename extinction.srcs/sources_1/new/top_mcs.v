@@ -69,6 +69,7 @@ module top_mcs(
     //*******************************************************************************
     wire            SPILL_EDGE ;
     wire    [15:0]  EM_COUNT   ;
+
     GET_SPILLINFO get_spillInfo(
         .RESET     (RESET     ),
         .CLK_200M  (CLK_200M  ),
@@ -87,22 +88,9 @@ module top_mcs(
         .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
 
-    reg  [10:0]    relCNTR; // counter relative to MR_SYNC
-
-    always @ (posedge CLK_200M) begin
-        if(RESET) begin
-            relCNTR <= 11'd0;
-        end else begin
-            if (MR_SYNC) begin
-                relCNTR <= 11'd0;
-            end else begin
-                relCNTR <= relCNTR + 11'd1;
-            end
-        end
-    end
 
     reg             ENABLE  ; // Enable on until the spill end
-    reg      [3:0]  enWrite ; // Enable switch for writing the data
+    reg      [2:0]  enWrite ; // Enable switch for writing the data
     reg             enWriteMSB; // 1 clk delayed MSB of en write
     reg     [31:0]  NMRSYNC ; // Number of MRSync
     reg     [31:0]  regNSYNC; // Register to keep the number of MRSYNC
@@ -111,7 +99,7 @@ module top_mcs(
     always @ (posedge CLK_200M) begin
         if(RESET) begin
             ENABLE    <=  1'b0;
-            enWrite   <=  4'd0;
+            enWrite   <=  3'd0;
             NMRSYNC   <= 32'd0;
             regNSYNC  <= 32'd0;
         end else begin
@@ -123,20 +111,23 @@ module top_mcs(
                 if (NMRSYNC>32'd0) begin
                     ENABLE    <= 1'b1;
                     if (NMRSYNC==32'd1) begin
-                        enWrite   <= 4'd1;
+                        enWrite   <= 3'd1;
                     end else begin
-                        enWrite   <= (irSw_mem==2'b01)? {enWrite[2:0],enWriteMSB} : enWrite;
+                        enWrite   <= (irSw_mem==2'b01)? {enWrite[1:0],enWriteMSB} : enWrite;
                     end
+                end else begin
+                    enWrite <= 3'd0;
+                    ENABLE  <= 1'b0;
                 end
             end else begin
-                enWrite   <= 4'd0;
+                enWrite   <= 3'd0;
                 ENABLE    <= 1'b0;
                 NMRSYNC   <= 32'd0;
             end
         end
     end
     always @ (posedge CLK_200M) begin
-        enWriteMSB <= enWrite[3];
+        enWriteMSB <= enWrite[2];
     end
 
     always @ (posedge CLK_200M) begin
@@ -179,19 +170,21 @@ module top_mcs(
         end
     end
 
+    parameter NBUF     =  3; /// Number of cyclic buffers
     parameter NCHANNEL = 74; /// PMT(10) + MPPC(64) (Can be changed later??)
     parameter DWIDTH   = 16; /// Width of each data/bin
     parameter DWIDTH_BUF = NCHANNEL*DWIDTH;
-    parameter NBUF     =  4; /// Number of cyclic buffers
     wire    [4*NBUF-1:0]   label;
-    assign label={4'd3,4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
+    assign label={4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
     wire    [NCHANNEL-1:0]    INPUT   ;
     assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// Read out 10 PMT channels 
                                              ///  including two ext. PMTs in the new hodoscope.
 
+    reg  [11*NBUF-1:0]   relCNTR; // counter relative to MR_SYNC
     wire   [NBUF-1:0]    EOD    ;
     reg    [2*NBUF-1:0]  regEOD ; // Reg to check Edge of EOD
     reg    [NBUF-1:0]    edgeEOD; // Edge of EOD
+    reg    [NBUF-1:0]    regRST ;
     //*******************************************************************************
     //
     //  Store the counter / bin / channel into the BRAM every "N"
@@ -207,9 +200,17 @@ generate
             if(RESET)begin
                 regEOD[2*i+1:2*i]  <= 2'd0;
                 edgeEOD[i]         <= 1'b0;
+                regRST[i]          <= 1'b1;
+                relCNTR[11*i+10:11*i] <= 11'd0;
             end else begin
                 regEOD[2*i+1:2*i]  <= {regEOD[2*i],EOD[i]};
                 edgeEOD[i]         <= (regEOD[2*i+1:2*i]==2'b01)? 1'b1 : 1'b0;
+                regRST[i]          <= 1'b0;
+                if (MR_SYNC) begin
+                    relCNTR[11*i+10:11*i] <= 11'd0;
+                end else begin
+                    relCNTR[11*i+10:11*i] <= relCNTR[11*i+10:11*i] + 11'd1;
+                end
             end
         end
     end
@@ -220,12 +221,12 @@ endgenerate
 generate
     for (i = 0; i < NBUF; i = i+1) begin: BUF_LOOP
         SHIFT_COUNTER_ALL shift_cntr_eachbuf(
-            .RST    (RESET    ),        // input reset signal
+            .RST    (regRST[i]),        // input reset signal
             .CLK    (CLK_200M ),        // input clock
             .EN     (enWrite[i]&START), // input enable writing
             .SIG    (INPUT    ),        // input signal
             .EOD    (edgeEOD[i]),       // end of data sending for this memory block
-            .RELCNTR(relCNTR  ),        // counter w.r.t. MR sync
+            .RELCNTR(relCNTR[11*i+10:11*i]),        // counter w.r.t. MR sync
             .RLENGTH(LENGTH_INT[i*11+10:i*11]), // input address from send module corresponding to RelCounter
             .COUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]) // output data
         );
@@ -240,7 +241,7 @@ endgenerate
 generate
     for (i = 0; i < NBUF; i = i+1) begin: SEND_LOOP
         DATA_SEND_MCS data_send_mcs0(
-            .RST     (RESET     ),  // input reset
+            .RST     (regRST[i] ),  // input reset
             .CLK     (CLK_200M  ),  // input clock
             .ENABLE  (enWrite[i]&START        ), // write enable for mem buffer which also control the data send start
             .BUFLABEL(label[4*(i+1)-1:4*i]    ), // label of buffer put in the header
@@ -280,17 +281,18 @@ endgenerate
             end else if (sendEn[2])begin
                 OUTDATA <= OUTDATA_INT[8*3-1:8*2];
                 SEND_EN <= SEND_EN_INT[2];
-            end else if (sendEn[3])begin
-                OUTDATA <= OUTDATA_INT[8*4-1:8*3];
-                SEND_EN <= SEND_EN_INT[3];
+            //end else if (sendEn[3])begin
+            //    OUTDATA <= OUTDATA_INT[8*4-1:8*3];
+            //    SEND_EN <= SEND_EN_INT[3];
             end else begin
                 OUTDATA <= 8'hBB;
                 SEND_EN <= 1'b0;
             end
         end
     end
-    assign  send_others[3:0] = {|{sendEn[2:0]},|{sendEn[3],sendEn[1:0]},
-                                |{sendEn[3:2],sendEn[0]},|{sendEn[3:1]}};
+    //assign  send_others[3:0] = {|{sendEn[2:0]},|{sendEn[3],sendEn[1:0]},
+    //                            |{sendEn[3:2],sendEn[0]},|{sendEn[3:1]}};
+    assign  send_others[2:0] = {|sendEn[1:0], |{sendEn[2],sendEn[0]},|{sendEn[2:1]}};
 
     assign BUF_SWITCH = {SEND_EN_INT,enWrite};
 endmodule
@@ -298,18 +300,18 @@ endmodule
 module sendStatus(
     input   wire         CLK,
     input   wire         RST,
-    input   wire  [3:0]  WRITE,
-    input   wire  [3:0]  EOD,
-    input   wire  [3:0]  READY, /// data is ready to be read
-    output  wire  [3:0]  SEND
+    input   wire  [2:0]  WRITE,
+    input   wire  [2:0]  EOD,
+    input   wire  [2:0]  READY, /// data is ready to be read
+    output  wire  [2:0]  SEND
 );
-    reg [7:0]   irWrite;
+    reg [5:0]   irWrite;
 
     always @(posedge CLK)begin
         if (RST) begin
-            irWrite <= 8'd0;
+            irWrite <= 6'd0;
         end else begin
-            irWrite <= {irWrite[6],WRITE[3],irWrite[4],WRITE[2],
+            irWrite <= {irWrite[4],WRITE[2],
                         irWrite[2],WRITE[1],irWrite[0],WRITE[0]};
         end
     end
@@ -317,22 +319,20 @@ module sendStatus(
     reg [3:0]   irSend;
     always @(posedge CLK)begin
         if (RST) begin
-            irSend <= 4'd0;
+            irSend <= 3'd0;
         end else begin
             if (|SEND == 1'b0) begin
                 if (irWrite[1:0]==2'b10) begin
-                    irSend <= 4'b0001;
+                    irSend <= 3'b001;
                 end else if (irWrite[3:2]==2'b10) begin
-                    irSend <= 4'b0010;
+                    irSend <= 3'b010;
                 end else if (irWrite[5:4]==2'b10) begin
-                    irSend <= 4'b0100;
-                end else if (irWrite[7:6]==2'b10) begin
-                    irSend <= 4'b1000;
+                    irSend <= 3'b100;
                 end
             end else begin
                 if (|(EOD&SEND)) begin /// Data sending at some channel is finished
                     if (|READY) begin  /// If there are any channel ready to be read, let's shift the read flag
-                        irSend <= {irSend[2:0],SEND[3]};
+                        irSend <= {irSend[1:0],SEND[2]};
                     end else begin     /// Otherwise, let's wait for some channel becomes ready
                         irSend <= 4'd0;
                     end
@@ -340,7 +340,7 @@ module sendStatus(
             end
         end
     end
-    reg [3:0]   dlySend;
+    reg [2:0]   dlySend;
     always @(posedge CLK)begin
         dlySend <= irSend;
     end

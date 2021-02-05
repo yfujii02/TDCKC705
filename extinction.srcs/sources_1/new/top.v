@@ -288,6 +288,9 @@ module
     wire    [31:0]    TEST_PSPILL_NEG;
     wire    [31:0]    TEST_MRSYNC_FRQ;
 
+    wire   REG_START;
+    wire   REG_RESET;
+
     LOC_REG LOC_REG(
         // System
         .CLK                (CLK_200M             ), // in : Clock
@@ -303,8 +306,8 @@ module
         .BOARD_ID           (BOARD_ID[3:0]        ), // in : Board ID
         .SPILLCOUNT         (SPILLCOUNT[31:0]     ), // in : Spill count
         .REG_MODE           (RUN_MODE[2:0]        ), // out: Mode select (000: TDC, 001: MCS, 111: Test)
-        .REG_START          (RUN_START            ), // out: Start data transferring (0: stop, 1: start)
-        .REG_RESET          (RUN_RESET            ), // out: Reset
+        .REG_START          (REG_START            ), // out: Start data transferring (0: stop, 1: start)
+        .REG_RESET          (REG_RESET            ), // out: Reset
         .REG_HEADER         (HEADER[31:0]         ), // out: Header
         .REG_FOOTER         (FOOTER[31:0]         ), // out: Footer
         .REG_CHMASK0        (CHMASK0[63:0]        ), // out: Mask channel selector
@@ -325,6 +328,8 @@ module
         .REG_DLY_PMT        (DLY_PMT[95:0]        )  // out: Delay for PMT
     );
 
+   BUFG BUFSTART( .O(RUN_START), .I(REG_START));
+   BUFG BUFRESET( .O(RUN_RESET), .I(REG_RESET));
 
 //-----------------------------------------------------------
 //  Debug
@@ -418,8 +423,22 @@ module
     end
     always@(posedge CLK_200M) begin
         irTestSignal_dly1 <= irTestSignal;
-        irTestSignal_dly2 <= irTestSignal_dly1;
     end
+    reg [127:0] regTestSig;
+genvar i;
+generate
+    for (i = 0; i < 64; i = i+1) begin
+        always@(posedge CLK_200M) begin
+            if(TCP_RST) begin
+                regTestSig[2*i+1:2*i] <= 2'd0;
+                irTestSignal_dly2[i]  <= 1'b0;
+            end else begin
+                regTestSig[2*i+1:2*i] <= {regTestSig[2*i],irTestSignal_dly1[i]};
+                irTestSignal_dly2[i]  <= (regTestSig[2*i+1:2*i]==2'b01)? 1'b1 : 1'b0; 
+            end
+        end
+    end
+endgenerate
     assign TEST_MRSYNC = (irMrsyncPulse[2:1]==2'b01) & TEST_PSPILL ? 1'b1 : 1'b0;
     assign TEST_SIGNAL = irTestSignal_dly2;
 
