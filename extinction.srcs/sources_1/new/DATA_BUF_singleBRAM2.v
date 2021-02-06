@@ -84,7 +84,9 @@ module DATA_BUF_singleBRAM2(
                 W_EN   <= 1'b1;
             end else if (ENABLE)begin
                 regFFull <= {regFFull[0],fifo_full};
-                wrCnt    <= wrCnt+32'd1;
+                if(DATA_TRG && ~SPLSTART) begin
+                    wrCnt    <= wrCnt+32'd1;
+                end
                 if (DATA_TRG && ~fifo_full && ~SPLSTART) begin
                     DIN    <= {SIG[76:0],COUNTER[26:0]}; // 104-bits
                                                          // {MainHodo[63:0],PMR[11:0],MR_Sync,COUNTER[26:0]}
