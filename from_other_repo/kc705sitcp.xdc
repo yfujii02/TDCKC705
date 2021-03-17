@@ -92,7 +92,7 @@ set_clock_groups -logically_exclusive -group [get_clocks GMII_TX_CLK] -group [ge
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
 set_property BITSTREAM.CONFIG.CONFIGRATE 6 [current_design]
-set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
+#set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 
 
 

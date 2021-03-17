@@ -310,6 +310,7 @@ module
     wire      [7:0]   rva_cnt;
     wire      [7:0]   ren_cnt;
 
+    //DDR3_IF_400MHz DDR3_IF_400MHz(
     DDR3_IF DDR3_IF(
         // System
         .CLK_200MP     (SYSCLK_200MP_IN ), // in :
