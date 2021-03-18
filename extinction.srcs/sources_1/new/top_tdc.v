@@ -24,14 +24,15 @@ module top_tdc(
     input    wire              RESET          ,
     input    wire              CLK_200M       ,
     input    wire              SPLCNT_RST     ,
-    input    wire              INT_SPLCNT_RST ,
-    input    wire     [7:0]    INT_SPLCNT_RSTT,
-    output   wire              EX_SPLCNT_RST  ,
 
     input    wire    [63:0]    SIGNAL         ,
     input    wire              PSPILL         ,
     input    wire              MR_SYNC        ,
-    input    wire    [11:0]    OLDH           ,
+    input    wire     [1:0]    BH             ,
+    input    wire     [1:0]    TC             ,
+    input    wire              OLDH_ALL       ,
+    input    wire     [7:0]    OLDH           ,
+    input    wire     [1:0]    NEWH           ,
     input    wire              EV_MATCH       ,
     input    wire              TCP_BUSY       ,
     input    wire              START          ,
@@ -48,8 +49,7 @@ module top_tdc(
     output   wire              DEBUG_RD_EN    ,
     output   wire     [7:0]    DEBUG_CNT      ,
     output   wire    [15:0]    DEBUG_FIFO_CNT ,
-    output   wire     [7:0]    DEBUG_SPLOFFCNT,
-    output   wire     [2:0]    DEBUG_DLYSPLCNT
+    output   wire     [7:0]    DEBUG_SPLOFFCNT 
     );
 //*******************************************************************************
 //
@@ -90,7 +90,6 @@ module top_tdc(
     end
 
     reg     [7:0]    spl_off_cnt ;
-    reg     [2:0]    dlySplCntRst;
     always@(posedge CLK_200M) begin
         if(RESET || SPL_END)begin
             spl_off_cnt[7:0] <= 8'd0;
@@ -99,20 +98,8 @@ module top_tdc(
         end else begin
             spl_off_cnt[7:0] <= spl_off_cnt[7:0] + 8'd1;
         end
-
-        if(RESET) begin
-            dlySplCntRst[2:0] <= 3'b000;
-        end else if(INT_SPLCNT_RST) begin
-            dlySplCntRst[2:0] <= 3'b111;
-        end else if(spl_off_cnt[7:0]==INT_SPLCNT_RSTT[7:0]) begin
-            dlySplCntRst[2:0] <= dlySplCntRst[0] ? 3'b010 : {dlySplCntRst[1:0], 1'b0};
-        end else begin
-            dlySplCntRst[2:0] <= dlySplCntRst[0] ? 3'b111 : {dlySplCntRst[1:0], 1'b0};
-        end
     end
-    assign EX_SPLCNT_RST = dlySplCntRst[2] ^ dlySplCntRst[1]; // H within 2 CLK
     assign DEBUG_SPLOFFCNT[7:0] = spl_off_cnt[7:0];
-    assign DEBUG_DLYSPLCNT[2:0] = dlySplCntRst[2:0];
 
     reg    [15:0]    EMCOUNTER ; // Counter for Event matching signal
     reg              EMDONE    ;
@@ -154,7 +141,7 @@ module top_tdc(
     end
 
     wire    [76:0]  SIG;
-    assign SIG[76:0] = {SIGNAL[63:0],OLDH[11:0],MR_SYNC};
+    assign SIG[76:0] = {SIGNAL[63:0],NEWH[1:0],OLDH[7:3],|OLDH[2:0],TC[1:0],BH[1:0],MR_SYNC};
 
     reg     [76:0]  irSIG;
     reg     [31:0]  irCOUNTER;

@@ -41,9 +41,7 @@ module LOC_REG(
     REG_FOOTER          ,    // out    : Header
     REG_CHMASK0         ,    // out    : mask input channels
     REG_CHMASK1         ,    // out    : mask input channels 2
-    REG_SPLCNT_RST_EN   ,    // out    : enalbe spill count reset
     REG_SPLCNT_RST      ,    // out    : spill count reset
-    REG_SPLCNT_RSTT     ,    // out    : spill count reset timing from spill end
     REG_TEST_PSPILL_EN  ,    // out    : test spill enable
     REG_TEST_MRSYNC_EN  ,    // out    : tset MR sync enable
     REG_TEST_PSPILL_POS ,    // out    : time width of test spill (Pos.)
@@ -52,8 +50,11 @@ module LOC_REG(
     REG_DLY_PSPILL      ,    // out    : Delay for spill signal
     REG_DLY_MRSYNC      ,    // out    : Delay for MR sync
     REG_DLY_EVMATCH     ,    // out    : Delay for Event matching
+    REG_DLY_BH          ,    // out    : Delay for Beam hodoscope
+    REG_DLY_TC          ,    // out    : Delay for Timing counter
     REG_DLY_MPPC        ,    // out    : Delay for MPPC
-    REG_DLY_PMT              // out    : Delay for PMT
+    REG_DLY_OLD_PMT     ,    // out    : Delay for Old hodoscope PMT
+    REG_DLY_NEW_PMT          // out    : Delay for New hodoscope PMT
 );
 
 //-------- Input/Output -------------
@@ -77,11 +78,9 @@ module LOC_REG(
     output   [31:0]  REG_FOOTER         ;
     
     output   [63:0]  REG_CHMASK0        ;
-    output   [14:0]  REG_CHMASK1        ;
+    output   [15:0]  REG_CHMASK1        ;
 
-    output           REG_SPLCNT_RST_EN  ;
     output           REG_SPLCNT_RST     ;
-    output    [7:0]  REG_SPLCNT_RSTT    ;
 
     output           REG_TEST_PSPILL_EN ;
     output           REG_TEST_MRSYNC_EN ;
@@ -92,8 +91,11 @@ module LOC_REG(
     output    [7:0]  REG_DLY_PSPILL     ;
     output    [7:0]  REG_DLY_MRSYNC     ;
     output    [7:0]  REG_DLY_EVMATCH    ;
+    output    [7:0]  REG_DLY_BH         ;
+    output    [7:0]  REG_DLY_TC         ;
     output    [7:0]  REG_DLY_MPPC       ;
-    output   [95:0]  REG_DLY_PMT        ;
+    output    [7:0]  REG_DLY_OLD_PMT    ;
+    output    [7:0]  REG_DLY_NEW_PMT    ;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -149,10 +151,10 @@ module LOC_REG(
     reg     [7:0]    x1A_Reg   ;
     reg     [7:0]    x1B_Reg   ; // NC
     reg     [7:0]    x1C_Reg   ; // NC
-    reg              x1D_Reg   ; // NC
-    reg              x1E_Reg   ; //
-    reg     [2:0]    irX1E_Reg ; // 
-    reg     [7:0]    x1F_Reg   ; //
+    reg              x1D_Reg   ; // 
+    reg     [2:0]    irX1D_Reg ; // 
+    reg     [7:0]    x1E_Reg   ; // NC
+    reg     [7:0]    x1F_Reg   ; // NC
 
     reg     [7:0]    x20_Reg   ;
     reg     [7:0]    x21_Reg   ;
@@ -174,19 +176,19 @@ module LOC_REG(
     reg     [7:0]    x30_Reg   ; // Delay for PSPILL
     reg     [7:0]    x31_Reg   ; // Delay for MR sync
     reg     [7:0]    x32_Reg   ; // Delay for Event matching
-    reg     [7:0]    x33_Reg   ; // Delay for MPPC
-    reg     [7:0]    x34_Reg   ; // Delay for PMT[0]
-    reg     [7:0]    x35_Reg   ; // Delay for PMT[1]
-    reg     [7:0]    x36_Reg   ; // Delay for PMT[2]
-    reg     [7:0]    x37_Reg   ; // Delay for PMT[3]
-    reg     [7:0]    x38_Reg   ; // Delay for PMT[4]
-    reg     [7:0]    x39_Reg   ; // Delay for PMT[5]
-    reg     [7:0]    x3A_Reg   ; // Delay for PMT[6]
-    reg     [7:0]    x3B_Reg   ; // Delay for PMT[7] 
-    reg     [7:0]    x3C_Reg   ; // Delay for PMT[8]
-    reg     [7:0]    x3D_Reg   ; // Delay for PMT[9]
-    reg     [7:0]    x3E_Reg   ; // Delay for PMT[10]
-    reg     [7:0]    x3F_Reg   ; // Delay for PMT[11]
+    reg     [7:0]    x33_Reg   ; // Delay for Beam hodoscope
+    reg     [7:0]    x34_Reg   ; // Delay for Timing counter
+    reg     [7:0]    x35_Reg   ; // Delay for MPPC
+    reg     [7:0]    x36_Reg   ; // Delay for Old hodoscope PMT
+    reg     [7:0]    x37_Reg   ; // Delay for New hodoscope PMT
+    reg     [7:0]    x38_Reg   ; // NC
+    reg     [7:0]    x39_Reg   ; // NC
+    reg     [7:0]    x3A_Reg   ; // NC
+    reg     [7:0]    x3B_Reg   ; // NC
+    reg     [7:0]    x3C_Reg   ; // NC
+    reg     [7:0]    x3D_Reg   ; // NC
+    reg     [7:0]    x3E_Reg   ; // NC
+    reg     [7:0]    x3F_Reg   ; // NC
 
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
@@ -225,10 +227,10 @@ module LOC_REG(
             x1A_Reg[7:0]    <= 8'h00;   //
             x1B_Reg[7:0]    <= 8'h1B;   //
             x1C_Reg[7:0]    <= 8'h1C;   //
-            x1D_Reg         <= 1'h0;    // Spill count reset enalbe
-            x1E_Reg         <= 1'h0;    // Spill count reset
-            irX1E_Reg[2:0]  <= 3'h0;    // 
-            x1F_Reg[7:0]    <= 8'hC8;   // SPLSNT reset timing from spill end (def. 200*5ns=1us)
+            x1D_Reg         <= 1'h0;    // Spill count reset
+            irX1D_Reg[2:0]  <= 3'h0;    // 
+            x1E_Reg[7:0]    <= 8'h1E;   // NC
+            x1F_Reg[7:0]    <= 8'h1F;   // NC
 
             x20_Reg[7:0]    <= 8'h00;   // Time width of test spill (Pos.) [31:24]
             x21_Reg[7:0]    <= 8'h4C;   // Time width of test spill (Pos.) [23:16]
@@ -250,19 +252,19 @@ module LOC_REG(
             x30_Reg[7:0]    <= 8'h00;   // Delay for PSPILL        
             x31_Reg[7:0]    <= 8'h00;   // Delay for MR sync       
             x32_Reg[7:0]    <= 8'h00;   // Delay for Event matching
-            x33_Reg[7:0]    <= 8'h00;   // Delay for MPPC          
-            x34_Reg[7:0]    <= 8'h00;   // Delay for PMT[0]        
-            x35_Reg[7:0]    <= 8'h00;   // Delay for PMT[1]        
-            x36_Reg[7:0]    <= 8'h00;   // Delay for PMT[2]        
-            x37_Reg[7:0]    <= 8'h00;   // Delay for PMT[3]        
-            x38_Reg[7:0]    <= 8'h00;   // Delay for PMT[4]        
-            x39_Reg[7:0]    <= 8'h00;   // Delay for PMT[5]        
-            x3A_Reg[7:0]    <= 8'h00;   // Delay for PMT[6]        
-            x3B_Reg[7:0]    <= 8'h00;   // Delay for PMT[7]        
-            x3C_Reg[7:0]    <= 8'h00;   // Delay for PMT[8]        
-            x3D_Reg[7:0]    <= 8'h00;   // Delay for PMT[9]        
-            x3E_Reg[7:0]    <= 8'h00;   // Delay for PMT[10]       
-            x3F_Reg[7:0]    <= 8'h00;   // Delay for PMT[11]       
+            x33_Reg[7:0]    <= 8'h00;   // Delay for Beam hodoscope           
+            x34_Reg[7:0]    <= 8'h00;   // Delay for Timing counter           
+            x35_Reg[7:0]    <= 8'h00;   // Delay for MPPC                     
+            x36_Reg[7:0]    <= 8'h00;   // Delay for Old hodoscope PMT        
+            x37_Reg[7:0]    <= 8'h00;   // Delay for New hodoscope PMT        
+            x38_Reg[7:0]    <= 8'h38;   // NC                                 
+            x39_Reg[7:0]    <= 8'h39;   // NC                                 
+            x3A_Reg[7:0]    <= 8'h3A;   // NC                                 
+            x3B_Reg[7:0]    <= 8'h3B;   // NC                                 
+            x3C_Reg[7:0]    <= 8'h3C;   // NC                                 
+            x3D_Reg[7:0]    <= 8'h3D;   // NC                                 
+            x3E_Reg[7:0]    <= 8'h3E;   // NC                                 
+            x3F_Reg[7:0]    <= 8'h3F;   // NC                                 
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -303,7 +305,7 @@ module LOC_REG(
                 x19_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x19_Reg[7:0]);
 
                 x1D_Reg         <= (regCs[1] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x1D_Reg);
-                x1E_Reg         <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[0:0] : x1E_Reg);
+                x1E_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hE) ? irWd[7:0] : x1E_Reg[7:0]);
                 x1F_Reg[7:0]    <= (regCs[1] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x1F_Reg[7:0]);
 
                 x20_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x20_Reg[7:0]);
@@ -339,9 +341,9 @@ module LOC_REG(
                 x3F_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x3F_Reg[7:0]);
                 
             end else begin
-                x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
+                x1D_Reg <= (~irX1D_Reg[2]) & x1D_Reg; // High only within 1CLK
             end
-            irX1E_Reg[2:0] <= {irX1E_Reg[1:0], x1E_Reg};
+            irX1D_Reg[2:0] <= {irX1D_Reg[1:0], x1D_Reg};
         end
     end
 
@@ -389,9 +391,9 @@ module LOC_REG(
             4'hA:    rdDataB[7:0]    <= x1A_Reg[7:0];      // NC
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
-            4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset enable
-            4'hE:    rdDataB[7:0]    <= {7'd0,x1E_Reg};    // SPLCNT reset
-            4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // SPLCNT reset timing from spill end
+            4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset
+            4'hE:    rdDataB[7:0]    <= x1E_Reg[7:0];      // NC
+            4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // NC
         endcase
         case(irAddr[3:0]) /// Test pulse setting
             4'h0:    rdDataC[7:0]    <= x20_Reg[7:0];        // T width of test spill (Pos.) [31:24]
@@ -415,19 +417,19 @@ module LOC_REG(
             4'h0:    rdDataD[7:0]    <= x30_Reg[7:0];        // Delay for PSPILL        
             4'h1:    rdDataD[7:0]    <= x31_Reg[7:0];        // Delay for MR sync       
             4'h2:    rdDataD[7:0]    <= x32_Reg[7:0];        // Delay for Event matching
-            4'h3:    rdDataD[7:0]    <= x33_Reg[7:0];        // Delay for MPPC          
-            4'h4:    rdDataD[7:0]    <= x34_Reg[7:0];        // Delay for PMT[0]        
-            4'h5:    rdDataD[7:0]    <= x35_Reg[7:0];        // Delay for PMT[1]        
-            4'h6:    rdDataD[7:0]    <= x36_Reg[7:0];        // Delay for PMT[2]        
-            4'h7:    rdDataD[7:0]    <= x37_Reg[7:0];        // Delay for PMT[3]        
-            4'h8:    rdDataD[7:0]    <= x38_Reg[7:0];        // Delay for PMT[4]        
-            4'h9:    rdDataD[7:0]    <= x39_Reg[7:0];        // Delay for PMT[5]        
-            4'hA:    rdDataD[7:0]    <= x3A_Reg[7:0];        // Delay for PMT[6]        
-            4'hB:    rdDataD[7:0]    <= x3B_Reg[7:0];        // Delay for PMT[7]        
-            4'hC:    rdDataD[7:0]    <= x3C_Reg[7:0];        // Delay for PMT[8]        
-            4'hD:    rdDataD[7:0]    <= x3D_Reg[7:0];        // Delay for PMT[9]        
-            4'hE:    rdDataD[7:0]    <= x3E_Reg[7:0];        // Delay for PMT[10]       
-            4'hF:    rdDataD[7:0]    <= x3F_Reg[7:0];        // Delay for PMT[11]       
+            4'h3:    rdDataD[7:0]    <= x33_Reg[7:0];        // Delay for Beam hodoscope         
+            4'h4:    rdDataD[7:0]    <= x34_Reg[7:0];        // Delay for Timing counter         
+            4'h5:    rdDataD[7:0]    <= x35_Reg[7:0];        // Delay for MPPC                   
+            4'h6:    rdDataD[7:0]    <= x36_Reg[7:0];        // Delay for Old hodoscope PMT      
+            4'h7:    rdDataD[7:0]    <= x37_Reg[7:0];        // Delay for New hodoscope PMT      
+            4'h8:    rdDataD[7:0]    <= x38_Reg[7:0];        // NC                               
+            4'h9:    rdDataD[7:0]    <= x39_Reg[7:0];        // NC                               
+            4'hA:    rdDataD[7:0]    <= x3A_Reg[7:0];        // NC                               
+            4'hB:    rdDataD[7:0]    <= x3B_Reg[7:0];        // NC                               
+            4'hC:    rdDataD[7:0]    <= x3C_Reg[7:0];        // NC                               
+            4'hD:    rdDataD[7:0]    <= x3D_Reg[7:0];        // NC                               
+            4'hE:    rdDataD[7:0]    <= x3E_Reg[7:0];        // NC                               
+            4'hF:    rdDataD[7:0]    <= x3F_Reg[7:0];        // NC                               
         endcase
 
         regRv[3:0]    <= (irRe    ? regCs[3:0] : 8'd0);
@@ -457,11 +459,9 @@ module LOC_REG(
 
     assign  REG_CHMASK0[63:0]  = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
                                  x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};
-    assign  REG_CHMASK1[14:0] = {x18_Reg[6:0],x19_Reg[7:0]};
+    assign  REG_CHMASK1[15:0] = {x18_Reg[7:0],x19_Reg[7:0]};
 
-    assign  REG_SPLCNT_RST_EN    = x1D_Reg;
-    assign  REG_SPLCNT_RST       = x1E_Reg;
-    assign  REG_SPLCNT_RSTT[7:0] = x1F_Reg[7:0];
+    assign  REG_SPLCNT_RST       = x1D_Reg;
 
     assign  REG_TEST_PSPILL_EN        = x2C_Reg;
     assign  REG_TEST_MRSYNC_EN        = x2D_Reg;
@@ -472,7 +472,11 @@ module LOC_REG(
     assign  REG_DLY_PSPILL[7:0]  = x30_Reg[7:0];
     assign  REG_DLY_MRSYNC[7:0]  = x31_Reg[7:0];
     assign  REG_DLY_EVMATCH[7:0] = x32_Reg[7:0];
-    assign  REG_DLY_MPPC[7:0]    = x33_Reg[7:0];
-    assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
+    assign  REG_DLY_BH[7:0]      = x33_Reg[7:0];
+    assign  REG_DLY_TC[7:0]      = x34_Reg[7:0];
+    assign  REG_DLY_MPPC[7:0]    = x35_Reg[7:0];
+    assign  REG_DLY_OLD_PMT[7:0] = x36_Reg[7:0];
+    assign  REG_DLY_NEW_PMT[7:0] = x37_Reg[7:0];
+//assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
 endmodule

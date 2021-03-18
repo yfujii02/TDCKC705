@@ -117,3 +117,16 @@ extinction.runs/.jobs/*
 ##########################
 extinction.cache/*
 extinction.runs/impl_1/.Xil
+
+extinction.ip_user_files/ip/mig_kc705_ddr3/
+extinction.ip_user_files/ip/shift_ram_hit/shift_ram_hit_sim_netlist.v
+extinction.ip_user_files/ip/shift_ram_hit/sim/
+extinction.ip_user_files/mem_init_files/
+extinction.ip_user_files/sim_scripts/mig_kc705_ddr3/
+extinction.runs/mig_kc705_ddr3_synth_1/
+extinction.runs/synth_1/dont_touch.xdc
+extinction.srcs/sources_1/ip/mig_kc705_ddr3/
+extinction.srcs/sources_1/ip/mig_kc705_ddr3_400MHz/
+extinction.srcs/sources_1/new/DDR3_IF_400MHz.v
+extinction.srcs/sources_1/new/kc705ddr3_400MHz.xdc
+extinction.srcs/sources_1/new/kc705ddr3_400MHz_pin.xdc

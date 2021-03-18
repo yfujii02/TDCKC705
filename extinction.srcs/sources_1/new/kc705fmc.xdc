@@ -82,37 +82,37 @@ set_property PACKAGE_PIN G13 [get_ports {HA_HPC_P[17]}]
 set_property PACKAGE_PIN F13 [get_ports {HA_HPC_N[17]}]
 set_property PACKAGE_PIN L15 [get_ports {HA_HPC_P[16]}]
 set_property PACKAGE_PIN K15 [get_ports {HA_HPC_N[16]}]
-set_property PACKAGE_PIN H15 [get_ports {HA_HPC_P[15]}]
+set_property PACKAGE_PIN H15 [get_ports {HA_HPC_P[15]}]   # NewHod PMT 131
 set_property PACKAGE_PIN G15 [get_ports {HA_HPC_N[15]}]
-set_property PACKAGE_PIN J16 [get_ports {HA_HPC_P[14]}]
+set_property PACKAGE_PIN J16 [get_ports {HA_HPC_P[14]}]   # NewHod PMT 129
 set_property PACKAGE_PIN H16 [get_ports {HA_HPC_N[14]}]
-set_property PACKAGE_PIN L16 [get_ports {HA_HPC_P[13]}]
+set_property PACKAGE_PIN L16 [get_ports {HA_HPC_P[13]}]   # OldHod PMT 07
 set_property PACKAGE_PIN K16 [get_ports {HA_HPC_N[13]}]
-set_property PACKAGE_PIN C15 [get_ports {HA_HPC_P[12]}]
+set_property PACKAGE_PIN C15 [get_ports {HA_HPC_P[12]}]   # OldHod PMT 06
 set_property PACKAGE_PIN B15 [get_ports {HA_HPC_N[12]}]
-set_property PACKAGE_PIN B13 [get_ports {HA_HPC_P[11]}]
+set_property PACKAGE_PIN B13 [get_ports {HA_HPC_P[11]}]   # OldHod PMT 05
 set_property PACKAGE_PIN A13 [get_ports {HA_HPC_N[11]}]
-set_property PACKAGE_PIN A11 [get_ports {HA_HPC_P[10]}]
+set_property PACKAGE_PIN A11 [get_ports {HA_HPC_P[10]}]   # OldHod PMT 04 
 set_property PACKAGE_PIN A12 [get_ports {HA_HPC_N[10]}]
-set_property PACKAGE_PIN F12 [get_ports {HA_HPC_P[9]}]
+set_property PACKAGE_PIN F12 [get_ports {HA_HPC_P[9]}]    # OldHod PMT 03
 set_property PACKAGE_PIN E13 [get_ports {HA_HPC_N[9]}]
-set_property PACKAGE_PIN E14 [get_ports {HA_HPC_P[8]}]
+set_property PACKAGE_PIN E14 [get_ports {HA_HPC_P[8]}]    # OldHod PMT 02
 set_property PACKAGE_PIN E15 [get_ports {HA_HPC_N[8]}]
-set_property PACKAGE_PIN B14 [get_ports {HA_HPC_P[7]}]
+set_property PACKAGE_PIN B14 [get_ports {HA_HPC_P[7]}]    # OldHod PMT 01
 set_property PACKAGE_PIN A15 [get_ports {HA_HPC_N[7]}]
-set_property PACKAGE_PIN D14 [get_ports {HA_HPC_P[6]}]
+set_property PACKAGE_PIN D14 [get_ports {HA_HPC_P[6]}]    # OldHod PMT 00
 set_property PACKAGE_PIN C14 [get_ports {HA_HPC_N[6]}]
-set_property PACKAGE_PIN F15 [get_ports {HA_HPC_P[5]}]
+set_property PACKAGE_PIN F15 [get_ports {HA_HPC_P[5]}]    # OldHod All OR
 set_property PACKAGE_PIN E16 [get_ports {HA_HPC_N[5]}]
-set_property PACKAGE_PIN F11 [get_ports {HA_HPC_P[4]}]
+set_property PACKAGE_PIN F11 [get_ports {HA_HPC_P[4]}]    # Timing Counter-2
 set_property PACKAGE_PIN E11 [get_ports {HA_HPC_N[4]}]
-set_property PACKAGE_PIN C12 [get_ports {HA_HPC_P[3]}]
+set_property PACKAGE_PIN C12 [get_ports {HA_HPC_P[3]}]    # TC-1
 set_property PACKAGE_PIN B12 [get_ports {HA_HPC_N[3]}]
-set_property PACKAGE_PIN D11 [get_ports {HA_HPC_P[2]}]
+set_property PACKAGE_PIN D11 [get_ports {HA_HPC_P[2]}]    # Beam Hodoscope-2
 set_property PACKAGE_PIN C11 [get_ports {HA_HPC_N[2]}]
-set_property PACKAGE_PIN H14 [get_ports {HA_HPC_P[1]}]
+set_property PACKAGE_PIN H14 [get_ports {HA_HPC_P[1]}]    # BH-1
 set_property PACKAGE_PIN G14 [get_ports {HA_HPC_N[1]}]
-set_property PACKAGE_PIN D12 [get_ports {HA_HPC_P[0]}]
+set_property PACKAGE_PIN D12 [get_ports {HA_HPC_P[0]}]    # MR sync
 set_property PACKAGE_PIN D13 [get_ports {HA_HPC_N[0]}]
 
 

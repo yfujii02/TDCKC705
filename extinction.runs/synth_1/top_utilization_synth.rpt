@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Sat Feb  6 11:25:40 2021
+| Date         : Thu Mar 18 22:24:45 2021
 | Host         : localhost.localdomain running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,13 +30,13 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                | 4702 |     0 |    203800 |  2.31 |
-|   LUT as Logic             | 4620 |     0 |    203800 |  2.27 |
+| Slice LUTs*                | 4705 |     0 |    203800 |  2.31 |
+|   LUT as Logic             | 4623 |     0 |    203800 |  2.27 |
 |   LUT as Memory            |   82 |     0 |     64000 |  0.13 |
 |     LUT as Distributed RAM |    8 |     0 |           |       |
 |     LUT as Shift Register  |   74 |     0 |           |       |
-| Slice Registers            | 5979 |     3 |    407600 |  1.47 |
-|   Register as Flip Flop    | 5944 |     3 |    407600 |  1.46 |
+| Slice Registers            | 5992 |     3 |    407600 |  1.47 |
+|   Register as Flip Flop    | 5957 |     3 |    407600 |  1.46 |
 |   Register as Latch        |   35 |     0 |    407600 | <0.01 |
 | F7 Muxes                   |  121 |     0 |    101900 |  0.12 |
 | F8 Muxes                   |   48 |     0 |     50950 |  0.09 |
@@ -56,10 +56,10 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 218   |          Yes |           - |          Set |
-| 1634  |          Yes |           - |        Reset |
+| 260   |          Yes |           - |          Set |
+| 1599  |          Yes |           - |        Reset |
 | 84    |          Yes |         Set |            - |
-| 4043  |          Yes |       Reset |            - |
+| 4049  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -156,24 +156,24 @@ Table of Contents
 +-----------+------+---------------------+
 |  Ref Name | Used | Functional Category |
 +-----------+------+---------------------+
-| FDRE      | 4043 |        Flop & Latch |
-| FDCE      | 1599 |        Flop & Latch |
-| LUT3      | 1204 |                 LUT |
+| FDRE      | 4049 |        Flop & Latch |
+| FDCE      | 1564 |        Flop & Latch |
+| LUT3      | 1203 |                 LUT |
 | LUT2      | 1129 |                 LUT |
-| LUT6      | 1096 |                 LUT |
-| LUT4      |  475 |                 LUT |
+| LUT6      | 1098 |                 LUT |
+| LUT4      |  483 |                 LUT |
 | LUT1      |  450 |                 LUT |
-| LUT5      |  427 |                 LUT |
+| LUT5      |  418 |                 LUT |
 | CARRY4    |  356 |          CarryLogic |
-| FDPE      |  218 |        Flop & Latch |
+| FDPE      |  260 |        Flop & Latch |
 | MUXF7     |  121 |               MuxFx |
 | IBUFDS    |   85 |                  IO |
 | FDSE      |   84 |        Flop & Latch |
 | SRLC16E   |   71 |  Distributed Memory |
 | MUXF8     |   48 |               MuxFx |
 | LDCE      |   35 |        Flop & Latch |
-| IBUF      |   21 |                  IO |
-| OBUF      |   19 |                  IO |
+| IBUF      |   22 |                  IO |
+| OBUF      |   18 |                  IO |
 | RAMB36E1  |    9 |        Block Memory |
 | RAMS32    |    8 |  Distributed Memory |
 | RAMB18E1  |    6 |        Block Memory |
@@ -194,7 +194,7 @@ Table of Contents
 +------------------+------+
 |     Ref Name     | Used |
 +------------------+------+
-| shift_ram_hit    |   79 |
+| shift_ram_hit    |   82 |
 | ila_0            |    1 |
 | fifo_generator_1 |    1 |
 | fifo_generator_0 |    1 |

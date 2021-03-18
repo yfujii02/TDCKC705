@@ -23,6 +23,8 @@
 module PREPROCESSOR(
     input   wire              SYSCLK      , // in : System clock
     input   wire              SYSRST      , // in : System reset
+    input   wire              PSPILL_IN   , // in : PSPILL input
+    input   wire              EV_MATCH_IN , // in : Event matching
     input   wire    [31:0]    LA_HPC_P    , // in : Connector
     input   wire    [31:0]    LA_HPC_N    , // in : Connector
     input   wire    [31:0]    LA_LPC_P    , // in : Connector
@@ -32,15 +34,22 @@ module PREPROCESSOR(
     input   wire     [7:0]    DLY_PSPILL  , // in : Delay for spill singal  
     input   wire     [7:0]    DLY_MRSYNC  , // in : Delay for MR sync       
     input   wire     [7:0]    DLY_EVMATCH , // in : Delay for Event matching
+    input   wire     [7:0]    DLY_BH      , // in : Delay for Beam hodoscope
+    input   wire     [7:0]    DLY_TC      , // in : Delay for Timing counter
     input   wire     [7:0]    DLY_MPPC    , // in : Delay for MPPC          
-    input   wire    [95:0]    DLY_PMT     , // in : Delay for PMT           
+    input   wire     [7:0]    DLY_OLD_PMT , // in : Delay for PMT           
+    input   wire     [7:0]    DLY_NEW_PMT , // in : Delay for PMT           
     input   wire    [63:0]    CHMASK0     , // in : mask channel if corresponding bit is high
-    input   wire    [14:0]    CHMASK1     , // in : mask for non-main counter channels
+    input   wire    [15:0]    CHMASK1     , // in : mask for non-main counter channels
     output  wire              PSPILL      , // out: Spill signal (P3)
     output  wire              MR_SYNC     , // out: MR sync
     output  wire              EV_MATCH    , // out: Event-matching signal
-    output  wire    [63:0]    SIGNAL      , // out: New hodoscope signal
-    output  wire    [11:0]    OLDH          // out: Old hodoscope signal
+    output  wire     [1:0]    BH          , // out: Beam hodoscope
+    output  wire     [1:0]    TC          , // out: Timing counter
+    output  wire              OLDH_ALL    , // out: Old hodoscope signal (ALL OR)
+    output  wire     [7:0]    OLDH        , // out: Old hodoscope signal
+    output  wire     [1:0]    NEWH        , // out: Old hodoscope signal
+    output  wire    [63:0]    SIGNAL        // out: New hodoscope signal
 
     );
     
@@ -48,10 +57,14 @@ module PREPROCESSOR(
     wire    [31:0]    la_hpc        ; // for main counters
     wire    [31:0]    la_lpc        ; // for main counters
     wire    [63:0]    signal_fmc    ;
-    wire              pspill_fmc    ; // P0 for resetting counter from FMC
+    wire              pspill        ; // P0 for resetting counter from FMC
+    wire              ev_match      ; // Event matching signal spill-by-spill
     wire              mr_sync_fmc   ; // MR sync
-    wire              ev_match_fmc  ; // Event matching signal spill-by-spill
-    wire    [11:0]    oldh_fmc      ; // PMT and old hodoscope
+    wire     [1:0]    bh_fmc        ; // Beam Hodoscope
+    wire     [1:0]    tc_fmc        ; // Timing Counter
+    wire              oldhd_all_fmc ; // Old hodoscope PMT (All OR)
+    wire     [7:0]    oldhd_fmc     ; // Old hodoscope PMT
+    wire     [1:0]    newhd_fmc     ; // New hodoscope PMT
     
     /// Differential to signle
     genvar i;
@@ -74,59 +87,42 @@ module PREPROCESSOR(
     assign    signal_fmc = ~CHMASK0 & {la_hpc,la_lpc};
 //    assign    {oldh_fmc,ev_match,mr_sync_fmc,pspill_fmc} = (GPIO_SWITCH[3:1]==3'b111)?
 //                     {13'd0,SW_DEBUG[1:0]} : ~CHMASK1 & {ha_hpc[16:10], ha_hpc[7:3], ha_hpc[2:0]};
-    assign    {oldh_fmc,ev_match_fmc,mr_sync_fmc,pspill_fmc} = ~CHMASK1 & {ha_hpc[16:10], ha_hpc[7:3], ha_hpc[2:0]};
+//    assign    {oldh_fmc,ev_match_fmc,mr_sync_fmc,pspill_fmc} = ~CHMASK1 & {ha_hpc[16:10], ha_hpc[7:3], ha_hpc[2:0]};
+    assign    ev_match = EV_MATCH_IN;
+    assign    pspill   = PSPILL_IN;
+    assign    {newhd_fmc, oldhd_fmc, oldhd_all_fmc, tc_fmc, bh_fmc, mr_sync_fmc} 
+                  = ~CHMASK1[15:0] & {ha_hpc[15:14], ha_hpc[13:6], ha_hpc[5], ha_hpc[4:3], ha_hpc[2:1], ha_hpc[0]};
     
 
     /// Signal-edge detection
     reg    [63:0]    regSIG       ;
     reg   [127:0]    sigEdge      ;
 
-    reg    [11:0]    regOLDH      ; // from old hodoscope and other PMTs
-    reg    [23:0]    oldhEdge     ; // detect the edge timing
-
-    reg     [1:0]    syncEdge     ;
     reg              regSync      ;
+    reg     [1:0]    syncEdge     ;
 
-    generate
-      shift_ram_hit shift_ram_hit_pspill(
-          .CLK  (SYSCLK          ), // in : clock
-          .A    (DLY_PSPILL[7:0] ), // in : address
-          .D    (pspill_fmc      ), // in : signal
-          .Q    (PSPILL          )  // out: signal
-      );
-    endgenerate
-    generate
-        always@ (posedge SYSCLK) begin
-            if(SYSRST)begin
-                regSync       <= 1'd0;
-                syncEdge[1:0] <= 2'd0;
-            end else begin
-                syncEdge[1:0] <= {syncEdge[0],mr_sync_fmc};
-                regSync       <= (syncEdge[1:0]==2'b01);
-            end
-        end
-        shift_ram_hit shift_ram_hit_mrsnyc(
-            .CLK  (SYSCLK          ), // in : clock
-            .A    (DLY_MRSYNC[7:0] ), // in : address
-            .D    (regSync         ), // in : signal
-            .Q    (MR_SYNC         )  // out: signal
-        );
-    endgenerate
-    generate
-      shift_ram_hit shift_ram_hit_evmatch(
-          .CLK  (SYSCLK          ), // in : clock
-          .A    (DLY_EVMATCH[7:0]), // in : address
-          .D    (ev_match_fmc    ), // in : signal
-          .Q    (EV_MATCH        )  // out: signal
-      );
-    endgenerate
+    reg     [1:0]    regBH        ;
+    reg     [3:0]    bhEdge       ;
+
+    reg     [1:0]    regTC        ;
+    reg     [3:0]    tcEdge       ;
+
+    reg              regOLDHALL   ;
+    reg     [1:0]    oldhallEdge  ;
+
+    reg     [7:0]    regOLDH      ; // from old hodoscope and other PMTs
+    reg    [15:0]    oldhEdge     ; // detect the edge timing
+
+    reg     [1:0]    regNEWH      ;
+    reg     [3:0]    newhEdge     ;
+
     // loop for the MPPC signals
     generate
     for (i = 0; i < 64; i = i+1) begin: SIG_EDGE
         always@ (posedge SYSCLK) begin
             if(SYSRST)begin
-                regSIG[i]          <= 1'd0;
                 sigEdge[2*i+1:2*i] <= 2'd0;
+                regSIG[i]          <= 1'd0;
             end else begin
                 sigEdge[2*i+1:2*i] <= {sigEdge[2*i],signal_fmc[i]};
                 regSIG[i]          <= (sigEdge[2*i+1:2*i]==2'b01);
@@ -140,23 +136,139 @@ module PREPROCESSOR(
         );
     end
     endgenerate
-    // loop for the PMT signals
+
     generate
-    for (i = 0; i < 12; i = i+1) begin: OLDH_EDGE
+      shift_ram_hit shift_ram_hit_pspill(
+          .CLK  (SYSCLK          ), // in : clock
+          .A    (DLY_PSPILL[7:0] ), // in : address
+          .D    (pspill          ), // in : signal
+          .Q    (PSPILL          )  // out: signal
+      );
+    endgenerate
+    
+    generate
+      shift_ram_hit shift_ram_hit_evmatch(
+          .CLK  (SYSCLK          ), // in : clock
+          .A    (DLY_EVMATCH[7:0]), // in : address
+          .D    (ev_match        ), // in : signal
+          .Q    (EV_MATCH        )  // out: signal
+      );
+    endgenerate
+
+    generate
         always@ (posedge SYSCLK) begin
             if(SYSRST)begin
-                regOLDH[i]          <= 1'd0;
-                oldhEdge[2*i+1:2*i] <= 2'd0;
+                syncEdge[1:0] <= 2'd0;
+                regSync       <= 1'd0;
             end else begin
-                oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],oldh_fmc[i]};
+                syncEdge[1:0] <= {syncEdge[0],mr_sync_fmc};
+                regSync       <= (syncEdge[1:0]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_mrsnyc(
+            .CLK  (SYSCLK          ), // in : clock
+            .A    (DLY_MRSYNC[7:0] ), // in : address
+            .D    (regSync         ), // in : signal
+            .Q    (MR_SYNC         )  // out: signal
+        );
+    endgenerate
+
+    generate
+    for (i = 0; i < 2; i = i+1) begin: BH_EDGE
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                bhEdge[2*i+1:2*i] <= 2'd0;
+                regBH[i]          <= 1'd0;
+            end else begin
+                bhEdge[2*i+1:2*i] <= {bhEdge[2*i],bh_fmc[i]};
+                regBH[i]          <= (bhEdge[2*i+1:2*i]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_bh(
+            .CLK  (SYSCLK          ), // in : clock
+            .A    (DLY_BH[7:0]     ), // in : address
+            .D    (regBH[i]        ), // in : signal
+            .Q    (BH[i]           )  // out: signal
+        );
+    end
+    endgenerate
+
+    generate
+    for (i = 0; i < 2; i = i+1) begin: TC_EDGE
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                tcEdge[2*i+1:2*i] <= 2'd0;
+                regTC[i]          <= 1'd0;
+            end else begin
+                tcEdge[2*i+1:2*i] <= {tcEdge[2*i],tc_fmc[i]};
+                regTC[i]          <= (tcEdge[2*i+1:2*i]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_tc(
+            .CLK  (SYSCLK          ), // in : clock
+            .A    (DLY_TC[7:0]     ), // in : address
+            .D    (regTC[i]        ), // in : signal
+            .Q    (TC[i]           )  // out: signal
+        );
+    end
+    endgenerate
+
+    generate
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                oldhallEdge[1:0] <= 2'd0;
+                regOLDHALL       <= 1'd0;
+            end else begin
+                oldhallEdge[1:0] <= {oldhallEdge[0],oldhd_all_fmc};
+                regOLDHALL       <= (oldhallEdge[1:0]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_oldhd_all(
+            .CLK  (SYSCLK          ), // in : clock
+            .A    (DLY_OLD_PMT[7:0]), // in : address
+            .D    (regOLDHALL      ), // in : signal
+            .Q    (OLDH_ALL        )  // out: signal
+        );
+    endgenerate
+
+    // loop for the PMT signals
+    generate
+    for (i = 0; i < 8; i = i+1) begin: OLDH_EDGE
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                oldhEdge[2*i+1:2*i] <= 2'd0;
+                regOLDH[i]          <= 1'd0;
+            end else begin
+                oldhEdge[2*i+1:2*i] <= {oldhEdge[2*i],oldhd_fmc[i]};
                 regOLDH[i]          <= (oldhEdge[2*i+1:2*i]==2'b01);
             end
         end
         shift_ram_hit shift_ram_hit_oldh(
             .CLK  (SYSCLK             ), // in : clock
-            .A    (DLY_PMT[8*i+7:8*i] ), // in : address
+            .A    (DLY_OLD_PMT[7:0]   ), // in : address
             .D    (regOLDH[i]         ), // in : signal
             .Q    (OLDH[i]            )  // out: signal
+        );
+    end
+    endgenerate
+
+    // loop for the PMT signals
+    generate
+    for (i = 0; i < 2; i = i+1) begin: NEWH_EDGE
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                newhEdge[2*i+1:2*i] <= 2'd0;
+                regNEWH[i]          <= 1'd0;
+            end else begin
+                newhEdge[2*i+1:2*i] <= {newhEdge[2*i],newhd_fmc[i]};
+                regNEWH[i]          <= (newhEdge[2*i+1:2*i]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_newh(
+            .CLK  (SYSCLK             ), // in : clock
+            .A    (DLY_NEW_PMT[7:0]   ), // in : address
+            .D    (regNEWH[i]         ), // in : signal
+            .Q    (NEWH[i]            )  // out: signal
         );
     end
     endgenerate

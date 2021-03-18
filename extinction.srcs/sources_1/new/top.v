@@ -39,8 +39,7 @@ module
         // Reset switch
         input    wire            SW_N           ,
         // Reset SMA
-        input    wire            GPIO_SMA0_IN   ,
-        output   wire            GPIO_SMA1_OUT  ,
+        input    wire    [1:0]   GPIO_SMA_IN    ,
         // Test inputs
         input    wire    [3:0]   GPIO_SWITCH    ,
         // Test outputs
@@ -66,12 +65,6 @@ module
         input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
     );
 
-    wire    SPLCNT_RST_EN  ;
-    wire    EXIN_SPLCNT_RST;
-    wire    EXOUT_SPLCNT_RST;
-    assign  EXIN_SPLCNT_RST = SPLCNT_RST_EN ? GPIO_SMA0_IN : 1'b0;
-    assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
-
     wire             CLK_200M     ;
     wire             TCP_OPEN_ACK ;
     wire             FIFO_FULL    ;
@@ -90,10 +83,14 @@ module
     wire              MR_SYNC       ; // MR sync
     wire              EV_MATCH      ; // Event matching signal spill-by-spill
     wire    [63:0]    SIGNAL        ;
-    wire    [11:0]    OLDH          ; // PMT and old hodoscope
+    wire     [1:0]    BH            ; // Beam hodoscope
+    wire     [1:0]    TC            ; // Timing counter
+    wire              OLDH_ALL      ; // Old hodoscope signal (ALL OR)
+    wire     [7:0]    OLDH          ; // Old hodoscope
+    wire     [1:0]    NEWH          ; // Nld hodoscope
 
     wire    [63:0]    CHMASK0       ; // mask channel if corresponding bit is high
-    wire    [14:0]    CHMASK1       ; // mask for non-main counter channels
+    wire    [15:0]    CHMASK1       ; // mask for non-main counter channels
     wire              TEST_PSPILL_EN; // Tset spill enable
     wire              TEST_MRSYNC_EN; // Tset MR sync enable
     wire              TEST_PSPILL   ; // Test spill signal
@@ -101,12 +98,17 @@ module
     wire     [7:0]    DLY_PSPILL    ; // Delay for spill singal
     wire     [7:0]    DLY_MRSYNC    ; // Delay for MR sync
     wire     [7:0]    DLY_EVMATCH   ; // Delay for Event matching
+    wire     [7:0]    DLY_BH        ; // Delay for Beam hodoscope
+    wire     [7:0]    DLY_TC        ; // Delay for Timing counter
     wire     [7:0]    DLY_MPPC      ; // Delay for MPPC
-    wire    [95:0]    DLY_PMT       ; // Delay for PMT
+    wire     [7:0]    DLY_OLD_PMT   ; // Delay for PMT
+    wire     [7:0]    DLY_NEW_PMT   ; // Delay for PMT
 
     PREPROCESSOR PREPROCESSOR(
         .SYSCLK       (CLK_200M         ), // in : System clock
         .SYSRST       (TCP_RST          ), // in : System reset
+        .PSPILL_IN    (GPIO_SMA_IN[0]   ), // in : PSPILL input
+        .EV_MATCH_IN  (GPIO_SMA_IN[1]   ), // in : Event matching
         .LA_HPC_P     (LA_HPC_P[31:0]   ), // in : Connector
         .LA_HPC_N     (LA_HPC_N[31:0]   ), // in : Connector
         .LA_LPC_P     (LA_LPC_P[31:0]   ), // in : Connector
@@ -116,15 +118,22 @@ module
         .DLY_PSPILL   (DLY_PSPILL[7:0]  ), // in : Delay for spill singal
         .DLY_MRSYNC   (DLY_MRSYNC[7:0]  ), // in : Delay for MR sync
         .DLY_EVMATCH  (DLY_EVMATCH[7:0] ), // in : Delay for Event matching
+        .DLY_BH       (DLY_BH[7:0]      ), // in : Delay for Beam hodoscope
+        .DLY_TC       (DLY_TC[7:0]      ), // in : Delay for Timing counter
         .DLY_MPPC     (DLY_MPPC[7:0]    ), // in : Delay for MPPC
-        .DLY_PMT      (DLY_PMT[95:0]    ), // in : Delay for PMT
+        .DLY_OLD_PMT  (DLY_OLD_PMT[7:0] ), // in : Delay for PMT
+        .DLY_NEW_PMT  (DLY_NEW_PMT[7:0] ), // in : Delay for PMT
         .CHMASK0      (CHMASK0[63:0]    ), // in : mask channel if corresponding bit is high
-        .CHMASK1      (CHMASK1[14:0]    ), // in : mask for non-main counter channels
+        .CHMASK1      (CHMASK1[15:0]    ), // in : mask for non-main counter channels
         .PSPILL       (PSPILL_FMC       ), // out: Spill signal (P3)
         .MR_SYNC      (MR_SYNC_FMC      ), // out: MR sync
         .EV_MATCH     (EV_MATCH         ), // out: Event-matching signal
-        .SIGNAL       (SIGNAL[63:0]     ), // out: New hodoscope signal
-        .OLDH         (OLDH[11:0]       )  // out: Old hodoscope signal
+        .BH           (BH[1:0]          ), // out: Beam hodoscope
+        .TC           (TC[1:0]          ), // out: Timing counter
+        .OLDH_ALL     (OLDH_ALL         ), // out: Old hodoscope signal (ALL OR)
+        .OLDH         (OLDH[7:0]        ), // out: Old hodoscope signal
+        .NEWH         (NEWH[1:0]        ), // out: New hodoscope signal PMT
+        .SIGNAL       (SIGNAL[63:0]     )  // out: New hodoscope signal MPPC
     );
      
     assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
@@ -189,9 +198,7 @@ module
 //-----------------------------------------------------------
 //  TDC module
 //-----------------------------------------------------------
-    wire           INT_SPLCNT_RST ;
     wire           SPLCNT_RST     ;
-    wire    [7:0]  INT_SPLCNT_RSTT;
     wire   [31:0]  HEADER         ; 
     wire   [31:0]  FOOTER         ;
     wire           TRIGGER_INT    ;
@@ -204,8 +211,6 @@ module
     wire    [7:0]  debug_cnt;   
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
-    wire    [2:0]  debug_dlysplcnt;
-    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     top_tdc top_tdc(
@@ -213,14 +218,15 @@ module
         .RESET          ((~TCP_OPEN_ACK|RUN_RESET)), // in : System Reset
         .CLK_200M       (CLK_200M                 ), // in : Clock
         .SPLCNT_RST     (SPLCNT_RST               ), // in : Spill count reset
-        .INT_SPLCNT_RST (INT_SPLCNT_RST           ), // in : (In) Spl cnt reset
-        .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]     ), // in : (In) Spl cnt reset timing from spill end
-        .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST         ), // out: (Ex) Spl cnt reset
         // Counter data
         .SIGNAL         (SIGNAL[63:0]             ), // in : New hodoscope signals
         .PSPILL         (PSPILL                   ), // in : SPILL signal
         .MR_SYNC        (MR_SYNC                  ), // in : MR sync signal
-        .OLDH           (OLDH[11:0]               ), // in : Old hodoscope signals
+        .BH             (BH[1:0]                  ), // in : Beam hodoscope
+        .TC             (TC[1:0]                  ), // in : Timing counter
+        .OLDH_ALL       (OLDH_ALL                 ), // in : Old hodoscope signals (ALL OR)
+        .OLDH           (OLDH[7:0]                ), // in : Old hodoscope signals
+        .NEWH           (NEWH[1:0]                ), // in : Old hodoscope signals
         .EV_MATCH       (EV_MATCH                 ), // in : Event-mathcing signal
         .TCP_BUSY       (FIFO_FULL                ), // in : Busy flag for DAQ to pend the data sending
         .START          (RUN_START                ), // in : Start signal to send the data
@@ -239,8 +245,7 @@ module
         .DEBUG_RD_EN    (debug_rd_en    ), // out:
         .DEBUG_CNT      (debug_cnt      ), // out:
         .DEBUG_FIFO_CNT (debug_fifo_cnt ), // out:
-        .DEBUG_SPLOFFCNT(debug_sploffcnt), // out:
-        .DEBUG_DLYSPLCNT(debug_dlysplcnt)  // out:
+        .DEBUG_SPLOFFCNT(debug_sploffcnt)  // out:
     );
 
 
@@ -270,10 +275,8 @@ module
         .REG_HEADER         (HEADER[31:0]         ), // out: Header
         .REG_FOOTER         (FOOTER[31:0]         ), // out: Footer
         .REG_CHMASK0        (CHMASK0[63:0]        ), // out: Mask channel selector
-        .REG_CHMASK1        (CHMASK1[14:0]        ), // out: Mask channel selector
-        .REG_SPLCNT_RST_EN  (SPLCNT_RST_EN        ), // out: Enable spill count reset
-        .REG_SPLCNT_RST     (INT_SPLCNT_RST       ), // out: Spill count reset
-        .REG_SPLCNT_RSTT    (INT_SPLCNT_RSTT[7:0] ), // out: Spill count reset timing from spill end (def: 1us)
+        .REG_CHMASK1        (CHMASK1[15:0]        ), // out: Mask channel selector
+        .REG_SPLCNT_RST     (SPLCNT_RST           ), // out: Spill count reset
         .REG_TEST_PSPILL_EN (TEST_PSPILL_EN       ), // out: Test spill enable 
         .REG_TEST_MRSYNC_EN (TEST_MRSYNC_EN       ), // out: Test MR sync enable
         .REG_TEST_PSPILL_POS(TEST_PSPILL_POS[31:0]), // out: Time width of test spill (Pos.)
@@ -282,8 +285,11 @@ module
         .REG_DLY_PSPILL     (DLY_PSPILL[7:0]      ), // out: Delay for spill singal
         .REG_DLY_MRSYNC     (DLY_MRSYNC[7:0]      ), // out: Delay for MR sync
         .REG_DLY_EVMATCH    (DLY_EVMATCH[7:0]     ), // out: Delay for Event matching
+        .REG_DLY_BH         (DLY_BH[7:0]          ), // out: Delay for Beam hodoscope
+        .REG_DLY_TC         (DLY_TC[7:0]          ), // out: Delay for Timing counter
         .REG_DLY_MPPC       (DLY_MPPC[7:0]        ), // out: Delay for MPPC
-        .REG_DLY_PMT        (DLY_PMT[95:0]        )  // out: Delay for PMT
+        .REG_DLY_OLD_PMT    (DLY_OLD_PMT[7:0]     ), // out: Delay for old hodoscope PMT
+        .REG_DLY_NEW_PMT    (DLY_NEW_PMT[7:0]     )  // out: Delay for new hodoscope PMT
     );
 
 
@@ -394,7 +400,7 @@ module
         .probe4 (debug_cnt[7:0]         ),
         .probe5 ({TEST_PSPILL,TEST_MRSYNC,1'b0,debug_pause[4:0]}),
         .probe6 (debug_sploffcnt        ),
-        .probe7 ({irMrsyncTime[2:0],EXIN_SPLCNT_RST,EXOUT_SPLCNT_RST,debug_dlysplcnt} ),
+        .probe7 ({irMrsyncTime[2:0],5'd0} ),
         // Single bit per each
         .probe8 (RUN_START              ),
         .probe9 (TCP_TX_EN              ),
