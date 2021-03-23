@@ -30,6 +30,7 @@ module LOC_REG(
     // Registers
     BOARD_ID            ,    // in     : Board ID [3:0]
     SPILLCOUNT          ,    // in     : Spill count [15:0]
+    GPIO_SMA_IN         ,    // in     : GPIO SMA Input
     REG_MODE            ,    // out    : Mode select [2:0]
                              //           000: TDC
                              //           001: MCS
@@ -39,6 +40,7 @@ module LOC_REG(
     REG_RESET           ,    // out    : RESET
     REG_HEADER          ,    // out    : Header
     REG_FOOTER          ,    // out    : Header
+    REG_GPIO_POLER      ,    // out    : Pole selector for GPIO SMA
     REG_CHMASK0         ,    // out    : mask input channels
     REG_CHMASK1         ,    // out    : mask input channels 2
     REG_SPLCNT_RST      ,    // out    : spill count reset
@@ -70,12 +72,15 @@ module LOC_REG(
 
     input     [3:0]  BOARD_ID           ;
     input    [31:0]  SPILLCOUNT         ;
+    input     [1:0]  GPIO_SMA_IN        ;
     output    [2:0]  REG_MODE           ;
     output           REG_START          ;
     output           REG_RESET          ;
 
     output   [31:0]  REG_HEADER         ;
     output   [31:0]  REG_FOOTER         ;
+
+    output    [1:0]  REG_GPIO_POLER     ;
     
     output   [63:0]  REG_CHMASK0        ;
     output   [15:0]  REG_CHMASK1        ;
@@ -171,7 +176,7 @@ module LOC_REG(
     reg     [7:0]    x2C_Reg   ;
     reg     [7:0]    x2D_Reg   ;
     reg     [7:0]    x2E_Reg   ; // NC
-    reg     [7:0]    x2F_Reg   ; // NC
+    reg     [1:0]    x2F_Reg   ; // Pole selector for GPIO SMA
 
     reg     [7:0]    x30_Reg   ; // Delay for PSPILL
     reg     [7:0]    x31_Reg   ; // Delay for MR sync
@@ -247,7 +252,7 @@ module LOC_REG(
             x2C_Reg         <= 1'h0;    // Test spill enable
             x2D_Reg         <= 1'h0;    // Test spill enable
             x2E_Reg[7:0]    <= 8'h00;   // NC
-            x2F_Reg[7:0]    <= 8'h00;   // NC
+            x2F_Reg[1:0]    <= 2'b01;   // Pole selector for GPIO SMA
 
             x30_Reg[7:0]    <= 8'h00;   // Delay for PSPILL        
             x31_Reg[7:0]    <= 8'h00;   // Delay for MR sync       
@@ -322,6 +327,7 @@ module LOC_REG(
                 x2B_Reg[7:0]    <= (regCs[2] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x2B_Reg[7:0]);
                 x2C_Reg         <= (regCs[2] & (irAddr[3:0]==4'hC) ? irWd[0:0] : x2C_Reg     );
                 x2D_Reg         <= (regCs[2] & (irAddr[3:0]==4'hD) ? irWd[0:0] : x2D_Reg     );
+                x2F_Reg[1:0]    <= (regCs[2] & (irAddr[3:0]==4'hF) ? irWd[1:0] : x2F_Reg[1:0]);
 
                 x30_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x30_Reg[7:0]);
                 x31_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x31_Reg[7:0]);
@@ -410,8 +416,8 @@ module LOC_REG(
             4'hB:    rdDataC[7:0]    <= x2B_Reg[7:0];        // Test MR sync frequency 
             4'hC:    rdDataC[7:0]    <= {7'd0, x2C_Reg};     // Test spill enable
             4'hD:    rdDataC[7:0]    <= {7'd0, x2D_Reg};     // Test MR sync enable
-            4'hE:    rdDataC[7:0]    <= x2E_Reg[7:0];        // NC
-            4'hF:    rdDataC[7:0]    <= x2F_Reg[7:0];        // NC
+            4'hE:    rdDataC[7:0]    <= {6'd0, GPIO_SMA_IN}; // GPIO SMA Input
+            4'hF:    rdDataC[7:0]    <= {6'd0, x2F_Reg[1:0]};// Pole selector for GPIO SMA
         endcase
         case(irAddr[3:0]) /// 
             4'h0:    rdDataD[7:0]    <= x30_Reg[7:0];        // Delay for PSPILL        
@@ -456,6 +462,8 @@ module LOC_REG(
 
     assign  REG_HEADER[31:0] = {x08_Reg[7:0],x09_Reg[7:0],x0A_Reg[7:0],x0B_Reg[7:0]}; // Header
     assign  REG_FOOTER[31:0] = {x0C_Reg[7:0],x0D_Reg[7:0],x0E_Reg[7:0],x0F_Reg[7:0]}; // Footer
+
+    assign  REG_GPIO_POLER[1:0] = x2F_Reg[1:0];
 
     assign  REG_CHMASK0[63:0]  = {x10_Reg[7:0],x11_Reg[7:0],x12_Reg[7:0],x13_Reg[7:0],
                                  x14_Reg[7:0],x15_Reg[7:0],x16_Reg[7:0],x17_Reg[7:0]};

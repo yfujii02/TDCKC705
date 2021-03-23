@@ -65,14 +65,20 @@ module
         input    wire    [1:0]   SW_DEBUG    // Debug signals from SW13
     );
 
-    wire             CLK_200M     ;
-    wire             TCP_OPEN_ACK ;
-    wire             FIFO_FULL    ;
-    wire             TCP_RST      ;
+    wire              CLK_200M     ;
+    wire              TCP_OPEN_ACK ;
+    wire              FIFO_FULL    ;
+    wire              TCP_RST      ;
 
-    wire    [2:0]    RUN_MODE     ;
-    wire             RUN_START    ;
-    wire             RUN_RESET    ;
+    wire     [2:0]    RUN_MODE     ;
+    wire              RUN_START    ;
+    wire              RUN_RESET    ;
+
+    wire     [1:0]    GPIO_POLER   ;
+    wire     [1:0]    gpio_sma_pole;
+
+    assign gpio_sma_pole[0] = GPIO_POLER[0] ? GPIO_SMA_IN[0] : ~GPIO_SMA_IN[0];
+    assign gpio_sma_pole[1] = GPIO_POLER[1] ? GPIO_SMA_IN[1] : ~GPIO_SMA_IN[1];
 
 //-----------------------------------------------------------
 //  Pre-processing for counter signals, SPILL, and MR sync
@@ -107,8 +113,8 @@ module
     PREPROCESSOR PREPROCESSOR(
         .SYSCLK       (CLK_200M         ), // in : System clock
         .SYSRST       (TCP_RST          ), // in : System reset
-        .PSPILL_IN    (GPIO_SMA_IN[0]   ), // in : PSPILL input
-        .EV_MATCH_IN  (GPIO_SMA_IN[1]   ), // in : Event matching
+        .PSPILL_IN    (gpio_sma_pole[0] ), // in : PSPILL input
+        .EV_MATCH_IN  (gpio_sma_pole[1] ), // in : Event matching
         .LA_HPC_P     (LA_HPC_P[31:0]   ), // in : Connector
         .LA_HPC_N     (LA_HPC_N[31:0]   ), // in : Connector
         .LA_LPC_P     (LA_LPC_P[31:0]   ), // in : Connector
@@ -269,11 +275,13 @@ module
         // Registers        
         .BOARD_ID           (BOARD_ID[3:0]        ), // in : Board ID
         .SPILLCOUNT         (SPILLCOUNT[31:0]     ), // in : Spill count
+        .GPIO_SMA_IN        (GPIO_SMA_IN[1:0]     ), // in : GPIO SMA Input
         .REG_MODE           (RUN_MODE[2:0]        ), // out: Mode select (000: TDC, 001: MCS, 111: Test)
         .REG_START          (RUN_START            ), // out: Start data transferring (0: stop, 1: start)
         .REG_RESET          (RUN_RESET            ), // out: Reset
         .REG_HEADER         (HEADER[31:0]         ), // out: Header
         .REG_FOOTER         (FOOTER[31:0]         ), // out: Footer
+        .REG_GPIO_POLER     (GPIO_POLER[1:0]      ), // out: Pole selector for GPIO SMA
         .REG_CHMASK0        (CHMASK0[63:0]        ), // out: Mask channel selector
         .REG_CHMASK1        (CHMASK1[15:0]        ), // out: Mask channel selector
         .REG_SPLCNT_RST     (SPLCNT_RST           ), // out: Spill count reset
