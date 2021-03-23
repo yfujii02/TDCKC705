@@ -31,19 +31,19 @@ module PREPROCESSOR(
     input   wire    [31:0]    LA_LPC_N    , // in : Connector
     input   wire    [19:0]    HA_HPC_P    , // in : Connector
     input   wire    [19:0]    HA_HPC_N    , // in : Connector
-    input   wire     [7:0]    DLY_PSPILL  , // in : Delay for spill singal  
-    input   wire     [7:0]    DLY_MRSYNC  , // in : Delay for MR sync       
-    input   wire     [7:0]    DLY_EVMATCH , // in : Delay for Event matching
-    input   wire     [7:0]    DLY_BH      , // in : Delay for Beam hodoscope
-    input   wire     [7:0]    DLY_TC      , // in : Delay for Timing counter
-    input   wire     [7:0]    DLY_MPPC    , // in : Delay for MPPC          
-    input   wire     [7:0]    DLY_OLD_PMT , // in : Delay for PMT           
-    input   wire     [7:0]    DLY_NEW_PMT , // in : Delay for PMT           
+    input   wire     [7:0]    DLYL_PSPILL , // in : Delay for spill singal  
+    input   wire     [7:0]    DLYL_MRSYNC , // in : Delay for MR sync       
+    input   wire     [7:0]    DLYL_EVMATCH, // in : Delay for Event matching
+    input   wire     [7:0]    DLYL_BH     , // in : Delay for Beam hodoscope
+    input   wire     [7:0]    DLYL_TC     , // in : Delay for Timing counter
+    input   wire     [7:0]    DLYL_MPPC   , // in : Delay for MPPC          
+    input   wire     [7:0]    DLYL_OLD_PMT, // in : Delay for PMT           
+    input   wire     [7:0]    DLYL_NEW_PMT, // in : Delay for PMT           
     input   wire    [63:0]    CHMASK0     , // in : mask channel if corresponding bit is high
     input   wire    [15:0]    CHMASK1     , // in : mask for non-main counter channels
     output  wire              PSPILL      , // out: Spill signal (P3)
     output  wire              MR_SYNC     , // out: MR sync
-    output  wire              EV_MATCH    , // out: Event-matching signal
+    output  wire    [15:0]    EV_MATCH    , // out: Event-matching signal
     output  wire     [1:0]    BH          , // out: Beam hodoscope
     output  wire     [1:0]    TC          , // out: Timing counter
     output  wire              OLDH_ALL    , // out: Old hodoscope signal (ALL OR)
@@ -95,6 +95,8 @@ module PREPROCESSOR(
     
 
     /// Signal-edge detection
+    wire             dly_ev_match ;
+
     reg    [63:0]    regSIG       ;
     reg   [127:0]    sigEdge      ;
 
@@ -129,29 +131,29 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_sig(
-            .CLK  (SYSCLK       ), // in : clock
-            .A    (DLY_MPPC[7:0]), // in : address
-            .D    (regSIG[i]    ), // in : signal
-            .Q    (SIGNAL[i]    )  // out: signal
+            .CLK  (SYSCLK         ), // in : clock
+            .A    (DLYL_MPPC[7:0] ), // in : address
+            .D    (regSIG[i]      ), // in : signal
+            .Q    (SIGNAL[i]      )  // out: signal
         );
     end
     endgenerate
 
     generate
       shift_ram_hit shift_ram_hit_pspill(
-          .CLK  (SYSCLK          ), // in : clock
-          .A    (DLY_PSPILL[7:0] ), // in : address
-          .D    (pspill          ), // in : signal
-          .Q    (PSPILL          )  // out: signal
+          .CLK  (SYSCLK           ), // in : clock
+          .A    (DLYL_PSPILL[7:0] ), // in : address
+          .D    (pspill           ), // in : signal
+          .Q    (PSPILL           )  // out: signal
       );
     endgenerate
     
     generate
       shift_ram_hit shift_ram_hit_evmatch(
-          .CLK  (SYSCLK          ), // in : clock
-          .A    (DLY_EVMATCH[7:0]), // in : address
-          .D    (ev_match        ), // in : signal
-          .Q    (EV_MATCH        )  // out: signal
+          .CLK  (SYSCLK           ), // in : clock
+          .A    (DLYL_EVMATCH[7:0]), // in : address
+          .D    (ev_match         ), // in : signal
+          .Q    (dly_ev_match     )  // out: signal
       );
     endgenerate
 
@@ -166,11 +168,11 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_mrsnyc(
-            .CLK  (SYSCLK          ), // in : clock
-            .A    (DLY_MRSYNC[7:0] ), // in : address
-            .D    (regSync         ), // in : signal
-            .Q    (MR_SYNC         )  // out: signal
-        );
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_MRSYNC[7:0] ), // in : address
+            .D    (regSync          ), // in : signal
+            .Q    (MR_SYNC          )  // out: signal
+        );                         
     endgenerate
 
     generate
@@ -185,10 +187,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_bh(
-            .CLK  (SYSCLK          ), // in : clock
-            .A    (DLY_BH[7:0]     ), // in : address
-            .D    (regBH[i]        ), // in : signal
-            .Q    (BH[i]           )  // out: signal
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_BH[7:0]     ), // in : address
+            .D    (regBH[i]         ), // in : signal
+            .Q    (BH[i]            )  // out: signal
         );
     end
     endgenerate
@@ -205,10 +207,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_tc(
-            .CLK  (SYSCLK          ), // in : clock
-            .A    (DLY_TC[7:0]     ), // in : address
-            .D    (regTC[i]        ), // in : signal
-            .Q    (TC[i]           )  // out: signal
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_TC[7:0]     ), // in : address
+            .D    (regTC[i]         ), // in : signal
+            .Q    (TC[i]            )  // out: signal
         );
     end
     endgenerate
@@ -224,10 +226,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_oldhd_all(
-            .CLK  (SYSCLK          ), // in : clock
-            .A    (DLY_OLD_PMT[7:0]), // in : address
-            .D    (regOLDHALL      ), // in : signal
-            .Q    (OLDH_ALL        )  // out: signal
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_OLD_PMT[7:0]), // in : address
+            .D    (regOLDHALL       ), // in : signal
+            .Q    (OLDH_ALL         )  // out: signal
         );
     endgenerate
 
@@ -244,10 +246,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_oldh(
-            .CLK  (SYSCLK             ), // in : clock
-            .A    (DLY_OLD_PMT[7:0]   ), // in : address
-            .D    (regOLDH[i]         ), // in : signal
-            .Q    (OLDH[i]            )  // out: signal
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_OLD_PMT[7:0]), // in : address
+            .D    (regOLDH[i]       ), // in : signal
+            .Q    (OLDH[i]          )  // out: signal
         );
     end
     endgenerate
@@ -265,12 +267,35 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_newh(
-            .CLK  (SYSCLK             ), // in : clock
-            .A    (DLY_NEW_PMT[7:0]   ), // in : address
-            .D    (regNEWH[i]         ), // in : signal
-            .Q    (NEWH[i]            )  // out: signal
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_NEW_PMT[7:0]), // in : address
+            .D    (regNEWH[i]       ), // in : signal
+            .Q    (NEWH[i]          )  // out: signal
         );
     end
     endgenerate
+
+    reg           regEmSignal;
+    reg   [18:0]  regDecVal;
+    reg   [16:0]  regEvMatch;
+    always@(posedge SYSCLK) begin
+        if(SYSRST | ~PSPILL) begin
+            regEmSignal     <= 1'b0;
+            regDecVal[18:0] <= 19'd0;
+        end else if(MR_SYNC && (regDecVal[18:17]!=2'b11)) begin
+            regDecVal[18:0] <= {regDecVal[17:0], regEmSignal};
+            regEmSignal     <= 1'b0;
+        end else begin
+            regEmSignal <= regEmSignal | dly_ev_match;
+        end
+
+        if(SYSRST) begin
+            regEvMatch[16:0] <= 17'd0;
+        end else if(regDecVal[18:17]==2'b11) begin
+            regEvMatch[16:0] <= regDecVal[16:0];
+        end
+    end
+
+    assign EV_MATCH[15:0] = regEvMatch[16:1];
 
 endmodule

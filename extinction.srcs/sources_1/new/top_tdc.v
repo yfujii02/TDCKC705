@@ -33,7 +33,7 @@ module top_tdc(
     input    wire              OLDH_ALL       ,
     input    wire     [7:0]    OLDH           ,
     input    wire     [1:0]    NEWH           ,
-    input    wire              EV_MATCH       ,
+    input    wire    [15:0]    EV_MATCH       ,
     input    wire              TCP_BUSY       ,
     input    wire              START          ,
     input    wire     [3:0]    BOARD_ID       ,
@@ -101,42 +101,19 @@ module top_tdc(
     end
     assign DEBUG_SPLOFFCNT[7:0] = spl_off_cnt[7:0];
 
-    reg    [15:0]    EMCOUNTER ; // Counter for Event matching signal
-    reg              EMDONE    ;
     reg    [15:0]    regEMCNTR ;
-    reg              EN_EMCOUNT;
-
     always@ (posedge CLK_200M) begin
         if(RESET)begin
             COUNTER   <= 32'd0;
-            EMCOUNTER <= 16'd0;
             regEMCNTR <= 16'd0;
-            EN_EMCOUNT<=  1'b0;
-            EMDONE    <=  1'b0;
         end else begin
             if(SPL_EDGE)begin
                 COUNTER   <= 32'd0;
-                EMCOUNTER <= 16'd0;
-                regEMCNTR <= 16'd0;
-                EN_EMCOUNT<=  1'b0;
-                EMDONE    <=  1'b0;
             end else begin
                 COUNTER   <= COUNTER + 32'd1;
             end
 
-            if(MR_SYNC & ~EMDONE)begin
-                if(EM_EDGE & (EMCOUNTER==16'd0))begin
-                    EN_EMCOUNT <=  1'b1;
-                end
-            end
-            if(EN_EMCOUNT & ~EMDONE)begin
-                EMCOUNTER  <= EMCOUNTER + 16'd1;
-            end
-            if(EMCOUNTER>16'd0 & EM_EDGE & (regEMCNTR==16'd0))begin
-                EN_EMCOUNT <= 1'b0;
-                regEMCNTR  <= EMCOUNTER;
-                EMDONE     <= 1'b1;
-            end
+            regEMCNTR <= EV_MATCH[15:0];
         end
     end
 

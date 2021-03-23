@@ -49,14 +49,14 @@ module LOC_REG(
     REG_TEST_PSPILL_POS ,    // out    : time width of test spill (Pos.)
     REG_TEST_PSPILL_NEG ,    // out    : time width of test spill (Pos.)
     REG_TEST_MRSYNC_FRQ ,    // out    : Tset MR sync frequency
-    REG_DLY_PSPILL      ,    // out    : Delay for spill signal
-    REG_DLY_MRSYNC      ,    // out    : Delay for MR sync
-    REG_DLY_EVMATCH     ,    // out    : Delay for Event matching
-    REG_DLY_BH          ,    // out    : Delay for Beam hodoscope
-    REG_DLY_TC          ,    // out    : Delay for Timing counter
-    REG_DLY_MPPC        ,    // out    : Delay for MPPC
-    REG_DLY_OLD_PMT     ,    // out    : Delay for Old hodoscope PMT
-    REG_DLY_NEW_PMT          // out    : Delay for New hodoscope PMT
+    REG_DLYL_PSPILL     ,    // out    : Delay for spill signal
+    REG_DLYL_MRSYNC     ,    // out    : Delay for MR sync
+    REG_DLYL_EVMATCH    ,    // out    : Delay for Event matching
+    REG_DLYL_BH         ,    // out    : Delay for Beam hodoscope
+    REG_DLYL_TC         ,    // out    : Delay for Timing counter
+    REG_DLYL_MPPC       ,    // out    : Delay for MPPC
+    REG_DLYL_OLD_PMT    ,    // out    : Delay for Old hodoscope PMT
+    REG_DLYL_NEW_PMT         // out    : Delay for New hodoscope PMT
 );
 
 //-------- Input/Output -------------
@@ -93,14 +93,14 @@ module LOC_REG(
     output   [31:0]  REG_TEST_PSPILL_NEG;
     output   [31:0]  REG_TEST_MRSYNC_FRQ;
 
-    output    [7:0]  REG_DLY_PSPILL     ;
-    output    [7:0]  REG_DLY_MRSYNC     ;
-    output    [7:0]  REG_DLY_EVMATCH    ;
-    output    [7:0]  REG_DLY_BH         ;
-    output    [7:0]  REG_DLY_TC         ;
-    output    [7:0]  REG_DLY_MPPC       ;
-    output    [7:0]  REG_DLY_OLD_PMT    ;
-    output    [7:0]  REG_DLY_NEW_PMT    ;
+    output    [7:0]  REG_DLYL_PSPILL    ;
+    output    [7:0]  REG_DLYL_MRSYNC    ;
+    output    [7:0]  REG_DLYL_EVMATCH   ;
+    output    [7:0]  REG_DLYL_BH        ;
+    output    [7:0]  REG_DLYL_TC        ;
+    output    [7:0]  REG_DLYL_MPPC      ;
+    output    [7:0]  REG_DLYL_OLD_PMT   ;
+    output    [7:0]  REG_DLYL_NEW_PMT   ;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -477,14 +477,14 @@ module LOC_REG(
     assign  REG_TEST_PSPILL_NEG[31:0] = {x24_Reg[7:0],x25_Reg[7:0],x26_Reg[7:0],x27_Reg[7:0]};
     assign  REG_TEST_MRSYNC_FRQ[31:0] = {x28_Reg[7:0],x29_Reg[7:0],x2A_Reg[7:0],x2B_Reg[7:0]};
 
-    assign  REG_DLY_PSPILL[7:0]  = x30_Reg[7:0];
-    assign  REG_DLY_MRSYNC[7:0]  = x31_Reg[7:0];
-    assign  REG_DLY_EVMATCH[7:0] = x32_Reg[7:0];
-    assign  REG_DLY_BH[7:0]      = x33_Reg[7:0];
-    assign  REG_DLY_TC[7:0]      = x34_Reg[7:0];
-    assign  REG_DLY_MPPC[7:0]    = x35_Reg[7:0];
-    assign  REG_DLY_OLD_PMT[7:0] = x36_Reg[7:0];
-    assign  REG_DLY_NEW_PMT[7:0] = x37_Reg[7:0];
+    assign  REG_DLYL_PSPILL[7:0]  = x30_Reg[7:0];
+    assign  REG_DLYL_MRSYNC[7:0]  = x31_Reg[7:0];
+    assign  REG_DLYL_EVMATCH[7:0] = x32_Reg[7:0];
+    assign  REG_DLYL_BH[7:0]      = x33_Reg[7:0];
+    assign  REG_DLYL_TC[7:0]      = x34_Reg[7:0];
+    assign  REG_DLYL_MPPC[7:0]    = x35_Reg[7:0];
+    assign  REG_DLYL_OLD_PMT[7:0] = x36_Reg[7:0];
+    assign  REG_DLYL_NEW_PMT[7:0] = x37_Reg[7:0];
 //assign  REG_DLY_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
 endmodule
