@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Tue Mar 23 22:23:48 2021
+| Date         : Tue Mar 23 23:30:30 2021
 | Host         : localhost.localdomain running 64-bit unknown
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -56,8 +56,8 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 260   |          Yes |           - |          Set |
-| 1601  |          Yes |           - |        Reset |
+| 262   |          Yes |           - |          Set |
+| 1599  |          Yes |           - |        Reset |
 | 84    |          Yes |         Set |            - |
 | 4064  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -157,7 +157,7 @@ Table of Contents
 |  Ref Name | Used | Functional Category |
 +-----------+------+---------------------+
 | FDRE      | 4064 |        Flop & Latch |
-| FDCE      | 1566 |        Flop & Latch |
+| FDCE      | 1564 |        Flop & Latch |
 | LUT3      | 1202 |                 LUT |
 | LUT2      | 1131 |                 LUT |
 | LUT6      | 1097 |                 LUT |
@@ -165,7 +165,7 @@ Table of Contents
 | LUT1      |  449 |                 LUT |
 | LUT5      |  414 |                 LUT |
 | CARRY4    |  352 |          CarryLogic |
-| FDPE      |  260 |        Flop & Latch |
+| FDPE      |  262 |        Flop & Latch |
 | MUXF7     |  123 |               MuxFx |
 | IBUFDS    |   85 |                  IO |
 | FDSE      |   84 |        Flop & Latch |

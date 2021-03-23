@@ -45,8 +45,8 @@ set_property IOSTANDARD LVCMOS15 [get_ports SW_N]
 set_property IOSTANDARD LVDS [get_ports SYSCLK_200MP_IN]
 set_property IOSTANDARD LVDS [get_ports SYSCLK_200MN_IN]
 
-set_property PULLUP TRUE [get_ports {GPIO_SMA_IN[0]}]
-set_property PULLUP TRUE [get_ports {GPIO_SMA_IN[1]}]
+set_property PULLDOWN TRUE [get_ports {GPIO_SMA_IN[0]}]
+set_property PULLDOWN TRUE [get_ports {GPIO_SMA_IN[1]}]
 
 set_property PACKAGE_PIN AD12 [get_ports SYSCLK_200MP_IN]
 set_property PACKAGE_PIN AD11 [get_ports SYSCLK_200MN_IN]

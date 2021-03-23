@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date                      : Tue Mar 23 22:26:50 2021
+| Date                      : Tue Mar 23 23:33:33 2021
 | Host                      : localhost.localdomain running 64-bit unknown
 | Command                   : report_io -file top_io_placed.rpt
 | Design                    : top
@@ -927,8 +927,8 @@ Table of Contents
 | Y20        |                 | High Range       | IO_0_12                      | User IO       |             |      12 |            |      |                      |                      |           |            |           |          |      |                  |              |                   |              |
 | Y21        |                 | High Range       | IO_L2P_T0_12                 | User IO       |             |      12 |            |      |                      |                      |           |            |           |          |      |                  |              |                   |              |
 | Y22        |                 | High Range       | VCCO_12                      | VCCO          |             |      12 |            |      |                      |                      |      2.50 |            |           |          |      |                  |              |                   |              |
-| Y23        | GPIO_SMA_IN[0]  | High Range       | IO_L1P_T0_12                 | INPUT         | LVCMOS25    |      12 |            |      |                      |                 NONE |           | FIXED      | PULLUP    |          |      | NONE             |              |                   |              |
-| Y24        | GPIO_SMA_IN[1]  | High Range       | IO_L1N_T0_12                 | INPUT         | LVCMOS25    |      12 |            |      |                      |                 NONE |           | FIXED      | PULLUP    |          |      | NONE             |              |                   |              |
+| Y23        | GPIO_SMA_IN[0]  | High Range       | IO_L1P_T0_12                 | INPUT         | LVCMOS25    |      12 |            |      |                      |                 NONE |           | FIXED      | PULLDOWN  |          |      | NONE             |              |                   |              |
+| Y24        | GPIO_SMA_IN[1]  | High Range       | IO_L1N_T0_12                 | INPUT         | LVCMOS25    |      12 |            |      |                      |                 NONE |           | FIXED      | PULLDOWN  |          |      | NONE             |              |                   |              |
 | Y25        |                 | High Range       | IO_0_13                      | User IO       |             |      13 |            |      |                      |                      |           |            |           |          |      |                  |              |                   |              |
 | Y26        |                 | High Range       | IO_L1P_T0_13                 | User IO       |             |      13 |            |      |                      |                      |           |            |           |          |      |                  |              |                   |              |
 | Y27        |                 |                  | GND                          | GND           |             |         |            |      |                      |                      |       0.0 |            |           |          |      |                  |              |                   |              |

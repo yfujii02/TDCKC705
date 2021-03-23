@@ -59,8 +59,6 @@ module top_tdc(
     reg      [1:0]    SPL_REG     ;
     reg               SPL_EDGE    ;
     reg               SPL_END     ;
-    reg      [1:0]    EM_REG      ;
-    reg               EM_EDGE     ;
     reg     [31:0]    COUNTER     ;
     reg     [31:0]    irSPILLCOUNT; // Spill counter
     assign SPILLCOUNT = irSPILLCOUNT;
@@ -72,8 +70,6 @@ module top_tdc(
             SPL_END      <= 1'b0;
             irSPILLCOUNT <= 32'd0;
 
-            EM_REG       <= 2'b00;
-            EM_EDGE      <= 1'b0;
         end else begin
             SPL_REG      <= {SPL_REG[0],PSPILL};
             SPL_EDGE     <= (SPL_REG==2'b01);
@@ -84,8 +80,6 @@ module top_tdc(
               irSPILLCOUNT <= (SPL_END==1'b1) ? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
             end
 
-            EM_REG       <= {EM_REG[0],EV_MATCH};
-            EM_EDGE      <= (EM_REG==2'b01);
         end
     end
 

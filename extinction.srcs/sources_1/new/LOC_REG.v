@@ -252,7 +252,7 @@ module LOC_REG(
             x2C_Reg         <= 1'h0;    // Test spill enable
             x2D_Reg         <= 1'h0;    // Test spill enable
             x2E_Reg[7:0]    <= 8'h00;   // NC
-            x2F_Reg[1:0]    <= 2'b00;   // Pole selector for GPIO SMA
+            x2F_Reg[1:0]    <= 2'b11;   // Pole selector for GPIO SMA
 
             x30_Reg[7:0]    <= 8'h00;   // Delay for PSPILL        
             x31_Reg[7:0]    <= 8'h00;   // Delay for MR sync       
