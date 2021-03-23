@@ -282,8 +282,8 @@ module PREPROCESSOR(
         if(SYSRST | ~PSPILL) begin
             regEmSignal     <= 1'b0;
             regDecVal[18:0] <= 19'd0;
-        end else if(MR_SYNC && (regDecVal[18:17]!=2'b11)) begin
-            regDecVal[18:0] <= {regDecVal[17:0], regEmSignal};
+        end else if(MR_SYNC && (regDecVal[1:0]!=2'b11)) begin
+            regDecVal[18:0] <= {regEmSignal, regDecVal[18:1]};
             regEmSignal     <= 1'b0;
         end else begin
             regEmSignal <= regEmSignal | dly_ev_match;
@@ -291,11 +291,11 @@ module PREPROCESSOR(
 
         if(SYSRST) begin
             regEvMatch[16:0] <= 17'd0;
-        end else if(regDecVal[18:17]==2'b11) begin
-            regEvMatch[16:0] <= regDecVal[16:0];
+        end else if(regDecVal[1:0]==2'b11) begin
+            regEvMatch[16:0] <= regDecVal[18:2];
         end
     end
 
-    assign EV_MATCH[15:0] = regEvMatch[16:1];
+    assign EV_MATCH[15:0] = regEvMatch[15:0];
 
 endmodule
