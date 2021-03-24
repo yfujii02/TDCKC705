@@ -56,7 +56,9 @@ module LOC_REG(
     REG_DLYL_TC         ,    // out    : Delay for Timing counter
     REG_DLYL_MPPC       ,    // out    : Delay for MPPC
     REG_DLYL_OLD_PMT    ,    // out    : Delay for Old hodoscope PMT
-    REG_DLYL_NEW_PMT         // out    : Delay for New hodoscope PMT
+    REG_DLYL_NEW_PMT    ,    // out    : Delay for New hodoscope PMT
+    cntGpio0,
+    cntGpio1
 );
 
 //-------- Input/Output -------------
@@ -101,6 +103,9 @@ module LOC_REG(
     output    [7:0]  REG_DLYL_MPPC      ;
     output    [7:0]  REG_DLYL_OLD_PMT   ;
     output    [7:0]  REG_DLYL_NEW_PMT   ;
+
+    input     [7:0]  cntGpio0;
+    input     [7:0]  cntGpio1;
 
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -398,8 +403,8 @@ module LOC_REG(
             4'hB:    rdDataB[7:0]    <= 8'h1B;    // NC
             4'hC:    rdDataB[7:0]    <= 8'h1C;    // NC
             4'hD:    rdDataB[7:0]    <= {7'd0,x1D_Reg};    // SPLCNT reset
-            4'hE:    rdDataB[7:0]    <= x1E_Reg[7:0];      // NC
-            4'hF:    rdDataB[7:0]    <= x1F_Reg[7:0];      // NC
+            4'hE:    rdDataB[7:0]    <= cntGpio0[7:0];      // NC
+            4'hF:    rdDataB[7:0]    <= cntGpio1[7:0];      // NC
         endcase
         case(irAddr[3:0]) /// Test pulse setting
             4'h0:    rdDataC[7:0]    <= x20_Reg[7:0];        // T width of test spill (Pos.) [31:24]

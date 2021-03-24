@@ -77,8 +77,26 @@ module
     wire     [1:0]    GPIO_POLER   ;
     wire     [1:0]    gpio_sma_pole;
 
-    assign gpio_sma_pole[0] = GPIO_POLER[0] ? GPIO_SMA_IN[0] : ~GPIO_SMA_IN[0];
-    assign gpio_sma_pole[1] = GPIO_POLER[1] ? GPIO_SMA_IN[1] : ~GPIO_SMA_IN[1];
+    //assign gpio_sma_pole[0] = GPIO_POLER[0] ? GPIO_SMA_IN[0] : ~GPIO_SMA_IN[0];
+    //assign gpio_sma_pole[1] = GPIO_POLER[1] ? GPIO_SMA_IN[1] : ~GPIO_SMA_IN[1];
+    assign gpio_sma_pole[0] = GPIO_SMA_IN[0];
+    assign gpio_sma_pole[1] = GPIO_SMA_IN[1];
+
+    reg      [7:0]    cntGpio0;
+    reg      [7:0]    cntGpio1;
+    always@(posedge CLK_200M) begin
+        if(TCP_RST) begin
+            cntGpio0 <= 8'd0;
+            cntGpio1 <= 8'd0;
+        end else begin
+            if(gpio_sma_pole[0]) begin
+                cntGpio0 <= cntGpio0 + 8'd1;
+            end
+            if(gpio_sma_pole[1]) begin
+                cntGpio1 <= cntGpio1 + 8'd1;
+            end
+        end
+    end
 
 //-----------------------------------------------------------
 //  Pre-processing for counter signals, SPILL, and MR sync
@@ -297,7 +315,9 @@ module
         .REG_DLYL_TC        (DLYL_TC[7:0]         ), // out: Delay for Timing counter
         .REG_DLYL_MPPC      (DLYL_MPPC[7:0]       ), // out: Delay for MPPC
         .REG_DLYL_OLD_PMT   (DLYL_OLD_PMT[7:0]    ), // out: Delay for old hodoscope PMT
-        .REG_DLYL_NEW_PMT   (DLYL_NEW_PMT[7:0]    )  // out: Delay for new hodoscope PMT
+        .REG_DLYL_NEW_PMT   (DLYL_NEW_PMT[7:0]    ), // out: Delay for new hodoscope PMT
+        .cntGpio0           (cntGpio0),
+        .cntGpio1           (cntGpio1)
     );
 
 
