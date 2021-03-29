@@ -91,7 +91,7 @@ module PREPROCESSOR(
     assign    ev_match = EV_MATCH_IN;
     assign    pspill   = PSPILL_IN;
     assign    {newhd_fmc, oldhd_fmc, oldhd_all_fmc, tc_fmc, bh_fmc, mr_sync_fmc} 
-                  = ~CHMASK1[15:0] & {ha_hpc[15:14], ha_hpc[13:6], ha_hpc[5], ha_hpc[4:3], ha_hpc[2:1], ha_hpc[0]};
+                  = ~CHMASK1[15:0] & {ha_hpc[17:16], ha_hpc[15:10], ha_hpc[7:6], ha_hpc[5], ha_hpc[4:3], ha_hpc[2:1], ha_hpc[0]};
     
 
     /// Signal-edge detection
