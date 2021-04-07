@@ -1,5 +1,5 @@
-module
-    CHECK_COINCIDENCE_MODULE(
+module CHECK_COINCIDENCE_MODULE
+    #(parameter WIDTH=3) (
         input   wire                CLK,
         input   wire                RST,
         input   wire    [63:0]      MPPC,  // MPPC
@@ -17,25 +17,25 @@ module
     //// Stretch the signal width of each PMT counter
     //// so technically the size of a coincidence window
     //// is to become 3 CLK cycles
-    reg [2:0] regTC1;
-    reg [2:0] regTC2;
-    reg [2:0] regBC1;
-    reg [2:0] regBC2;
-    reg [2:0] regOHAOR; /// all or of old hodoscope
+    reg [WIDTH-1:0] regTC1;
+    reg [WIDTH-1:0] regTC2;
+    reg [WIDTH-1:0] regBC1;
+    reg [WIDTH-1:0] regBC2;
+    reg [WIDTH-1:0] regOHAOR; /// all or of old hodoscope
 
     always @(posedge CLK) begin
         if(RST) begin
-            regTC1[2:0]  <= 3'd0;
-            regTC2[2:0]  <= 3'd0;
-            regBC1[2:0]  <= 3'd0;
-            regBC2[2:0]  <= 3'd0;
-            regOHAOR[2:0]<= 3'd0;
+            regTC1[WIDTH-1:0]  <= 0;
+            regTC2[WIDTH-1:0]  <= 0;
+            regBC1[WIDTH-1:0]  <= 0;
+            regBC2[WIDTH-1:0]  <= 0;
+            regOHAOR[WIDTH-1:0]<= 0;
         end else begin
-            regTC1[2:0]  <= {regTC1[1:0],TC1};
-            regTC2[2:0]  <= {regTC2[1:0],TC2};
-            regBC1[2:0]  <= {regBC1[1:0],BC1};
-            regBC2[2:0]  <= {regBC2[1:0],BC2};
-            regOHAOR[2:0]<= {regOHAOR[1:0],OHAOR};
+            regTC1[WIDTH-1:0]  <= {regTC1[WIDTH-2:0],TC1};
+            regTC2[WIDTH-1:0]  <= {regTC2[WIDTH-2:0],TC2};
+            regBC1[WIDTH-1:0]  <= {regBC1[WIDTH-2:0],BC1};
+            regBC2[WIDTH-1:0]  <= {regBC2[WIDTH-2:0],BC2};
+            regOHAOR[WIDTH-1:0]<= {regOHAOR[WIDTH-2:0],OHAOR};
         end
     end
 
