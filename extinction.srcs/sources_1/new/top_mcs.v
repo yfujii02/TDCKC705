@@ -49,7 +49,11 @@ module top_mcs(
     input   wire   [63:0]   SIGNAL    ,
     input   wire            PSPILL    ,
     input   wire            MR_SYNC   ,
-    input   wire   [11:0]   OLDH      , // PMT inputs including COINCIDENCE
+    input   wire    [1:0]   BH        , // Beamline hodoscope
+    input   wire    [1:0]   TC        , // Timing counter
+    input   wire            OLDH_ALL  , // Old hodoscope ALL OR
+    input   wire    [1:0]   NEWH      , // PMT from new hodoscope
+    input   wire    [7:0]   OLDH      , // PMT from old hodoscope
     input   wire            EV_MATCH  ,
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
@@ -62,6 +66,12 @@ module top_mcs(
     output  wire    [7:0]   DEBUG_SPLOFFCNT,
     output  wire    [2:0]   DEBUG_DLYSPLCNT
     );
+
+    parameter NBUF     =  3; /// Number of cyclic buffers
+    parameter NCHANNEL = 74; /// PMT(10) + MPPC(64)
+    parameter DWIDTH   = 16; /// Width of each data/bin
+    parameter DWIDTH_BUF = NCHANNEL*DWIDTH;
+
     //*******************************************************************************
     //
     //     Get spill information
@@ -88,6 +98,21 @@ module top_mcs(
         .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
 
+    wire    [NCHANNEL-1:0]    INPUT   ;
+    CHECK_COINCIDENCE_MODULE make_coincidence(
+        .CLK   (CLK_200M    ),
+        .RST   (RESET       ),
+        .MPPC  (SIGNAL[63:0]),  // MPPC
+        .EPMT  (NEWH[1:0]   ),  // extra pmt
+        .OLDHOD(OLDH[7:0]   ),
+        .TC0   (TC[0]       ),
+        .TC1   (TC[1]       ),
+        .BH0   (BH[0]       ),
+        .BH1   (BH[1]       ),
+        .OHAOR (OLDH_ALL    ),
+        .COINC (COIN        ),
+        .SIGOUT(INPUT[73:0] )
+    );
 
     reg             ENABLE  ; // Enable on until the spill end
     reg      [2:0]  enWrite ; // Enable switch for writing the data
@@ -170,15 +195,8 @@ module top_mcs(
         end
     end
 
-    parameter NBUF     =  3; /// Number of cyclic buffers
-    parameter NCHANNEL = 74; /// PMT(10) + MPPC(64) (Can be changed later??)
-    parameter DWIDTH   = 16; /// Width of each data/bin
-    parameter DWIDTH_BUF = NCHANNEL*DWIDTH;
     wire    [4*NBUF-1:0]   label;
     assign label={4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
-    wire    [NCHANNEL-1:0]    INPUT   ;
-    assign INPUT = {OLDH[9:0],SIGNAL[63:0]}; /// Read out 10 PMT channels 
-                                             ///  including two ext. PMTs in the new hodoscope.
 
     reg  [11*NBUF-1:0]   relCNTR; // counter relative to MR_SYNC
     wire   [NBUF-1:0]    EOD    ;
