@@ -445,7 +445,7 @@ module LOC_REG(
     assign  REG_DLYL_TC[7:0]      = x34_Reg[7:0];
     assign  REG_DLYL_MPPC[7:0]    = x35_Reg[7:0];
     assign  REG_DLYL_OLD_PMT[7:0] = x36_Reg[7:0];
-    assign  REG_DLYL_OLD_PMT[7:0] = x37_Reg[7:0];
+    assign  REG_DLYL_NEW_PMT[7:0] = x37_Reg[7:0];
 //    assign  REG_DLYL_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
     assign  REG_SPLDIV[3:0] = x1A_Reg[3:0];

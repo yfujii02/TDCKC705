@@ -70,9 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param tcl.collectionResultDisplayLimit 0
 set_param chipscope.maxJobs 1
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7k325tffg900-2
 
@@ -95,6 +93,7 @@ set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTT
 read_verilog -library xil_defaultlib {
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v
+  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_SEND_MCS.v
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/GET_SPILLINFO.v
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v
@@ -110,7 +109,7 @@ read_verilog -library xil_defaultlib {
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v
   C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v
 }
-read_ip -quiet c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xci
+read_ip -quiet C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xci
 set_property used_in_implementation false [get_files -all c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc]
 
 read_ip -quiet C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/ila_0/ila_0.xci
@@ -139,6 +138,9 @@ set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTT
 
 read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc
 set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc]
+
+read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc
+set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]

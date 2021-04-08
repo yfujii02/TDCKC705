@@ -102,8 +102,6 @@ set_property BITSTREAM.CONFIG.CONFIGRATE 6 [current_design]
 set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
 
 
-
-
 set_property IOB FALSE [get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RD_*}]
 set_property IOB FALSE [get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RDV}]
 set_property IOB FALSE [get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}]
@@ -143,3 +141,17 @@ set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports I
 set_max_delay -datapath_only -from [get_clocks SYSCLK_200MP_IN] -to [get_ports I2C_SDA] 10.000
 
 
+set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[0]}]
+set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[1]}]
+
+set_property PACKAGE_PIN AG5  [get_ports {SW_DEBUG[0]}]
+set_property PACKAGE_PIN AB12 [get_ports {SW_DEBUG[1]}]
+
+create_clock -period 5.000 -name CLK_200M -waveform {0.000 2.500} -add [get_nets CLK_200M]
+set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
+set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
+set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]
+connect_debug_port dbg_hub/clk [get_nets CLK_200M]
+
+create_clock -period 10.000  -name CLK_100M -waveform {0.000 5.000}  -add [get_nets CLK_100M]
+create_clock -period 100.000 -name CLK_10M  -waveform {0.000 50.000} -add [get_nets CLK_10M]

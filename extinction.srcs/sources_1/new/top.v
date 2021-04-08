@@ -69,8 +69,8 @@ module
     wire    SPLCNT_RST_EN  ;
     wire    EXIN_SPLCNT_RST;
     wire    EXOUT_SPLCNT_RST;
-    assign  EXIN_SPLCNT_RST = SPLCNT_RST_EN ? GPIO_SMA0_IN : 1'b0;
-    assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
+//    assign  EXIN_SPLCNT_RST = SPLCNT_RST_EN ? GPIO_SMA0_IN : 1'b0;
+//    assign  GPIO_SMA1_OUT   = EXOUT_SPLCNT_RST;
 
     wire             CLK_200M     ;
     wire             TCP_OPEN_ACK ;
@@ -88,11 +88,11 @@ module
     wire              PSPILL_FMC    ; // P0 for resetting counter from FMC
     wire              MR_SYNC_FMC   ; // MR sync
     wire              MR_SYNC       ; // MR sync
-    wire              EV_MATCH      ; // Event matching signal spill-by-spill
+    wire    [15:0]    EV_MATCH      ; // Event matching signal spill-by-spill
     wire    [63:0]    SIGNAL        ;
     wire    [63:0]    TEST_SIGNAL   ;
     wire     [1:0]    BH            ; // Beam hodoscope
-    wire     [1:0]    TH            ; // Timing counter
+    wire     [1:0]    TC            ; // Timing counter
     wire     [7:0]    OLDH          ; // Old hodoscope
     wire     [1:0]    NEWH          ; // New hodoscope PMT
     wire              OLDH_ALL      ; // ALL OR of Old hodoscope
@@ -107,7 +107,7 @@ module
     wire     [7:0]    DLYL_MRSYNC   ; // Delay for MR sync
     wire     [7:0]    DLYL_EVMATCH  ; // Delay for Event matching
     wire     [7:0]    DLYL_BH       ; // Delay for Beam hodoscope
-    wire     [7:0]    DLYL_TH       ; // Delay for Timing counter
+    wire     [7:0]    DLYL_TC       ; // Delay for Timing counter
     wire     [7:0]    DLYL_MPPC     ; // Delay for MPPC
     wire     [7:0]    DLYL_OLD_PMT  ; // Delay for PMT
     wire     [7:0]    DLYL_NEW_PMT  ; // Delay for PMT
@@ -143,7 +143,7 @@ module
         .OLDH_ALL     (OLDH_ALL         ), // out: Old hodoscope signal (ALL OR)
         .OLDH         (OLDH[7:0]        ), // out: Old hodoscope signal
         .NEWH         (NEWH[1:0]        ), // out: New hodoscope signal PMT
-        .SIGNAL       (SIGNAL[63:0]     ), // out: New hodoscope signal MPPC
+        .SIGNAL       (SIGNAL[63:0]     )  // out: New hodoscope signal MPPC
     );
      
     assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
@@ -224,7 +224,7 @@ module
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
     wire    [2:0]  debug_dlysplcnt;
-    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
+//    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
     wire    [3:0]  SPILLDIV;
@@ -244,7 +244,8 @@ module
     // system
         .RESET      ((TCP_NOACK|RUN_RESET)),
         .CLK_200M   (CLK_200M     ),
-        .SPLCNT_RST     (SPLCNT_RST          ), // in : Spill count reset
+//        .SPLCNT_RST     (SPLCNT_RST          ), // in : Spill count reset
+        .SPLCNT_RST     (1'b0                ), // in : Spill count reset
         .INT_SPLCNT_RST (INT_SPLCNT_RST      ), // in : (In) Spl cnt reset
         .INT_SPLCNT_RSTT(INT_SPLCNT_RSTT[7:0]), // in : (In) Spl cnt reset timing from spill end
         .EX_SPLCNT_RST  (EXOUT_SPLCNT_RST    ), // out: (Ex) Spl cnt reset

@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri Feb  5 15:22:51 2021
-# Process ID: 8304
+# Start of session at: Thu Apr  8 12:15:22 2021
+# Process ID: 8736
 # Current directory: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.vds
@@ -17,9 +17,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7824
+INFO: [Synth 8-7075] Helper process launched with PID 912
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1031.922 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1032.109 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 INFO: [Synth 8-6157] synthesizing module 'PREPROCESSOR' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
@@ -32,8 +32,8 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [C:/Xilinx/Vivado/2020.1/scrip
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
-INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/shift_ram_hit_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/shift_ram_hit_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'PREPROCESSOR' (3#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
 INFO: [Synth 8-6157] synthesizing module 'kc705sitcp' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.v:20]
 INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
@@ -462,8 +462,8 @@ INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_ALL' [C:/Users/comet/Des
 	Parameter NCHANNEL bound to: 74 - type: integer 
 	Parameter DWIDTH bound to: 16 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_EACH' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:31]
-INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (49#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (49#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_EACH' (50#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:31]
 INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_ALL' (51#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
 INFO: [Synth 8-6157] synthesizing module 'DATA_SEND_MCS' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
@@ -475,11 +475,17 @@ INFO: [Synth 8-6157] synthesizing module 'DATA_SEND_MCS' [C:/Users/comet/Desktop
 INFO: [Synth 8-6155] done synthesizing module 'DATA_SEND_MCS' (52#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
 INFO: [Synth 8-6157] synthesizing module 'GET_SPILLINFO' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/GET_SPILLINFO.v:2]
 INFO: [Synth 8-6155] done synthesizing module 'GET_SPILLINFO' (53#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/GET_SPILLINFO.v:2]
-INFO: [Synth 8-6157] synthesizing module 'sendStatus' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:300]
-INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (54#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:300]
-INFO: [Synth 8-6155] done synthesizing module 'top_mcs' (55#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:41]
+INFO: [Synth 8-6157] synthesizing module 'CHECK_COINCIDENCE_MODULE' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'CHECK_COINCIDENCE_MODULE' (54#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sendStatus' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:319]
+INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (55#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:319]
+INFO: [Synth 8-6155] done synthesizing module 'top_mcs' (56#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:41]
 INFO: [Synth 8-6157] synthesizing module 'LOC_REG' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v:19]
-INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (56#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (57#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v:19]
+WARNING: [Synth 8-7071] port 'REG_DLYL_BH' of module 'LOC_REG' is unconnected for instance 'LOC_REG' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:287]
+WARNING: [Synth 8-7071] port 'REG_DLYL_TC' of module 'LOC_REG' is unconnected for instance 'LOC_REG' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:287]
+WARNING: [Synth 8-7023] instance 'LOC_REG' of module 'LOC_REG' has 34 connections declared, but only 32 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:287]
 INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
 	Parameter CLKFBOUT_MULT bound to: 5 - type: integer 
@@ -506,30 +512,30 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [C:/Xilinx
 	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
 	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (56#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:469]
-INFO: [Synth 8-6157] synthesizing module 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/ila_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ila_0' (57#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8304-dyna-comet/realtime/ila_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_0' is unconnected for instance 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:469]
-WARNING: [Synth 8-7023] instance 'ila_0' of module 'ila_0' has 19 connections declared, but only 18 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:469]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_mcs'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:228]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:469]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line150'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:150]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'BUFSTART'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:339]
-INFO: [Synth 8-6155] done synthesizing module 'top' (58#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (57#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:455]
+INFO: [Synth 8-6157] synthesizing module 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/ila_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_0' (58#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-8736-dyna-comet/realtime/ila_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_0' is unconnected for instance 'ila_0' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:455]
+WARNING: [Synth 8-7023] instance 'ila_0' of module 'ila_0' has 19 connections declared, but only 18 given [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:455]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'top_mcs'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:243]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:455]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'nolabel_line165'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:165]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'BUFSTART'. This will prevent further optimization [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:325]
+INFO: [Synth 8-6155] done synthesizing module 'top' (59#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 1298.824 ; gain = 266.902
+Finished RTL Elaboration : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 1299.328 ; gain = 267.219
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1298.824 ; gain = 266.902
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1299.328 ; gain = 267.219
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1298.824 ; gain = 266.902
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1299.328 ; gain = 267.219
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.693 . Memory (MB): peak = 1298.824 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.648 . Memory (MB): peak = 1299.328 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 133 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -984,10 +990,12 @@ Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDC
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K/bram_2byte_2K_in_context.xdc] for cell 'top_mcs/BUF_LOOP[2].shift_cntr_eachbuf/CHANNEL_BLK[73].shift_cntr/bram1152_0'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_pspill'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_pspill'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_mrsnyc'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_mrsnyc'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_evmatch'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_evmatch'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_mrsnyc'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_mrsnyc'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_oldhd_all'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/shift_ram_hit_oldhd_all'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[0].shift_ram_hit_sig'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[0].shift_ram_hit_sig'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[1].shift_ram_hit_sig'
@@ -1116,6 +1124,14 @@ Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDC
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[62].shift_ram_hit_sig'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[63].shift_ram_hit_sig'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/SIG_EDGE[63].shift_ram_hit_sig'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/BH_EDGE[0].shift_ram_hit_bh'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/BH_EDGE[0].shift_ram_hit_bh'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/BH_EDGE[1].shift_ram_hit_bh'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/BH_EDGE[1].shift_ram_hit_bh'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/TC_EDGE[0].shift_ram_hit_tc'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/TC_EDGE[0].shift_ram_hit_tc'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/TC_EDGE[1].shift_ram_hit_tc'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/TC_EDGE[1].shift_ram_hit_tc'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[0].shift_ram_hit_oldh'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[0].shift_ram_hit_oldh'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[1].shift_ram_hit_oldh'
@@ -1132,16 +1148,12 @@ Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDC
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[6].shift_ram_hit_oldh'
 Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[7].shift_ram_hit_oldh'
 Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[7].shift_ram_hit_oldh'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[8].shift_ram_hit_oldh'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[8].shift_ram_hit_oldh'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[9].shift_ram_hit_oldh'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[9].shift_ram_hit_oldh'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[10].shift_ram_hit_oldh'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[10].shift_ram_hit_oldh'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[11].shift_ram_hit_oldh'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/OLDH_EDGE[11].shift_ram_hit_oldh'
-Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line150/fifo_generator_v11_0/U0'
-Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line150/fifo_generator_v11_0/U0'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[1].shift_ram_hit_newh'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[1].shift_ram_hit_newh'
+Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line165/fifo_generator_v11_0/U0'
+Finished Parsing XDC File [c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line165/fifo_generator_v11_0/U0'
 Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */GMII/*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:2]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:27]
@@ -1150,21 +1162,25 @@ WARNING: [Project 1-498] One or more constraints failed evaluation while reading
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc]
-INFO: [Timing 38-2] Deriving generated clocks [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:94]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RD_*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:104]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RDV}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:105]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:106]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TD_*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:120]
-WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TEN}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:121]
-WARNING: [Vivado 12-507] No nets matched 'CLK_100M'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc:344]
 Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc]
-WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc:7]
 Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc]
 WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc]
+INFO: [Timing 38-2] Deriving generated clocks [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:97]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RD_*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:105]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RDV}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:106]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:107]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TD_*}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:121]
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TEN}'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:122]
+WARNING: [Vivado 12-507] No nets matched 'CLK_100M'. [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc:156]
+Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/dont_touch.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/dont_touch.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
@@ -1173,18 +1189,20 @@ WARNING: [Timing 38-3] User defined clock exists on pin PLLE2_DEBUG/CLKOUT1 and 
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.060 . Memory (MB): peak = 1355.359 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 1357.094 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 6 instances were transformed.
   FD => FDRE: 3 instances
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.242 . Memory (MB): peak = 1355.359 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.247 . Memory (MB): peak = 1357.094 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'ila_0' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[0].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[1].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/NEWH_EDGE[1].shift_ram_hit_newh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[0].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[10].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[11].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[1].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[2].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[3].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -1192,8 +1210,6 @@ WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[5].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[6].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[7].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[8].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/OLDH_EDGE[9].shift_ram_hit_oldh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[0].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[10].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[11].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -1258,8 +1274,11 @@ WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[7].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[8].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/SIG_EDGE[9].shift_ram_hit_sig' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/TC_EDGE[0].shift_ram_hit_tc' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/TC_EDGE[1].shift_ram_hit_tc' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/shift_ram_hit_evmatch' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/shift_ram_hit_mrsnyc' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/shift_ram_hit_oldhd_all' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/shift_ram_hit_pspill' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[0].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[10].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -1278,25 +1297,22 @@ WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[22].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[23].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[24].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[25].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[26].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
-WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[27].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 INFO: [Common 17-14] Message 'Timing 38-316' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:02 ; elapsed = 00:01:02 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Constraint Validation : Time (s): cpu = 00:01:01 ; elapsed = 00:01:00 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:02 ; elapsed = 00:01:02 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:01 ; elapsed = 00:01:00 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for nolabel_line150/fifo_generator_v11_0/U0. (constraint file  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/dont_touch.xdc, line 14).
-Applied set_property DONT_TOUCH = true for nolabel_line150/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for nolabel_line165/fifo_generator_v11_0/U0. (constraint file  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/dont_touch.xdc, line 16).
+Applied set_property DONT_TOUCH = true for nolabel_line165/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for ila_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[0].shift_cntr_eachbuf /\CHANNEL_BLK[0].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[0].shift_cntr_eachbuf /\CHANNEL_BLK[1].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
@@ -1520,9 +1536,11 @@ Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[2].shift_cntr_eachb
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[2].shift_cntr_eachbuf /\CHANNEL_BLK[71].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[2].shift_cntr_eachbuf /\CHANNEL_BLK[72].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[2].shift_cntr_eachbuf /\CHANNEL_BLK[73].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\BH_EDGE[0].shift_ram_hit_bh . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\BH_EDGE[1].shift_ram_hit_bh . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\NEWH_EDGE[0].shift_ram_hit_newh . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\NEWH_EDGE[1].shift_ram_hit_newh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[0].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[10].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[11].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[1].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[2].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[3].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
@@ -1530,8 +1548,6 @@ Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[4].shift_ram_
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[5].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[6].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[7].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[8].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for PREPROCESSOR/\OLDH_EDGE[9].shift_ram_hit_oldh . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[0].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[10].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[11].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
@@ -1596,14 +1612,17 @@ Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[6].shift_ram_h
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[7].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[8].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/\SIG_EDGE[9].shift_ram_hit_sig . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\TC_EDGE[0].shift_ram_hit_tc . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/\TC_EDGE[1].shift_ram_hit_tc . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_evmatch. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_mrsnyc. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_oldhd_all. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_pspill. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:04 ; elapsed = 00:01:03 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:19 ; elapsed = 00:01:20 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1621,10 +1640,13 @@ Detailed RTL Component Info :
 +---XORs : 
 	   2 Input      1 Bit         XORs := 61    
 +---Registers : 
+	               74 Bit    Registers := 1     
 	               64 Bit    Registers := 2     
 	               32 Bit    Registers := 5     
+	               19 Bit    Registers := 1     
 	               18 Bit    Registers := 3     
-	               16 Bit    Registers := 230   
+	               17 Bit    Registers := 1     
+	               16 Bit    Registers := 229   
 	               15 Bit    Registers := 2     
 	               11 Bit    Registers := 896   
 	                9 Bit    Registers := 4     
@@ -1633,10 +1655,11 @@ Detailed RTL Component Info :
 	                6 Bit    Registers := 1     
 	                5 Bit    Registers := 2     
 	                4 Bit    Registers := 13    
-	                3 Bit    Registers := 12    
-	                2 Bit    Registers := 379   
-	                1 Bit    Registers := 702   
+	                3 Bit    Registers := 17    
+	                2 Bit    Registers := 381   
+	                1 Bit    Registers := 703   
 +---Muxes : 
+	   2 Input   74 Bit        Muxes := 1     
 	   3 Input   64 Bit        Muxes := 1     
 	   2 Input   64 Bit        Muxes := 1     
 	   2 Input   49 Bit        Muxes := 1     
@@ -1654,7 +1677,7 @@ Detailed RTL Component Info :
 	   2 Input    3 Bit        Muxes := 12    
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 1491  
+	   2 Input    1 Bit        Muxes := 1489  
 	   3 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -1672,7 +1695,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:10 ; elapsed = 00:02:14 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:10 ; elapsed = 00:02:12 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
@@ -1681,19 +1704,19 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'CLK_200M' to pin 'BUFG0/O
 WARNING: [Synth 8-565] redefining clock 'CLK_10M'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:21 ; elapsed = 00:02:25 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:21 ; elapsed = 00:02:23 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:25 ; elapsed = 00:02:29 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Timing Optimization : Time (s): cpu = 00:02:25 ; elapsed = 00:02:27 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:36 ; elapsed = 00:02:41 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Technology Mapping : Time (s): cpu = 00:02:37 ; elapsed = 00:02:39 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1742,41 +1765,42 @@ WARNING: [Synth 8-3295] tying undriven pin debug_cnt_inferred:in0[3] to constant
 WARNING: [Synth 8-3295] tying undriven pin debug_cnt_inferred:in0[2] to constant 0
 WARNING: [Synth 8-3295] tying undriven pin debug_cnt_inferred:in0[1] to constant 0
 WARNING: [Synth 8-3295] tying undriven pin debug_cnt_inferred:in0[0] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin EXIN_SPLCNT_RST_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin TRIGGER_INT_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin debug_data_en_inferred:in0 to constant 0
 WARNING: [Synth 8-3295] tying undriven pin debug_data_end_inferred:in0 to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:43 ; elapsed = 00:02:48 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished IO Insertion : Time (s): cpu = 00:02:44 ; elapsed = 00:02:46 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:43 ; elapsed = 00:02:48 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:44 ; elapsed = 00:02:46 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:46 ; elapsed = 00:02:51 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:47 ; elapsed = 00:02:49 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:47 ; elapsed = 00:02:51 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:47 ; elapsed = 00:02:49 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:47 ; elapsed = 00:02:52 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:48 ; elapsed = 00:02:50 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:47 ; elapsed = 00:02:52 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:48 ; elapsed = 00:02:50 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1804,7 +1828,7 @@ Report BlackBoxes:
 |1     |SiTCP_XC7K_32K_BBT_V110 |         1|
 |2     |bram_2byte_2K           |       222|
 |3     |ila_0                   |         1|
-|4     |shift_ram_hit           |        79|
+|4     |shift_ram_hit           |        82|
 +------+------------------------+----------+
 
 Report Cell Usage: 
@@ -1816,41 +1840,41 @@ Report Cell Usage:
 |3     |bram_2byte_2K_          |   221|
 |224   |ila                     |     1|
 |225   |shift_ram_hit           |     1|
-|226   |shift_ram_hit_          |    78|
-|304   |BUFG                    |     5|
-|305   |CARRY4                  |   976|
-|306   |LUT1                    |   339|
-|307   |LUT2                    |  1164|
-|308   |LUT3                    |  7250|
-|309   |LUT4                    |  1295|
-|310   |LUT5                    |  1145|
-|311   |LUT6                    |  2114|
-|312   |MUXCY                   |    32|
-|313   |MUXF7                   |   484|
-|314   |MUXF8                   |   223|
-|315   |ODDR                    |     1|
-|316   |PLLE2_BASE              |     2|
-|317   |PULLUP                  |     1|
-|318   |RAMB18E1                |     1|
-|319   |RAMB36E1                |     8|
-|320   |SRL16E                  |     2|
-|321   |FD                      |     3|
-|322   |FDCE                    |   698|
-|323   |FDPE                    |   116|
-|324   |FDRE                    |  7744|
-|325   |FDSE                    |   277|
-|326   |LDC                     |    35|
-|327   |IBUF                    |    18|
-|328   |IBUFDS                  |    85|
-|329   |IOBUF                   |     2|
-|330   |OBUF                    |    19|
+|226   |shift_ram_hit_          |    81|
+|307   |BUFG                    |     5|
+|308   |CARRY4                  |   972|
+|309   |LUT1                    |   339|
+|310   |LUT2                    |  1161|
+|311   |LUT3                    |  7256|
+|312   |LUT4                    |  1277|
+|313   |LUT5                    |  1147|
+|314   |LUT6                    |  2179|
+|315   |MUXCY                   |    32|
+|316   |MUXF7                   |   499|
+|317   |MUXF8                   |   218|
+|318   |ODDR                    |     1|
+|319   |PLLE2_BASE              |     2|
+|320   |PULLUP                  |     1|
+|321   |RAMB18E1                |     1|
+|322   |RAMB36E1                |     8|
+|323   |SRL16E                  |     2|
+|324   |FD                      |     3|
+|325   |FDCE                    |   698|
+|326   |FDPE                    |   116|
+|327   |FDRE                    |  7842|
+|328   |FDSE                    |   277|
+|329   |LDC                     |    35|
+|330   |IBUF                    |    19|
+|331   |IBUFDS                  |    85|
+|332   |IOBUF                   |     2|
+|333   |OBUF                    |    18|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:47 ; elapsed = 00:02:52 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:48 ; elapsed = 00:02:50 . Memory (MB): peak = 1357.094 ; gain = 324.984
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 36 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:51 ; elapsed = 00:02:37 . Memory (MB): peak = 1355.359 ; gain = 266.902
-Synthesis Optimization Complete : Time (s): cpu = 00:02:47 ; elapsed = 00:02:52 . Memory (MB): peak = 1355.359 ; gain = 323.438
+Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:53 ; elapsed = 00:02:36 . Memory (MB): peak = 1357.094 ; gain = 267.219
+Synthesis Optimization Complete : Time (s): cpu = 00:02:48 ; elapsed = 00:02:50 . Memory (MB): peak = 1357.094 ; gain = 324.984
 INFO: [Project 1-571] Translating synthesized netlist
 Release 14.7 - ngc2edif P_INT.20191124 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
@@ -1926,18 +1950,18 @@ WARNING:NetListWriters:306 - Signal bus SiTCP_INT/SiTCP_INT_REG/muxData[31 : 0]
    missing bus signals.
   finished :Prep
 Writing EDIF netlist file SiTCP_XC7K_32K_BBT_V110.edif ...
-ngc2edif: Total memory usage is 4342620 kilobytes
+ngc2edif: Total memory usage is 4342612 kilobytes
 
 Reading core file 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
 Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
 Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.758 . Memory (MB): peak = 1360.188 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 7378 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.733 . Memory (MB): peak = 1360.617 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 7384 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-479] Netlist was created with Xilinx ngc2edif P_INT.20191124
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1394.059 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1394.391 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3739 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 296 instances
@@ -1954,14 +1978,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1S => RAM32X1S (RAMS32): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-96 Infos, 160 Warnings, 0 Critical Warnings and 0 Errors encountered.
+99 Infos, 164 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:06 ; elapsed = 00:03:22 . Memory (MB): peak = 1394.059 ; gain = 362.137
-INFO: [Common 17-600] The following parameters have non-default value.
-tcl.collectionResultDisplayLimit
+synth_design: Time (s): cpu = 00:03:07 ; elapsed = 00:03:17 . Memory (MB): peak = 1394.391 ; gain = 362.281
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 1394.059 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 1394.391 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Feb  5 15:26:28 2021...
+INFO: [Common 17-206] Exiting Vivado at Thu Apr  8 12:18:53 2021...

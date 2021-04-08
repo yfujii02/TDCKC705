@@ -54,7 +54,7 @@ module top_mcs(
     input   wire            OLDH_ALL  , // Old hodoscope ALL OR
     input   wire    [1:0]   NEWH      , // PMT from new hodoscope
     input   wire    [7:0]   OLDH      , // PMT from old hodoscope
-    input   wire            EV_MATCH  ,
+    input   wire   [15:0]   EV_MATCH  ,
     input   wire            TCP_BUSY  ,
     input   wire            START     ,
     input   wire    [3:0]   BOARD_ID  ,
@@ -78,7 +78,7 @@ module top_mcs(
     //
     //*******************************************************************************
     wire            SPILL_EDGE ;
-    wire    [15:0]  EM_COUNT   ;
+//    wire    [15:0]  EM_COUNT   ;
 
     GET_SPILLINFO get_spillInfo(
         .RESET     (RESET     ),
@@ -92,8 +92,8 @@ module top_mcs(
         .SPILLCOUNT(SPILLCOUNT),
         .SPILL_EDGE(SPILL_EDGE),
         .SPILL_END (          ),
-        .EV_MATCH  (EV_MATCH  ),
-        .EM_COUNT  (EM_COUNT  ),
+//        .EV_MATCH  (EV_MATCH  ),
+//        .EM_COUNT  (EM_COUNT  ),
         .DEBUG_SPLOFFCNT(DEBUG_SPLOFFCNT),
         .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
@@ -266,7 +266,8 @@ generate
             .TCP_FULL(TCP_BUSY|send_others[i] ), // input TCP busy or other channel is sending data
             .LENGTH  (LENGTH_INT[i*11+10:i*11]), // output address to be used in the memory buffer
             .SPLCOUNT(SPILLCOUNT[15:0]        ), // spill id
-            .EM_COUNT(EM_COUNT  ),  // input event muching (just the width of signal changing each spill
+//            .EM_COUNT(EM_COUNT  ),  // input event muching (just the width of signal changing each spill
+            .EM_COUNT(EV_MATCH  ),  // input event muching (just the width of signal changing each spill
             .NMRSYNC (regNSYNC  ),  // counter of MRSync from spill start
             .EOD     (EOD[i]    ),  // output end of data sending
             .DCOUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]), // input data 16-bit * NChannel

@@ -11,15 +11,15 @@ module GET_SPILLINFO(
     output   wire   [31:0]  SPILLCOUNT ,
     output   reg            SPILL_EDGE ,
     output   reg            SPILL_END  ,
-    input    wire           EV_MATCH   ,
-    output   reg    [15:0]  EM_COUNT   ,
+//    input    wire           EV_MATCH   ,
+//    output   reg    [15:0]  EM_COUNT   ,
     output   wire    [7:0]  DEBUG_SPLOFFCNT,
     output   wire    [2:0]  DEBUG_DLYSPLCNT
 );
 
     reg      [1:0]    SPL_REG   ;
-    reg      [1:0]    EM_REG    ;
-    reg               EM_EDGE   ;
+//    reg      [1:0]    EM_REG    ;
+//    reg               EM_EDGE   ;
     reg     [31:0]  irSPILLCOUNT; // Spill counter
     assign SPILLCOUNT = irSPILLCOUNT;
 
@@ -30,8 +30,8 @@ module GET_SPILLINFO(
             SPILL_END  <= 1'b0;
             irSPILLCOUNT <= 32'd0;
 
-            EM_REG     <= 2'b00;
-            EM_EDGE    <= 1'b0;
+            //EM_REG     <= 2'b00;
+            //EM_EDGE    <= 1'b0;
         end else begin
             SPL_REG    <= {SPL_REG[0],PSPILL};
             SPILL_EDGE   <= (SPL_REG==2'b01);
@@ -42,11 +42,11 @@ module GET_SPILLINFO(
               irSPILLCOUNT <= (SPILL_END==1'b1)? irSPILLCOUNT+32'd1 : irSPILLCOUNT;
             end
 
-            EM_REG     <= {EM_REG[0],EV_MATCH};
-            EM_EDGE    <= (EM_REG==2'b01);
+            //EM_REG     <= {EM_REG[0],EV_MATCH};
+            //EM_EDGE    <= (EM_REG==2'b01);
         end
     end
-
+/*
     reg    [15:0]    EMCOUNTER ; // Counter for Event matching signal
     reg              EMDONE    ;
     reg              EN_EMCOUNT;
@@ -79,7 +79,7 @@ module GET_SPILLINFO(
             end
         end
     end
-
+*/
     reg     [7:0]    spl_off_cnt ;
     reg     [2:0]    dlySplCntRst;
     always@(posedge CLK_200M) begin
