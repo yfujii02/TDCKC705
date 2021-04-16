@@ -268,7 +268,7 @@ module LOC_REG(
             x34_Reg[7:0]    <= 8'h00;   // Delay for Beam hodoscope [7:0]          
             x35_Reg[7:0]    <= 8'h00;   // Delay for Timing counter [15:0]           
             x36_Reg[7:0]    <= 8'h00;   // Delay for Timing counter [7:0]            
-            x57_Reg[7:0]    <= 8'h00;   // Delay for MPPC                     
+            x37_Reg[7:0]    <= 8'h00;   // Delay for MPPC                     
             x38_Reg[7:0]    <= 8'h00;   // Delay for Old hodoscope PMT        
             x39_Reg[7:0]    <= 8'h00;   // Delay for All Old hodoscope PMTs        
             x3A_Reg[7:0]    <= 8'h00;   // Delay for New hodoscope PMT        

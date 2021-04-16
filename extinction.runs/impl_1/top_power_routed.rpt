@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date             : Mon Mar 29 16:10:37 2021
+| Date             : Fri Apr 16 15:14:42 2021
 | Host             : localhost.localdomain running 64-bit unknown
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.089        |
+| Total On-Chip Power (W)  | 1.086        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.912        |
+| Dynamic (W)              | 0.910        |
 | Device Static (W)        | 0.177        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 83.1         |
@@ -52,9 +52,9 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.106 |       11 |       --- |             --- |
-| Slice Logic              |     0.025 |    20435 |       --- |             --- |
-|   LUT as Logic           |     0.018 |     6472 |    203800 |            3.18 |
+| Clocks                   |     0.103 |       11 |       --- |             --- |
+| Slice Logic              |     0.024 |    20435 |       --- |             --- |
+|   LUT as Logic           |     0.018 |     6474 |    203800 |            3.18 |
 |   CARRY4                 |     0.002 |      456 |     50950 |            0.89 |
 |   Register               |     0.002 |     9222 |    407600 |            2.26 |
 |   LUT as Shift Register  |     0.002 |      885 |     64000 |            1.38 |
@@ -66,7 +66,7 @@ Table of Contents
 | PLL                      |     0.217 |        2 |        10 |           20.00 |
 | I/O                      |     0.424 |      198 |       500 |           39.60 |
 | Static Power             |     0.177 |          |           |                 |
-| Total                    |     1.089 |          |           |                 |
+| Total                    |     1.086 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.386 |       0.307 |      0.078 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.383 |       0.305 |      0.078 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.218 |       0.190 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.103 |       0.102 |      0.001 |       NA    | Unspecified | NA         |
@@ -134,12 +134,12 @@ Table of Contents
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | CLK_10M                                                                                    | CLK_10M                                                              |           100.0 |
-| CLK_125M                                                                                   | nolabel_line177/CLK_125M                                             |             8.0 |
-| CLK_200M                                                                                   | nolabel_line177/CLK_200M                                             |             5.0 |
+| CLK_125M                                                                                   | nolabel_line179/CLK_125M                                             |             8.0 |
+| CLK_200M                                                                                   | nolabel_line179/CLK_200M                                             |             5.0 |
 | GMII_RX_CLK                                                                                | GMII_RX_CLK                                                          |             8.0 |
 | GMII_TX_CLK                                                                                | GMII_TX_CLK                                                          |            40.0 |
 | PLL_CLKFB                                                                                  | PLL_CLKFB                                                            |             5.0 |
-| PLL_CLKFB_1                                                                                | nolabel_line177/PLL_CLKFB                                            |             5.0 |
+| PLL_CLKFB_1                                                                                | nolabel_line179/PLL_CLKFB                                            |             5.0 |
 | SYSCLK_200MP_IN                                                                            | SYSCLK_200MP_IN                                                      |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
@@ -154,21 +154,21 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| top                      |     0.912 |
+| top                      |     0.910 |
 |   LOC_REG                |     0.016 |
 |   PREPROCESSOR           |     0.424 |
-|   dbg_hub                |     0.006 |
-|     inst                 |     0.006 |
-|       BSCANID.u_xsdbm_id |     0.006 |
+|   dbg_hub                |     0.005 |
+|     inst                 |     0.005 |
+|       BSCANID.u_xsdbm_id |     0.005 |
 |   ila_0                  |     0.030 |
 |     inst                 |     0.030 |
 |       ila_core_inst      |     0.030 |
-|   nolabel_line177        |     0.224 |
-|     AT93C46_IIC          |     0.008 |
+|   nolabel_line179        |     0.223 |
+|     AT93C46_IIC          |     0.007 |
 |       MIRROR_MEM         |     0.003 |
 |       PCA9548_SW         |     0.003 |
-|     SiTCP                |     0.096 |
-|       SiTCP              |     0.096 |
+|     SiTCP                |     0.095 |
+|       SiTCP              |     0.095 |
 |     fifo_generator_v11_0 |     0.005 |
 |       U0                 |     0.005 |
 |   top_tdc                |     0.089 |
