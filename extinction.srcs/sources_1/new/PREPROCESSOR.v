@@ -34,10 +34,11 @@ module PREPROCESSOR(
     input   wire     [7:0]    DLYL_PSPILL , // in : Delay for spill singal  
     input   wire     [7:0]    DLYL_MRSYNC , // in : Delay for MR sync       
     input   wire     [7:0]    DLYL_EVMATCH, // in : Delay for Event matching
-    input   wire     [7:0]    DLYL_BH     , // in : Delay for Beam hodoscope
-    input   wire     [7:0]    DLYL_TC     , // in : Delay for Timing counter
+    input   wire    [15:0]    DLYL_BH     , // in : Delay for Beam hodoscope
+    input   wire    [15:0]    DLYL_TC     , // in : Delay for Timing counter
     input   wire     [7:0]    DLYL_MPPC   , // in : Delay for MPPC          
     input   wire     [7:0]    DLYL_OLD_PMT, // in : Delay for PMT           
+    input   wire     [7:0]    DLYL_ALLOLD_PMT, // in : Delay for PMT           
     input   wire     [7:0]    DLYL_NEW_PMT, // in : Delay for PMT           
     input   wire    [63:0]    CHMASK0     , // in : mask channel if corresponding bit is high
     input   wire    [15:0]    CHMASK1     , // in : mask for non-main counter channels
@@ -187,10 +188,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_bh(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_BH[7:0]     ), // in : address
-            .D    (regBH[i]         ), // in : signal
-            .Q    (BH[i]            )  // out: signal
+            .CLK  (SYSCLK            ), // in : clock
+            .A    (DLYL_BH[8*i+7:8*i]), // in : address
+            .D    (regBH[i]          ), // in : signal
+            .Q    (BH[i]             )  // out: signal
         );
     end
     endgenerate
@@ -207,10 +208,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_tc(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_TC[7:0]     ), // in : address
-            .D    (regTC[i]         ), // in : signal
-            .Q    (TC[i]            )  // out: signal
+            .CLK  (SYSCLK            ), // in : clock
+            .A    (DLYL_TC[8*i+7:8*i]), // in : address
+            .D    (regTC[i]          ), // in : signal
+            .Q    (TC[i]             )  // out: signal
         );
     end
     endgenerate
@@ -226,10 +227,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_oldhd_all(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_OLD_PMT[7:0]), // in : address
-            .D    (regOLDHALL       ), // in : signal
-            .Q    (OLDH_ALL         )  // out: signal
+            .CLK  (SYSCLK              ), // in : clock
+            .A    (DLYL_ALLOLD_PMT[7:0]), // in : address
+            .D    (regOLDHALL          ), // in : signal
+            .Q    (OLDH_ALL            )  // out: signal
         );
     endgenerate
 

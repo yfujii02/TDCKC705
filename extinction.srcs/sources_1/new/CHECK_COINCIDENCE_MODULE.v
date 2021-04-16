@@ -1,5 +1,5 @@
 module CHECK_COINCIDENCE_MODULE
-    #(parameter WIDTH=3) (
+    #(parameter WIDTH=4) (
         input   wire                CLK,
         input   wire                RST,
         input   wire    [63:0]      MPPC,  // MPPC

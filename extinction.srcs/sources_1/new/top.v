@@ -106,10 +106,11 @@ module
     wire     [7:0]    DLYL_PSPILL   ; // Delay for spill singal
     wire     [7:0]    DLYL_MRSYNC   ; // Delay for MR sync
     wire     [7:0]    DLYL_EVMATCH  ; // Delay for Event matching
-    wire     [7:0]    DLYL_BH       ; // Delay for Beam hodoscope
-    wire     [7:0]    DLYL_TC       ; // Delay for Timing counter
+    wire    [15:0]    DLYL_BH       ; // Delay for Beam hodoscope
+    wire    [15:0]    DLYL_TC       ; // Delay for Timing counter
     wire     [7:0]    DLYL_MPPC     ; // Delay for MPPC
     wire     [7:0]    DLYL_OLD_PMT  ; // Delay for PMT
+    wire     [7:0]    DLYL_ALLOLD_PMT; // Delay for PMT
     wire     [7:0]    DLYL_NEW_PMT  ; // Delay for PMT
 
     wire    [63:0]    SIGTEST  ;
@@ -128,10 +129,11 @@ module
         .DLYL_PSPILL  (DLYL_PSPILL[7:0] ), // in : Delay for spill singal
         .DLYL_MRSYNC  (DLYL_MRSYNC[7:0] ), // in : Delay for MR sync
         .DLYL_EVMATCH (DLYL_EVMATCH[7:0]), // in : Delay for Event matching
-        .DLYL_BH      (DLYL_BH[7:0]     ), // in : Delay for Beam hodoscope
-        .DLYL_TC      (DLYL_TC[7:0]     ), // in : Delay for Timing counter
+        .DLYL_BH      (DLYL_BH[15:0]    ), // in : Delay for Beam hodoscope
+        .DLYL_TC      (DLYL_TC[15:0]    ), // in : Delay for Timing counter
         .DLYL_MPPC    (DLYL_MPPC[7:0]   ), // in : Delay for MPPC
         .DLYL_OLD_PMT (DLYL_OLD_PMT[7:0]), // in : Delay for PMT
+        .DLYL_ALLOLD_PMT (DLYL_ALLOLD_PMT[7:0]), // in : Delay for PMT
         .DLYL_NEW_PMT (DLYL_NEW_PMT[7:0]), // in : Delay for PMT
         .CHMASK0      (CHMASK0[63:0]    ), // in : mask channel if corresponding bit is high
         .CHMASK1      (CHMASK1[14:0]    ), // in : mask for non-main counter channels
@@ -317,8 +319,11 @@ module
         .REG_DLYL_PSPILL    (DLYL_PSPILL[7:0]     ), // out: Delay for spill singal
         .REG_DLYL_MRSYNC    (DLYL_MRSYNC[7:0]     ), // out: Delay for MR sync
         .REG_DLYL_EVMATCH   (DLYL_EVMATCH[7:0]    ), // out: Delay for Event matching
+        .REG_DLYL_BH        (DLYL_BH[15:0]        ), // out: Delay for Beam hodoscope
+        .REG_DLYL_TC        (DLYL_TC[15:0]        ), // out: Delay for Timing counter
         .REG_DLYL_MPPC      (DLYL_MPPC[7:0]       ), // out: Delay for MPPC
         .REG_DLYL_OLD_PMT   (DLYL_OLD_PMT[7:0]    ), // out: Delay for Old PMT
+        .REG_DLYL_ALLOLD_PMT(DLYL_ALLOLD_PMT[7:0] ), // out: Delay for Old PMT
         .REG_DLYL_NEW_PMT   (DLYL_NEW_PMT[7:0]    )  // out: Delay for New PMT
     );
 
