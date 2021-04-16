@@ -21,35 +21,36 @@
 
 
 module PREPROCESSOR(
-    input   wire              SYSCLK      , // in : System clock
-    input   wire              SYSRST      , // in : System reset
-    input   wire              PSPILL_IN   , // in : PSPILL input
-    input   wire              EV_MATCH_IN , // in : Event matching
-    input   wire    [31:0]    LA_HPC_P    , // in : Connector
-    input   wire    [31:0]    LA_HPC_N    , // in : Connector
-    input   wire    [31:0]    LA_LPC_P    , // in : Connector
-    input   wire    [31:0]    LA_LPC_N    , // in : Connector
-    input   wire    [19:0]    HA_HPC_P    , // in : Connector
-    input   wire    [19:0]    HA_HPC_N    , // in : Connector
-    input   wire     [7:0]    DLYL_PSPILL , // in : Delay for spill singal  
-    input   wire     [7:0]    DLYL_MRSYNC , // in : Delay for MR sync       
-    input   wire     [7:0]    DLYL_EVMATCH, // in : Delay for Event matching
-    input   wire     [7:0]    DLYL_BH     , // in : Delay for Beam hodoscope
-    input   wire     [7:0]    DLYL_TC     , // in : Delay for Timing counter
-    input   wire     [7:0]    DLYL_MPPC   , // in : Delay for MPPC          
-    input   wire     [7:0]    DLYL_OLD_PMT, // in : Delay for PMT           
-    input   wire     [7:0]    DLYL_NEW_PMT, // in : Delay for PMT           
-    input   wire    [63:0]    CHMASK0     , // in : mask channel if corresponding bit is high
-    input   wire    [15:0]    CHMASK1     , // in : mask for non-main counter channels
-    output  wire              PSPILL      , // out: Spill signal (P3)
-    output  wire              MR_SYNC     , // out: MR sync
-    output  wire    [15:0]    EV_MATCH    , // out: Event-matching signal
-    output  wire     [1:0]    BH          , // out: Beam hodoscope
-    output  wire     [1:0]    TC          , // out: Timing counter
-    output  wire              OLDH_ALL    , // out: Old hodoscope signal (ALL OR)
-    output  wire     [7:0]    OLDH        , // out: Old hodoscope signal
-    output  wire     [1:0]    NEWH        , // out: Old hodoscope signal
-    output  wire    [63:0]    SIGNAL        // out: New hodoscope signal
+    input   wire              SYSCLK         , // in : System clock
+    input   wire              SYSRST         , // in : System reset
+    input   wire              PSPILL_IN      , // in : PSPILL input
+    input   wire              EV_MATCH_IN    , // in : Event matching
+    input   wire    [31:0]    LA_HPC_P       , // in : Connector
+    input   wire    [31:0]    LA_HPC_N       , // in : Connector
+    input   wire    [31:0]    LA_LPC_P       , // in : Connector
+    input   wire    [31:0]    LA_LPC_N       , // in : Connector
+    input   wire    [19:0]    HA_HPC_P       , // in : Connector
+    input   wire    [19:0]    HA_HPC_N       , // in : Connector
+    input   wire     [7:0]    DLYL_PSPILL    , // in : Delay for spill singal  
+    input   wire     [7:0]    DLYL_MRSYNC    , // in : Delay for MR sync       
+    input   wire     [7:0]    DLYL_EVMATCH   , // in : Delay for Event matching
+    input   wire    [15:0]    DLYL_BH        , // in : Delay for Beam hodoscope
+    input   wire    [15:0]    DLYL_TC        , // in : Delay for Timing counter
+    input   wire     [7:0]    DLYL_MPPC      , // in : Delay for MPPC          
+    input   wire     [7:0]    DLYL_OLD_PMT   , // in : Delay for ole PMT           
+    input   wire     [7:0]    DLYL_ALLOLD_PMT, // in : Delay for all old PMTs           
+    input   wire     [7:0]    DLYL_NEW_PMT   , // in : Delay for new new PMT           
+    input   wire    [63:0]    CHMASK0        , // in : mask channel if corresponding bit is high
+    input   wire    [15:0]    CHMASK1        , // in : mask for non-main counter channels
+    output  wire              PSPILL         , // out: Spill signal (P3)
+    output  wire              MR_SYNC        , // out: MR sync
+    output  wire    [15:0]    EV_MATCH       , // out: Event-matching signal
+    output  wire     [1:0]    BH             , // out: Beam hodoscope
+    output  wire     [1:0]    TC             , // out: Timing counter
+    output  wire              OLDH_ALL       , // out: Old hodoscope signal (ALL OR)
+    output  wire     [7:0]    OLDH           , // out: Old hodoscope signal
+    output  wire     [1:0]    NEWH           , // out: Old hodoscope signal
+    output  wire    [63:0]    SIGNAL           // out: New hodoscope signal
 
     );
     
@@ -187,10 +188,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_bh(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_BH[7:0]     ), // in : address
-            .D    (regBH[i]         ), // in : signal
-            .Q    (BH[i]            )  // out: signal
+            .CLK  (SYSCLK             ), // in : clock
+            .A    (DLYL_BH[8*i+7:8*i] ), // in : address
+            .D    (regBH[i]           ), // in : signal
+            .Q    (BH[i]              )  // out: signal
         );
     end
     endgenerate
@@ -207,10 +208,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_tc(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_TC[7:0]     ), // in : address
-            .D    (regTC[i]         ), // in : signal
-            .Q    (TC[i]            )  // out: signal
+            .CLK  (SYSCLK             ), // in : clock
+            .A    (DLYL_TC[8*i+7:8*i] ), // in : address
+            .D    (regTC[i]           ), // in : signal
+            .Q    (TC[i]              )  // out: signal
         );
     end
     endgenerate
@@ -226,10 +227,10 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_oldhd_all(
-            .CLK  (SYSCLK           ), // in : clock
-            .A    (DLYL_OLD_PMT[7:0]), // in : address
-            .D    (regOLDHALL       ), // in : signal
-            .Q    (OLDH_ALL         )  // out: signal
+            .CLK  (SYSCLK              ), // in : clock
+            .A    (DLYL_ALLOLD_PMT[7:0]), // in : address
+            .D    (regOLDHALL          ), // in : signal
+            .Q    (OLDH_ALL            )  // out: signal
         );
     endgenerate
 
