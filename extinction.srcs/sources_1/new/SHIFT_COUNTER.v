@@ -104,18 +104,10 @@ module SHIFT_COUNTER_EACH(
         end
     end
     always@ (posedge CLK) begin
-        if(RST) begin
-            dlyCNTR2CLK <= 12'd0;
-        end else begin
-            dlyCNTR2CLK <= dlyCNTR1CLK;
-        end
+        dlyCNTR2CLK <= dlyCNTR1CLK;
     end
     always@ (posedge CLK) begin
-        if(RST) begin
-            dlyCNTR3CLK <= 12'd0;
-        end else begin
-            dlyCNTR3CLK <= dlyCNTR2CLK;
-        end
+        dlyCNTR3CLK <= (doRESET==1'b1)? RSTCNTR : dlyCNTR2CLK;
     end
 
     //// The depth is again modified from 12 bits to "1152"
