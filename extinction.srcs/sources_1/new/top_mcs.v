@@ -98,7 +98,8 @@ module top_mcs(
         .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
     );
 
-    wire    [NCHANNEL-1:0]    INPUT   ;
+    wire    [NCHANNEL-1:0]      INPUT  ;
+    reg     [NCHANNEL*NBUF-1:0] irINPUT;
     CHECK_COINCIDENCE_MODULE make_coincidence(
         .CLK   (CLK_200M    ),
         .RST   (RESET       ),
@@ -114,9 +115,12 @@ module top_mcs(
         .SIGOUT(INPUT[73:0] )
     );
 
+    always @ (posedge CLK_200M) begin
+    end
+
     reg             ENABLE  ; // Enable on until the spill end
     reg      [2:0]  enWrite ; // Enable switch for writing the data
-    reg             enWriteMSB; // 1 clk delayed MSB of en write
+    reg      [2:0]  enWriteReg; // Reg
     reg     [31:0]  NMRSYNC ; // Number of MRSync
     reg     [31:0]  regNSYNC; // Register to keep the number of MRSYNC
     reg             sw_mem  ;
@@ -138,7 +142,7 @@ module top_mcs(
                     if (NMRSYNC==32'd1) begin
                         enWrite   <= 3'd1;
                     end else begin
-                        enWrite   <= (irSw_mem==2'b01)? {enWrite[1:0],enWriteMSB} : enWrite;
+                        enWrite   <= (irSw_mem==2'b01)? enWriteReg : enWrite;
                     end
                 end else begin
                     enWrite <= 3'd0;
@@ -152,7 +156,7 @@ module top_mcs(
         end
     end
     always @ (posedge CLK_200M) begin
-        enWriteMSB <= enWrite[2];
+        enWriteReg <= {enWrite[1:0],enWrite[2]};
     end
 
     always @ (posedge CLK_200M) begin
@@ -215,6 +219,7 @@ genvar i;
 generate
     for (i = 0; i < NBUF; i = i+1) begin: CHECK_EOD
         always@ (posedge CLK_200M) begin
+            irINPUT[NCHANNEL*(i+1)-1:NCHANNEL*i] <= INPUT[NCHANNEL-1:0];
             if(RESET)begin
                 regEOD[2*i+1:2*i]  <= 2'd0;
                 edgeEOD[i]         <= 1'b0;
@@ -242,7 +247,7 @@ generate
             .RST    (regRST[i]),        // input reset signal
             .CLK    (CLK_200M ),        // input clock
             .EN     (enWrite[i]&START), // input enable writing
-            .SIG    (INPUT    ),        // input signal
+            .SIG    (irINPUT[NCHANNEL*(i+1)-1:NCHANNEL*i]),        // input signal
             .EOD    (edgeEOD[i]),       // end of data sending for this memory block
             .RELCNTR(relCNTR[11*i+10:11*i]),        // counter w.r.t. MR sync
             .RLENGTH(LENGTH_INT[i*11+10:i*11]), // input address from send module corresponding to RelCounter
