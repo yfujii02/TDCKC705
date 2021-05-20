@@ -456,7 +456,7 @@ endgenerate
           debug_pause[4:0] <= {debug_pause[3:0],FIFO_FULL};
         end
     end
-
+/*
     ila_0 ila_0(
         .trig_in(PSPILL   ),
         .clk    (CLK_200M ),
@@ -479,6 +479,6 @@ endgenerate
         .probe14(debug_data_en          ),
         .probe15(debug_data_end         )//,
         //.probe16(debug_rd_en            )
-    );
+    );*/
 
 endmodule

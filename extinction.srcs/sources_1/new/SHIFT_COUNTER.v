@@ -54,31 +54,42 @@ module SHIFT_COUNTER_EACH(
     assign wCNTR = regCNTR;
     assign raddr = (ROMODE==1'b1)? RLENGTH : RELCNTR;
 
+    reg regEOD; 
+    always@ (posedge CLK) begin
+        regEOD <= EOD;
+    end
+
     always@ (posedge CLK) begin
         if(RST) begin
             regCNTR <= 16'd0;
             ROMODE  <=  1'b0;
             regEN   <=  2'd0;
-            doRESET <=  1'b1;
         end else begin
             regEN   <= {regEN[0],EN};
             if(regEN==2'b10) begin // End of spill
                ROMODE <= 1'b1;
             end
-            if(EOD) begin          // End of data read
+            if(regEOD) begin          // End of data read
                ROMODE <= 1'b0;
             end
 
             if(EN) begin
                 regCNTR <= (SIG==1'b1)? COUNTER + 16'd1 : COUNTER;
-            end else if(EOD) begin
-                doRESET <= 1'b1;
             end else if (doRESET) begin
                 regCNTR <= 16'd0;
             end
 
-            if (RSTCNTR==11'd1153) begin
-                doRESET  <=  1'b0;
+        end
+    end
+
+    always@ (posedge CLK) begin
+        if(RST) begin
+            doRESET <= 1'b1;
+        end else begin
+            if(regEN==2'b01 || RSTCNTR==11'd1153) begin
+                doRESET <= 1'b0;
+            end else if(regEOD) begin
+                doRESET <= 1'b1;
             end
         end
     end
