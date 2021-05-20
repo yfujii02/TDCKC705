@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Thu May 20 19:08:50 2021
-# Process ID: 2544
+# Start of session at: Thu May 20 22:22:33 2021
+# Process ID: 7680
 # Current directory: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.vds
@@ -17,9 +17,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7456
+INFO: [Synth 8-7075] Helper process launched with PID 9808
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1032.117 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1029.566 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 INFO: [Synth 8-6157] synthesizing module 'PREPROCESSOR' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
@@ -32,8 +32,8 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [C:/Xilinx/Vivado/2020.1/scrip
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
-INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-2544-dyna-comet/realtime/shift_ram_hit_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-2544-dyna-comet/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7680-dyna-comet/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7680-dyna-comet/realtime/shift_ram_hit_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'PREPROCESSOR' (3#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
 INFO: [Synth 8-6157] synthesizing module 'kc705sitcp' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.v:20]
 INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
@@ -461,10 +461,10 @@ INFO: [Synth 8-6157] synthesizing module 'top_mcs' [C:/Users/comet/Desktop/COTTR
 INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_ALL' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
 	Parameter NCHANNEL bound to: 74 - type: integer 
 	Parameter DWIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_EACH' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:31]
-INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-2544-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (49#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-2544-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_EACH' (50#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:31]
+INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_EACH' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:33]
+INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7680-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (49#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/.Xil/Vivado-7680-dyna-comet/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_EACH' (50#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:33]
 INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_ALL' (51#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
 INFO: [Synth 8-6157] synthesizing module 'DATA_SEND_MCS' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
 	Parameter MAXCOUNT bound to: 18'b100111010100010000 
@@ -478,8 +478,8 @@ INFO: [Synth 8-6155] done synthesizing module 'GET_SPILLINFO' (53#1) [C:/Users/c
 INFO: [Synth 8-6157] synthesizing module 'CHECK_COINCIDENCE_MODULE' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
 	Parameter WIDTH bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'CHECK_COINCIDENCE_MODULE' (54#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
-INFO: [Synth 8-6157] synthesizing module 'sendStatus' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:324]
-INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (55#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:324]
+INFO: [Synth 8-6157] synthesizing module 'sendStatus' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:325]
+INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (55#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:325]
 INFO: [Synth 8-6155] done synthesizing module 'top_mcs' (56#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v:41]
 INFO: [Synth 8-6157] synthesizing module 'LOC_REG' [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v:19]
 INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (57#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v:19]
@@ -512,18 +512,18 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [C:/Xilinx
 INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (57#1) [C:/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 INFO: [Synth 8-6155] done synthesizing module 'top' (58#1) [C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v:18]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1288.797 ; gain = 256.680
+Finished RTL Elaboration : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1290.535 ; gain = 260.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1294.379 ; gain = 262.262
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1290.535 ; gain = 260.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1294.379 ; gain = 262.262
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1290.535 ; gain = 260.969
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.756 . Memory (MB): peak = 1306.434 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.756 . Memory (MB): peak = 1290.535 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 133 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1174,14 +1174,14 @@ WARNING: [Timing 38-3] User defined clock exists on pin PLLE2_DEBUG/CLKOUT1 and 
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 1412.309 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.069 . Memory (MB): peak = 1350.293 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 6 instances were transformed.
   FD => FDRE: 3 instances
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.258 . Memory (MB): peak = 1412.309 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.303 . Memory (MB): peak = 1350.293 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[0].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[1].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -1284,14 +1284,14 @@ WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[25].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 INFO: [Common 17-14] Message 'Timing 38-316' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:01 ; elapsed = 00:01:01 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Constraint Validation : Time (s): cpu = 00:01:03 ; elapsed = 00:01:02 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:01 ; elapsed = 00:01:01 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:03 ; elapsed = 00:01:02 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1603,10 +1603,10 @@ Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_mrsnyc. (c
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_oldhd_all. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_pspill. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:04 ; elapsed = 00:01:04 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:06 ; elapsed = 00:01:05 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:17 ; elapsed = 00:01:18 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:21 ; elapsed = 00:01:21 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1615,7 +1615,7 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input   32 Bit       Adders := 1     
 	   2 Input   16 Bit       Adders := 1     
-	   2 Input   11 Bit       Adders := 230   
+	   2 Input   11 Bit       Adders := 449   
 	   2 Input    9 Bit       Adders := 3     
 	   2 Input    8 Bit       Adders := 6     
 	   2 Input    7 Bit       Adders := 6     
@@ -1632,7 +1632,7 @@ Detailed RTL Component Info :
 	               17 Bit    Registers := 1     
 	               16 Bit    Registers := 229   
 	               15 Bit    Registers := 2     
-	               11 Bit    Registers := 896   
+	               11 Bit    Registers := 1115  
 	                9 Bit    Registers := 4     
 	                8 Bit    Registers := 93    
 	                7 Bit    Registers := 12    
@@ -1661,7 +1661,7 @@ Detailed RTL Component Info :
 	   2 Input    3 Bit        Muxes := 12    
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 1270  
+	   2 Input    1 Bit        Muxes := 1491  
 	   3 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -1679,7 +1679,7 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:01 ; elapsed = 00:02:03 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:06 ; elapsed = 00:02:08 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
@@ -1688,19 +1688,19 @@ INFO: [Synth 8-5578] Moved timing constraint from pin 'CLK_200M' to pin 'BUFG0/O
 WARNING: [Synth 8-565] redefining clock 'CLK_10M'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:13 ; elapsed = 00:02:15 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:18 ; elapsed = 00:02:19 . Memory (MB): peak = 1350.293 ; gain = 320.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:18 ; elapsed = 00:02:21 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Timing Optimization : Time (s): cpu = 00:02:23 ; elapsed = 00:02:25 . Memory (MB): peak = 1374.879 ; gain = 345.313
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:37 ; elapsed = 00:02:40 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Technology Mapping : Time (s): cpu = 00:02:44 ; elapsed = 00:02:47 . Memory (MB): peak = 1384.777 ; gain = 355.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1718,37 +1718,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:44 ; elapsed = 00:02:48 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished IO Insertion : Time (s): cpu = 00:02:52 ; elapsed = 00:02:55 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:44 ; elapsed = 00:02:48 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:52 ; elapsed = 00:02:56 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:49 ; elapsed = 00:02:53 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:00 ; elapsed = 00:03:03 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:49 ; elapsed = 00:02:53 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:00 ; elapsed = 00:03:03 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:50 ; elapsed = 00:02:53 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:01 ; elapsed = 00:03:04 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:50 ; elapsed = 00:02:54 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:01 ; elapsed = 00:03:04 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1789,12 +1789,12 @@ Report Cell Usage:
 |225   |shift_ram_hit_          |    81|
 |306   |BUFG                    |     5|
 |307   |CARRY4                  |   972|
-|308   |LUT1                    |   301|
-|309   |LUT2                    |  1163|
-|310   |LUT3                    |  9701|
-|311   |LUT4                    |   829|
-|312   |LUT5                    |  1092|
-|313   |LUT6                    |  2385|
+|308   |LUT1                    |   521|
+|309   |LUT2                    |  1603|
+|310   |LUT3                    | 10141|
+|311   |LUT4                    |  1269|
+|312   |LUT5                    |  1532|
+|313   |LUT6                    |  3045|
 |314   |MUXCY                   |    32|
 |315   |MUXF7                   |   533|
 |316   |MUXF8                   |   210|
@@ -1807,7 +1807,7 @@ Report Cell Usage:
 |323   |FD                      |     3|
 |324   |FDCE                    |   698|
 |325   |FDPE                    |   116|
-|326   |FDRE                    | 14323|
+|326   |FDRE                    | 21583|
 |327   |FDSE                    |   277|
 |328   |LDC                     |    35|
 |329   |IBUF                    |    19|
@@ -1816,11 +1816,11 @@ Report Cell Usage:
 |332   |OBUF                    |    18|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:50 ; elapsed = 00:02:54 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:01 ; elapsed = 00:03:04 . Memory (MB): peak = 1388.387 ; gain = 358.820
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:54 ; elapsed = 00:02:39 . Memory (MB): peak = 1412.309 ; gain = 262.262
-Synthesis Optimization Complete : Time (s): cpu = 00:02:50 ; elapsed = 00:02:54 . Memory (MB): peak = 1412.309 ; gain = 380.191
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:03 ; elapsed = 00:02:48 . Memory (MB): peak = 1388.387 ; gain = 299.063
+Synthesis Optimization Complete : Time (s): cpu = 00:03:01 ; elapsed = 00:03:04 . Memory (MB): peak = 1388.387 ; gain = 358.820
 INFO: [Project 1-571] Translating synthesized netlist
 Release 14.7 - ngc2edif P_INT.20191124 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
@@ -1896,18 +1896,18 @@ WARNING:NetListWriters:306 - Signal bus SiTCP_INT/SiTCP_INT_REG/muxData[31 : 0]
    missing bus signals.
   finished :Prep
 Writing EDIF netlist file SiTCP_XC7K_32K_BBT_V110.edif ...
-ngc2edif: Total memory usage is 4341772 kilobytes
+ngc2edif: Total memory usage is 4342604 kilobytes
 
 Reading core file 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
 Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
 Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_f16a2c4b.edif]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.839 . Memory (MB): peak = 1412.309 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1406.109 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 7410 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-479] Netlist was created with Xilinx ngc2edif P_INT.20191124
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1419.152 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1435.352 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3739 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 296 instances
@@ -1926,10 +1926,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 93 Infos, 121 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:09 ; elapsed = 00:03:22 . Memory (MB): peak = 1419.152 ; gain = 387.035
+synth_design: Time (s): cpu = 00:03:23 ; elapsed = 00:03:36 . Memory (MB): peak = 1435.352 ; gain = 405.785
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 1419.152 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 1435.352 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu May 20 19:12:27 2021...
+INFO: [Common 17-206] Exiting Vivado at Thu May 20 22:26:25 2021...

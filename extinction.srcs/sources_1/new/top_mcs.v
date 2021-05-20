@@ -202,7 +202,7 @@ module top_mcs(
     wire    [4*NBUF-1:0]   label;
     assign label={4'd2,4'd1,4'd0}; /// FIXME constant labels for each buffer
 
-    reg  [11*NBUF-1:0]   relCNTR; // counter relative to MR_SYNC
+//    reg  [11*NBUF-1:0]   relCNTR; // counter relative to MR_SYNC
     wire   [NBUF-1:0]    EOD    ;
     reg    [2*NBUF-1:0]  regEOD ; // Reg to check Edge of EOD
     reg    [NBUF-1:0]    edgeEOD; // Edge of EOD
@@ -224,16 +224,16 @@ generate
                 regEOD[2*i+1:2*i]  <= 2'd0;
                 edgeEOD[i]         <= 1'b0;
                 regRST[i]          <= 1'b1;
-                relCNTR[11*i+10:11*i] <= 11'd0;
+                //relCNTR[11*i+10:11*i] <= 11'd0;
             end else begin
                 regEOD[2*i+1:2*i]  <= {regEOD[2*i],EOD[i]};
                 edgeEOD[i]         <= (regEOD[2*i+1:2*i]==2'b01)? 1'b1 : 1'b0;
                 regRST[i]          <= 1'b0;
-                if (MR_SYNC) begin
-                    relCNTR[11*i+10:11*i] <= 11'd0;
-                end else begin
-                    relCNTR[11*i+10:11*i] <= relCNTR[11*i+10:11*i] + 11'd1;
-                end
+                //if (MR_SYNC) begin
+                //    relCNTR[11*i+10:11*i] <= 11'd0;
+                //end else begin
+                //    relCNTR[11*i+10:11*i] <= relCNTR[11*i+10:11*i] + 11'd1;
+                //end
             end
         end
     end
@@ -249,7 +249,8 @@ generate
             .EN     (enWrite[i]&START), // input enable writing
             .SIG    (irINPUT[NCHANNEL*(i+1)-1:NCHANNEL*i]),        // input signal
             .EOD    (edgeEOD[i]),       // end of data sending for this memory block
-            .RELCNTR(relCNTR[11*i+10:11*i]),        // counter w.r.t. MR sync
+            //.RELCNTR(relCNTR[11*i+10:11*i]),        // counter w.r.t. MR sync
+            .MR_SYNC(MR_SYNC),        //
             .RLENGTH(LENGTH_INT[i*11+10:i*11]), // input address from send module corresponding to RelCounter
             .COUNTER(DCOUNTER_INT[(i+1)*DWIDTH_BUF-1:i*DWIDTH_BUF]) // output data
         );

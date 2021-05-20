@@ -6,7 +6,8 @@ module SHIFT_COUNTER_ALL
         input   wire                    EN,
         input   wire    [NCHANNEL-1:0]  SIG,
         input   wire                    EOD,
-        input   wire    [10:0]          RELCNTR,
+        //input   wire    [10:0]          RELCNTR,
+        input   wire                    MR_SYNC,
         input   wire    [10:0]          RLENGTH,
         output  wire    [NCHANNEL*DWIDTH-1:0]   COUNTER
     );
@@ -19,7 +20,8 @@ generate
             .EN     (EN     ),
             .SIG    (SIG[i] ),
             .EOD    (EOD    ), // end of data sending
-            .RELCNTR(RELCNTR),
+            //.RELCNTR(RELCNTR),
+            .MR_SYNC(MR_SYNC),
             .RLENGTH(RLENGTH),
             .COUNTER(COUNTER[(i+1)*DWIDTH-1:i*DWIDTH])
         );
@@ -34,7 +36,8 @@ module SHIFT_COUNTER_EACH(
     input  wire           EN,
     input  wire           SIG,
     input  wire           EOD,
-    input  wire  [10:0]   RELCNTR,
+    //input  wire  [10:0]   RELCNTR,
+    input  wire           MR_SYNC,
     input  wire  [10:0]   RLENGTH,
     output wire  [15:0]   COUNTER
 );
@@ -46,6 +49,19 @@ module SHIFT_COUNTER_EACH(
     wire        [10:0]  raddr   ;
     reg                 doRESET ;
     reg         [10:0]  RSTCNTR ;
+
+    reg         [10:0]  RELCNTR ;
+    always@ (posedge CLK) begin
+        if(RST) begin
+            RELCNTR <= 11'd0;
+        end else begin
+            if (MR_SYNC) begin
+                RELCNTR <= 11'd0;
+            end else begin
+                RELCNTR <= RELCNTR+11'd1;
+            end
+        end
+    end
 
     reg  [10:0]  dlyCNTR1CLK;
     reg  [10:0]  dlyCNTR2CLK;
