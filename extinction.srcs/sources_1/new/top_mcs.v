@@ -244,11 +244,13 @@ endgenerate
 generate
     for (i = 0; i < NBUF; i = i+1) begin: BUF_LOOP
         SHIFT_COUNTER_ALL shift_cntr_eachbuf(
-            .RST    (regRST[i]),        // input reset signal
+            //.RST    (regRST[i]),        // input reset signal
+            .RST    (RESET),        // input reset signal
             .CLK    (CLK_200M ),        // input clock
             .EN     (enWrite[i]&START), // input enable writing
             .SIG    (irINPUT[NCHANNEL*(i+1)-1:NCHANNEL*i]),        // input signal
-            .EOD    (edgeEOD[i]),       // end of data sending for this memory block
+            .EOD    (EOD[i]),       // end of data sending for this memory block
+            //.EOD    (edgeEOD[i]),       // end of data sending for this memory block
             //.RELCNTR(relCNTR[11*i+10:11*i]),        // counter w.r.t. MR sync
             .MR_SYNC(MR_SYNC),        //
             .RLENGTH(LENGTH_INT[i*11+10:i*11]), // input address from send module corresponding to RelCounter

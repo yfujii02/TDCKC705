@@ -13,13 +13,31 @@ module SHIFT_COUNTER_ALL
     );
 genvar i;
 generate
+
+    reg   [1:0]  regEOD;
+    reg          edgeEOD;
+    reg          regRST;
+    always@ (posedge CLK) begin
+        if(RST) begin
+            regEOD[1:0] <= 2'd0;
+            edgeEOD     <= 1'b0;
+            regRST      <= 1'b1;
+        end else begin
+            regEOD[1:0] <= {regEOD[0],EOD};
+            edgeEOD     <= (regEOD[1:0]==2'b01)? 1'b1 : 1'b0;
+            regRST      <= 1'b0;
+        end
+    end
+
     for (i = 0; i < NCHANNEL; i = i+1) begin: CHANNEL_BLK
         SHIFT_COUNTER_EACH shift_cntr(
-            .RST    (RST    ),
+            //.RST    (RST    ),
+            .RST    (regRST ),
             .CLK    (CLK    ),
             .EN     (EN     ),
             .SIG    (SIG[i] ),
-            .EOD    (EOD    ), // end of data sending
+            .EOD    (edgeEOD    ), // end of data sending
+            //.EOD    (EOD    ), // end of data sending
             //.RELCNTR(RELCNTR),
             .MR_SYNC(MR_SYNC),
             .RLENGTH(RLENGTH),
