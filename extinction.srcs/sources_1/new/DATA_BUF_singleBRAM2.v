@@ -179,6 +179,18 @@ module OUT_DATA_PACK(
     end
     
     reg [3:0]  count;
+    reg [4:0] dlyPAUSE;
+    /// 2 CLKs delay to account for the data reading from FIFO
+    ///  and 1 CLK to wait for the data_out <= reg_data
+    /// Another 2CLKs delay needed to wait until
+    ///  the count keep effect is reflected into count_temp[11:8]?? FIXME
+    always@(posedge SYSCLK) begin
+        if (SYSRST) begin
+            dlyPAUSE <= 5'd0;
+        end else begin
+            dlyPAUSE <= {dlyPAUSE[4:0],PAUSE};
+        end
+    end
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             count[3:0] <= 4'd0;
@@ -192,7 +204,7 @@ module OUT_DATA_PACK(
     always@(posedge SYSCLK) begin
         if(SYSRST) begin
             data_end <= 1'b0;
-        end else if(data_en && count[3:0]==4'd13)begin
+        end else if(data_en && count[3:0]==4'd13)begin // FIXME is it OK to have "data_en" here??
             data_end <= 1'b1;
         end else begin
             data_end <= 1'b0;

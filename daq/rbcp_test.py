@@ -23,6 +23,9 @@ def stopDAQ():
 def readTestBits():
     data = rbcp.read(0x00,8)
     print(data)
+    rbcp.write(0x00,b'\x0f')
+    data = rbcp.read(0x00,8)
+    print(data)
     data = rbcp.read(0x08,8)
     print(data)
 

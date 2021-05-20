@@ -80,15 +80,19 @@ module
     reg             TCP_CLOSE_ACK    ;
     wire     [7:0]  TCP_TX_DATA        ;
     reg     [31:0]  OFFSET_TEST        ;
+<<<<<<< HEAD
     wire    [16:0]  FIFO_DATA_COUNT    ;
+=======
+//    wire    [11:0]  FIFO_DATA_COUNT    ;
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
     wire            FIFO_RD_VALID    ;
     reg             SYS_RSTn        ;
     reg     [29:0]  INICNT            ;
-    reg             GMII_1000M;
-    reg      [8:0]  CNT_CLK;
-    reg             CNT_RST;
-    reg             CNT_LD;
-    reg      [6:0]  RX_CNT;
+    //reg             GMII_1000M;
+    //reg      [8:0]  CNT_CLK;
+    //reg             CNT_RST;
+    //reg             CNT_LD;
+    //reg      [6:0]  RX_CNT;
 
     wire CLK_200M_buf;
     IBUFDS #(.IOSTANDARD ("LVDS")) LVDS_BUF(.O(CLK_200M_buf), .I(SYSCLK_200MP_IN), .IB(SYSCLK_200MN_IN));
@@ -171,31 +175,33 @@ module
         .IIC_SDA_IO    (I2C_SDA)       // IIC Data
     );
 
-    BUFGMUX GMIIMUX(.O(BUF_TX_CLK), .I0(GMII_TX_CLK), .I1(CLK_125M), .S(GMII_1000M));
+    //BUFGMUX GMIIMUX(.O(BUF_TX_CLK), .I0(GMII_TX_CLK), .I1(CLK_125M), .S(GMII_1000M));
+    BUFG GMIIBUFG(.O(BUF_TX_CLK), .I(CLK_125M));
     ODDR    IOB_GTX(.C(BUF_TX_CLK), .CE(1'b1), .D1(1'b1), .D2(1'b0), .R(1'b0),
                     .S(1'b0), .Q(GMII_GTXCLK));
 
-    always@(posedge CLK_200M or negedge SYS_RSTn)begin
-        if (~SYS_RSTn) begin
-            CNT_CLK[8:0]    <=    9'b0;
-            CNT_LD          <=    1'b0;
-            CNT_RST         <=    1'b1;
-            GMII_1000M      <=    1'b0;
-        end else begin 
-            CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
-            CNT_LD          <=    CNT_CLK[8];
-            CNT_RST         <=    CNT_LD;
-            GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
-        end
-    end
-    
-    always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
-        if (CNT_RST) begin
-            RX_CNT[6:0]     <=    7'd0;
-        end else begin
-            RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
-        end
-    end
+    // Fix GMII mode to 1000Base by commenting-out below
+//    always@(posedge CLK_200M or negedge SYS_RSTn)begin
+//        if (~SYS_RSTn) begin
+//            CNT_CLK[8:0]    <=    9'b0;
+//            CNT_LD          <=    1'b0;
+//            CNT_RST         <=    1'b1;
+//            GMII_1000M      <=    1'b0;
+//        end else begin 
+//            CNT_CLK[8:0]    <=    CNT_CLK[8] ? 9'd198 : CNT_CLK[8:0] - 9'd1;
+//            CNT_LD          <=    CNT_CLK[8];
+//            CNT_RST         <=    CNT_LD;
+//            GMII_1000M      <=    CNT_LD ? RX_CNT[6] : GMII_1000M;
+//        end
+//    end
+//    
+//    always@(posedge GMII_RX_CLK or posedge CNT_RST)begin
+//        if (CNT_RST) begin
+//            RX_CNT[6:0]     <=    7'd0;
+//        end else begin
+//            RX_CNT[6:0]     <=    RX_CNT[6] ? RX_CNT[6:0] : RX_CNT[6:0] + 7'd1;
+//        end
+//    end
 
     assign    GMII_MDIO    = (GMII_MDIO_OE    ?    GMII_MDIO_OUT : 1'bz)    ;
 
@@ -295,7 +301,12 @@ module
         .valid      (FIFO_RD_VALID        ),//out :active hi
         .rd_en      (~TCP_TX_FULL         ),//in  :
         .empty      (                     ) //out :
+<<<<<<< HEAD
 //        .data_count (FIFO_DATA_COUNT[16:0]) //out :[11:0]
+=======
+//        .empty      (                     ),//out :
+//        .data_count (FIFO_DATA_COUNT[11:0]) //out :[11:0]
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
     );
 
 endmodule

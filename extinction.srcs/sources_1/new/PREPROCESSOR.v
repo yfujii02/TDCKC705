@@ -21,6 +21,7 @@
 
 
 module PREPROCESSOR(
+<<<<<<< HEAD
     input   wire              SYSCLK         , // in : System clock
     input   wire              SYSRST         , // in : System reset
     input   wire              PSPILL_IN      , // in : PSPILL input
@@ -51,6 +52,38 @@ module PREPROCESSOR(
     output  wire     [7:0]    OLDH           , // out: Old hodoscope signal
     output  wire     [1:0]    NEWH           , // out: Old hodoscope signal
     output  wire    [63:0]    SIGNAL           // out: New hodoscope signal
+=======
+    input   wire              SYSCLK      , // in : System clock
+    input   wire              SYSRST      , // in : System reset
+    input   wire              PSPILL_IN   , // in : PSPILL input
+    input   wire              EV_MATCH_IN , // in : Event matching
+    input   wire    [31:0]    LA_HPC_P    , // in : Connector
+    input   wire    [31:0]    LA_HPC_N    , // in : Connector
+    input   wire    [31:0]    LA_LPC_P    , // in : Connector
+    input   wire    [31:0]    LA_LPC_N    , // in : Connector
+    input   wire    [19:0]    HA_HPC_P    , // in : Connector
+    input   wire    [19:0]    HA_HPC_N    , // in : Connector
+    input   wire     [7:0]    DLYL_PSPILL , // in : Delay for spill singal  
+    input   wire     [7:0]    DLYL_MRSYNC , // in : Delay for MR sync       
+    input   wire     [7:0]    DLYL_EVMATCH, // in : Delay for Event matching
+    input   wire    [15:0]    DLYL_BH     , // in : Delay for Beam hodoscope
+    input   wire    [15:0]    DLYL_TC     , // in : Delay for Timing counter
+    input   wire     [7:0]    DLYL_MPPC   , // in : Delay for MPPC          
+    input   wire     [7:0]    DLYL_OLD_PMT, // in : Delay for PMT           
+    input   wire     [7:0]    DLYL_ALLOLD_PMT, // in : Delay for PMT           
+    input   wire     [7:0]    DLYL_NEW_PMT, // in : Delay for PMT           
+    input   wire    [63:0]    CHMASK0     , // in : mask channel if corresponding bit is high
+    input   wire    [15:0]    CHMASK1     , // in : mask for non-main counter channels
+    output  wire              PSPILL      , // out: Spill signal (P3)
+    output  wire              MR_SYNC     , // out: MR sync
+    output  wire    [15:0]    EV_MATCH    , // out: Event-matching signal
+    output  wire     [1:0]    BH          , // out: Beam hodoscope
+    output  wire     [1:0]    TC          , // out: Timing counter
+    output  wire              OLDH_ALL    , // out: Old hodoscope signal (ALL OR)
+    output  wire     [7:0]    OLDH        , // out: Old hodoscope signal
+    output  wire     [1:0]    NEWH        , // out: Old hodoscope signal
+    output  wire    [63:0]    SIGNAL        // out: New hodoscope signal
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
 
     );
     
@@ -146,6 +179,7 @@ module PREPROCESSOR(
           .A    (DLYL_PSPILL[7:0] ), // in : address
           .D    (pspill           ), // in : signal
           .Q    (PSPILL           )  // out: signal
+<<<<<<< HEAD
       );
     endgenerate
     
@@ -157,6 +191,19 @@ module PREPROCESSOR(
           .Q    (dly_ev_match     )  // out: signal
       );
     endgenerate
+=======
+      );
+    endgenerate
+    
+    generate
+      shift_ram_hit shift_ram_hit_evmatch(
+          .CLK  (SYSCLK           ), // in : clock
+          .A    (DLYL_EVMATCH[7:0]), // in : address
+          .D    (ev_match         ), // in : signal
+          .Q    (dly_ev_match     )  // out: signal
+      );
+    endgenerate
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
 
     generate
         always@ (posedge SYSCLK) begin
@@ -188,10 +235,17 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_bh(
+<<<<<<< HEAD
             .CLK  (SYSCLK             ), // in : clock
             .A    (DLYL_BH[8*i+7:8*i] ), // in : address
             .D    (regBH[i]           ), // in : signal
             .Q    (BH[i]              )  // out: signal
+=======
+            .CLK  (SYSCLK            ), // in : clock
+            .A    (DLYL_BH[8*i+7:8*i]), // in : address
+            .D    (regBH[i]          ), // in : signal
+            .Q    (BH[i]             )  // out: signal
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
         );
     end
     endgenerate
@@ -208,10 +262,17 @@ module PREPROCESSOR(
             end
         end
         shift_ram_hit shift_ram_hit_tc(
+<<<<<<< HEAD
             .CLK  (SYSCLK             ), // in : clock
             .A    (DLYL_TC[8*i+7:8*i] ), // in : address
             .D    (regTC[i]           ), // in : signal
             .Q    (TC[i]              )  // out: signal
+=======
+            .CLK  (SYSCLK            ), // in : clock
+            .A    (DLYL_TC[8*i+7:8*i]), // in : address
+            .D    (regTC[i]          ), // in : signal
+            .Q    (TC[i]             )  // out: signal
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
         );
     end
     endgenerate
@@ -251,6 +312,8 @@ module PREPROCESSOR(
             .A    (DLYL_OLD_PMT[7:0]), // in : address
             .D    (regOLDH[i]       ), // in : signal
             .Q    (OLDH[i]          )  // out: signal
+<<<<<<< HEAD
+=======
         );
     end
     endgenerate
@@ -272,10 +335,35 @@ module PREPROCESSOR(
             .A    (DLYL_NEW_PMT[7:0]), // in : address
             .D    (regNEWH[i]       ), // in : signal
             .Q    (NEWH[i]          )  // out: signal
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
         );
     end
     endgenerate
 
+<<<<<<< HEAD
+    // loop for the PMT signals
+    generate
+    for (i = 0; i < 2; i = i+1) begin: NEWH_EDGE
+        always@ (posedge SYSCLK) begin
+            if(SYSRST)begin
+                newhEdge[2*i+1:2*i] <= 2'd0;
+                regNEWH[i]          <= 1'd0;
+            end else begin
+                newhEdge[2*i+1:2*i] <= {newhEdge[2*i],newhd_fmc[i]};
+                regNEWH[i]          <= (newhEdge[2*i+1:2*i]==2'b01);
+            end
+        end
+        shift_ram_hit shift_ram_hit_newh(
+            .CLK  (SYSCLK           ), // in : clock
+            .A    (DLYL_NEW_PMT[7:0]), // in : address
+            .D    (regNEWH[i]       ), // in : signal
+            .Q    (NEWH[i]          )  // out: signal
+        );
+    end
+    endgenerate
+
+=======
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
     reg           regEmSignal;
     reg   [18:0]  regDecVal;
     reg   [16:0]  regEvMatch;

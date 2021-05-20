@@ -1,6 +1,9 @@
 `timescale 1ns / 1ps
 /////////////////////////////////////////////////////////////////////
 //
+////////////////////////
+// !!! THIS IS FROM THE PREVIOUS 8GEV EXTINCTION MEASUREMENT ONLY FOR THE REFERENCE !!!
+////////////////////////
 // Multi-Channel Scalar
 //  16 channel, maximum 1088 CLK ticks -> corresponding to 5.44us time window with 200MHz CLK
 ////  16 channel, maximum 688 CLK ticks -> corresponding to 5.5us time window with 125MHz CLK

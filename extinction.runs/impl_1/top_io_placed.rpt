@@ -1,8 +1,14 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 | Tool Version              : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
 | Date                      : Fri Apr 16 15:07:08 2021
 | Host                      : localhost.localdomain running 64-bit unknown
+=======
+| Tool Version              : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date                      : Thu May 20 22:33:25 2021
+| Host                      : dyna-comet running 64-bit major release  (build 9200)
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
 | Command                   : report_io -file top_io_placed.rpt
 | Design                    : top
 | Device                    : xc7k325t

@@ -1,3 +1,5 @@
+verilog xil_defaultlib  \
+"../../../../extinction.srcs/sources_1/ip/bram_2byte_2K/sim/bram_2byte_2K.v" \
 
 verilog xil_defaultlib "glbl.v"
 

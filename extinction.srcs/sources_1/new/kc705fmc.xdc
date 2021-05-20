@@ -181,18 +181,12 @@ set_property PACKAGE_PIN AF23 [get_ports {LA_LPC_N[1]}]
 set_property PACKAGE_PIN AD23 [get_ports {LA_LPC_P[0]}]
 set_property PACKAGE_PIN AE24 [get_ports {LA_LPC_N[0]}]
 
-
-set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[0]}]
-set_property IOSTANDARD LVCMOS15 [get_ports {SW_DEBUG[1]}]
-
-set_property PACKAGE_PIN AG5  [get_ports {SW_DEBUG[0]}]
-set_property PACKAGE_PIN AB12 [get_ports {SW_DEBUG[1]}]
-
 #set_property PACKAGE_PIN D21 [get_ports {FMC_DEBUGOUT_P[0]}]
 #set_property PACKAGE_PIN C21 [get_ports {FMC_DEBUGOUT_N[0]}]
 #set_property PACKAGE_PIN H21 [get_ports {FMC_DEBUGOUT_P[1]}]
 #set_property PACKAGE_PIN H22 [get_ports {FMC_DEBUGOUT_N[1]}]
 
+<<<<<<< HEAD
 create_clock -period 5.000 -name CLK_200M -waveform {0.000 2.500} -add [get_nets CLK_200M]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
@@ -201,3 +195,5 @@ connect_debug_port dbg_hub/clk [get_nets CLK_200M]
 
 #create_clock -period 10.000  -name CLK_100M -waveform {0.000 5.000}  -add [get_nets CLK_100M]
 create_clock -period 100.000 -name CLK_10M  -waveform {0.000 50.000} -add [get_nets CLK_10M]
+=======
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72

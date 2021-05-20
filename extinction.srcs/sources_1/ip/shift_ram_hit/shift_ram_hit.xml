@@ -430,7 +430,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
+<<<<<<< HEAD
             <spirit:value>Thu Feb 04 05:31:33 UTC 2021</spirit:value>
+=======
+            <spirit:value>Thu Jan 28 04:31:33 UTC 2021</spirit:value>
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>

@@ -53,9 +53,10 @@ module top_tdc(
     );
 //*******************************************************************************
 //
-//     TDC count-up
+//     Get spill information
 //
 //*******************************************************************************
+<<<<<<< HEAD
     reg      [1:0]    SPL_REG     ;
     reg               SPL_EDGE    ;
     reg               SPL_END     ;
@@ -100,14 +101,38 @@ module top_tdc(
         if(RESET)begin
             COUNTER   <= 32'd0;
             regEMCNTR <= 16'd0;
+=======
+    wire            SPILL_EDGE ;
+    wire    [15:0]  EM_COUNT   ;
+    GET_SPILLINFO get_spillInfo(
+        .RESET     (RESET     ),
+        .CLK_200M  (CLK_200M  ),
+        .PSPILL    (PSPILL    ),
+        .MR_SYNC   (MR_SYNC   ),
+        .SPILLCOUNT(SPILLCOUNT),
+        .SPILL_EDGE(SPL_EDGE  ),
+        .SPILL_EDGE(SPL_END   ),
+        .EV_MATCH  (EV_MATCH  ),
+        .EM_COUNT  (EM_COUNT  ),
+        .DEBUG_SPLOFFCNT(DEBUG_SPLOFFCNT),
+        .DEBUG_DLYSPLCNT(DEBUG_DLYSPLCNT)
+    );
+
+    always@ (posedge CLK_200M) begin
+        if(RESET)begin
+            COUNTER   <= 32'd0;
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
         end else begin
-            if(SPL_EDGE)begin
+            if(SPILL_EDGE)begin
                 COUNTER   <= 32'd0;
             end else begin
                 COUNTER   <= COUNTER + 32'd1;
             end
+<<<<<<< HEAD
 
             regEMCNTR <= EV_MATCH[15:0];
+=======
+>>>>>>> 82d30bcdddea1ab3a785b38cc9ca2d00db4d7f72
         end
     end
 
