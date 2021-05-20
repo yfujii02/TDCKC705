@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Thu May 20 22:42:39 2021
+| Date             : Fri May 21 00:13:41 2021
 | Host             : dyna-comet running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.946        |
+| Total On-Chip Power (W)  | 2.909        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.761        |
-| Device Static (W)        | 0.185        |
+| Dynamic (W)              | 2.716        |
+| Device Static (W)        | 0.192        |
 | Effective TJA (C/W)      | 1.8          |
-| Max Ambient (C)          | 81.5         |
-| Junction Temperature (C) | 28.5         |
+| Max Ambient (C)          | 79.8         |
+| Junction Temperature (C) | 30.2         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,22 +52,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.289 |       10 |       --- |             --- |
-| Slice Logic              |     0.028 |    53819 |       --- |             --- |
-|   LUT as Logic           |     0.022 |    16754 |    203800 |            8.22 |
+| Clocks                   |     0.271 |       10 |       --- |             --- |
+| Slice Logic              |     0.100 |    53436 |       --- |             --- |
+|   LUT as Logic           |     0.085 |    16648 |    203800 |            8.17 |
+|   Register               |     0.009 |    26667 |    407600 |            6.54 |
 |   CARRY4                 |     0.002 |     1267 |     50950 |            2.49 |
-|   Register               |     0.002 |    26993 |    407600 |            6.62 |
 |   LUT as Shift Register  |     0.002 |      707 |     64000 |            1.10 |
-|   F7/F8 Muxes            |    <0.001 |     1348 |    203800 |            0.66 |
+|   F7/F8 Muxes            |     0.001 |     1348 |    203800 |            0.66 |
 |   LUT as Distributed RAM |    <0.001 |        8 |     64000 |            0.01 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
-|   Others                 |     0.000 |     1747 |       --- |             --- |
-| Signals                  |     0.043 |    38827 |       --- |             --- |
-| Block RAM                |     0.755 |      242 |       445 |           54.38 |
+|   Others                 |     0.000 |     1752 |       --- |             --- |
+| Signals                  |     0.200 |    38542 |       --- |             --- |
+| Block RAM                |     1.498 |      242 |       445 |           54.38 |
 | PLL                      |     0.217 |        2 |        10 |           20.00 |
-| I/O                      |     0.429 |      199 |       500 |           39.80 |
-| Static Power             |     0.185 |          |           |                 |
-| Total                    |     1.946 |          |           |                 |
+| I/O                      |     0.431 |      199 |       500 |           39.80 |
+| Static Power             |     0.192 |          |           |                 |
+| Total                    |     2.909 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,16 +77,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.179 |       1.095 |      0.085 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.219 |       0.191 |      0.029 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     2.080 |       1.989 |      0.091 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.220 |       0.191 |      0.029 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco25    |       2.500 |     0.104 |       0.103 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.105 |       0.104 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.076 |       0.065 |      0.010 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.136 |       0.125 |      0.011 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -135,11 +135,11 @@ Table of Contents
 | Clock           | Domain                    | Constraint (ns) |
 +-----------------+---------------------------+-----------------+
 | CLK_10M         | CLK_10M                   |           100.0 |
-| CLK_125M_1      | nolabel_line167/CLK_125M  |             8.0 |
-| CLK_200M        | nolabel_line167/CLK_200M  |             5.0 |
+| CLK_125M_1      | nolabel_line168/CLK_125M  |             8.0 |
+| CLK_200M        | nolabel_line168/CLK_200M  |             5.0 |
 | GMII_RX_CLK     | GMII_RX_CLK               |             8.0 |
 | PLL_CLKFB_2     | PLL_CLKFB                 |             5.0 |
-| PLL_CLKFB_3     | nolabel_line167/PLL_CLKFB |             5.0 |
+| PLL_CLKFB_3     | nolabel_line168/PLL_CLKFB |             5.0 |
 | SYSCLK_200MP_IN | SYSCLK_200MP_IN           |             5.0 |
 +-----------------+---------------------------+-----------------+
 
@@ -153,246 +153,247 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| top                                |     1.761 |
+| top                                |     2.716 |
 |   LOC_REG                          |     0.020 |
-|   PREPROCESSOR                     |     0.429 |
-|   nolabel_line167                  |     0.227 |
+|   PREPROCESSOR                     |     0.428 |
+|   nolabel_line168                  |     0.223 |
 |     AT93C46_IIC                    |     0.008 |
 |       MIRROR_MEM                   |     0.003 |
 |       PCA9548_SW                   |     0.003 |
-|     SiTCP                          |     0.099 |
-|       SiTCP                        |     0.097 |
+|     SiTCP                          |     0.094 |
+|       SiTCP                        |     0.093 |
 |     fifo_generator_v11_0           |     0.005 |
 |       U0                           |     0.005 |
-|   top_mcs                          |     0.959 |
-|     BUF_LOOP[0].shift_cntr_eachbuf |     0.304 |
-|       CHANNEL_BLK[0].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[10].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[11].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[12].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[13].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[14].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[15].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[16].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[17].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[18].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[19].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[1].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[20].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[21].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[22].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[23].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[24].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[25].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[26].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[27].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[28].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[29].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[2].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[30].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[31].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[3].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[4].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[5].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[6].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[7].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[8].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[9].shift_cntr    |     0.004 |
-|     BUF_LOOP[1].shift_cntr_eachbuf |     0.304 |
-|       CHANNEL_BLK[0].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[10].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[11].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[12].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[13].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[14].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[15].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[16].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[17].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[18].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[19].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[1].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[20].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[21].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[22].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[23].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[24].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[25].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[26].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[27].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[28].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[29].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[2].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[30].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[31].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[3].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[4].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[5].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[6].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[7].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[8].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[9].shift_cntr    |     0.004 |
-|     BUF_LOOP[2].shift_cntr_eachbuf |     0.304 |
-|       CHANNEL_BLK[0].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[10].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[11].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[12].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[13].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[14].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[15].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[16].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[17].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[18].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[19].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[1].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[20].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[21].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[22].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[23].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[24].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[25].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[26].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[27].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[28].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[29].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[2].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[30].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[31].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[32].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[33].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[34].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[35].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[36].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[37].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[38].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[39].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[3].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[40].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[41].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[42].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[43].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[44].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[45].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[46].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[47].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[48].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[49].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[4].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[50].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[51].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[52].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[53].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[54].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[55].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[56].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[57].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[58].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[59].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[5].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[60].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[61].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[62].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[63].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[64].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[65].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[66].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[67].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[68].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[69].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[6].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[70].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[71].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[72].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[73].shift_cntr   |     0.004 |
-|       CHANNEL_BLK[7].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[8].shift_cntr    |     0.004 |
-|       CHANNEL_BLK[9].shift_cntr    |     0.004 |
-|     SEND_LOOP[0].data_send_mcs0    |     0.014 |
-|     SEND_LOOP[1].data_send_mcs0    |     0.014 |
-|     SEND_LOOP[2].data_send_mcs0    |     0.015 |
+|   top_mcs                          |     1.921 |
+|     BUF_LOOP[0].shift_cntr_eachbuf |     0.617 |
+|       CHANNEL_BLK[0].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[10].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[11].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[12].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[13].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[14].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[15].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[16].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[17].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[18].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[19].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[1].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[20].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[21].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[22].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[23].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[24].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[25].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[26].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[27].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[28].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[29].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[2].shift_cntr    |     0.009 |
+|       CHANNEL_BLK[30].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[31].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[3].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[4].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[5].shift_cntr    |     0.009 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[6].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[72].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[7].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[8].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[9].shift_cntr    |     0.008 |
+|     BUF_LOOP[1].shift_cntr_eachbuf |     0.614 |
+|       CHANNEL_BLK[0].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[10].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[11].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[12].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[13].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[14].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[15].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[16].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[17].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[18].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[19].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[1].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[20].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[21].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[22].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[23].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[24].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[25].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[26].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[27].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[28].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[29].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[2].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[30].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[31].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[3].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.009 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[4].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[5].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[6].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[72].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[7].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[8].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[9].shift_cntr    |     0.008 |
+|     BUF_LOOP[2].shift_cntr_eachbuf |     0.602 |
+|       CHANNEL_BLK[0].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[10].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[11].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[12].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[13].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[14].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[15].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[16].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[17].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[18].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[19].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[1].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[20].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[21].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[22].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[23].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[24].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[25].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[26].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[27].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[28].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[29].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[2].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[30].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[31].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[32].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[33].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[34].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[35].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[36].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[37].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[38].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[39].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[3].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[40].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[41].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[42].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[43].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[44].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[45].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[46].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[47].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[48].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[49].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[4].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[50].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[51].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[52].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[53].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[54].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[55].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[56].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[57].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[58].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[59].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[5].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[60].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[61].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[62].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[63].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[64].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[65].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[66].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[67].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[68].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[69].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[6].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[70].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[71].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[72].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[73].shift_cntr   |     0.008 |
+|       CHANNEL_BLK[7].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[8].shift_cntr    |     0.008 |
+|       CHANNEL_BLK[9].shift_cntr    |     0.008 |
+|     SEND_LOOP[0].data_send_mcs0    |     0.026 |
+|     SEND_LOOP[1].data_send_mcs0    |     0.025 |
+|     SEND_LOOP[2].data_send_mcs0    |     0.027 |
+|     make_coincidence               |     0.001 |
 +------------------------------------+-----------+
 
 

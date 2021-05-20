@@ -23,6 +23,7 @@ module
         input    wire            SYSCLK_200MN_IN ,    // From 200MHz Oscillator module
         output   wire            CLK_200M        ,
         output   wire            TCP_RST         ,
+        output   wire            SYS_RST         ,
         // EtherNet
         output   wire            GMII_RSTn       ,
         output   wire            GMII_TX_EN      ,
@@ -116,6 +117,7 @@ module
         .PWRDWN            (1'b0),
         .RST               (1'b0)
     );
+    assign SYS_RST = ~SYS_RSTn;
 
     //SYS_RSTn->off//
     always@(posedge CLK_200M or negedge LOCKED)begin
