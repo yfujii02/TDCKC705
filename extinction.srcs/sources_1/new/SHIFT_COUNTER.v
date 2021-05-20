@@ -13,28 +13,30 @@ module SHIFT_COUNTER_ALL
     );
 genvar i;
 generate
-
-    reg   [1:0]  regEOD;
-    reg          edgeEOD;
-    reg          regRST;
-    always@ (posedge CLK) begin
-        if(RST) begin
-            regEOD[1:0] <= 2'd0;
-            edgeEOD     <= 1'b0;
-            regRST      <= 1'b1;
-        end else begin
-            regEOD[1:0] <= {regEOD[0],EOD};
-            edgeEOD     <= (regEOD[1:0]==2'b01)? 1'b1 : 1'b0;
-            regRST      <= 1'b0;
-        end
-    end
-
     for (i = 0; i < NCHANNEL; i = i+1) begin: CHANNEL_BLK
+        reg   [1:0]  regEOD;
+        reg          edgeEOD;
+        reg          regRST;
+        reg          regEN;
+        always@ (posedge CLK) begin
+            if(RST) begin
+                regEOD[1:0] <= 2'd0;
+                edgeEOD     <= 1'b0;
+                regRST      <= 1'b1;
+            end else begin
+                regEOD[1:0] <= {regEOD[0],EOD};
+                edgeEOD     <= (regEOD[1:0]==2'b01)? 1'b1 : 1'b0;
+                regRST      <= 1'b0;
+            end
+            regEN <= EN;
+        end
+
         SHIFT_COUNTER_EACH shift_cntr(
             //.RST    (RST    ),
             .RST    (regRST ),
             .CLK    (CLK    ),
-            .EN     (EN     ),
+            .EN     (regEN  ),
+            //.EN     (EN     ),
             .SIG    (SIG[i] ),
             .EOD    (edgeEOD    ), // end of data sending
             //.EOD    (EOD    ), // end of data sending
@@ -88,9 +90,16 @@ module SHIFT_COUNTER_EACH(
     assign wCNTR = regCNTR;
     assign raddr = (ROMODE==1'b1)? RLENGTH : RELCNTR;
 
-    reg regEOD; 
+    reg   regEOD0; 
+    reg   regEOD1; 
     always@ (posedge CLK) begin
-        regEOD <= EOD;
+        if(RST) begin
+            regEOD0 <= 1'b0;
+            regEOD1 <= 1'b0;
+        end else begin
+            regEOD0 <= EOD;
+            regEOD1 <= EOD;
+        end
     end
 
     always@ (posedge CLK) begin
@@ -100,11 +109,10 @@ module SHIFT_COUNTER_EACH(
             regEN   <=  2'd0;
         end else begin
             regEN   <= {regEN[0],EN};
-            if(regEN==2'b10) begin // End of spill
-               ROMODE <= 1'b1;
-            end
-            if(regEOD) begin          // End of data read
+            if(regEOD0) begin          // End of data read
                ROMODE <= 1'b0;
+            end else if(regEN==2'b10) begin // End of spill
+               ROMODE <= 1'b1;
             end
 
             if(EN) begin
@@ -122,7 +130,7 @@ module SHIFT_COUNTER_EACH(
         end else begin
             if(regEN==2'b01 || RSTCNTR==11'd1153) begin
                 doRESET <= 1'b0;
-            end else if(regEOD) begin
+            end else if(regEOD1) begin
                 doRESET <= 1'b1;
             end
         end

@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Fri Feb  5 10:32:47 2021
-// Host        : dyna-comet running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Thu May 20 23:30:10 2021
+// Host        : localhost.localdomain running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
-//               c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K_stub.v
+//               /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K_stub.v
 // Design      : bram_2byte_2K
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7k325tffg900-2

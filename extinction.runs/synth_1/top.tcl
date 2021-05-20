@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.runs/synth_1/top.tcl"
+  variable script "/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.tcl"
   variable category "vivado_synth"
 }
 
@@ -78,45 +78,45 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.cache/wt [current_project]
-set_property parent.project_path C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.xpr [current_project]
+set_property webtalk.parent_dir /home/nakazawa/8-gev/kc705/firmware/extinction.cache/wt [current_project]
+set_property parent.project_path /home/nakazawa/8-gev/kc705/firmware/extinction.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part xilinx.com:kc705:part0:1.6 [current_project]
-set_property ip_output_repo c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.cache/ip [current_project]
+set_property ip_output_repo /home/nakazawa/8-gev/kc705/firmware/extinction.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/DATA_SEND_MCS.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/GET_SPILLINFO.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/LOC_REG.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/PREPROCESSOR.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/SHIFT_COUNTER.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top_mcs.v
-  C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/top.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_SEND_MCS.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/GET_SPILLINFO.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/PREPROCESSOR.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v
+  /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V
+  /home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v
+  /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v
 }
-read_ip -quiet C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xci
-set_property used_in_implementation false [get_files -all c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc]
+read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xci
+set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc]
 
-read_ip -quiet C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K.xci
-set_property used_in_implementation false [get_files -all c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K_ooc.xdc]
+read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K.xci
+set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/bram_2byte_2K/bram_2byte_2K_ooc.xdc]
 
-read_ip -quiet C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit.xci
-set_property used_in_implementation false [get_files -all c:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit_ooc.xdc]
+read_ip -quiet /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit.xci
+set_property used_in_implementation false [get_files -all /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit_ooc.xdc]
 
-read_edif C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc
+read_edif /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -126,17 +126,17 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
-set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
+read_xdc /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc
+set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 
-read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc
-set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/extinction.srcs/sources_1/new/kc705fmc.xdc]
+read_xdc /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc
+set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/kc705fmc.xdc]
 
-read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc
-set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/SiTCP.xdc]
+read_xdc /home/nakazawa/8-gev/kc705/firmware/from_other_repo/SiTCP.xdc
+set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/from_other_repo/SiTCP.xdc]
 
-read_xdc C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc
-set_property used_in_implementation false [get_files C:/Users/comet/Desktop/COTTRI_PROJECT/Firmware/Extinction2/TDCKC705/from_other_repo/kc705sitcp.xdc]
+read_xdc /home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc
+set_property used_in_implementation false [get_files /home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
