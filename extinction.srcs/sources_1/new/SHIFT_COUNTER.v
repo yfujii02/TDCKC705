@@ -151,7 +151,7 @@ module SHIFT_COUNTER_EACH(
 
     always@ (posedge CLK) begin
         if(RST) begin
-            dlyCNTR1CLK <= 12'd0;
+            dlyCNTR1CLK <= 11'd0;
         end else begin
             dlyCNTR1CLK <= RELCNTR;
         end

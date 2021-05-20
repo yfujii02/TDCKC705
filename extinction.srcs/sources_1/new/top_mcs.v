@@ -64,7 +64,11 @@ module top_mcs(
     output  reg             SEND_EN   ,
     output  wire   [ 7:0]   BUF_SWITCH,
     output  wire    [7:0]   DEBUG_SPLOFFCNT,
-    output  wire    [2:0]   DEBUG_DLYSPLCNT
+    output  wire    [2:0]   DEBUG_DLYSPLCNT,
+    output  wire   [15:0]   cnt1,
+    output  wire   [15:0]   cnt2,
+    output  wire   [15:0]   cnt3,
+    output  wire   [15:0]   cnt4 
     );
 
     parameter NBUF     =  3; /// Number of cyclic buffers
@@ -112,7 +116,11 @@ module top_mcs(
         .BH1   (BH[1]       ),
         .OHAOR (OLDH_ALL    ),
         .COINC (COIN        ),
-        .SIGOUT(INPUT[73:0] )
+        .SIGOUT(INPUT[73:0] ),
+        .cnt1(cnt1),
+        .cnt2(cnt2),
+        .cnt3(cnt3),
+        .cnt4(cnt4)
     );
 
     always @ (posedge CLK_200M) begin

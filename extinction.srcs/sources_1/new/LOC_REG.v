@@ -60,12 +60,16 @@ module LOC_REG(
     output  wire     [7:0]  REG_DLYL_MPPC        ,    // out    : Delay for MPPC
     output  wire     [7:0]  REG_DLYL_OLD_PMT     ,    // out    : Delay for New PMT
     output  wire     [7:0]  REG_DLYL_ALLOLD_PMT  ,    // out    : Delay for New PMT
-    output  wire     [7:0]  REG_DLYL_NEW_PMT          // out    : Delay for Old PMT
+    output  wire     [7:0]  REG_DLYL_NEW_PMT     ,    // out    : Delay for Old PMT
+    input   wire    [15:0]  REG_CNT1,
+    input   wire    [15:0]  REG_CNT2,
+    input   wire    [15:0]  REG_CNT3,
+    input   wire    [15:0]  REG_CNT4
 );
 //------------------------------------------------------------------------------
 //    Input buffer
 //------------------------------------------------------------------------------
-    reg       [3:0]  regCs           ;
+    reg       [4:0]  regCs           ;
     reg      [10:0]  irAddr          ;
     reg              irWe            ;
     reg              irRe            ;
@@ -76,6 +80,7 @@ module LOC_REG(
         regCs[1]     <= (LOC_ADDR[31:4]==28'h1);
         regCs[2]     <= (LOC_ADDR[31:4]==28'h2);
         regCs[3]     <= (LOC_ADDR[31:4]==28'h3);
+        regCs[4]     <= (LOC_ADDR[31:4]==28'h4);
 
         irAddr[10:0] <= LOC_ADDR[10:0];
         irWe         <= LOC_WE;
@@ -155,6 +160,23 @@ module LOC_REG(
     reg     [7:0]    x3E_Reg   ; // NC                           
     reg     [7:0]    x3F_Reg   ; // NC                           
 
+    reg     [7:0]    x40_Reg   ; // NC
+    reg     [7:0]    x41_Reg   ; // NC
+    reg     [7:0]    x42_Reg   ; // NC
+    reg     [7:0]    x43_Reg   ; // NC
+    reg     [7:0]    x44_Reg   ; // NC
+    reg     [7:0]    x45_Reg   ; // NC
+    reg     [7:0]    x46_Reg   ; // NC
+    reg     [7:0]    x47_Reg   ; // NC
+    reg     [7:0]    x48_Reg   ; // NC
+    reg     [7:0]    x49_Reg   ; // NC
+    reg     [7:0]    x4A_Reg   ; // NC
+    reg     [7:0]    x4B_Reg   ; // NC                           
+    reg     [7:0]    x4C_Reg   ; // NC                           
+    reg     [7:0]    x4D_Reg   ; // NC                           
+    reg     [7:0]    x4E_Reg   ; // NC                           
+    reg     [7:0]    x4F_Reg   ; // NC                           
+
     always@ (posedge CLK or posedge RST) begin
         if(RST)begin
 ///////////////////////////////////////////////////////
@@ -230,6 +252,23 @@ module LOC_REG(
             x3D_Reg[7:0]    <= 8'h00;   //  NC                         
             x3E_Reg[7:0]    <= 8'h00;   //  NC                         
             x3F_Reg[7:0]    <= 8'h00;   //  NC                         
+
+            x40_Reg[7:0]    <= 8'h00;   //  NC
+            x41_Reg[7:0]    <= 8'h00;   //  NC
+            x42_Reg[7:0]    <= 8'h00;   //  NC
+            x43_Reg[7:0]    <= 8'h00;   //  NC
+            x44_Reg[7:0]    <= 8'h00;   //  NC
+            x45_Reg[7:0]    <= 8'h00;   //  NC
+            x46_Reg[7:0]    <= 8'h00;   //  NC
+            x47_Reg[7:0]    <= 8'h00;   //  NC
+            x48_Reg[7:0]    <= 8'h00;   //  NC
+            x49_Reg[7:0]    <= 8'h00;   //  NC
+            x4A_Reg[7:0]    <= 8'h00;   //  NC
+            x4B_Reg[7:0]    <= 8'h00;   //  NC                         
+            x4C_Reg[7:0]    <= 8'h00;   //  NC                         
+            x4D_Reg[7:0]    <= 8'h00;   //  NC                         
+            x4E_Reg[7:0]    <= 8'h00;   //  NC                         
+            x4F_Reg[7:0]    <= 8'h00;   //  NC                         
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -308,6 +347,23 @@ module LOC_REG(
                 x3E_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hE) ? irWd[7:0] : x3E_Reg[7:0]);
                 x3F_Reg[7:0]    <= (regCs[3] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x3F_Reg[7:0]);
                 
+                x40_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h0) ? irWd[7:0] : x40_Reg[7:0]);
+                x41_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h1) ? irWd[7:0] : x41_Reg[7:0]);
+                x42_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h2) ? irWd[7:0] : x42_Reg[7:0]);
+                x43_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h3) ? irWd[7:0] : x43_Reg[7:0]);
+                x44_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h4) ? irWd[7:0] : x44_Reg[7:0]);
+                x45_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h5) ? irWd[7:0] : x45_Reg[7:0]);
+                x46_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h6) ? irWd[7:0] : x46_Reg[7:0]);
+                x47_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h7) ? irWd[7:0] : x47_Reg[7:0]);
+                x48_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h8) ? irWd[7:0] : x48_Reg[7:0]);
+                x49_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'h9) ? irWd[7:0] : x49_Reg[7:0]);
+                x4A_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hA) ? irWd[7:0] : x4A_Reg[7:0]);
+                x4B_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hB) ? irWd[7:0] : x4B_Reg[7:0]);
+                x4C_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hC) ? irWd[7:0] : x4C_Reg[7:0]);
+                x4D_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hD) ? irWd[7:0] : x4D_Reg[7:0]);
+                x4E_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hE) ? irWd[7:0] : x4E_Reg[7:0]);
+                x4F_Reg[7:0]    <= (regCs[4] & (irAddr[3:0]==4'hF) ? irWd[7:0] : x4F_Reg[7:0]);
+                
             end else begin
                 x1E_Reg <= (~irX1E_Reg[2]) & x1E_Reg; // High only within 1CLK
             end
@@ -319,7 +375,8 @@ module LOC_REG(
     reg      [7:0]    rdDataB ;
     reg      [7:0]    rdDataC ;
     reg      [7:0]    rdDataD ;
-    reg      [3:0]    regRv   ;
+    reg      [7:0]    rdDataE ;
+    reg      [4:0]    regRv   ;
     reg               regAck  ;
 
 
@@ -399,9 +456,27 @@ module LOC_REG(
             4'hE:    rdDataD[7:0]    <= x3E_Reg[7:0];        // NC                         
             4'hF:    rdDataD[7:0]    <= x3F_Reg[7:0];        // NC                         
         endcase
+        case(irAddr[3:0]) /// 
+            4'h0:    rdDataE[7:0]    <= REG_CNT1[15:8];       // 
+            4'h1:    rdDataE[7:0]    <= REG_CNT1[7:0];        // 
+            4'h2:    rdDataE[7:0]    <= REG_CNT2[15:8];       // 
+            4'h3:    rdDataE[7:0]    <= REG_CNT2[7:0];        // 
+            4'h4:    rdDataE[7:0]    <= REG_CNT3[15:8];       // 
+            4'h5:    rdDataE[7:0]    <= REG_CNT3[7:0];        // 
+            4'h6:    rdDataE[7:0]    <= REG_CNT4[15:8];       // 
+            4'h7:    rdDataE[7:0]    <= REG_CNT4[7:0];        // 
+            4'h8:    rdDataE[7:0]    <= 8'h0;        // NC
+            4'h9:    rdDataE[7:0]    <= 8'h0;        // NC
+            4'hA:    rdDataE[7:0]    <= 8'h0;        // NC
+            4'hB:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hC:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hD:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hE:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hF:    rdDataE[7:0]    <= 8'h0;        // NC                         
+        endcase
 
-        regRv[3:0]    <= (irRe    ? regCs[3:0] : 8'd0);
-        regAck        <= (|regCs[3:0]) & (irWe | irRe);
+        regRv[4:0]    <= (irRe    ? regCs[4:0] : 8'd0);
+        regAck        <= (|regCs[4:0]) & (irWe | irRe);
     end
 
     reg     [7:0]    orRd ;
@@ -411,7 +486,8 @@ module LOC_REG(
         orRd[7:0]  <=   (regRv[0]  ? rdDataA[7:0] : 8'd0)|
                         (regRv[1]  ? rdDataB[7:0] : 8'd0)|
                         (regRv[2]  ? rdDataC[7:0] : 8'd0)|
-                        (regRv[3]  ? rdDataD[7:0] : 8'd0);
+                        (regRv[3]  ? rdDataD[7:0] : 8'd0)|
+                        (regRv[4]  ? rdDataE[7:0] : 8'd0);
         orAck      <=   regAck;
     end
 

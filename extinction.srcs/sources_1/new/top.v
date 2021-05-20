@@ -228,6 +228,10 @@ module
     wire   [15:0]  debug_fifo_cnt;
     wire    [7:0]  debug_sploffcnt;
     wire    [2:0]  debug_dlysplcnt;
+    wire   [15:0]  cnt1;
+    wire   [15:0]  cnt2;
+    wire   [15:0]  cnt3;
+    wire   [15:0]  cnt4;
 //    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
@@ -273,7 +277,11 @@ module
         .SEND_EN    (TCP_TX_EN    ), // Output data enable SiTCP
         .BUF_SWITCH (dbg_buf_switch),
         .DEBUG_SPLOFFCNT(debug_sploffcnt),
-        .DEBUG_DLYSPLCNT(debug_dlysplcnt)
+        .DEBUG_DLYSPLCNT(debug_dlysplcnt),
+        .cnt1(cnt1),
+        .cnt2(cnt2),
+        .cnt3(cnt3),
+        .cnt4(cnt4)
     );
 
     wire    [7:0]   DELAY_TEST;
@@ -326,7 +334,11 @@ module
         .REG_DLYL_MPPC      (DLYL_MPPC[7:0]       ), // out: Delay for MPPC
         .REG_DLYL_OLD_PMT   (DLYL_OLD_PMT[7:0]    ), // out: Delay for Old PMT
         .REG_DLYL_ALLOLD_PMT(DLYL_ALLOLD_PMT[7:0] ), // out: Delay for Old PMT
-        .REG_DLYL_NEW_PMT   (DLYL_NEW_PMT[7:0]    )  // out: Delay for New PMT
+        .REG_DLYL_NEW_PMT   (DLYL_NEW_PMT[7:0]    ), // out: Delay for New PMT
+        .REG_CNT1 (cnt1),
+        .REG_CNT2 (cnt2),
+        .REG_CNT3 (cnt3),
+        .REG_CNT4 (cnt4)
     );
 
    BUFG BUFSTART( .O(RUN_START), .I(REG_START));
