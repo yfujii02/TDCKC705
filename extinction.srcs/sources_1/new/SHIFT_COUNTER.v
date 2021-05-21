@@ -23,12 +23,14 @@ generate
                 regEOD[1:0] <= 2'd0;
                 edgeEOD     <= 1'b0;
                 regRST      <= 1'b1;
+                regEN       <= 1'b0;
             end else begin
                 regEOD[1:0] <= {regEOD[0],EOD};
                 edgeEOD     <= (regEOD[1:0]==2'b01)? 1'b1 : 1'b0;
                 regRST      <= 1'b0;
+                regEN       <= EN;
             end
-            regEN <= EN;
+            //regEN <= EN;
         end
 
         SHIFT_COUNTER_EACH shift_cntr(

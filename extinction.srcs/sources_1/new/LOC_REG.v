@@ -269,9 +269,9 @@ module LOC_REG(
             x4A_Reg[7:0]    <= 8'h00;   //  NC
             x4B_Reg[7:0]    <= 8'h00;   //  NC                         
             x4C_Reg[7:0]    <= 8'h00;   //  NC                         
-            x4D_Reg[7:0]    <= 8'h03;   //  see edge TC                         
-            x4E_Reg[7:0]    <= 8'h03;   //  see edge BH                         
-            x4F_Reg[7:0]    <= 8'h01;   //  see edge old hd all                         
+            x4D_Reg[7:0]    <= 8'h03;   //  NC                         
+            x4E_Reg[7:0]    <= 8'h03;   //  NC                         
+            x4F_Reg[7:0]    <= 8'h01;   //  NC                         
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -473,9 +473,9 @@ module LOC_REG(
             4'hA:    rdDataE[7:0]    <= 8'h0;        // NC
             4'hB:    rdDataE[7:0]    <= 8'h0;        // NC                         
             4'hC:    rdDataE[7:0]    <= 8'h0;        // NC                         
-            4'hD:    rdDataE[7:0]    <= x4D_Reg[7:0];        // NC                         
-            4'hE:    rdDataE[7:0]    <= x4E_Reg[7:0];        // NC                         
-            4'hF:    rdDataE[7:0]    <= x4F_Reg[7:0];        // NC                         
+            4'hD:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hE:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hF:    rdDataE[7:0]    <= 8'h0;        // NC                         
         endcase
 
         regRv[4:0]    <= (irRe    ? regCs[4:0] : 8'd0);
@@ -532,4 +532,8 @@ module LOC_REG(
 //    assign  REG_DLYL_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
     assign  REG_SPLDIV[3:0] = x1A_Reg[3:0];
+
+    assign  REG_SEE_EDGE_TC[1:0] = x4D_Reg[1:0];
+    assign  REG_SEE_EDGE_BH[1:0] = x4E_Reg[1:0];
+    assign  REG_SEE_EDGE_OLDHALL = x4F_Reg[0];
 endmodule

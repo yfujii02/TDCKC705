@@ -55,20 +55,20 @@ module PREPROCESSOR(
     input   wire     [1:0]    SEE_EDGE_BH , // in
     input   wire              SEE_EDGE_OLDHALL
     );
-    reg   [1:0]  seeEdgeBH;      /// Reduce the width because it may not have to be a shift register
-    reg   [1:0]  seeEdgeTC;      /// Reduce the width because it may not have to be a shift register
-    reg          seeEdgeOldhall; /// Reduce the width because it may not have to be a shift register
-    always @(posedge SYSCLK) begin
-        if(SYSRST) begin
-            seeEdgeBH[1:0] <= 2'd0;
-            seeEdgeTC[1:0] <= 2'd0;
-            seeEdgeOldhall <= 1'd0;
-        end else begin 
-            seeEdgeBH[1:0] <= SEE_EDGE_BH[1:0];
-            seeEdgeTC[1:0] <= SEE_EDGE_TC[1:0];
-            seeEdgeOldhall <= SEE_EDGE_OLDHALL;
-        end
-    end
+    //reg   [1:0]  seeEdgeBH;      /// Reduce the width because it may not have to be a shift register
+    //reg   [1:0]  seeEdgeTC;      /// Reduce the width because it may not have to be a shift register
+    //reg          seeEdgeOldhall; /// Reduce the width because it may not have to be a shift register
+    //always @(posedge SYSCLK) begin
+    //    if(SYSRST) begin
+    //        seeEdgeBH[1:0] <= 2'd0;
+    //        seeEdgeTC[1:0] <= 2'd0;
+    //        seeEdgeOldhall <= 1'd0;
+    //    end else begin 
+    //        seeEdgeBH[1:0] <= SEE_EDGE_BH[1:0];
+    //        seeEdgeTC[1:0] <= SEE_EDGE_TC[1:0];
+    //        seeEdgeOldhall <= SEE_EDGE_OLDHALL;
+    //    end
+    //end
     
     wire    [19:0]    ha_hpc        ; // for additional information
     wire    [31:0]    la_hpc        ; // for main counters
@@ -113,27 +113,38 @@ module PREPROCESSOR(
 
     /// Signal-edge detection
     wire             dly_ev_match ;
+    wire             irEvmatch    ;
 
     reg    [63:0]    regSIG       ;
     reg   [127:0]    sigEdge      ;
+    wire   [63:0]    irSIG        ;
 
     reg              regSync      ;
     reg     [1:0]    syncEdge     ;
+    wire             irSync       ;
 
     reg     [1:0]    regBH        ;
     reg     [3:0]    bhEdge       ;
+    wire    [1:0]    irBH         ;
 
     reg     [1:0]    regTC        ;
     reg     [3:0]    tcEdge       ;
+    wire    [1:0]    irTC         ;
 
     reg              regOLDHALL   ;
     reg     [1:0]    oldhallEdge  ;
+    wire             irOLDHALL    ;
 
     reg     [7:0]    regOLDH      ; // from old hodoscope and other PMTs
     reg    [15:0]    oldhEdge     ; // detect the edge timing
+    wire    [7:0]    irOLDH       ;
 
     reg     [1:0]    regNEWH      ;
     reg     [3:0]    newhEdge     ;
+    wire    [1:0]    irNEWH       ;
+
+    wire             irPspill     ;
+    wire             irMrsync     ;
 
     // loop for the MPPC signals
     generate
@@ -151,8 +162,9 @@ module PREPROCESSOR(
             .CLK  (SYSCLK         ), // in : clock
             .A    (DLYL_MPPC[7:0] ), // in : address
             .D    (regSIG[i]      ), // in : signal
-            .Q    (SIGNAL[i]      )  // out: signal
+            .Q    (irSIG[i]       )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_sig(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irSIG[i]), .Q(SIGNAL[i]));
     end
     endgenerate
 
@@ -161,8 +173,9 @@ module PREPROCESSOR(
           .CLK  (SYSCLK           ), // in : clock
           .A    (DLYL_PSPILL[7:0] ), // in : address
           .D    (pspill           ), // in : signal
-          .Q    (PSPILL           )  // out: signal
+          .Q    (irPspill         )  // out: signal
       );
+      FDRE #(.INIT(1'b0)) fd_sig(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irPspill), .Q(PSPILL));
     endgenerate
     
     generate
@@ -170,8 +183,9 @@ module PREPROCESSOR(
           .CLK  (SYSCLK           ), // in : clock
           .A    (DLYL_EVMATCH[7:0]), // in : address
           .D    (ev_match         ), // in : signal
-          .Q    (dly_ev_match     )  // out: signal
+          .Q    (irEvmatch        )  // out: signal
       );
+      FDRE #(.INIT(1'b0)) fd_ev(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irEvmatch), .Q(dly_ev_match));
     endgenerate
 
     generate
@@ -188,8 +202,9 @@ module PREPROCESSOR(
             .CLK  (SYSCLK           ), // in : clock
             .A    (DLYL_MRSYNC[7:0] ), // in : address
             .D    (regSync          ), // in : signal
-            .Q    (MR_SYNC          )  // out: signal
+            .Q    (irMrsync         )  // out: signal
         );                         
+        FDRE #(.INIT(1'b0)) fd_mr(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irMrsync), .Q(MR_SYNC));
     endgenerate
 
     generate
@@ -200,15 +215,17 @@ module PREPROCESSOR(
                 regBH[i]          <= 1'd0;
             end else begin
                 bhEdge[2*i+1:2*i] <= {bhEdge[2*i],bh_fmc[i]};
-                regBH[i]          <= (seeEdgeBH[i]==1'b1)? (bhEdge[2*i+1:2*i]==2'b01) : bh_fmc[i];
+                //regBH[i]          <= seeEdgeBH[i] ? (bhEdge[2*i+1:2*i]==2'b01) : bh_fmc[i];
+                regBH[i]          <= (SEE_EDGE_BH[i]==1'b1)? (bhEdge[2*i+1:2*i]==2'b01) : bh_fmc[i];
             end
         end
         shift_ram_hit shift_ram_hit_bh(
             .CLK  (SYSCLK            ), // in : clock
             .A    (DLYL_BH[8*i+7:8*i]), // in : address
             .D    (regBH[i]          ), // in : signal
-            .Q    (BH[i]             )  // out: signal
+            .Q    (irBH[i]           )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_bh(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irBH[i]), .Q(BH[i]));
     end
     endgenerate
 
@@ -220,15 +237,17 @@ module PREPROCESSOR(
                 regTC[i]          <= 1'd0;
             end else begin
                 tcEdge[2*i+1:2*i] <= {tcEdge[2*i],tc_fmc[i]};
-                regTC[i]          <= (seeEdgeTC[i]==1'b1)? (tcEdge[2*i+1:2*i]==2'b01) : tc_fmc[i];
+                //regTC[i]          <= seeEdgeTC[i] ? (tcEdge[2*i+1:2*i]==2'b01) : tc_fmc[i];
+                regTC[i]          <= (SEE_EDGE_TC[i]==1'b1)? (tcEdge[2*i+1:2*i]==2'b01) : tc_fmc[i];
             end
         end
         shift_ram_hit shift_ram_hit_tc(
             .CLK  (SYSCLK            ), // in : clock
             .A    (DLYL_TC[8*i+7:8*i]), // in : address
             .D    (regTC[i]          ), // in : signal
-            .Q    (TC[i]             )  // out: signal
+            .Q    (irTC[i]           )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_tc(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irTC[i]), .Q(TC[i]));
     end
     endgenerate
 
@@ -239,15 +258,17 @@ module PREPROCESSOR(
                 regOLDHALL       <= 1'd0;
             end else begin
                 oldhallEdge[1:0] <= {oldhallEdge[0],oldhd_all_fmc};
-                regOLDHALL       <= (seeEdgeOldhall==1'b1)? (oldhallEdge[1:0]==2'b01) : oldhd_all_fmc;
+                //regOLDHALL       <= seeEdgeOldhall ? (oldhallEdge[1:0]==2'b01) : oldhd_all_fmc;
+                regOLDHALL       <= (SEE_EDGE_OLDHALL==1'b1)? (oldhallEdge[1:0]==2'b01) : oldhd_all_fmc;
             end
         end
         shift_ram_hit shift_ram_hit_oldhd_all(
             .CLK  (SYSCLK              ), // in : clock
             .A    (DLYL_ALLOLD_PMT[7:0]), // in : address
             .D    (regOLDHALL          ), // in : signal
-            .Q    (OLDH_ALL            )  // out: signal
+            .Q    (irOLDHALL           )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_oldhall(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irOLDHALL), .Q(OLDH_ALL));
     endgenerate
 
     // loop for the PMT signals
@@ -266,8 +287,9 @@ module PREPROCESSOR(
             .CLK  (SYSCLK           ), // in : clock
             .A    (DLYL_OLD_PMT[7:0]), // in : address
             .D    (regOLDH[i]       ), // in : signal
-            .Q    (OLDH[i]          )  // out: signal
+            .Q    (irOLDH[i]        )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_oldh(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irOLDH[i]), .Q(OLDH[i]));
     end
     endgenerate
 
@@ -287,8 +309,9 @@ module PREPROCESSOR(
             .CLK  (SYSCLK           ), // in : clock
             .A    (DLYL_NEW_PMT[7:0]), // in : address
             .D    (regNEWH[i]       ), // in : signal
-            .Q    (NEWH[i]          )  // out: signal
+            .Q    (irNEWH[i]        )  // out: signal
         );
+        FDRE #(.INIT(1'b0)) fd_newh(.C(SYSCLK), .CE(1'b1), .R(SYSRST), .D(irNEWH[i]), .Q(NEWH[i]));
     end
     endgenerate
 

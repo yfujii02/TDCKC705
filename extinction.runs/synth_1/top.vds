@@ -2,8 +2,8 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Fri May 21 17:14:39 2021
-# Process ID: 1598
+# Start of session at: Sat May 22 01:02:00 2021
+# Process ID: 10592
 # Current directory: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1
 # Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.vds
@@ -17,9 +17,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 1638
+INFO: [Synth 8-7075] Helper process launched with PID 10628
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:25 . Memory (MB): peak = 2193.637 ; gain = 26.902 ; free physical = 15176 ; free virtual = 40991
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:25 . Memory (MB): peak = 2194.141 ; gain = 22.902 ; free physical = 13428 ; free virtual = 39313
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:18]
 INFO: [Synth 8-6157] synthesizing module 'PREPROCESSOR' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
@@ -32,9 +32,15 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/opt/Xilinx/Vivado/2020.1/scr
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS_25 - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
-INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-1598-localhost.localdomain/realtime/shift_ram_hit_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-1598-localhost.localdomain/realtime/shift_ram_hit_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'PREPROCESSOR' (3#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
+INFO: [Synth 8-6157] synthesizing module 'shift_ram_hit' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-10592-localhost.localdomain/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'shift_ram_hit' (2#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-10592-localhost.localdomain/realtime/shift_ram_hit_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'FDRE' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'FDRE' (3#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13724]
+INFO: [Synth 8-6155] done synthesizing module 'PREPROCESSOR' (4#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/PREPROCESSOR.v:23]
 INFO: [Synth 8-6157] synthesizing module 'kc705sitcp' [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:20]
 INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
@@ -44,9 +50,9 @@ INFO: [Synth 8-6157] synthesizing module 'IBUFDS__parameterized0' [/opt/Xilinx/V
 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
 	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
 	Parameter IOSTANDARD bound to: LVDS - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'IBUFDS__parameterized0' (3#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS__parameterized0' (4#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:32992]
 INFO: [Synth 8-6157] synthesizing module 'BUFG' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
-INFO: [Synth 8-6155] done synthesizing module 'BUFG' (4#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (5#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:1083]
 INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
 	Parameter CLKFBOUT_MULT bound to: 5 - type: integer 
@@ -73,7 +79,7 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE' [/opt/Xilinx/Vivado/2020.1
 	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
 	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (5#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE' (6#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 INFO: [Synth 8-6157] synthesizing module 'AT93C46_IIC' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
 	Parameter PCA9548_AD bound to: 7'b1110100 
 	Parameter PCA9548_SL bound to: 8'b00001000 
@@ -183,7 +189,7 @@ INFO: [Synth 8-6157] synthesizing module 'RAMB18E1' [/opt/Xilinx/Vivado/2020.1/s
 	Parameter WRITE_MODE_B bound to: WRITE_FIRST - type: string 
 	Parameter WRITE_WIDTH_A bound to: 0 - type: integer 
 	Parameter WRITE_WIDTH_B bound to: 9 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'RAMB18E1' (6#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
+INFO: [Synth 8-6155] done synthesizing module 'RAMB18E1' (7#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:74915]
 WARNING: [Synth 8-689] width (8) of port connection 'DOADO' does not match port width (16) of module 'RAMB18E1' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:148]
 WARNING: [Synth 8-689] width (1) of port connection 'DOPADOP' does not match port width (2) of module 'RAMB18E1' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:149]
 WARNING: [Synth 8-7071] port 'DOBDO' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
@@ -192,7 +198,7 @@ WARNING: [Synth 8-7071] port 'DIADI' of module 'RAMB18E1' is unconnected for ins
 WARNING: [Synth 8-7071] port 'DIPADIP' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
 WARNING: [Synth 8-7071] port 'WEA' of module 'RAMB18E1' is unconnected for instance 'RAMB18E1_i' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
 WARNING: [Synth 8-7023] instance 'RAMB18E1_i' of module 'RAMB18E1' has 22 connections declared, but only 17 given [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:133]
-INFO: [Synth 8-6155] done synthesizing module 'BRAM128_9B9B' (7#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'BRAM128_9B9B' (8#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/BRAM128_9B9B.v:21]
 INFO: [Synth 8-6157] synthesizing module 'PCA9548_SW' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
 	Parameter PCA9548_AD bound to: 7'b1110100 
 	Parameter PCA9548_SL bound to: 8'b00001000 
@@ -212,25 +218,25 @@ INFO: [Synth 8-6157] synthesizing module 'IIC_CORE' [/home/nakazawa/8-gev/kc705/
 	Parameter SLEW bound to: SLOW - type: string 
 INFO: [Synth 8-6157] synthesizing module 'FD' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
 	Parameter INIT bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'FD' (8#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
+INFO: [Synth 8-6155] done synthesizing module 'FD' (9#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:13483]
 INFO: [Synth 8-6157] synthesizing module 'OBUF' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
 	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'OBUF' (9#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
+INFO: [Synth 8-6155] done synthesizing module 'OBUF' (10#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:46314]
 INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
 	Parameter DRIVE bound to: 4 - type: integer 
 	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
 	Parameter IOSTANDARD bound to: LVCMOS25 - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (10#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (11#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:36238]
 INFO: [Synth 8-6157] synthesizing module 'PULLUP' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
-INFO: [Synth 8-6155] done synthesizing module 'PULLUP' (11#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
-INFO: [Synth 8-6155] done synthesizing module 'IIC_CORE' (12#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'IIC_CTL' (13#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
-INFO: [Synth 8-6155] done synthesizing module 'PCA9548_SW' (14#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
-INFO: [Synth 8-6155] done synthesizing module 'AT93C46_IIC' (15#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'PULLUP' (12#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:69835]
+INFO: [Synth 8-6155] done synthesizing module 'IIC_CORE' (13#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CORE.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'IIC_CTL' (14#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/IIC_CTL.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'PCA9548_SW' (15#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/PCA9548_SW.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'AT93C46_IIC' (16#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/AT93C46_IIC.v:21]
 INFO: [Synth 8-6157] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
 	Parameter DDR_CLK_EDGE bound to: OPPOSITE_EDGE - type: string 
 	Parameter INIT bound to: 1'b0 
@@ -238,15 +244,15 @@ INFO: [Synth 8-6157] synthesizing module 'ODDR' [/opt/Xilinx/Vivado/2020.1/scrip
 	Parameter IS_D1_INVERTED bound to: 1'b0 
 	Parameter IS_D2_INVERTED bound to: 1'b0 
 	Parameter SRTYPE bound to: SYNC - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'ODDR' (16#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
+INFO: [Synth 8-6155] done synthesizing module 'ODDR' (17#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:49784]
 INFO: [Synth 8-6157] synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
 	Parameter TIM_PERIOD bound to: 8'b11001000 
 INFO: [Synth 8-6157] synthesizing module 'TIMER' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
 	Parameter TIM_PERIOD bound to: 8'b11000110 
-INFO: [Synth 8-6155] done synthesizing module 'TIMER' (17#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'TIMER' (18#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/TIMER.v:13]
 INFO: [Synth 8-6157] synthesizing module 'SiTCP_XC7K_32K_BBT_V110' [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
-INFO: [Synth 8-6155] done synthesizing module 'SiTCP_XC7K_32K_BBT_V110' (18#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
-INFO: [Synth 8-6155] done synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' (19#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
+INFO: [Synth 8-6155] done synthesizing module 'SiTCP_XC7K_32K_BBT_V110' (19#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.V:28]
+INFO: [Synth 8-6155] done synthesizing module 'WRAP_SiTCP_GMII_XC7K_32K' (20#1) [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/WRAP_SiTCP_GMII_XC7K_32K.V:28]
 INFO: [Synth 8-638] synthesizing module 'fifo_generator_1' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:74]
 	Parameter C_COMMON_CLOCK bound to: 1 - type: integer 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
@@ -451,8 +457,8 @@ INFO: [Synth 8-638] synthesizing module 'fifo_generator_1' [/home/nakazawa/8-gev
 	Parameter C_REG_SLICE_MODE_RDCH bound to: 0 - type: integer 
 	Parameter C_REG_SLICE_MODE_AXIS bound to: 0 - type: integer 
 INFO: [Synth 8-3491] module 'fifo_generator_v13_2_5' declared at '/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/hdl/fifo_generator_v13_2_vhsyn_rfs.vhd:38604' bound to instance 'U0' of component 'fifo_generator_v13_2_5' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:542]
-INFO: [Synth 8-256] done synthesizing module 'fifo_generator_1' (47#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:74]
-INFO: [Synth 8-6155] done synthesizing module 'kc705sitcp' (48#1) [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:20]
+INFO: [Synth 8-256] done synthesizing module 'fifo_generator_1' (48#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/synth/fifo_generator_1.vhd:74]
+INFO: [Synth 8-6155] done synthesizing module 'kc705sitcp' (49#1) [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.v:20]
 INFO: [Synth 8-6157] synthesizing module 'top_mcs' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:41]
 	Parameter NBUF bound to: 3 - type: integer 
 	Parameter NCHANNEL bound to: 74 - type: integer 
@@ -461,29 +467,29 @@ INFO: [Synth 8-6157] synthesizing module 'top_mcs' [/home/nakazawa/8-gev/kc705/f
 INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_ALL' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
 	Parameter NCHANNEL bound to: 74 - type: integer 
 	Parameter DWIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_EACH' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:53]
-INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-1598-localhost.localdomain/realtime/bram_2byte_2K_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (49#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-1598-localhost.localdomain/realtime/bram_2byte_2K_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_EACH' (50#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:53]
-INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_ALL' (51#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
+INFO: [Synth 8-6157] synthesizing module 'SHIFT_COUNTER_EACH' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:55]
+INFO: [Synth 8-6157] synthesizing module 'bram_2byte_2K' [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-10592-localhost.localdomain/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'bram_2byte_2K' (50#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/.Xil/Vivado-10592-localhost.localdomain/realtime/bram_2byte_2K_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_EACH' (51#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'SHIFT_COUNTER_ALL' (52#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/SHIFT_COUNTER.v:1]
 INFO: [Synth 8-6157] synthesizing module 'DATA_SEND_MCS' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
 	Parameter MAXCOUNT bound to: 18'b100111010100010000 
 	Parameter MAXCWOHD bound to: 18'b100111010100001000 
 	Parameter MAXLEN bound to: 11'b10001000000 
 	Parameter MAXBYTE bound to: 8'b10010100 
 	Parameter MAXWAIT bound to: 7'b1100000 
-INFO: [Synth 8-6155] done synthesizing module 'DATA_SEND_MCS' (52#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'DATA_SEND_MCS' (53#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/DATA_SEND_MCS.v:3]
 INFO: [Synth 8-6157] synthesizing module 'GET_SPILLINFO' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/GET_SPILLINFO.v:2]
-INFO: [Synth 8-6155] done synthesizing module 'GET_SPILLINFO' (53#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/GET_SPILLINFO.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'GET_SPILLINFO' (54#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/GET_SPILLINFO.v:2]
 INFO: [Synth 8-6157] synthesizing module 'CHECK_COINCIDENCE_MODULE' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
 	Parameter WIDTH bound to: 4 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:81]
-INFO: [Synth 8-6155] done synthesizing module 'CHECK_COINCIDENCE_MODULE' (54#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
-INFO: [Synth 8-6157] synthesizing module 'sendStatus' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:338]
-INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (55#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:338]
-INFO: [Synth 8-6155] done synthesizing module 'top_mcs' (56#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'CHECK_COINCIDENCE_MODULE' (55#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/CHECK_COINCIDENCE_MODULE.v:1]
+INFO: [Synth 8-6157] synthesizing module 'sendStatus' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:335]
+INFO: [Synth 8-6155] done synthesizing module 'sendStatus' (56#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:335]
+INFO: [Synth 8-6155] done synthesizing module 'top_mcs' (57#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top_mcs.v:41]
 INFO: [Synth 8-6157] synthesizing module 'LOC_REG' [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v:19]
-INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (57#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'LOC_REG' (58#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/LOC_REG.v:19]
 INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
 	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
 	Parameter CLKFBOUT_MULT bound to: 5 - type: integer 
@@ -510,21 +516,21 @@ INFO: [Synth 8-6157] synthesizing module 'PLLE2_BASE__parameterized0' [/opt/Xili
 	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
 	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
-INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (57#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
-INFO: [Synth 8-6155] done synthesizing module 'top' (58#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_BASE__parameterized0' (58#1) [/opt/Xilinx/Vivado/2020.1/scripts/rt/data/unisim_comp.v:61598]
+INFO: [Synth 8-6155] done synthesizing module 'top' (59#1) [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/new/top.v:18]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:24 ; elapsed = 00:00:58 . Memory (MB): peak = 2447.586 ; gain = 280.852 ; free physical = 15132 ; free virtual = 40949
+Finished RTL Elaboration : Time (s): cpu = 00:00:24 ; elapsed = 00:00:58 . Memory (MB): peak = 2448.090 ; gain = 276.852 ; free physical = 13383 ; free virtual = 39269
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:01:00 . Memory (MB): peak = 2453.520 ; gain = 286.785 ; free physical = 15144 ; free virtual = 40961
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:01:00 . Memory (MB): peak = 2459.961 ; gain = 288.723 ; free physical = 13395 ; free virtual = 39281
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:25 ; elapsed = 00:01:00 . Memory (MB): peak = 2453.520 ; gain = 286.785 ; free physical = 15144 ; free virtual = 40961
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:25 ; elapsed = 00:01:00 . Memory (MB): peak = 2459.961 ; gain = 288.723 ; free physical = 13395 ; free virtual = 39281
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2453.520 ; gain = 0.000 ; free physical = 15122 ; free virtual = 40939
+Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2459.961 ; gain = 0.000 ; free physical = 13372 ; free virtual = 39258
 INFO: [Netlist 29-17] Analyzing 133 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1139,8 +1145,8 @@ Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/
 Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh'
 Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[1].shift_ram_hit_newh'
 Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/shift_ram_hit/shift_ram_hit/shift_ram_hit_in_context.xdc] for cell 'PREPROCESSOR/NEWH_EDGE[1].shift_ram_hit_newh'
-Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line176/fifo_generator_v11_0/U0'
-Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line176/fifo_generator_v11_0/U0'
+Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line175/fifo_generator_v11_0/U0'
+Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.srcs/sources_1/ip/fifo_generator_1/fifo_generator_1.xdc] for cell 'nolabel_line175/fifo_generator_v11_0/U0'
 Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
 WARNING: [Vivado 12-508] No pins matched 'get_pins -hier -filter {name =~ */SiTCP_INT/SiTCP_RESET_OUT/C}'. [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc:7]
 Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP.xdc]
@@ -1160,7 +1166,6 @@ WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_RXCNT/IOB_RERR}'. [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc:107]
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TD_*}'. [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc:121]
 WARNING: [Vivado 12-180] No cells matched 'get_cells -hierarchical -filter {name =~ */GMII_TXCNT/IOB_TEN}'. [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc:122]
-WARNING: [Vivado 12-507] No nets matched 'CLK_10M'. [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc:157]
 Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc]
 WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/nakazawa/8-gev/kc705/firmware/from_other_repo/kc705sitcp.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
@@ -1169,17 +1174,18 @@ Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/do
 Finished Parsing XDC File [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/dont_touch.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/dont_touch.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+WARNING: [Timing 38-3] User defined clock exists on pin PLLE2_DEBUG/CLKOUT1 and will prevent any subsequent automatic derivation of generated clocks on that pin. If the user defined clock specifies '-add', any existing auto-derived clocks on that pin are retained.
 INFO: [Timing 38-2] Deriving generated clocks
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2568.316 ; gain = 0.000 ; free physical = 14974 ; free virtual = 40792
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2562.758 ; gain = 0.000 ; free physical = 13229 ; free virtual = 39116
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 6 instances were transformed.
   FD => FDRE: 3 instances
   IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
   PLLE2_BASE => PLLE2_ADV: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2568.316 ; gain = 0.000 ; free physical = 14974 ; free virtual = 40792
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2562.758 ; gain = 0.000 ; free physical = 13229 ; free virtual = 39116
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[0].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/BH_EDGE[1].shift_ram_hit_bh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'PREPROCESSOR/NEWH_EDGE[0].shift_ram_hit_newh' at clock pin 'CLK' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -1282,20 +1288,20 @@ WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context s
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'top_mcs/BUF_LOOP[0].shift_cntr_eachbuf/CHANNEL_BLK[25].shift_cntr/bram1152_0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 INFO: [Common 17-14] Message 'Timing 38-316' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:01:13 . Memory (MB): peak = 2568.316 ; gain = 401.582 ; free physical = 15111 ; free virtual = 40929
+Finished Constraint Validation : Time (s): cpu = 00:00:37 ; elapsed = 00:01:13 . Memory (MB): peak = 2562.758 ; gain = 391.520 ; free physical = 13361 ; free virtual = 39248
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:01:13 . Memory (MB): peak = 2568.316 ; gain = 401.582 ; free physical = 15111 ; free virtual = 40929
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:37 ; elapsed = 00:01:13 . Memory (MB): peak = 2562.758 ; gain = 391.520 ; free physical = 13361 ; free virtual = 39248
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for nolabel_line176/fifo_generator_v11_0/U0. (constraint file  /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/dont_touch.xdc, line 16).
-Applied set_property DONT_TOUCH = true for nolabel_line176/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for nolabel_line175/fifo_generator_v11_0/U0. (constraint file  /home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/dont_touch.xdc, line 16).
+Applied set_property DONT_TOUCH = true for nolabel_line175/fifo_generator_v11_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[0].shift_cntr_eachbuf /\CHANNEL_BLK[0].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[0].shift_cntr_eachbuf /\CHANNEL_BLK[1].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for top_mcs/\BUF_LOOP[0].shift_cntr_eachbuf /\CHANNEL_BLK[2].shift_cntr /bram1152_0. (constraint file  auto generated constraint, line ).
@@ -1601,16 +1607,17 @@ Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_mrsnyc. (c
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_oldhd_all. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for PREPROCESSOR/shift_ram_hit_pspill. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:01:15 . Memory (MB): peak = 2568.316 ; gain = 401.582 ; free physical = 15048 ; free virtual = 40866
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:01:15 . Memory (MB): peak = 2562.758 ; gain = 391.520 ; free physical = 13298 ; free virtual = 39185
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:48 ; elapsed = 00:01:25 . Memory (MB): peak = 2568.320 ; gain = 401.586 ; free physical = 15007 ; free virtual = 40830
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:48 ; elapsed = 00:01:25 . Memory (MB): peak = 2562.762 ; gain = 391.523 ; free physical = 13264 ; free virtual = 39155
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   32 Bit       Adders := 1     
 	   2 Input   16 Bit       Adders := 1     
 	   2 Input   11 Bit       Adders := 449   
 	   2 Input    9 Bit       Adders := 3     
@@ -1635,9 +1642,9 @@ Detailed RTL Component Info :
 	                6 Bit    Registers := 1     
 	                5 Bit    Registers := 4     
 	                4 Bit    Registers := 16    
-	                3 Bit    Registers := 12    
-	                2 Bit    Registers := 539   
-	                1 Bit    Registers := 1088  
+	                3 Bit    Registers := 13    
+	                2 Bit    Registers := 538   
+	                1 Bit    Registers := 1087  
 +---Muxes : 
 	   2 Input   74 Bit        Muxes := 1     
 	   2 Input   32 Bit        Muxes := 1     
@@ -1654,7 +1661,7 @@ Detailed RTL Component Info :
 	   2 Input    3 Bit        Muxes := 12    
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 1648  
+	   2 Input    1 Bit        Muxes := 1653  
 	   3 Input    1 Bit        Muxes := 3     
 	   5 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
@@ -1673,27 +1680,28 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:15 ; elapsed = 00:01:55 . Memory (MB): peak = 2568.320 ; gain = 401.586 ; free physical = 14942 ; free virtual = 40802
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:17 ; elapsed = 00:01:57 . Memory (MB): peak = 2562.762 ; gain = 391.523 ; free physical = 13196 ; free virtual = 39125
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5578] Moved timing constraint from pin 'CLK_200M' to pin 'BUFG0/O'
+WARNING: [Synth 8-565] redefining clock 'CLK_10M'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:22 ; elapsed = 00:02:04 . Memory (MB): peak = 2568.320 ; gain = 401.586 ; free physical = 14846 ; free virtual = 40706
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:23 ; elapsed = 00:02:06 . Memory (MB): peak = 2562.762 ; gain = 391.523 ; free physical = 13098 ; free virtual = 39027
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:37 ; elapsed = 00:02:19 . Memory (MB): peak = 2584.320 ; gain = 417.586 ; free physical = 14805 ; free virtual = 40665
+Finished Timing Optimization : Time (s): cpu = 00:01:27 ; elapsed = 00:02:09 . Memory (MB): peak = 2562.770 ; gain = 391.531 ; free physical = 13078 ; free virtual = 39008
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:51 ; elapsed = 00:02:35 . Memory (MB): peak = 2613.836 ; gain = 447.102 ; free physical = 14810 ; free virtual = 40670
+Finished Technology Mapping : Time (s): cpu = 00:01:41 ; elapsed = 00:02:24 . Memory (MB): peak = 2580.574 ; gain = 409.336 ; free physical = 13074 ; free virtual = 39004
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1711,37 +1719,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:55 ; elapsed = 00:02:39 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14808 ; free virtual = 40668
+Finished IO Insertion : Time (s): cpu = 00:01:45 ; elapsed = 00:02:29 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13069 ; free virtual = 38999
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:55 ; elapsed = 00:02:39 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14808 ; free virtual = 40668
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:45 ; elapsed = 00:02:29 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13069 ; free virtual = 38999
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:59 ; elapsed = 00:02:42 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14802 ; free virtual = 40662
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:49 ; elapsed = 00:02:32 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13066 ; free virtual = 38996
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:59 ; elapsed = 00:02:42 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14802 ; free virtual = 40662
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:49 ; elapsed = 00:02:32 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13066 ; free virtual = 38996
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:00 ; elapsed = 00:02:43 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14804 ; free virtual = 40665
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:50 ; elapsed = 00:02:33 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13065 ; free virtual = 38994
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:00 ; elapsed = 00:02:43 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14804 ; free virtual = 40665
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:50 ; elapsed = 00:02:33 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13065 ; free virtual = 38994
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1751,8 +1759,8 @@ Static Shift Register Report:
 +------------+--------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name | RTL Name                                   | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +------------+--------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|top         | nolabel_line176/AT93C46_IIC/SYNC_CS_reg[3] | 4      | 1     | YES          | NO                 | YES               | 1      | 0       | 
-|top         | nolabel_line176/AT93C46_IIC/CMD_DI_reg     | 5      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|top         | nolabel_line175/AT93C46_IIC/SYNC_CS_reg[3] | 4      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|top         | nolabel_line175/AT93C46_IIC/CMD_DI_reg     | 5      | 1     | YES          | NO                 | YES               | 1      | 0       | 
 +------------+--------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -1780,17 +1788,17 @@ Report Cell Usage:
 |3     |bram_2byte_2K_          |   221|
 |224   |shift_ram_hit           |     1|
 |225   |shift_ram_hit_          |    81|
-|306   |BUFG                    |     4|
-|307   |CARRY4                  |   955|
-|308   |LUT1                    |   523|
-|309   |LUT2                    |  5568|
-|310   |LUT3                    |  6120|
-|311   |LUT4                    |  1256|
-|312   |LUT5                    |  1559|
-|313   |LUT6                    |  2958|
+|306   |BUFG                    |     5|
+|307   |CARRY4                  |   988|
+|308   |LUT1                    |   525|
+|309   |LUT2                    |  5599|
+|310   |LUT3                    |  6140|
+|311   |LUT4                    |  1261|
+|312   |LUT5                    |  1546|
+|313   |LUT6                    |  2976|
 |314   |MUXCY                   |    32|
-|315   |MUXF7                   |   525|
-|316   |MUXF8                   |   202|
+|315   |MUXF7                   |   541|
+|316   |MUXF8                   |   209|
 |317   |ODDR                    |     1|
 |318   |PLLE2_BASE              |     2|
 |319   |PULLUP                  |     1|
@@ -1798,10 +1806,10 @@ Report Cell Usage:
 |321   |RAMB36E1                |     8|
 |322   |SRL16E                  |     2|
 |323   |FD                      |     3|
-|324   |FDCE                    |   718|
+|324   |FDCE                    |   699|
 |325   |FDPE                    |   120|
-|326   |FDRE                    | 21346|
-|327   |FDSE                    |   274|
+|326   |FDRE                    | 21490|
+|327   |FDSE                    |   276|
 |328   |LDC                     |    35|
 |329   |IBUF                    |    19|
 |330   |IBUFDS                  |    85|
@@ -1809,11 +1817,11 @@ Report Cell Usage:
 |332   |OBUF                    |    18|
 +------+------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:00 ; elapsed = 00:02:43 . Memory (MB): peak = 2613.840 ; gain = 447.105 ; free physical = 14804 ; free virtual = 40665
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:50 ; elapsed = 00:02:33 . Memory (MB): peak = 2580.578 ; gain = 409.340 ; free physical = 13065 ; free virtual = 38994
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:51 ; elapsed = 00:02:35 . Memory (MB): peak = 2613.840 ; gain = 332.309 ; free physical = 14853 ; free virtual = 40714
-Synthesis Optimization Complete : Time (s): cpu = 00:02:00 ; elapsed = 00:02:43 . Memory (MB): peak = 2613.844 ; gain = 447.105 ; free physical = 14854 ; free virtual = 40714
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:41 ; elapsed = 00:02:25 . Memory (MB): peak = 2580.578 ; gain = 306.543 ; free physical = 13116 ; free virtual = 39045
+Synthesis Optimization Complete : Time (s): cpu = 00:01:50 ; elapsed = 00:02:33 . Memory (MB): peak = 2580.582 ; gain = 409.340 ; free physical = 13116 ; free virtual = 39045
 INFO: [Project 1-571] Translating synthesized netlist
 Release 14.7 - ngc2edif P_INT.20191124 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
@@ -1892,18 +1900,18 @@ WARNING:NetListWriters:306 - Signal bus SiTCP_INT/SiTCP_INT_REG/muxData[31 : 0]
    missing bus signals.
   finished :Prep
 Writing EDIF netlist file SiTCP_XC7K_32K_BBT_V110.edif ...
-ngc2edif: Total memory usage is 123324 kilobytes
+ngc2edif: Total memory usage is 123320 kilobytes
 
 Reading core file '/home/nakazawa/8-gev/kc705/SiTCP_Sample_Code_for_KC705_GMII/SiTCP_XC7K_32K_BBT_V110.ngc' for (cell view 'SiTCP_XC7K_32K_BBT_V110', library 'work')
 Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_27e62b37.edif]
 Finished Parsing EDIF File [./.ngc2edfcache/SiTCP_XC7K_32K_BBT_V110_ngc_27e62b37.edif]
-Netlist sorting complete. Time (s): cpu = 00:00:00.36 ; elapsed = 00:00:00.36 . Memory (MB): peak = 2613.844 ; gain = 0.000 ; free physical = 14899 ; free virtual = 40776
-INFO: [Netlist 29-17] Analyzing 7377 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.36 ; elapsed = 00:00:00.35 . Memory (MB): peak = 2580.582 ; gain = 0.000 ; free physical = 13159 ; free virtual = 39105
+INFO: [Netlist 29-17] Analyzing 7433 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Xilinx ngc2edif P_INT.20191124
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2613.844 ; gain = 0.000 ; free physical = 14843 ; free virtual = 40720
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2590.484 ; gain = 0.000 ; free physical = 13099 ; free virtual = 39045
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3739 instances were transformed.
   (MUXCY,XORCY) => CARRY4: 296 instances
@@ -1920,12 +1928,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1S => RAM32X1S (RAMS32): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-93 Infos, 119 Warnings, 0 Critical Warnings and 0 Errors encountered.
+95 Infos, 120 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:17 ; elapsed = 00:03:02 . Memory (MB): peak = 2613.844 ; gain = 459.246 ; free physical = 15008 ; free virtual = 40885
+synth_design: Time (s): cpu = 00:02:07 ; elapsed = 00:02:52 . Memory (MB): peak = 2590.484 ; gain = 431.383 ; free physical = 13261 ; free virtual = 39207
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/nakazawa/8-gev/kc705/firmware/extinction.runs/synth_1/top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2645.859 ; gain = 32.016 ; free physical = 15007 ; free virtual = 40890
+write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2622.504 ; gain = 32.020 ; free physical = 13257 ; free virtual = 39209
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri May 21 17:17:57 2021...
+INFO: [Common 17-206] Exiting Vivado at Sat May 22 01:05:09 2021...

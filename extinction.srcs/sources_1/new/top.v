@@ -114,6 +114,7 @@ module
     wire     [7:0]    DLYL_NEW_PMT  ; // Delay for PMT
 
     wire    [63:0]    SIGTEST  ;
+
     wire     [1:0]    SEE_EDGE_TC;
     wire     [1:0]    SEE_EDGE_BH;
     wire              SEE_EDGE_OLDHALL;
@@ -149,15 +150,13 @@ module
         .OLDH         (OLDH[7:0]        ), // out: Old hodoscope signal
         .NEWH         (NEWH[1:0]        ), // out: New hodoscope signal PMT
         .SIGNAL       (SIGNAL[63:0]     ), // out: New hodoscope signal MPPC
-        .SEE_EDGE_TC  (SEE_EDGE_TC[1:0] ),
-        .SEE_EDGE_BH  (SEE_EDGE_BH[1:0] ),
-        .SEE_EDGE_OLDHALL  (SEE_EDGE_OLDHALL ) 
+        .SEE_EDGE_TC  (SEE_EDGE_TC      ),
+        .SEE_EDGE_BH  (SEE_EDGE_BH      ),
+        .SEE_EDGE_OLDHALL  (SEE_EDGE_OLDHALL      ) 
     );
      
-    //assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
-    //assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
-    assign PSPILL  = PSPILL_FMC;  // Use SMA0 for SPILL signal
-    assign MR_SYNC = MR_SYNC_FMC; // Use SMA1 for MR sync dummy
+    assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
+    assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
 
 
 //-----------------------------------------------------------
@@ -248,7 +247,6 @@ module
 
     //wire   [63:0]  SIG_IN;
     //assign SIG_IN = (RUN_MODE[2:0]==3'h7)? TEST_SIGNAL : SIGNAL;
-    /*
     reg  TCP_NOACK;
     always @(posedge CLK_200M)begin
         if (TCP_RST) begin
@@ -256,7 +254,7 @@ module
         end else begin
             TCP_NOACK <= ~TCP_OPEN_ACK;
         end
-    end*/
+    end
     top_mcs top_mcs(
     // system
         .RESET      ((SYS_RST|RUN_RESET)),
@@ -348,8 +346,8 @@ module
         .REG_CNT2 (cnt2),
         .REG_CNT3 (cnt3),
         .REG_CNT4 (cnt4),
-        .REG_SEE_EDGE_TC (SEE_EDGE_TC[1:0]),
-        .REG_SEE_EDGE_BH (SEE_EDGE_BH[1:0]),
+        .REG_SEE_EDGE_TC (SEE_EDGE_TC),
+        .REG_SEE_EDGE_BH (SEE_EDGE_BH),
         .REG_SEE_EDGE_OLDHALL (SEE_EDGE_OLDHALL) 
     );
 

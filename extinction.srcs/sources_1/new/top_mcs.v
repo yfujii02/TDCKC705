@@ -223,7 +223,6 @@ module top_mcs(
     //   start sending the data from the previous BRAM to SiTCP module
     //
     //*******************************************************************************
-    reg   [NBUF-1:0]  regSTART;
 genvar i;
 generate
     for (i = 0; i < NBUF; i = i+1) begin: CHECK_EOD
@@ -233,13 +232,11 @@ generate
                 regEOD[2*i+1:2*i]  <= 2'd0;
                 edgeEOD[i]         <= 1'b0;
                 regRST[i]          <= 1'b1;
-                regSTART[i]        <= 1'b0;
                 //relCNTR[11*i+10:11*i] <= 11'd0;
             end else begin
                 regEOD[2*i+1:2*i]  <= {regEOD[2*i],EOD[i]};
                 edgeEOD[i]         <= (regEOD[2*i+1:2*i]==2'b01)? 1'b1 : 1'b0;
                 regRST[i]          <= 1'b0;
-                regSTART[i]        <= START;
                 //if (MR_SYNC) begin
                 //    relCNTR[11*i+10:11*i] <= 11'd0;
                 //end else begin
@@ -256,9 +253,9 @@ generate
     for (i = 0; i < NBUF; i = i+1) begin: BUF_LOOP
         SHIFT_COUNTER_ALL shift_cntr_eachbuf(
             //.RST    (regRST[i]),        // input reset signal
-            .RST    (regRST[i]),        // input reset signal
+            .RST    (RESET),        // input reset signal
             .CLK    (CLK_200M ),        // input clock
-            .EN     (enWrite[i]&regSTART[i]), // input enable writing
+            .EN     (enWrite[i]&START), // input enable writing
             .SIG    (irINPUT[NCHANNEL*(i+1)-1:NCHANNEL*i]),        // input signal
             .EOD    (EOD[i]),       // end of data sending for this memory block
             //.EOD    (edgeEOD[i]),       // end of data sending for this memory block
@@ -280,7 +277,7 @@ generate
         DATA_SEND_MCS data_send_mcs0(
             .RST     (regRST[i] ),  // input reset
             .CLK     (CLK_200M  ),  // input clock
-            .ENABLE  (enWrite[i]&regSTART[i]  ), // write enable for mem buffer which also control the data send start
+            .ENABLE  (enWrite[i]&START        ), // write enable for mem buffer which also control the data send start
             .BUFLABEL(label[4*(i+1)-1:4*i]    ), // label of buffer put in the header
             .TCP_FULL(TCP_BUSY|send_others[i] ), // input TCP busy or other channel is sending data
             .LENGTH  (LENGTH_INT[i*11+10:i*11]), // output address to be used in the memory buffer
