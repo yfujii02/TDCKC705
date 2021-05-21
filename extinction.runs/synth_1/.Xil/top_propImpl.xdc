@@ -470,3 +470,5 @@ set_property src_info {type:XDC file:4 line:147 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN AG5  [get_ports {SW_DEBUG[0]}]
 set_property src_info {type:XDC file:4 line:148 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN AB12 [get_ports {SW_DEBUG[1]}]
+set_property src_info {type:XDC file:4 line:157 export:INPUT save:INPUT read:READ} [current_design]
+create_clock -period 100.000 -name CLK_10M  -waveform {0.000 50.000} -add [get_nets CLK_10M]
