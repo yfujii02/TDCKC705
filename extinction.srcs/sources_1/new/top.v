@@ -154,8 +154,10 @@ module
         .SEE_EDGE_OLDHALL  (SEE_EDGE_OLDHALL ) 
     );
      
-    assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
-    assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
+    //assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
+    //assign MR_SYNC = TEST_MRSYNC_EN ? TEST_MRSYNC : MR_SYNC_FMC; // Use SMA1 for MR sync dummy
+    assign PSPILL  = PSPILL_FMC;  // Use SMA0 for SPILL signal
+    assign MR_SYNC = MR_SYNC_FMC; // Use SMA1 for MR sync dummy
 
 
 //-----------------------------------------------------------
@@ -246,6 +248,7 @@ module
 
     //wire   [63:0]  SIG_IN;
     //assign SIG_IN = (RUN_MODE[2:0]==3'h7)? TEST_SIGNAL : SIGNAL;
+    /*
     reg  TCP_NOACK;
     always @(posedge CLK_200M)begin
         if (TCP_RST) begin
@@ -253,7 +256,7 @@ module
         end else begin
             TCP_NOACK <= ~TCP_OPEN_ACK;
         end
-    end
+    end*/
     top_mcs top_mcs(
     // system
         .RESET      ((SYS_RST|RUN_RESET)),
