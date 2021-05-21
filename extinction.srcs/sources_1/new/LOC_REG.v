@@ -64,7 +64,10 @@ module LOC_REG(
     input   wire    [15:0]  REG_CNT1,
     input   wire    [15:0]  REG_CNT2,
     input   wire    [15:0]  REG_CNT3,
-    input   wire    [15:0]  REG_CNT4
+    input   wire    [15:0]  REG_CNT4,
+    output  wire     [1:0]  REG_SEE_EDGE_TC,
+    output  wire     [1:0]  REG_SEE_EDGE_BH,
+    output  wire            REG_SEE_EDGE_OLDHALL
 );
 //------------------------------------------------------------------------------
 //    Input buffer
@@ -266,9 +269,9 @@ module LOC_REG(
             x4A_Reg[7:0]    <= 8'h00;   //  NC
             x4B_Reg[7:0]    <= 8'h00;   //  NC                         
             x4C_Reg[7:0]    <= 8'h00;   //  NC                         
-            x4D_Reg[7:0]    <= 8'h00;   //  NC                         
-            x4E_Reg[7:0]    <= 8'h00;   //  NC                         
-            x4F_Reg[7:0]    <= 8'h00;   //  NC                         
+            x4D_Reg[7:0]    <= 8'h03;   //  see edge TC                         
+            x4E_Reg[7:0]    <= 8'h03;   //  see edge BH                         
+            x4F_Reg[7:0]    <= 8'h01;   //  see edge old hd all                         
 
 ///////////////////////////////////////////////////////
 // Write Registers
@@ -470,9 +473,9 @@ module LOC_REG(
             4'hA:    rdDataE[7:0]    <= 8'h0;        // NC
             4'hB:    rdDataE[7:0]    <= 8'h0;        // NC                         
             4'hC:    rdDataE[7:0]    <= 8'h0;        // NC                         
-            4'hD:    rdDataE[7:0]    <= 8'h0;        // NC                         
-            4'hE:    rdDataE[7:0]    <= 8'h0;        // NC                         
-            4'hF:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'hD:    rdDataE[7:0]    <= x4D_Reg[7:0];        // NC                         
+            4'hE:    rdDataE[7:0]    <= x4E_Reg[7:0];        // NC                         
+            4'hF:    rdDataE[7:0]    <= x4F_Reg[7:0];        // NC                         
         endcase
 
         regRv[4:0]    <= (irRe    ? regCs[4:0] : 8'd0);

@@ -114,6 +114,9 @@ module
     wire     [7:0]    DLYL_NEW_PMT  ; // Delay for PMT
 
     wire    [63:0]    SIGTEST  ;
+    wire     [1:0]    SEE_EDGE_TC;
+    wire     [1:0]    SEE_EDGE_BH;
+    wire              SEE_EDGE_OLDHALL;
 
     PREPROCESSOR PREPROCESSOR(
         .SYSCLK       (CLK_200M         ), // in : System clock
@@ -145,7 +148,10 @@ module
         .OLDH_ALL     (OLDH_ALL         ), // out: Old hodoscope signal (ALL OR)
         .OLDH         (OLDH[7:0]        ), // out: Old hodoscope signal
         .NEWH         (NEWH[1:0]        ), // out: New hodoscope signal PMT
-        .SIGNAL       (SIGNAL[63:0]     )  // out: New hodoscope signal MPPC
+        .SIGNAL       (SIGNAL[63:0]     ), // out: New hodoscope signal MPPC
+        .SEE_EDGE_TC  (SEE_EDGE_TC[1:0] ),
+        .SEE_EDGE_BH  (SEE_EDGE_BH[1:0] ),
+        .SEE_EDGE_OLDHALL  (SEE_EDGE_OLDHALL ) 
     );
      
     assign PSPILL  = TEST_PSPILL_EN ? TEST_PSPILL : PSPILL_FMC;  // Use SMA0 for SPILL signal
@@ -338,7 +344,10 @@ module
         .REG_CNT1 (cnt1),
         .REG_CNT2 (cnt2),
         .REG_CNT3 (cnt3),
-        .REG_CNT4 (cnt4)
+        .REG_CNT4 (cnt4),
+        .REG_SEE_EDGE_TC (SEE_EDGE_TC[1:0]),
+        .REG_SEE_EDGE_BH (SEE_EDGE_BH[1:0]),
+        .REG_SEE_EDGE_OLDHALL (SEE_EDGE_OLDHALL) 
     );
 
    BUFG BUFSTART( .O(RUN_START), .I(REG_START));

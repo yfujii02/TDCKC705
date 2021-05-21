@@ -50,9 +50,25 @@ module PREPROCESSOR(
     output  wire              OLDH_ALL    , // out: Old hodoscope signal (ALL OR)
     output  wire     [7:0]    OLDH        , // out: Old hodoscope signal
     output  wire     [1:0]    NEWH        , // out: Old hodoscope signal
-    output  wire    [63:0]    SIGNAL        // out: New hodoscope signal
-
+    output  wire    [63:0]    SIGNAL      , // out: New hodoscope signal
+    input   wire     [1:0]    SEE_EDGE_TC , // in
+    input   wire     [1:0]    SEE_EDGE_BH , // in
+    input   wire              SEE_EDGE_OLDHALL
     );
+    reg   [3:0]  seeEdgeBH;
+    reg   [3:0]  seeEdgeTC;
+    reg   [1:0]  seeEdgeOldhall;
+    always @(posedge SYSCLK) begin
+        if(SYSRST) begin
+            seeEdgeBH[3:0] <= 4'd0;
+            seeEdgeTC[3:0] <= 4'd0;
+            seeEdgeOldhall[1:0] <= 2'd0;
+        end else begin 
+            seeEdgeBH[3:0] <= {seeEdgeBH[1:0],SEE_EDGE_BH[1:0]};
+            seeEdgeTC[3:0] <= {seeEdgeTC[1:0],SEE_EDGE_TC[1:0]};
+            seeEdgeOldhall[1:0] <= {seeEdgeOldhall[0], SEE_EDGE_OLDHALL};
+        end
+    end
     
     wire    [19:0]    ha_hpc        ; // for additional information
     wire    [31:0]    la_hpc        ; // for main counters
@@ -184,7 +200,7 @@ module PREPROCESSOR(
                 regBH[i]          <= 1'd0;
             end else begin
                 bhEdge[2*i+1:2*i] <= {bhEdge[2*i],bh_fmc[i]};
-                regBH[i]          <= (bhEdge[2*i+1:2*i]==2'b01);
+                regBH[i]          <= seeEdgeBH[2+i] ? (bhEdge[2*i+1:2*i]==2'b01) : bhEdge[2*i];
             end
         end
         shift_ram_hit shift_ram_hit_bh(
@@ -204,7 +220,7 @@ module PREPROCESSOR(
                 regTC[i]          <= 1'd0;
             end else begin
                 tcEdge[2*i+1:2*i] <= {tcEdge[2*i],tc_fmc[i]};
-                regTC[i]          <= (tcEdge[2*i+1:2*i]==2'b01);
+                regTC[i]          <= seeEdgeTC[2+i]==1'b1 ? (tcEdge[2*i+1:2*i]==2'b01) : tcEdge[2*i];
             end
         end
         shift_ram_hit shift_ram_hit_tc(
@@ -223,7 +239,7 @@ module PREPROCESSOR(
                 regOLDHALL       <= 1'd0;
             end else begin
                 oldhallEdge[1:0] <= {oldhallEdge[0],oldhd_all_fmc};
-                regOLDHALL       <= (oldhallEdge[1:0]==2'b01);
+                regOLDHALL       <= seeEdgeOldhall[1]==1'b1 ? (oldhallEdge[1:0]==2'b01) : oldhallEdge[0];
             end
         end
         shift_ram_hit shift_ram_hit_oldhd_all(
