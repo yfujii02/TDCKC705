@@ -68,7 +68,12 @@ module top_mcs(
     output  wire   [15:0]   cnt1,
     output  wire   [15:0]   cnt2,
     output  wire   [15:0]   cnt3,
-    output  wire   [15:0]   cnt4 
+    output  wire   [15:0]   cnt4,
+    input   wire            enTC0,
+    input   wire            enTC1,
+    input   wire            enBH0,
+    input   wire            enBH1,
+    input   wire            enOHAOR 
     );
 
     parameter NBUF     =  3; /// Number of cyclic buffers
@@ -120,7 +125,12 @@ module top_mcs(
         .cnt1(cnt1),
         .cnt2(cnt2),
         .cnt3(cnt3),
-        .cnt4(cnt4)
+        .cnt4(cnt4),
+        .enTC0(enTC0),
+        .enTC1(enTC1),
+        .enBH0(enBH0),
+        .enBH1(enBH1),
+        .enOHAOR(enOHAOR)
     );
 
     always @ (posedge CLK_200M) begin

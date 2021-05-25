@@ -239,6 +239,11 @@ module
     wire   [15:0]  cnt2;
     wire   [15:0]  cnt3;
     wire   [15:0]  cnt4;
+    wire           EN_TC0;
+    wire           EN_TC1;
+    wire           EN_BH0;
+    wire           EN_BH1;
+    wire           EN_OHAOR;
 //    assign SPLCNT_RST = EXOUT_SPLCNT_RST | EXIN_SPLCNT_RST;
     assign BOARD_ID = {1'b0,GPIO_SWITCH[3:1]};
 
@@ -288,7 +293,12 @@ module
         .cnt1(cnt1),
         .cnt2(cnt2),
         .cnt3(cnt3),
-        .cnt4(cnt4)
+        .cnt4(cnt4),
+        .enTC0(EN_TC0),
+        .enTC1(EN_TC1),
+        .enBH0(EN_BH0),
+        .enBH1(EN_BH1),
+        .enOHAOR(EN_OHAOR)
     );
 
     wire    [7:0]   DELAY_TEST;
@@ -346,6 +356,11 @@ module
         .REG_CNT2 (cnt2),
         .REG_CNT3 (cnt3),
         .REG_CNT4 (cnt4),
+        .REG_ENTC0(EN_TC0),
+        .REG_ENTC1(EN_TC1),
+        .REG_ENBH0(EN_BH0),
+        .REG_ENBH1(EN_BH1),
+        .REG_ENOHAOR(EN_OHAOR),
         .REG_SEE_EDGE_TC (SEE_EDGE_TC),
         .REG_SEE_EDGE_BH (SEE_EDGE_BH),
         .REG_SEE_EDGE_OLDHALL (SEE_EDGE_OLDHALL) 

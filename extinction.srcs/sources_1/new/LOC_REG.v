@@ -65,6 +65,11 @@ module LOC_REG(
     input   wire    [15:0]  REG_CNT2,
     input   wire    [15:0]  REG_CNT3,
     input   wire    [15:0]  REG_CNT4,
+    output  wire            REG_ENTC0,
+    output  wire            REG_ENTC1,
+    output  wire            REG_ENBH0,
+    output  wire            REG_ENBH1,
+    output  wire            REG_ENOHAOR,
     output  wire     [1:0]  REG_SEE_EDGE_TC,
     output  wire     [1:0]  REG_SEE_EDGE_BH,
     output  wire            REG_SEE_EDGE_OLDHALL
@@ -264,11 +269,11 @@ module LOC_REG(
             x45_Reg[7:0]    <= 8'h00;   //  NC
             x46_Reg[7:0]    <= 8'h00;   //  NC
             x47_Reg[7:0]    <= 8'h00;   //  NC
-            x48_Reg[7:0]    <= 8'h00;   //  NC
-            x49_Reg[7:0]    <= 8'h00;   //  NC
-            x4A_Reg[7:0]    <= 8'h00;   //  NC
-            x4B_Reg[7:0]    <= 8'h00;   //  NC                         
-            x4C_Reg[7:0]    <= 8'h00;   //  NC                         
+            x48_Reg[7:0]    <= 8'h01;   //  NC
+            x49_Reg[7:0]    <= 8'h01;   //  NC
+            x4A_Reg[7:0]    <= 8'h01;   //  NC
+            x4B_Reg[7:0]    <= 8'h01;   //  NC                         
+            x4C_Reg[7:0]    <= 8'h01;   //  NC                         
             x4D_Reg[7:0]    <= 8'h03;   //  NC                         
             x4E_Reg[7:0]    <= 8'h03;   //  NC                         
             x4F_Reg[7:0]    <= 8'h01;   //  NC                         
@@ -468,11 +473,11 @@ module LOC_REG(
             4'h5:    rdDataE[7:0]    <= REG_CNT3[7:0];        // 
             4'h6:    rdDataE[7:0]    <= REG_CNT4[15:8];       // 
             4'h7:    rdDataE[7:0]    <= REG_CNT4[7:0];        // 
-            4'h8:    rdDataE[7:0]    <= 8'h0;        // NC
-            4'h9:    rdDataE[7:0]    <= 8'h0;        // NC
-            4'hA:    rdDataE[7:0]    <= 8'h0;        // NC
-            4'hB:    rdDataE[7:0]    <= 8'h0;        // NC                         
-            4'hC:    rdDataE[7:0]    <= 8'h0;        // NC                         
+            4'h8:    rdDataE[7:0]    <= x48_Reg[7:0];        // NC
+            4'h9:    rdDataE[7:0]    <= x49_Reg[7:0];        // NC
+            4'hA:    rdDataE[7:0]    <= x4A_Reg[7:0];        // NC
+            4'hB:    rdDataE[7:0]    <= x4B_Reg[7:0];        // NC                         
+            4'hC:    rdDataE[7:0]    <= x4C_Reg[7:0];        // NC                         
             4'hD:    rdDataE[7:0]    <= 8'h0;        // NC                         
             4'hE:    rdDataE[7:0]    <= 8'h0;        // NC                         
             4'hF:    rdDataE[7:0]    <= 8'h0;        // NC                         
@@ -532,6 +537,12 @@ module LOC_REG(
 //    assign  REG_DLYL_PMT[95:0]    = {x3F_Reg[7:0], x3E_Reg[7:0], x3D_Reg[7:0], x3C_Reg[7:0], x3B_Reg[7:0], x3A_Reg[7:0], x39_Reg[7:0], x38_Reg[7:0], x37_Reg[7:0], x36_Reg[7:0], x35_Reg[7:0], x34_Reg[7:0]};
 
     assign  REG_SPLDIV[3:0] = x1A_Reg[3:0];
+
+    assign  REG_ENTC0 = x48_Reg[0];
+    assign  REG_ENTC1 = x49_Reg[0];
+    assign  REG_ENBH0 = x4A_Reg[0];
+    assign  REG_ENBH1 = x4B_Reg[0];
+    assign  REG_ENOHAOR = x4C_Reg[0];
 
     assign  REG_SEE_EDGE_TC[1:0] = x4D_Reg[1:0];
     assign  REG_SEE_EDGE_BH[1:0] = x4E_Reg[1:0];

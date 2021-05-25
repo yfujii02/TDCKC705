@@ -15,7 +15,12 @@ module CHECK_COINCIDENCE_MODULE
         output  reg     [15:0]      cnt1,
         output  reg     [15:0]      cnt2,
         output  reg     [15:0]      cnt3,
-        output  reg     [15:0]      cnt4 
+        output  reg     [15:0]      cnt4,
+        input   wire                enTC0, 
+        input   wire                enTC1, 
+        input   wire                enBH0, 
+        input   wire                enBH1,
+        input   wire                enOHAOR 
 );
 
     //// Stretch the signal width of each PMT counter
@@ -26,20 +31,40 @@ module CHECK_COINCIDENCE_MODULE
     reg [WIDTH-1:0] regBH0;
     reg [WIDTH-1:0] regBH1;
     reg [WIDTH-1:0] regOHAOR; /// all or of old hodoscope
+    reg [1:0]       regTmpTC0;
+    reg [1:0]       regTmpTC1;
+    reg [1:0]       regTmpBH0;
+    reg [1:0]       regTmpBH1;
+    reg [1:0]       regTmpOhaor;
 
     always @(posedge CLK) begin
         if(RST) begin
+            regTmpTC0[1:0]     <= 2'd0;  
+            regTmpTC1[1:0]     <= 2'd0;  
+            regTmpBH0[1:0]     <= 2'd0;  
+            regTmpBH1[1:0]     <= 2'd0;  
+            regTmpOhaor[1:0]   <= 2'd0;
             regTC0[WIDTH-1:0]  <= 0;
             regTC1[WIDTH-1:0]  <= 0;
             regBH0[WIDTH-1:0]  <= 0;
             regBH1[WIDTH-1:0]  <= 0;
             regOHAOR[WIDTH-1:0]<= 0;
         end else begin
-            regTC0[WIDTH-1:0]  <= {regTC0[WIDTH-2:0],TC0};
-            regTC1[WIDTH-1:0]  <= {regTC1[WIDTH-2:0],TC1};
-            regBH0[WIDTH-1:0]  <= {regBH0[WIDTH-2:0],BH0};
-            regBH1[WIDTH-1:0]  <= {regBH1[WIDTH-2:0],BH1};
-            regOHAOR[WIDTH-1:0]<= {regOHAOR[WIDTH-2:0],OHAOR};
+            regTmpTC0[0]       <= enTC0 ? TC0 : 1'b1;  
+            regTmpTC1[0]       <= enTC1 ? TC1 : 1'b1;  
+            regTmpBH0[0]       <= enBH0 ? BH0 : 1'b1;  
+            regTmpBH1[0]       <= enBH1 ? BH1 : 1'b1;  
+            regTmpOhaor[0]     <= enOHAOR ? OHAOR : 1'b1;
+            regTmpTC0[1]       <= regTmpTC0[0];  
+            regTmpTC1[1]       <= regTmpTC1[0];  
+            regTmpBH0[1]       <= regTmpBH0[0];  
+            regTmpBH1[1]       <= regTmpBH1[0];  
+            regTmpOhaor[1]     <= regTmpOhaor[0];
+            regTC0[WIDTH-1:0]  <= {regTC0[WIDTH-2:0],regTmpTC0[1]};
+            regTC1[WIDTH-1:0]  <= {regTC1[WIDTH-2:0],regTmpTC1[1]};
+            regBH0[WIDTH-1:0]  <= {regBH0[WIDTH-2:0],regTmpBH0[1]};
+            regBH1[WIDTH-1:0]  <= {regBH1[WIDTH-2:0],regTmpBH1[1]};
+            regOHAOR[WIDTH-1:0]<= {regOHAOR[WIDTH-2:0],regTmpOhaor[1]};
         end
     end
 
@@ -91,13 +116,24 @@ module CHECK_COINCIDENCE_MODULE
             cnt4 <= regCnt4;
         end
     end
+
+    reg   [127:0]   regTmpMppc;
+    reg   [3:0]     regTmpEpmt;
+    reg   [15:0]    regTmpOldhod;
     
     always @(posedge CLK) begin
         if(RST) begin
             SIGOUT <= 74'd0;
+            regTmpMppc[127:0] <= 128'd0;
+            regTmpEpmt[3:0]   <= 4'd0;
+            regTmpOldhod[15:0]<= 16'd0;
         end else begin
+            regTmpMppc[127:0] <= {regTmpMppc[63:0], MPPC[63:0]};
+            regTmpEpmt[3:0]   <= {regTmpEpmt[1:0], EPMT[1:0]};
+            regTmpOldhod[15:0]<= {regTmpOldhod[7:0], OLDHOD[7:0]};
+
             if(COINC) begin
-                SIGOUT <= {OLDHOD,EPMT,MPPC};
+                SIGOUT <= {regTmpOldhod[15:8],regTmpEpmt[3:2],regTmpMppc[127:64]};
             end else begin
                 SIGOUT <= 74'd0;
             end

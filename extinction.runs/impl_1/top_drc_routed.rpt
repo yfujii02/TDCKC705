@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Tue May 25 07:44:09 2021
+| Date         : Tue May 25 09:33:27 2021
 | Host         : localhost.localdomain running 64-bit unknown
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -79,162 +79,162 @@ Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[0]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[0]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[0]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[0]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[10]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[2]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[10]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[2]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#6 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[11]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[3]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[11]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[3]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#7 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[12]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[4]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[12]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[4]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#8 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[13]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[5]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[13]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[5]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#9 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[14]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[6]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[14]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[6]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#10 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[15]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[7]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[15]_1 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[7]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#11 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[16]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[0]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[16]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[0]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#12 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[17]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[1]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[17]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[1]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#13 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[18]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[2]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[18]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[2]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#14 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[19]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[3]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[19]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[3]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#15 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[1]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[1]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[1]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[1]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#16 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[20]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[4]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[20]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[4]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#17 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[21]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[5]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[21]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[5]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#18 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[22]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[6]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[22]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[6]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#19 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[23]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x05_Reg_reg[7]_LDC_i_1/O, cell nolabel_line175/SiTCP/x05_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[23]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x05_Reg_reg[7]_LDC_i_1/O, cell top_mcs/get_spillInfo/x05_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#20 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[24]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[0]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[24]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[0]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#21 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[25]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[1]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[25]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[1]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#22 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[26]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[2]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[26]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[2]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#23 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[27]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[3]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[27]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[3]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#24 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[28]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[4]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[28]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[4]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#25 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[29]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[5]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[29]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[5]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#26 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[2]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[2]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[2]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[2]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#27 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[30]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[6]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[30]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[6]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#28 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[31]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x04_Reg_reg[7]_LDC_i_1/O, cell nolabel_line175/SiTCP/x04_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[31]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x04_Reg_reg[7]_LDC_i_1/O, cell top_mcs/get_spillInfo/x04_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#29 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[3]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[3]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[3]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[3]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#30 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[4]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[4]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[4]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[4]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#31 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[5]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[5]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[5]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[5]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#32 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[6]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[6]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[6]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[6]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#33 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[7]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x07_Reg_reg[7]_LDC_i_1/O, cell nolabel_line175/SiTCP/x07_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[7]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x07_Reg_reg[7]_LDC_i_1/O, cell top_mcs/get_spillInfo/x07_Reg_reg[7]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#34 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[8]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[0]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[8]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[0]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#35 Warning
 Gated clock check  
-Net nolabel_line175/SiTCP/irSPILLCOUNT_reg[9]_0 is a gated clock net sourced by a combinational pin nolabel_line175/SiTCP/x06_Reg_reg[1]_LDC_i_1/O, cell nolabel_line175/SiTCP/x06_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net top_mcs/get_spillInfo/irSPILLCOUNT_reg[9]_0 is a gated clock net sourced by a combinational pin top_mcs/get_spillInfo/x06_Reg_reg[1]_LDC_i_1/O, cell top_mcs/get_spillInfo/x06_Reg_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 REQP-1839#1 Warning
